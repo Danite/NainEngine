@@ -1,0 +1,8 @@
+[package]
+authors = ["danite <luansnain@gmail.com>"]
+edition = "2018"
+name = "sandbox"
+version = "0.1.0"
+
+[dependencies]
+nain = {path = "../"}

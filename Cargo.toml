@@ -1,0 +1,13 @@
+[package]
+authors = ["danite <luansnain@gmail.com>"]
+edition = "2018"
+name = "nain"
+version = "0.1.0"
+
+[lib]
+crate-type = ["lib"]
+
+[workspace]
+members = ["sandbox"]
+
+[dependencies]

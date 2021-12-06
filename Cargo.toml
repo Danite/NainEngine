@@ -8,6 +8,7 @@ version = "0.1.0"
 crate-type = ["lib"]
 
 [workspace]
-members = ["sandbox"]
+members = ["sandbox", "crates/*"]
 
 [dependencies]
+nain_log = {path = "crates/nain_log"}

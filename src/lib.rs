@@ -1,3 +1,4 @@
-pub fn engine_greeter() {
-    println!("Welcome to the Nain engine!")
-}
+pub use self::application::Application;
+pub use nain_log as log;
+
+mod application;

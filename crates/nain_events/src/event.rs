@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-// Current events are currently blocking, for the future
+// Current events are blocking, for the future
 // a better strategy might be to buffer the events in a
 // event bus and process them during the "event" part of
 // the update strategy
@@ -39,6 +39,19 @@ pub trait Event: Display {
     fn get_category_flags(&self) -> EventCategory;
     fn is_in_category(&self, category: EventCategory) -> bool {
         self.get_category_flags() == category
+    }
+}
+
+pub struct EventDispatcher<'a> {
+    event: &'a dyn Event,
+}
+
+impl<'a> EventDispatcher<'a> {
+    pub fn dispatch<F>(&self, function: F)
+    where
+        F: FnOnce(&dyn Event) + 'static,
+    {
+        function(self.event);
     }
 }
 

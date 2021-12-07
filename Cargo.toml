@@ -12,3 +12,4 @@ members = ["sandbox", "crates/*"]
 
 [dependencies]
 nain_log = {path = "crates/nain_log"}
+nain_events = {path = "crates/nain_events"}

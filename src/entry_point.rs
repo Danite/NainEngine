@@ -7,7 +7,7 @@ pub struct CreateApplication;
 impl CreateApplication {
     pub fn new(application: &dyn Application) -> Result<(), Box<dyn Error>> {
         log::init()?;
-        log::trace!("Eroror help me");
+        log::trace!("Trace log!");
 
         application.run();
 

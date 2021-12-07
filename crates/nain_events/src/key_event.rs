@@ -34,7 +34,7 @@ impl fmt::Display for KeyPressedEvent {
 }
 
 impl KeyPressedEvent {
-    pub fn new(key_code: u32, repeat_count: u32) -> KeyPressedEvent {
+    pub fn new(key_code: u32, repeat_count: u32) -> Self {
         Self {
             key_code,
             repeat_count,
@@ -43,5 +43,34 @@ impl KeyPressedEvent {
 
     pub fn get_repeat_count(&self) -> u32 {
         self.repeat_count
+    }
+}
+
+// Key released event
+
+pub struct KeyReleasedEvent {
+    key_code: u32,
+}
+
+impl Event for KeyReleasedEvent {
+    event_category_flags!(EventCategory::Keyboard);
+    event_type!(EventType::KeyReleased);
+}
+
+impl KeyEvent for KeyReleasedEvent {
+    fn get_key_code(&self) -> u32 {
+        self.key_code
+    }
+}
+
+impl fmt::Display for KeyReleasedEvent {
+    fn fmt(&self, formater: &mut fmt::Formatter) -> fmt::Result {
+        write!(formater, "KeyPressedEvent: {}", self.key_code)
+    }
+}
+
+impl KeyReleasedEvent {
+    pub fn new(key_code: u32) -> Self {
+        Self { key_code }
     }
 }

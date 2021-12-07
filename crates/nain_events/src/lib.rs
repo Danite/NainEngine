@@ -1,7 +1,7 @@
 pub use self::{
     application_event::ApplicationEvent,
     event::{Event, EventCategory, EventDispatcher, EventType},
-    key_event::KeyPressedEvent,
+    key_event::{KeyPressedEvent, KeyReleasedEvent},
 };
 
 mod application_event;

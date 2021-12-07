@@ -1,5 +1,5 @@
 pub use self::{
-    application_event::ApplicationEvent,
+    application_event::WindowResizeEvent,
     event::{Event, EventCategory, EventDispatcher, EventType},
     key_event::{KeyPressedEvent, KeyReleasedEvent},
     mouse_event::{

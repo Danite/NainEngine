@@ -11,5 +11,8 @@ crate-type = ["lib"]
 members = ["sandbox", "crates/*"]
 
 [dependencies]
-nain_log = {path = "crates/nain_log"}
+glad-gl = {path = "./vendor/glad-gl"}
+glfw = "0.43.0"
 nain_events = {path = "crates/nain_events"}
+nain_log = {path = "crates/nain_log"}
+nain_window = {path = "crates/nain_window"}

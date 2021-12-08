@@ -1,0 +1,10 @@
+[package]
+authors = ["danite <luansnain@gmail.com>"]
+edition = "2018"
+name = "nain_window"
+version = "0.1.0"
+
+[dependencies]
+glad-gl = {path = "../../vendor/glad-gl"}
+glfw = "0.43.0"
+nain_events = {path = "../nain_events"}

@@ -1,14 +1,10 @@
 use nain::{Application, CreateApplication};
 use std::error::Error;
 
-struct Sandbox;
-
-impl Application for Sandbox {}
-
 fn main() -> Result<(), Box<dyn Error>> {
-    let sandbox = Sandbox {};
+    let mut sandbox = Application::new();
 
-    CreateApplication::new(&sandbox)?;
+    CreateApplication::new(&mut sandbox)?;
 
     Ok(())
 }

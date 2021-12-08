@@ -5136,2984 +5136,12 @@ pub mod functions {
 
     macro_rules! func {
         ($fun:ident, $ret:ty, $($name:ident: $typ:ty),*) => {
-            #[inline] pub unsafe fn $fun(&self, $($name: $typ),*) -> $ret {
-                transmute::<_, extern "system" fn($($typ),*) -> $ret>(self.$fun.ptr)($($name),*)
+            #[inline] pub unsafe fn $fun($($name: $typ),*) -> $ret {
+                transmute::<_, extern "system" fn($($typ),*) -> $ret>(storage::$fun.ptr)($($name),*)
             }
         }
     }
 
-    pub struct Gl {
-         pub(super) Accum: FnPtr,
-         pub(super) AccumxOES: FnPtr,
-         pub(super) AcquireKeyedMutexWin32EXT: FnPtr,
-         pub(super) ActiveProgramEXT: FnPtr,
-         pub(super) ActiveShaderProgram: FnPtr,
-         pub(super) ActiveStencilFaceEXT: FnPtr,
-         pub(super) ActiveTexture: FnPtr,
-         pub(super) ActiveTextureARB: FnPtr,
-         pub(super) ActiveVaryingNV: FnPtr,
-         pub(super) AlphaFragmentOp1ATI: FnPtr,
-         pub(super) AlphaFragmentOp2ATI: FnPtr,
-         pub(super) AlphaFragmentOp3ATI: FnPtr,
-         pub(super) AlphaFunc: FnPtr,
-         pub(super) AlphaFuncxOES: FnPtr,
-         pub(super) AlphaToCoverageDitherControlNV: FnPtr,
-         pub(super) ApplyFramebufferAttachmentCMAAINTEL: FnPtr,
-         pub(super) ApplyTextureEXT: FnPtr,
-         pub(super) AreProgramsResidentNV: FnPtr,
-         pub(super) AreTexturesResident: FnPtr,
-         pub(super) AreTexturesResidentEXT: FnPtr,
-         pub(super) ArrayElement: FnPtr,
-         pub(super) ArrayElementEXT: FnPtr,
-         pub(super) ArrayObjectATI: FnPtr,
-         pub(super) AsyncCopyBufferSubDataNVX: FnPtr,
-         pub(super) AsyncCopyImageSubDataNVX: FnPtr,
-         pub(super) AsyncMarkerSGIX: FnPtr,
-         pub(super) AttachObjectARB: FnPtr,
-         pub(super) AttachShader: FnPtr,
-         pub(super) Begin: FnPtr,
-         pub(super) BeginConditionalRender: FnPtr,
-         pub(super) BeginConditionalRenderNV: FnPtr,
-         pub(super) BeginConditionalRenderNVX: FnPtr,
-         pub(super) BeginFragmentShaderATI: FnPtr,
-         pub(super) BeginOcclusionQueryNV: FnPtr,
-         pub(super) BeginPerfMonitorAMD: FnPtr,
-         pub(super) BeginPerfQueryINTEL: FnPtr,
-         pub(super) BeginQuery: FnPtr,
-         pub(super) BeginQueryARB: FnPtr,
-         pub(super) BeginQueryIndexed: FnPtr,
-         pub(super) BeginTransformFeedback: FnPtr,
-         pub(super) BeginTransformFeedbackEXT: FnPtr,
-         pub(super) BeginTransformFeedbackNV: FnPtr,
-         pub(super) BeginVertexShaderEXT: FnPtr,
-         pub(super) BeginVideoCaptureNV: FnPtr,
-         pub(super) BindAttribLocation: FnPtr,
-         pub(super) BindAttribLocationARB: FnPtr,
-         pub(super) BindBuffer: FnPtr,
-         pub(super) BindBufferARB: FnPtr,
-         pub(super) BindBufferBase: FnPtr,
-         pub(super) BindBufferBaseEXT: FnPtr,
-         pub(super) BindBufferBaseNV: FnPtr,
-         pub(super) BindBufferOffsetEXT: FnPtr,
-         pub(super) BindBufferOffsetNV: FnPtr,
-         pub(super) BindBufferRange: FnPtr,
-         pub(super) BindBufferRangeEXT: FnPtr,
-         pub(super) BindBufferRangeNV: FnPtr,
-         pub(super) BindBuffersBase: FnPtr,
-         pub(super) BindBuffersRange: FnPtr,
-         pub(super) BindFragDataLocation: FnPtr,
-         pub(super) BindFragDataLocationEXT: FnPtr,
-         pub(super) BindFragDataLocationIndexed: FnPtr,
-         pub(super) BindFragmentShaderATI: FnPtr,
-         pub(super) BindFramebuffer: FnPtr,
-         pub(super) BindFramebufferEXT: FnPtr,
-         pub(super) BindImageTexture: FnPtr,
-         pub(super) BindImageTextureEXT: FnPtr,
-         pub(super) BindImageTextures: FnPtr,
-         pub(super) BindLightParameterEXT: FnPtr,
-         pub(super) BindMaterialParameterEXT: FnPtr,
-         pub(super) BindMultiTextureEXT: FnPtr,
-         pub(super) BindParameterEXT: FnPtr,
-         pub(super) BindProgramARB: FnPtr,
-         pub(super) BindProgramNV: FnPtr,
-         pub(super) BindProgramPipeline: FnPtr,
-         pub(super) BindRenderbuffer: FnPtr,
-         pub(super) BindRenderbufferEXT: FnPtr,
-         pub(super) BindSampler: FnPtr,
-         pub(super) BindSamplers: FnPtr,
-         pub(super) BindShadingRateImageNV: FnPtr,
-         pub(super) BindTexGenParameterEXT: FnPtr,
-         pub(super) BindTexture: FnPtr,
-         pub(super) BindTextureEXT: FnPtr,
-         pub(super) BindTextureUnit: FnPtr,
-         pub(super) BindTextureUnitParameterEXT: FnPtr,
-         pub(super) BindTextures: FnPtr,
-         pub(super) BindTransformFeedback: FnPtr,
-         pub(super) BindTransformFeedbackNV: FnPtr,
-         pub(super) BindVertexArray: FnPtr,
-         pub(super) BindVertexArrayAPPLE: FnPtr,
-         pub(super) BindVertexBuffer: FnPtr,
-         pub(super) BindVertexBuffers: FnPtr,
-         pub(super) BindVertexShaderEXT: FnPtr,
-         pub(super) BindVideoCaptureStreamBufferNV: FnPtr,
-         pub(super) BindVideoCaptureStreamTextureNV: FnPtr,
-         pub(super) Binormal3bEXT: FnPtr,
-         pub(super) Binormal3bvEXT: FnPtr,
-         pub(super) Binormal3dEXT: FnPtr,
-         pub(super) Binormal3dvEXT: FnPtr,
-         pub(super) Binormal3fEXT: FnPtr,
-         pub(super) Binormal3fvEXT: FnPtr,
-         pub(super) Binormal3iEXT: FnPtr,
-         pub(super) Binormal3ivEXT: FnPtr,
-         pub(super) Binormal3sEXT: FnPtr,
-         pub(super) Binormal3svEXT: FnPtr,
-         pub(super) BinormalPointerEXT: FnPtr,
-         pub(super) Bitmap: FnPtr,
-         pub(super) BitmapxOES: FnPtr,
-         pub(super) BlendBarrierKHR: FnPtr,
-         pub(super) BlendBarrierNV: FnPtr,
-         pub(super) BlendColor: FnPtr,
-         pub(super) BlendColorEXT: FnPtr,
-         pub(super) BlendColorxOES: FnPtr,
-         pub(super) BlendEquation: FnPtr,
-         pub(super) BlendEquationEXT: FnPtr,
-         pub(super) BlendEquationIndexedAMD: FnPtr,
-         pub(super) BlendEquationSeparate: FnPtr,
-         pub(super) BlendEquationSeparateEXT: FnPtr,
-         pub(super) BlendEquationSeparateIndexedAMD: FnPtr,
-         pub(super) BlendEquationSeparatei: FnPtr,
-         pub(super) BlendEquationSeparateiARB: FnPtr,
-         pub(super) BlendEquationi: FnPtr,
-         pub(super) BlendEquationiARB: FnPtr,
-         pub(super) BlendFunc: FnPtr,
-         pub(super) BlendFuncIndexedAMD: FnPtr,
-         pub(super) BlendFuncSeparate: FnPtr,
-         pub(super) BlendFuncSeparateEXT: FnPtr,
-         pub(super) BlendFuncSeparateINGR: FnPtr,
-         pub(super) BlendFuncSeparateIndexedAMD: FnPtr,
-         pub(super) BlendFuncSeparatei: FnPtr,
-         pub(super) BlendFuncSeparateiARB: FnPtr,
-         pub(super) BlendFunci: FnPtr,
-         pub(super) BlendFunciARB: FnPtr,
-         pub(super) BlendParameteriNV: FnPtr,
-         pub(super) BlitFramebuffer: FnPtr,
-         pub(super) BlitFramebufferEXT: FnPtr,
-         pub(super) BlitNamedFramebuffer: FnPtr,
-         pub(super) BufferAddressRangeNV: FnPtr,
-         pub(super) BufferAttachMemoryNV: FnPtr,
-         pub(super) BufferData: FnPtr,
-         pub(super) BufferDataARB: FnPtr,
-         pub(super) BufferPageCommitmentARB: FnPtr,
-         pub(super) BufferPageCommitmentMemNV: FnPtr,
-         pub(super) BufferParameteriAPPLE: FnPtr,
-         pub(super) BufferStorage: FnPtr,
-         pub(super) BufferStorageExternalEXT: FnPtr,
-         pub(super) BufferStorageMemEXT: FnPtr,
-         pub(super) BufferSubData: FnPtr,
-         pub(super) BufferSubDataARB: FnPtr,
-         pub(super) CallCommandListNV: FnPtr,
-         pub(super) CallList: FnPtr,
-         pub(super) CallLists: FnPtr,
-         pub(super) CheckFramebufferStatus: FnPtr,
-         pub(super) CheckFramebufferStatusEXT: FnPtr,
-         pub(super) CheckNamedFramebufferStatus: FnPtr,
-         pub(super) CheckNamedFramebufferStatusEXT: FnPtr,
-         pub(super) ClampColor: FnPtr,
-         pub(super) ClampColorARB: FnPtr,
-         pub(super) Clear: FnPtr,
-         pub(super) ClearAccum: FnPtr,
-         pub(super) ClearAccumxOES: FnPtr,
-         pub(super) ClearBufferData: FnPtr,
-         pub(super) ClearBufferSubData: FnPtr,
-         pub(super) ClearBufferfi: FnPtr,
-         pub(super) ClearBufferfv: FnPtr,
-         pub(super) ClearBufferiv: FnPtr,
-         pub(super) ClearBufferuiv: FnPtr,
-         pub(super) ClearColor: FnPtr,
-         pub(super) ClearColorIiEXT: FnPtr,
-         pub(super) ClearColorIuiEXT: FnPtr,
-         pub(super) ClearColorxOES: FnPtr,
-         pub(super) ClearDepth: FnPtr,
-         pub(super) ClearDepthdNV: FnPtr,
-         pub(super) ClearDepthf: FnPtr,
-         pub(super) ClearDepthfOES: FnPtr,
-         pub(super) ClearDepthxOES: FnPtr,
-         pub(super) ClearIndex: FnPtr,
-         pub(super) ClearNamedBufferData: FnPtr,
-         pub(super) ClearNamedBufferDataEXT: FnPtr,
-         pub(super) ClearNamedBufferSubData: FnPtr,
-         pub(super) ClearNamedBufferSubDataEXT: FnPtr,
-         pub(super) ClearNamedFramebufferfi: FnPtr,
-         pub(super) ClearNamedFramebufferfv: FnPtr,
-         pub(super) ClearNamedFramebufferiv: FnPtr,
-         pub(super) ClearNamedFramebufferuiv: FnPtr,
-         pub(super) ClearStencil: FnPtr,
-         pub(super) ClearTexImage: FnPtr,
-         pub(super) ClearTexSubImage: FnPtr,
-         pub(super) ClientActiveTexture: FnPtr,
-         pub(super) ClientActiveTextureARB: FnPtr,
-         pub(super) ClientActiveVertexStreamATI: FnPtr,
-         pub(super) ClientAttribDefaultEXT: FnPtr,
-         pub(super) ClientWaitSemaphoreui64NVX: FnPtr,
-         pub(super) ClientWaitSync: FnPtr,
-         pub(super) ClipControl: FnPtr,
-         pub(super) ClipPlane: FnPtr,
-         pub(super) ClipPlanefOES: FnPtr,
-         pub(super) ClipPlanexOES: FnPtr,
-         pub(super) Color3b: FnPtr,
-         pub(super) Color3bv: FnPtr,
-         pub(super) Color3d: FnPtr,
-         pub(super) Color3dv: FnPtr,
-         pub(super) Color3f: FnPtr,
-         pub(super) Color3fVertex3fSUN: FnPtr,
-         pub(super) Color3fVertex3fvSUN: FnPtr,
-         pub(super) Color3fv: FnPtr,
-         pub(super) Color3hNV: FnPtr,
-         pub(super) Color3hvNV: FnPtr,
-         pub(super) Color3i: FnPtr,
-         pub(super) Color3iv: FnPtr,
-         pub(super) Color3s: FnPtr,
-         pub(super) Color3sv: FnPtr,
-         pub(super) Color3ub: FnPtr,
-         pub(super) Color3ubv: FnPtr,
-         pub(super) Color3ui: FnPtr,
-         pub(super) Color3uiv: FnPtr,
-         pub(super) Color3us: FnPtr,
-         pub(super) Color3usv: FnPtr,
-         pub(super) Color3xOES: FnPtr,
-         pub(super) Color3xvOES: FnPtr,
-         pub(super) Color4b: FnPtr,
-         pub(super) Color4bv: FnPtr,
-         pub(super) Color4d: FnPtr,
-         pub(super) Color4dv: FnPtr,
-         pub(super) Color4f: FnPtr,
-         pub(super) Color4fNormal3fVertex3fSUN: FnPtr,
-         pub(super) Color4fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) Color4fv: FnPtr,
-         pub(super) Color4hNV: FnPtr,
-         pub(super) Color4hvNV: FnPtr,
-         pub(super) Color4i: FnPtr,
-         pub(super) Color4iv: FnPtr,
-         pub(super) Color4s: FnPtr,
-         pub(super) Color4sv: FnPtr,
-         pub(super) Color4ub: FnPtr,
-         pub(super) Color4ubVertex2fSUN: FnPtr,
-         pub(super) Color4ubVertex2fvSUN: FnPtr,
-         pub(super) Color4ubVertex3fSUN: FnPtr,
-         pub(super) Color4ubVertex3fvSUN: FnPtr,
-         pub(super) Color4ubv: FnPtr,
-         pub(super) Color4ui: FnPtr,
-         pub(super) Color4uiv: FnPtr,
-         pub(super) Color4us: FnPtr,
-         pub(super) Color4usv: FnPtr,
-         pub(super) Color4xOES: FnPtr,
-         pub(super) Color4xvOES: FnPtr,
-         pub(super) ColorFormatNV: FnPtr,
-         pub(super) ColorFragmentOp1ATI: FnPtr,
-         pub(super) ColorFragmentOp2ATI: FnPtr,
-         pub(super) ColorFragmentOp3ATI: FnPtr,
-         pub(super) ColorMask: FnPtr,
-         pub(super) ColorMaskIndexedEXT: FnPtr,
-         pub(super) ColorMaski: FnPtr,
-         pub(super) ColorMaterial: FnPtr,
-         pub(super) ColorP3ui: FnPtr,
-         pub(super) ColorP3uiv: FnPtr,
-         pub(super) ColorP4ui: FnPtr,
-         pub(super) ColorP4uiv: FnPtr,
-         pub(super) ColorPointer: FnPtr,
-         pub(super) ColorPointerEXT: FnPtr,
-         pub(super) ColorPointerListIBM: FnPtr,
-         pub(super) ColorPointervINTEL: FnPtr,
-         pub(super) ColorSubTable: FnPtr,
-         pub(super) ColorSubTableEXT: FnPtr,
-         pub(super) ColorTable: FnPtr,
-         pub(super) ColorTableEXT: FnPtr,
-         pub(super) ColorTableParameterfv: FnPtr,
-         pub(super) ColorTableParameterfvSGI: FnPtr,
-         pub(super) ColorTableParameteriv: FnPtr,
-         pub(super) ColorTableParameterivSGI: FnPtr,
-         pub(super) ColorTableSGI: FnPtr,
-         pub(super) CombinerInputNV: FnPtr,
-         pub(super) CombinerOutputNV: FnPtr,
-         pub(super) CombinerParameterfNV: FnPtr,
-         pub(super) CombinerParameterfvNV: FnPtr,
-         pub(super) CombinerParameteriNV: FnPtr,
-         pub(super) CombinerParameterivNV: FnPtr,
-         pub(super) CombinerStageParameterfvNV: FnPtr,
-         pub(super) CommandListSegmentsNV: FnPtr,
-         pub(super) CompileCommandListNV: FnPtr,
-         pub(super) CompileShader: FnPtr,
-         pub(super) CompileShaderARB: FnPtr,
-         pub(super) CompileShaderIncludeARB: FnPtr,
-         pub(super) CompressedMultiTexImage1DEXT: FnPtr,
-         pub(super) CompressedMultiTexImage2DEXT: FnPtr,
-         pub(super) CompressedMultiTexImage3DEXT: FnPtr,
-         pub(super) CompressedMultiTexSubImage1DEXT: FnPtr,
-         pub(super) CompressedMultiTexSubImage2DEXT: FnPtr,
-         pub(super) CompressedMultiTexSubImage3DEXT: FnPtr,
-         pub(super) CompressedTexImage1D: FnPtr,
-         pub(super) CompressedTexImage1DARB: FnPtr,
-         pub(super) CompressedTexImage2D: FnPtr,
-         pub(super) CompressedTexImage2DARB: FnPtr,
-         pub(super) CompressedTexImage3D: FnPtr,
-         pub(super) CompressedTexImage3DARB: FnPtr,
-         pub(super) CompressedTexSubImage1D: FnPtr,
-         pub(super) CompressedTexSubImage1DARB: FnPtr,
-         pub(super) CompressedTexSubImage2D: FnPtr,
-         pub(super) CompressedTexSubImage2DARB: FnPtr,
-         pub(super) CompressedTexSubImage3D: FnPtr,
-         pub(super) CompressedTexSubImage3DARB: FnPtr,
-         pub(super) CompressedTextureImage1DEXT: FnPtr,
-         pub(super) CompressedTextureImage2DEXT: FnPtr,
-         pub(super) CompressedTextureImage3DEXT: FnPtr,
-         pub(super) CompressedTextureSubImage1D: FnPtr,
-         pub(super) CompressedTextureSubImage1DEXT: FnPtr,
-         pub(super) CompressedTextureSubImage2D: FnPtr,
-         pub(super) CompressedTextureSubImage2DEXT: FnPtr,
-         pub(super) CompressedTextureSubImage3D: FnPtr,
-         pub(super) CompressedTextureSubImage3DEXT: FnPtr,
-         pub(super) ConservativeRasterParameterfNV: FnPtr,
-         pub(super) ConservativeRasterParameteriNV: FnPtr,
-         pub(super) ConvolutionFilter1D: FnPtr,
-         pub(super) ConvolutionFilter1DEXT: FnPtr,
-         pub(super) ConvolutionFilter2D: FnPtr,
-         pub(super) ConvolutionFilter2DEXT: FnPtr,
-         pub(super) ConvolutionParameterf: FnPtr,
-         pub(super) ConvolutionParameterfEXT: FnPtr,
-         pub(super) ConvolutionParameterfv: FnPtr,
-         pub(super) ConvolutionParameterfvEXT: FnPtr,
-         pub(super) ConvolutionParameteri: FnPtr,
-         pub(super) ConvolutionParameteriEXT: FnPtr,
-         pub(super) ConvolutionParameteriv: FnPtr,
-         pub(super) ConvolutionParameterivEXT: FnPtr,
-         pub(super) ConvolutionParameterxOES: FnPtr,
-         pub(super) ConvolutionParameterxvOES: FnPtr,
-         pub(super) CopyBufferSubData: FnPtr,
-         pub(super) CopyColorSubTable: FnPtr,
-         pub(super) CopyColorSubTableEXT: FnPtr,
-         pub(super) CopyColorTable: FnPtr,
-         pub(super) CopyColorTableSGI: FnPtr,
-         pub(super) CopyConvolutionFilter1D: FnPtr,
-         pub(super) CopyConvolutionFilter1DEXT: FnPtr,
-         pub(super) CopyConvolutionFilter2D: FnPtr,
-         pub(super) CopyConvolutionFilter2DEXT: FnPtr,
-         pub(super) CopyImageSubData: FnPtr,
-         pub(super) CopyImageSubDataNV: FnPtr,
-         pub(super) CopyMultiTexImage1DEXT: FnPtr,
-         pub(super) CopyMultiTexImage2DEXT: FnPtr,
-         pub(super) CopyMultiTexSubImage1DEXT: FnPtr,
-         pub(super) CopyMultiTexSubImage2DEXT: FnPtr,
-         pub(super) CopyMultiTexSubImage3DEXT: FnPtr,
-         pub(super) CopyNamedBufferSubData: FnPtr,
-         pub(super) CopyPathNV: FnPtr,
-         pub(super) CopyPixels: FnPtr,
-         pub(super) CopyTexImage1D: FnPtr,
-         pub(super) CopyTexImage1DEXT: FnPtr,
-         pub(super) CopyTexImage2D: FnPtr,
-         pub(super) CopyTexImage2DEXT: FnPtr,
-         pub(super) CopyTexSubImage1D: FnPtr,
-         pub(super) CopyTexSubImage1DEXT: FnPtr,
-         pub(super) CopyTexSubImage2D: FnPtr,
-         pub(super) CopyTexSubImage2DEXT: FnPtr,
-         pub(super) CopyTexSubImage3D: FnPtr,
-         pub(super) CopyTexSubImage3DEXT: FnPtr,
-         pub(super) CopyTextureImage1DEXT: FnPtr,
-         pub(super) CopyTextureImage2DEXT: FnPtr,
-         pub(super) CopyTextureSubImage1D: FnPtr,
-         pub(super) CopyTextureSubImage1DEXT: FnPtr,
-         pub(super) CopyTextureSubImage2D: FnPtr,
-         pub(super) CopyTextureSubImage2DEXT: FnPtr,
-         pub(super) CopyTextureSubImage3D: FnPtr,
-         pub(super) CopyTextureSubImage3DEXT: FnPtr,
-         pub(super) CoverFillPathInstancedNV: FnPtr,
-         pub(super) CoverFillPathNV: FnPtr,
-         pub(super) CoverStrokePathInstancedNV: FnPtr,
-         pub(super) CoverStrokePathNV: FnPtr,
-         pub(super) CoverageModulationNV: FnPtr,
-         pub(super) CoverageModulationTableNV: FnPtr,
-         pub(super) CreateBuffers: FnPtr,
-         pub(super) CreateCommandListsNV: FnPtr,
-         pub(super) CreateFramebuffers: FnPtr,
-         pub(super) CreateMemoryObjectsEXT: FnPtr,
-         pub(super) CreatePerfQueryINTEL: FnPtr,
-         pub(super) CreateProgram: FnPtr,
-         pub(super) CreateProgramObjectARB: FnPtr,
-         pub(super) CreateProgramPipelines: FnPtr,
-         pub(super) CreateProgressFenceNVX: FnPtr,
-         pub(super) CreateQueries: FnPtr,
-         pub(super) CreateRenderbuffers: FnPtr,
-         pub(super) CreateSamplers: FnPtr,
-         pub(super) CreateSemaphoresNV: FnPtr,
-         pub(super) CreateShader: FnPtr,
-         pub(super) CreateShaderObjectARB: FnPtr,
-         pub(super) CreateShaderProgramEXT: FnPtr,
-         pub(super) CreateShaderProgramv: FnPtr,
-         pub(super) CreateStatesNV: FnPtr,
-         pub(super) CreateSyncFromCLeventARB: FnPtr,
-         pub(super) CreateTextures: FnPtr,
-         pub(super) CreateTransformFeedbacks: FnPtr,
-         pub(super) CreateVertexArrays: FnPtr,
-         pub(super) CullFace: FnPtr,
-         pub(super) CullParameterdvEXT: FnPtr,
-         pub(super) CullParameterfvEXT: FnPtr,
-         pub(super) CurrentPaletteMatrixARB: FnPtr,
-         pub(super) DebugMessageCallback: FnPtr,
-         pub(super) DebugMessageCallbackAMD: FnPtr,
-         pub(super) DebugMessageCallbackARB: FnPtr,
-         pub(super) DebugMessageControl: FnPtr,
-         pub(super) DebugMessageControlARB: FnPtr,
-         pub(super) DebugMessageEnableAMD: FnPtr,
-         pub(super) DebugMessageInsert: FnPtr,
-         pub(super) DebugMessageInsertAMD: FnPtr,
-         pub(super) DebugMessageInsertARB: FnPtr,
-         pub(super) DeformSGIX: FnPtr,
-         pub(super) DeformationMap3dSGIX: FnPtr,
-         pub(super) DeformationMap3fSGIX: FnPtr,
-         pub(super) DeleteAsyncMarkersSGIX: FnPtr,
-         pub(super) DeleteBuffers: FnPtr,
-         pub(super) DeleteBuffersARB: FnPtr,
-         pub(super) DeleteCommandListsNV: FnPtr,
-         pub(super) DeleteFencesAPPLE: FnPtr,
-         pub(super) DeleteFencesNV: FnPtr,
-         pub(super) DeleteFragmentShaderATI: FnPtr,
-         pub(super) DeleteFramebuffers: FnPtr,
-         pub(super) DeleteFramebuffersEXT: FnPtr,
-         pub(super) DeleteLists: FnPtr,
-         pub(super) DeleteMemoryObjectsEXT: FnPtr,
-         pub(super) DeleteNamedStringARB: FnPtr,
-         pub(super) DeleteNamesAMD: FnPtr,
-         pub(super) DeleteObjectARB: FnPtr,
-         pub(super) DeleteOcclusionQueriesNV: FnPtr,
-         pub(super) DeletePathsNV: FnPtr,
-         pub(super) DeletePerfMonitorsAMD: FnPtr,
-         pub(super) DeletePerfQueryINTEL: FnPtr,
-         pub(super) DeleteProgram: FnPtr,
-         pub(super) DeleteProgramPipelines: FnPtr,
-         pub(super) DeleteProgramsARB: FnPtr,
-         pub(super) DeleteProgramsNV: FnPtr,
-         pub(super) DeleteQueries: FnPtr,
-         pub(super) DeleteQueriesARB: FnPtr,
-         pub(super) DeleteQueryResourceTagNV: FnPtr,
-         pub(super) DeleteRenderbuffers: FnPtr,
-         pub(super) DeleteRenderbuffersEXT: FnPtr,
-         pub(super) DeleteSamplers: FnPtr,
-         pub(super) DeleteSemaphoresEXT: FnPtr,
-         pub(super) DeleteShader: FnPtr,
-         pub(super) DeleteStatesNV: FnPtr,
-         pub(super) DeleteSync: FnPtr,
-         pub(super) DeleteTextures: FnPtr,
-         pub(super) DeleteTexturesEXT: FnPtr,
-         pub(super) DeleteTransformFeedbacks: FnPtr,
-         pub(super) DeleteTransformFeedbacksNV: FnPtr,
-         pub(super) DeleteVertexArrays: FnPtr,
-         pub(super) DeleteVertexArraysAPPLE: FnPtr,
-         pub(super) DeleteVertexShaderEXT: FnPtr,
-         pub(super) DepthBoundsEXT: FnPtr,
-         pub(super) DepthBoundsdNV: FnPtr,
-         pub(super) DepthFunc: FnPtr,
-         pub(super) DepthMask: FnPtr,
-         pub(super) DepthRange: FnPtr,
-         pub(super) DepthRangeArraydvNV: FnPtr,
-         pub(super) DepthRangeArrayv: FnPtr,
-         pub(super) DepthRangeIndexed: FnPtr,
-         pub(super) DepthRangeIndexeddNV: FnPtr,
-         pub(super) DepthRangedNV: FnPtr,
-         pub(super) DepthRangef: FnPtr,
-         pub(super) DepthRangefOES: FnPtr,
-         pub(super) DepthRangexOES: FnPtr,
-         pub(super) DetachObjectARB: FnPtr,
-         pub(super) DetachShader: FnPtr,
-         pub(super) DetailTexFuncSGIS: FnPtr,
-         pub(super) Disable: FnPtr,
-         pub(super) DisableClientState: FnPtr,
-         pub(super) DisableClientStateIndexedEXT: FnPtr,
-         pub(super) DisableClientStateiEXT: FnPtr,
-         pub(super) DisableIndexedEXT: FnPtr,
-         pub(super) DisableVariantClientStateEXT: FnPtr,
-         pub(super) DisableVertexArrayAttrib: FnPtr,
-         pub(super) DisableVertexArrayAttribEXT: FnPtr,
-         pub(super) DisableVertexArrayEXT: FnPtr,
-         pub(super) DisableVertexAttribAPPLE: FnPtr,
-         pub(super) DisableVertexAttribArray: FnPtr,
-         pub(super) DisableVertexAttribArrayARB: FnPtr,
-         pub(super) Disablei: FnPtr,
-         pub(super) DispatchCompute: FnPtr,
-         pub(super) DispatchComputeGroupSizeARB: FnPtr,
-         pub(super) DispatchComputeIndirect: FnPtr,
-         pub(super) DrawArrays: FnPtr,
-         pub(super) DrawArraysEXT: FnPtr,
-         pub(super) DrawArraysIndirect: FnPtr,
-         pub(super) DrawArraysInstanced: FnPtr,
-         pub(super) DrawArraysInstancedARB: FnPtr,
-         pub(super) DrawArraysInstancedBaseInstance: FnPtr,
-         pub(super) DrawArraysInstancedEXT: FnPtr,
-         pub(super) DrawBuffer: FnPtr,
-         pub(super) DrawBuffers: FnPtr,
-         pub(super) DrawBuffersARB: FnPtr,
-         pub(super) DrawBuffersATI: FnPtr,
-         pub(super) DrawCommandsAddressNV: FnPtr,
-         pub(super) DrawCommandsNV: FnPtr,
-         pub(super) DrawCommandsStatesAddressNV: FnPtr,
-         pub(super) DrawCommandsStatesNV: FnPtr,
-         pub(super) DrawElementArrayAPPLE: FnPtr,
-         pub(super) DrawElementArrayATI: FnPtr,
-         pub(super) DrawElements: FnPtr,
-         pub(super) DrawElementsBaseVertex: FnPtr,
-         pub(super) DrawElementsIndirect: FnPtr,
-         pub(super) DrawElementsInstanced: FnPtr,
-         pub(super) DrawElementsInstancedARB: FnPtr,
-         pub(super) DrawElementsInstancedBaseInstance: FnPtr,
-         pub(super) DrawElementsInstancedBaseVertex: FnPtr,
-         pub(super) DrawElementsInstancedBaseVertexBaseInstance: FnPtr,
-         pub(super) DrawElementsInstancedEXT: FnPtr,
-         pub(super) DrawMeshArraysSUN: FnPtr,
-         pub(super) DrawMeshTasksIndirectNV: FnPtr,
-         pub(super) DrawMeshTasksNV: FnPtr,
-         pub(super) DrawPixels: FnPtr,
-         pub(super) DrawRangeElementArrayAPPLE: FnPtr,
-         pub(super) DrawRangeElementArrayATI: FnPtr,
-         pub(super) DrawRangeElements: FnPtr,
-         pub(super) DrawRangeElementsBaseVertex: FnPtr,
-         pub(super) DrawRangeElementsEXT: FnPtr,
-         pub(super) DrawTextureNV: FnPtr,
-         pub(super) DrawTransformFeedback: FnPtr,
-         pub(super) DrawTransformFeedbackInstanced: FnPtr,
-         pub(super) DrawTransformFeedbackNV: FnPtr,
-         pub(super) DrawTransformFeedbackStream: FnPtr,
-         pub(super) DrawTransformFeedbackStreamInstanced: FnPtr,
-         pub(super) DrawVkImageNV: FnPtr,
-         pub(super) EGLImageTargetTexStorageEXT: FnPtr,
-         pub(super) EGLImageTargetTextureStorageEXT: FnPtr,
-         pub(super) EdgeFlag: FnPtr,
-         pub(super) EdgeFlagFormatNV: FnPtr,
-         pub(super) EdgeFlagPointer: FnPtr,
-         pub(super) EdgeFlagPointerEXT: FnPtr,
-         pub(super) EdgeFlagPointerListIBM: FnPtr,
-         pub(super) EdgeFlagv: FnPtr,
-         pub(super) ElementPointerAPPLE: FnPtr,
-         pub(super) ElementPointerATI: FnPtr,
-         pub(super) Enable: FnPtr,
-         pub(super) EnableClientState: FnPtr,
-         pub(super) EnableClientStateIndexedEXT: FnPtr,
-         pub(super) EnableClientStateiEXT: FnPtr,
-         pub(super) EnableIndexedEXT: FnPtr,
-         pub(super) EnableVariantClientStateEXT: FnPtr,
-         pub(super) EnableVertexArrayAttrib: FnPtr,
-         pub(super) EnableVertexArrayAttribEXT: FnPtr,
-         pub(super) EnableVertexArrayEXT: FnPtr,
-         pub(super) EnableVertexAttribAPPLE: FnPtr,
-         pub(super) EnableVertexAttribArray: FnPtr,
-         pub(super) EnableVertexAttribArrayARB: FnPtr,
-         pub(super) Enablei: FnPtr,
-         pub(super) End: FnPtr,
-         pub(super) EndConditionalRender: FnPtr,
-         pub(super) EndConditionalRenderNV: FnPtr,
-         pub(super) EndConditionalRenderNVX: FnPtr,
-         pub(super) EndFragmentShaderATI: FnPtr,
-         pub(super) EndList: FnPtr,
-         pub(super) EndOcclusionQueryNV: FnPtr,
-         pub(super) EndPerfMonitorAMD: FnPtr,
-         pub(super) EndPerfQueryINTEL: FnPtr,
-         pub(super) EndQuery: FnPtr,
-         pub(super) EndQueryARB: FnPtr,
-         pub(super) EndQueryIndexed: FnPtr,
-         pub(super) EndTransformFeedback: FnPtr,
-         pub(super) EndTransformFeedbackEXT: FnPtr,
-         pub(super) EndTransformFeedbackNV: FnPtr,
-         pub(super) EndVertexShaderEXT: FnPtr,
-         pub(super) EndVideoCaptureNV: FnPtr,
-         pub(super) EvalCoord1d: FnPtr,
-         pub(super) EvalCoord1dv: FnPtr,
-         pub(super) EvalCoord1f: FnPtr,
-         pub(super) EvalCoord1fv: FnPtr,
-         pub(super) EvalCoord1xOES: FnPtr,
-         pub(super) EvalCoord1xvOES: FnPtr,
-         pub(super) EvalCoord2d: FnPtr,
-         pub(super) EvalCoord2dv: FnPtr,
-         pub(super) EvalCoord2f: FnPtr,
-         pub(super) EvalCoord2fv: FnPtr,
-         pub(super) EvalCoord2xOES: FnPtr,
-         pub(super) EvalCoord2xvOES: FnPtr,
-         pub(super) EvalMapsNV: FnPtr,
-         pub(super) EvalMesh1: FnPtr,
-         pub(super) EvalMesh2: FnPtr,
-         pub(super) EvalPoint1: FnPtr,
-         pub(super) EvalPoint2: FnPtr,
-         pub(super) EvaluateDepthValuesARB: FnPtr,
-         pub(super) ExecuteProgramNV: FnPtr,
-         pub(super) ExtractComponentEXT: FnPtr,
-         pub(super) FeedbackBuffer: FnPtr,
-         pub(super) FeedbackBufferxOES: FnPtr,
-         pub(super) FenceSync: FnPtr,
-         pub(super) FinalCombinerInputNV: FnPtr,
-         pub(super) Finish: FnPtr,
-         pub(super) FinishAsyncSGIX: FnPtr,
-         pub(super) FinishFenceAPPLE: FnPtr,
-         pub(super) FinishFenceNV: FnPtr,
-         pub(super) FinishObjectAPPLE: FnPtr,
-         pub(super) FinishTextureSUNX: FnPtr,
-         pub(super) Flush: FnPtr,
-         pub(super) FlushMappedBufferRange: FnPtr,
-         pub(super) FlushMappedBufferRangeAPPLE: FnPtr,
-         pub(super) FlushMappedNamedBufferRange: FnPtr,
-         pub(super) FlushMappedNamedBufferRangeEXT: FnPtr,
-         pub(super) FlushPixelDataRangeNV: FnPtr,
-         pub(super) FlushRasterSGIX: FnPtr,
-         pub(super) FlushStaticDataIBM: FnPtr,
-         pub(super) FlushVertexArrayRangeAPPLE: FnPtr,
-         pub(super) FlushVertexArrayRangeNV: FnPtr,
-         pub(super) FogCoordFormatNV: FnPtr,
-         pub(super) FogCoordPointer: FnPtr,
-         pub(super) FogCoordPointerEXT: FnPtr,
-         pub(super) FogCoordPointerListIBM: FnPtr,
-         pub(super) FogCoordd: FnPtr,
-         pub(super) FogCoorddEXT: FnPtr,
-         pub(super) FogCoorddv: FnPtr,
-         pub(super) FogCoorddvEXT: FnPtr,
-         pub(super) FogCoordf: FnPtr,
-         pub(super) FogCoordfEXT: FnPtr,
-         pub(super) FogCoordfv: FnPtr,
-         pub(super) FogCoordfvEXT: FnPtr,
-         pub(super) FogCoordhNV: FnPtr,
-         pub(super) FogCoordhvNV: FnPtr,
-         pub(super) FogFuncSGIS: FnPtr,
-         pub(super) Fogf: FnPtr,
-         pub(super) Fogfv: FnPtr,
-         pub(super) Fogi: FnPtr,
-         pub(super) Fogiv: FnPtr,
-         pub(super) FogxOES: FnPtr,
-         pub(super) FogxvOES: FnPtr,
-         pub(super) FragmentColorMaterialSGIX: FnPtr,
-         pub(super) FragmentCoverageColorNV: FnPtr,
-         pub(super) FragmentLightModelfSGIX: FnPtr,
-         pub(super) FragmentLightModelfvSGIX: FnPtr,
-         pub(super) FragmentLightModeliSGIX: FnPtr,
-         pub(super) FragmentLightModelivSGIX: FnPtr,
-         pub(super) FragmentLightfSGIX: FnPtr,
-         pub(super) FragmentLightfvSGIX: FnPtr,
-         pub(super) FragmentLightiSGIX: FnPtr,
-         pub(super) FragmentLightivSGIX: FnPtr,
-         pub(super) FragmentMaterialfSGIX: FnPtr,
-         pub(super) FragmentMaterialfvSGIX: FnPtr,
-         pub(super) FragmentMaterialiSGIX: FnPtr,
-         pub(super) FragmentMaterialivSGIX: FnPtr,
-         pub(super) FrameTerminatorGREMEDY: FnPtr,
-         pub(super) FrameZoomSGIX: FnPtr,
-         pub(super) FramebufferDrawBufferEXT: FnPtr,
-         pub(super) FramebufferDrawBuffersEXT: FnPtr,
-         pub(super) FramebufferFetchBarrierEXT: FnPtr,
-         pub(super) FramebufferParameteri: FnPtr,
-         pub(super) FramebufferParameteriMESA: FnPtr,
-         pub(super) FramebufferReadBufferEXT: FnPtr,
-         pub(super) FramebufferRenderbuffer: FnPtr,
-         pub(super) FramebufferRenderbufferEXT: FnPtr,
-         pub(super) FramebufferSampleLocationsfvARB: FnPtr,
-         pub(super) FramebufferSampleLocationsfvNV: FnPtr,
-         pub(super) FramebufferSamplePositionsfvAMD: FnPtr,
-         pub(super) FramebufferTexture: FnPtr,
-         pub(super) FramebufferTexture1D: FnPtr,
-         pub(super) FramebufferTexture1DEXT: FnPtr,
-         pub(super) FramebufferTexture2D: FnPtr,
-         pub(super) FramebufferTexture2DEXT: FnPtr,
-         pub(super) FramebufferTexture3D: FnPtr,
-         pub(super) FramebufferTexture3DEXT: FnPtr,
-         pub(super) FramebufferTextureARB: FnPtr,
-         pub(super) FramebufferTextureEXT: FnPtr,
-         pub(super) FramebufferTextureFaceARB: FnPtr,
-         pub(super) FramebufferTextureFaceEXT: FnPtr,
-         pub(super) FramebufferTextureLayer: FnPtr,
-         pub(super) FramebufferTextureLayerARB: FnPtr,
-         pub(super) FramebufferTextureLayerEXT: FnPtr,
-         pub(super) FramebufferTextureMultiviewOVR: FnPtr,
-         pub(super) FreeObjectBufferATI: FnPtr,
-         pub(super) FrontFace: FnPtr,
-         pub(super) Frustum: FnPtr,
-         pub(super) FrustumfOES: FnPtr,
-         pub(super) FrustumxOES: FnPtr,
-         pub(super) GenAsyncMarkersSGIX: FnPtr,
-         pub(super) GenBuffers: FnPtr,
-         pub(super) GenBuffersARB: FnPtr,
-         pub(super) GenFencesAPPLE: FnPtr,
-         pub(super) GenFencesNV: FnPtr,
-         pub(super) GenFragmentShadersATI: FnPtr,
-         pub(super) GenFramebuffers: FnPtr,
-         pub(super) GenFramebuffersEXT: FnPtr,
-         pub(super) GenLists: FnPtr,
-         pub(super) GenNamesAMD: FnPtr,
-         pub(super) GenOcclusionQueriesNV: FnPtr,
-         pub(super) GenPathsNV: FnPtr,
-         pub(super) GenPerfMonitorsAMD: FnPtr,
-         pub(super) GenProgramPipelines: FnPtr,
-         pub(super) GenProgramsARB: FnPtr,
-         pub(super) GenProgramsNV: FnPtr,
-         pub(super) GenQueries: FnPtr,
-         pub(super) GenQueriesARB: FnPtr,
-         pub(super) GenQueryResourceTagNV: FnPtr,
-         pub(super) GenRenderbuffers: FnPtr,
-         pub(super) GenRenderbuffersEXT: FnPtr,
-         pub(super) GenSamplers: FnPtr,
-         pub(super) GenSemaphoresEXT: FnPtr,
-         pub(super) GenSymbolsEXT: FnPtr,
-         pub(super) GenTextures: FnPtr,
-         pub(super) GenTexturesEXT: FnPtr,
-         pub(super) GenTransformFeedbacks: FnPtr,
-         pub(super) GenTransformFeedbacksNV: FnPtr,
-         pub(super) GenVertexArrays: FnPtr,
-         pub(super) GenVertexArraysAPPLE: FnPtr,
-         pub(super) GenVertexShadersEXT: FnPtr,
-         pub(super) GenerateMipmap: FnPtr,
-         pub(super) GenerateMipmapEXT: FnPtr,
-         pub(super) GenerateMultiTexMipmapEXT: FnPtr,
-         pub(super) GenerateTextureMipmap: FnPtr,
-         pub(super) GenerateTextureMipmapEXT: FnPtr,
-         pub(super) GetActiveAtomicCounterBufferiv: FnPtr,
-         pub(super) GetActiveAttrib: FnPtr,
-         pub(super) GetActiveAttribARB: FnPtr,
-         pub(super) GetActiveSubroutineName: FnPtr,
-         pub(super) GetActiveSubroutineUniformName: FnPtr,
-         pub(super) GetActiveSubroutineUniformiv: FnPtr,
-         pub(super) GetActiveUniform: FnPtr,
-         pub(super) GetActiveUniformARB: FnPtr,
-         pub(super) GetActiveUniformBlockName: FnPtr,
-         pub(super) GetActiveUniformBlockiv: FnPtr,
-         pub(super) GetActiveUniformName: FnPtr,
-         pub(super) GetActiveUniformsiv: FnPtr,
-         pub(super) GetActiveVaryingNV: FnPtr,
-         pub(super) GetArrayObjectfvATI: FnPtr,
-         pub(super) GetArrayObjectivATI: FnPtr,
-         pub(super) GetAttachedObjectsARB: FnPtr,
-         pub(super) GetAttachedShaders: FnPtr,
-         pub(super) GetAttribLocation: FnPtr,
-         pub(super) GetAttribLocationARB: FnPtr,
-         pub(super) GetBooleanIndexedvEXT: FnPtr,
-         pub(super) GetBooleani_v: FnPtr,
-         pub(super) GetBooleanv: FnPtr,
-         pub(super) GetBufferParameteri64v: FnPtr,
-         pub(super) GetBufferParameteriv: FnPtr,
-         pub(super) GetBufferParameterivARB: FnPtr,
-         pub(super) GetBufferParameterui64vNV: FnPtr,
-         pub(super) GetBufferPointerv: FnPtr,
-         pub(super) GetBufferPointervARB: FnPtr,
-         pub(super) GetBufferSubData: FnPtr,
-         pub(super) GetBufferSubDataARB: FnPtr,
-         pub(super) GetClipPlane: FnPtr,
-         pub(super) GetClipPlanefOES: FnPtr,
-         pub(super) GetClipPlanexOES: FnPtr,
-         pub(super) GetColorTable: FnPtr,
-         pub(super) GetColorTableEXT: FnPtr,
-         pub(super) GetColorTableParameterfv: FnPtr,
-         pub(super) GetColorTableParameterfvEXT: FnPtr,
-         pub(super) GetColorTableParameterfvSGI: FnPtr,
-         pub(super) GetColorTableParameteriv: FnPtr,
-         pub(super) GetColorTableParameterivEXT: FnPtr,
-         pub(super) GetColorTableParameterivSGI: FnPtr,
-         pub(super) GetColorTableSGI: FnPtr,
-         pub(super) GetCombinerInputParameterfvNV: FnPtr,
-         pub(super) GetCombinerInputParameterivNV: FnPtr,
-         pub(super) GetCombinerOutputParameterfvNV: FnPtr,
-         pub(super) GetCombinerOutputParameterivNV: FnPtr,
-         pub(super) GetCombinerStageParameterfvNV: FnPtr,
-         pub(super) GetCommandHeaderNV: FnPtr,
-         pub(super) GetCompressedMultiTexImageEXT: FnPtr,
-         pub(super) GetCompressedTexImage: FnPtr,
-         pub(super) GetCompressedTexImageARB: FnPtr,
-         pub(super) GetCompressedTextureImage: FnPtr,
-         pub(super) GetCompressedTextureImageEXT: FnPtr,
-         pub(super) GetCompressedTextureSubImage: FnPtr,
-         pub(super) GetConvolutionFilter: FnPtr,
-         pub(super) GetConvolutionFilterEXT: FnPtr,
-         pub(super) GetConvolutionParameterfv: FnPtr,
-         pub(super) GetConvolutionParameterfvEXT: FnPtr,
-         pub(super) GetConvolutionParameteriv: FnPtr,
-         pub(super) GetConvolutionParameterivEXT: FnPtr,
-         pub(super) GetConvolutionParameterxvOES: FnPtr,
-         pub(super) GetCoverageModulationTableNV: FnPtr,
-         pub(super) GetDebugMessageLog: FnPtr,
-         pub(super) GetDebugMessageLogAMD: FnPtr,
-         pub(super) GetDebugMessageLogARB: FnPtr,
-         pub(super) GetDetailTexFuncSGIS: FnPtr,
-         pub(super) GetDoubleIndexedvEXT: FnPtr,
-         pub(super) GetDoublei_v: FnPtr,
-         pub(super) GetDoublei_vEXT: FnPtr,
-         pub(super) GetDoublev: FnPtr,
-         pub(super) GetError: FnPtr,
-         pub(super) GetFenceivNV: FnPtr,
-         pub(super) GetFinalCombinerInputParameterfvNV: FnPtr,
-         pub(super) GetFinalCombinerInputParameterivNV: FnPtr,
-         pub(super) GetFirstPerfQueryIdINTEL: FnPtr,
-         pub(super) GetFixedvOES: FnPtr,
-         pub(super) GetFloatIndexedvEXT: FnPtr,
-         pub(super) GetFloati_v: FnPtr,
-         pub(super) GetFloati_vEXT: FnPtr,
-         pub(super) GetFloatv: FnPtr,
-         pub(super) GetFogFuncSGIS: FnPtr,
-         pub(super) GetFragDataIndex: FnPtr,
-         pub(super) GetFragDataLocation: FnPtr,
-         pub(super) GetFragDataLocationEXT: FnPtr,
-         pub(super) GetFragmentLightfvSGIX: FnPtr,
-         pub(super) GetFragmentLightivSGIX: FnPtr,
-         pub(super) GetFragmentMaterialfvSGIX: FnPtr,
-         pub(super) GetFragmentMaterialivSGIX: FnPtr,
-         pub(super) GetFramebufferAttachmentParameteriv: FnPtr,
-         pub(super) GetFramebufferAttachmentParameterivEXT: FnPtr,
-         pub(super) GetFramebufferParameterfvAMD: FnPtr,
-         pub(super) GetFramebufferParameteriv: FnPtr,
-         pub(super) GetFramebufferParameterivEXT: FnPtr,
-         pub(super) GetFramebufferParameterivMESA: FnPtr,
-         pub(super) GetGraphicsResetStatus: FnPtr,
-         pub(super) GetGraphicsResetStatusARB: FnPtr,
-         pub(super) GetHandleARB: FnPtr,
-         pub(super) GetHistogram: FnPtr,
-         pub(super) GetHistogramEXT: FnPtr,
-         pub(super) GetHistogramParameterfv: FnPtr,
-         pub(super) GetHistogramParameterfvEXT: FnPtr,
-         pub(super) GetHistogramParameteriv: FnPtr,
-         pub(super) GetHistogramParameterivEXT: FnPtr,
-         pub(super) GetHistogramParameterxvOES: FnPtr,
-         pub(super) GetImageHandleARB: FnPtr,
-         pub(super) GetImageHandleNV: FnPtr,
-         pub(super) GetImageTransformParameterfvHP: FnPtr,
-         pub(super) GetImageTransformParameterivHP: FnPtr,
-         pub(super) GetInfoLogARB: FnPtr,
-         pub(super) GetInstrumentsSGIX: FnPtr,
-         pub(super) GetInteger64i_v: FnPtr,
-         pub(super) GetInteger64v: FnPtr,
-         pub(super) GetIntegerIndexedvEXT: FnPtr,
-         pub(super) GetIntegeri_v: FnPtr,
-         pub(super) GetIntegerui64i_vNV: FnPtr,
-         pub(super) GetIntegerui64vNV: FnPtr,
-         pub(super) GetIntegerv: FnPtr,
-         pub(super) GetInternalformatSampleivNV: FnPtr,
-         pub(super) GetInternalformati64v: FnPtr,
-         pub(super) GetInternalformativ: FnPtr,
-         pub(super) GetInvariantBooleanvEXT: FnPtr,
-         pub(super) GetInvariantFloatvEXT: FnPtr,
-         pub(super) GetInvariantIntegervEXT: FnPtr,
-         pub(super) GetLightfv: FnPtr,
-         pub(super) GetLightiv: FnPtr,
-         pub(super) GetLightxOES: FnPtr,
-         pub(super) GetListParameterfvSGIX: FnPtr,
-         pub(super) GetListParameterivSGIX: FnPtr,
-         pub(super) GetLocalConstantBooleanvEXT: FnPtr,
-         pub(super) GetLocalConstantFloatvEXT: FnPtr,
-         pub(super) GetLocalConstantIntegervEXT: FnPtr,
-         pub(super) GetMapAttribParameterfvNV: FnPtr,
-         pub(super) GetMapAttribParameterivNV: FnPtr,
-         pub(super) GetMapControlPointsNV: FnPtr,
-         pub(super) GetMapParameterfvNV: FnPtr,
-         pub(super) GetMapParameterivNV: FnPtr,
-         pub(super) GetMapdv: FnPtr,
-         pub(super) GetMapfv: FnPtr,
-         pub(super) GetMapiv: FnPtr,
-         pub(super) GetMapxvOES: FnPtr,
-         pub(super) GetMaterialfv: FnPtr,
-         pub(super) GetMaterialiv: FnPtr,
-         pub(super) GetMaterialxOES: FnPtr,
-         pub(super) GetMemoryObjectDetachedResourcesuivNV: FnPtr,
-         pub(super) GetMemoryObjectParameterivEXT: FnPtr,
-         pub(super) GetMinmax: FnPtr,
-         pub(super) GetMinmaxEXT: FnPtr,
-         pub(super) GetMinmaxParameterfv: FnPtr,
-         pub(super) GetMinmaxParameterfvEXT: FnPtr,
-         pub(super) GetMinmaxParameteriv: FnPtr,
-         pub(super) GetMinmaxParameterivEXT: FnPtr,
-         pub(super) GetMultiTexEnvfvEXT: FnPtr,
-         pub(super) GetMultiTexEnvivEXT: FnPtr,
-         pub(super) GetMultiTexGendvEXT: FnPtr,
-         pub(super) GetMultiTexGenfvEXT: FnPtr,
-         pub(super) GetMultiTexGenivEXT: FnPtr,
-         pub(super) GetMultiTexImageEXT: FnPtr,
-         pub(super) GetMultiTexLevelParameterfvEXT: FnPtr,
-         pub(super) GetMultiTexLevelParameterivEXT: FnPtr,
-         pub(super) GetMultiTexParameterIivEXT: FnPtr,
-         pub(super) GetMultiTexParameterIuivEXT: FnPtr,
-         pub(super) GetMultiTexParameterfvEXT: FnPtr,
-         pub(super) GetMultiTexParameterivEXT: FnPtr,
-         pub(super) GetMultisamplefv: FnPtr,
-         pub(super) GetMultisamplefvNV: FnPtr,
-         pub(super) GetNamedBufferParameteri64v: FnPtr,
-         pub(super) GetNamedBufferParameteriv: FnPtr,
-         pub(super) GetNamedBufferParameterivEXT: FnPtr,
-         pub(super) GetNamedBufferParameterui64vNV: FnPtr,
-         pub(super) GetNamedBufferPointerv: FnPtr,
-         pub(super) GetNamedBufferPointervEXT: FnPtr,
-         pub(super) GetNamedBufferSubData: FnPtr,
-         pub(super) GetNamedBufferSubDataEXT: FnPtr,
-         pub(super) GetNamedFramebufferAttachmentParameteriv: FnPtr,
-         pub(super) GetNamedFramebufferAttachmentParameterivEXT: FnPtr,
-         pub(super) GetNamedFramebufferParameterfvAMD: FnPtr,
-         pub(super) GetNamedFramebufferParameteriv: FnPtr,
-         pub(super) GetNamedFramebufferParameterivEXT: FnPtr,
-         pub(super) GetNamedProgramLocalParameterIivEXT: FnPtr,
-         pub(super) GetNamedProgramLocalParameterIuivEXT: FnPtr,
-         pub(super) GetNamedProgramLocalParameterdvEXT: FnPtr,
-         pub(super) GetNamedProgramLocalParameterfvEXT: FnPtr,
-         pub(super) GetNamedProgramStringEXT: FnPtr,
-         pub(super) GetNamedProgramivEXT: FnPtr,
-         pub(super) GetNamedRenderbufferParameteriv: FnPtr,
-         pub(super) GetNamedRenderbufferParameterivEXT: FnPtr,
-         pub(super) GetNamedStringARB: FnPtr,
-         pub(super) GetNamedStringivARB: FnPtr,
-         pub(super) GetNextPerfQueryIdINTEL: FnPtr,
-         pub(super) GetObjectBufferfvATI: FnPtr,
-         pub(super) GetObjectBufferivATI: FnPtr,
-         pub(super) GetObjectLabel: FnPtr,
-         pub(super) GetObjectLabelEXT: FnPtr,
-         pub(super) GetObjectParameterfvARB: FnPtr,
-         pub(super) GetObjectParameterivAPPLE: FnPtr,
-         pub(super) GetObjectParameterivARB: FnPtr,
-         pub(super) GetObjectPtrLabel: FnPtr,
-         pub(super) GetOcclusionQueryivNV: FnPtr,
-         pub(super) GetOcclusionQueryuivNV: FnPtr,
-         pub(super) GetPathColorGenfvNV: FnPtr,
-         pub(super) GetPathColorGenivNV: FnPtr,
-         pub(super) GetPathCommandsNV: FnPtr,
-         pub(super) GetPathCoordsNV: FnPtr,
-         pub(super) GetPathDashArrayNV: FnPtr,
-         pub(super) GetPathLengthNV: FnPtr,
-         pub(super) GetPathMetricRangeNV: FnPtr,
-         pub(super) GetPathMetricsNV: FnPtr,
-         pub(super) GetPathParameterfvNV: FnPtr,
-         pub(super) GetPathParameterivNV: FnPtr,
-         pub(super) GetPathSpacingNV: FnPtr,
-         pub(super) GetPathTexGenfvNV: FnPtr,
-         pub(super) GetPathTexGenivNV: FnPtr,
-         pub(super) GetPerfCounterInfoINTEL: FnPtr,
-         pub(super) GetPerfMonitorCounterDataAMD: FnPtr,
-         pub(super) GetPerfMonitorCounterInfoAMD: FnPtr,
-         pub(super) GetPerfMonitorCounterStringAMD: FnPtr,
-         pub(super) GetPerfMonitorCountersAMD: FnPtr,
-         pub(super) GetPerfMonitorGroupStringAMD: FnPtr,
-         pub(super) GetPerfMonitorGroupsAMD: FnPtr,
-         pub(super) GetPerfQueryDataINTEL: FnPtr,
-         pub(super) GetPerfQueryIdByNameINTEL: FnPtr,
-         pub(super) GetPerfQueryInfoINTEL: FnPtr,
-         pub(super) GetPixelMapfv: FnPtr,
-         pub(super) GetPixelMapuiv: FnPtr,
-         pub(super) GetPixelMapusv: FnPtr,
-         pub(super) GetPixelMapxv: FnPtr,
-         pub(super) GetPixelTexGenParameterfvSGIS: FnPtr,
-         pub(super) GetPixelTexGenParameterivSGIS: FnPtr,
-         pub(super) GetPixelTransformParameterfvEXT: FnPtr,
-         pub(super) GetPixelTransformParameterivEXT: FnPtr,
-         pub(super) GetPointerIndexedvEXT: FnPtr,
-         pub(super) GetPointeri_vEXT: FnPtr,
-         pub(super) GetPointerv: FnPtr,
-         pub(super) GetPointervEXT: FnPtr,
-         pub(super) GetPolygonStipple: FnPtr,
-         pub(super) GetProgramBinary: FnPtr,
-         pub(super) GetProgramEnvParameterIivNV: FnPtr,
-         pub(super) GetProgramEnvParameterIuivNV: FnPtr,
-         pub(super) GetProgramEnvParameterdvARB: FnPtr,
-         pub(super) GetProgramEnvParameterfvARB: FnPtr,
-         pub(super) GetProgramInfoLog: FnPtr,
-         pub(super) GetProgramInterfaceiv: FnPtr,
-         pub(super) GetProgramLocalParameterIivNV: FnPtr,
-         pub(super) GetProgramLocalParameterIuivNV: FnPtr,
-         pub(super) GetProgramLocalParameterdvARB: FnPtr,
-         pub(super) GetProgramLocalParameterfvARB: FnPtr,
-         pub(super) GetProgramNamedParameterdvNV: FnPtr,
-         pub(super) GetProgramNamedParameterfvNV: FnPtr,
-         pub(super) GetProgramParameterdvNV: FnPtr,
-         pub(super) GetProgramParameterfvNV: FnPtr,
-         pub(super) GetProgramPipelineInfoLog: FnPtr,
-         pub(super) GetProgramPipelineiv: FnPtr,
-         pub(super) GetProgramResourceIndex: FnPtr,
-         pub(super) GetProgramResourceLocation: FnPtr,
-         pub(super) GetProgramResourceLocationIndex: FnPtr,
-         pub(super) GetProgramResourceName: FnPtr,
-         pub(super) GetProgramResourcefvNV: FnPtr,
-         pub(super) GetProgramResourceiv: FnPtr,
-         pub(super) GetProgramStageiv: FnPtr,
-         pub(super) GetProgramStringARB: FnPtr,
-         pub(super) GetProgramStringNV: FnPtr,
-         pub(super) GetProgramSubroutineParameteruivNV: FnPtr,
-         pub(super) GetProgramiv: FnPtr,
-         pub(super) GetProgramivARB: FnPtr,
-         pub(super) GetProgramivNV: FnPtr,
-         pub(super) GetQueryBufferObjecti64v: FnPtr,
-         pub(super) GetQueryBufferObjectiv: FnPtr,
-         pub(super) GetQueryBufferObjectui64v: FnPtr,
-         pub(super) GetQueryBufferObjectuiv: FnPtr,
-         pub(super) GetQueryIndexediv: FnPtr,
-         pub(super) GetQueryObjecti64v: FnPtr,
-         pub(super) GetQueryObjecti64vEXT: FnPtr,
-         pub(super) GetQueryObjectiv: FnPtr,
-         pub(super) GetQueryObjectivARB: FnPtr,
-         pub(super) GetQueryObjectui64v: FnPtr,
-         pub(super) GetQueryObjectui64vEXT: FnPtr,
-         pub(super) GetQueryObjectuiv: FnPtr,
-         pub(super) GetQueryObjectuivARB: FnPtr,
-         pub(super) GetQueryiv: FnPtr,
-         pub(super) GetQueryivARB: FnPtr,
-         pub(super) GetRenderbufferParameteriv: FnPtr,
-         pub(super) GetRenderbufferParameterivEXT: FnPtr,
-         pub(super) GetSamplerParameterIiv: FnPtr,
-         pub(super) GetSamplerParameterIuiv: FnPtr,
-         pub(super) GetSamplerParameterfv: FnPtr,
-         pub(super) GetSamplerParameteriv: FnPtr,
-         pub(super) GetSemaphoreParameterivNV: FnPtr,
-         pub(super) GetSemaphoreParameterui64vEXT: FnPtr,
-         pub(super) GetSeparableFilter: FnPtr,
-         pub(super) GetSeparableFilterEXT: FnPtr,
-         pub(super) GetShaderInfoLog: FnPtr,
-         pub(super) GetShaderPrecisionFormat: FnPtr,
-         pub(super) GetShaderSource: FnPtr,
-         pub(super) GetShaderSourceARB: FnPtr,
-         pub(super) GetShaderiv: FnPtr,
-         pub(super) GetShadingRateImagePaletteNV: FnPtr,
-         pub(super) GetShadingRateSampleLocationivNV: FnPtr,
-         pub(super) GetSharpenTexFuncSGIS: FnPtr,
-         pub(super) GetStageIndexNV: FnPtr,
-         pub(super) GetString: FnPtr,
-         pub(super) GetStringi: FnPtr,
-         pub(super) GetSubroutineIndex: FnPtr,
-         pub(super) GetSubroutineUniformLocation: FnPtr,
-         pub(super) GetSynciv: FnPtr,
-         pub(super) GetTexBumpParameterfvATI: FnPtr,
-         pub(super) GetTexBumpParameterivATI: FnPtr,
-         pub(super) GetTexEnvfv: FnPtr,
-         pub(super) GetTexEnviv: FnPtr,
-         pub(super) GetTexEnvxvOES: FnPtr,
-         pub(super) GetTexFilterFuncSGIS: FnPtr,
-         pub(super) GetTexGendv: FnPtr,
-         pub(super) GetTexGenfv: FnPtr,
-         pub(super) GetTexGeniv: FnPtr,
-         pub(super) GetTexGenxvOES: FnPtr,
-         pub(super) GetTexImage: FnPtr,
-         pub(super) GetTexLevelParameterfv: FnPtr,
-         pub(super) GetTexLevelParameteriv: FnPtr,
-         pub(super) GetTexLevelParameterxvOES: FnPtr,
-         pub(super) GetTexParameterIiv: FnPtr,
-         pub(super) GetTexParameterIivEXT: FnPtr,
-         pub(super) GetTexParameterIuiv: FnPtr,
-         pub(super) GetTexParameterIuivEXT: FnPtr,
-         pub(super) GetTexParameterPointervAPPLE: FnPtr,
-         pub(super) GetTexParameterfv: FnPtr,
-         pub(super) GetTexParameteriv: FnPtr,
-         pub(super) GetTexParameterxvOES: FnPtr,
-         pub(super) GetTextureHandleARB: FnPtr,
-         pub(super) GetTextureHandleNV: FnPtr,
-         pub(super) GetTextureImage: FnPtr,
-         pub(super) GetTextureImageEXT: FnPtr,
-         pub(super) GetTextureLevelParameterfv: FnPtr,
-         pub(super) GetTextureLevelParameterfvEXT: FnPtr,
-         pub(super) GetTextureLevelParameteriv: FnPtr,
-         pub(super) GetTextureLevelParameterivEXT: FnPtr,
-         pub(super) GetTextureParameterIiv: FnPtr,
-         pub(super) GetTextureParameterIivEXT: FnPtr,
-         pub(super) GetTextureParameterIuiv: FnPtr,
-         pub(super) GetTextureParameterIuivEXT: FnPtr,
-         pub(super) GetTextureParameterfv: FnPtr,
-         pub(super) GetTextureParameterfvEXT: FnPtr,
-         pub(super) GetTextureParameteriv: FnPtr,
-         pub(super) GetTextureParameterivEXT: FnPtr,
-         pub(super) GetTextureSamplerHandleARB: FnPtr,
-         pub(super) GetTextureSamplerHandleNV: FnPtr,
-         pub(super) GetTextureSubImage: FnPtr,
-         pub(super) GetTrackMatrixivNV: FnPtr,
-         pub(super) GetTransformFeedbackVarying: FnPtr,
-         pub(super) GetTransformFeedbackVaryingEXT: FnPtr,
-         pub(super) GetTransformFeedbackVaryingNV: FnPtr,
-         pub(super) GetTransformFeedbacki64_v: FnPtr,
-         pub(super) GetTransformFeedbacki_v: FnPtr,
-         pub(super) GetTransformFeedbackiv: FnPtr,
-         pub(super) GetUniformBlockIndex: FnPtr,
-         pub(super) GetUniformBufferSizeEXT: FnPtr,
-         pub(super) GetUniformIndices: FnPtr,
-         pub(super) GetUniformLocation: FnPtr,
-         pub(super) GetUniformLocationARB: FnPtr,
-         pub(super) GetUniformOffsetEXT: FnPtr,
-         pub(super) GetUniformSubroutineuiv: FnPtr,
-         pub(super) GetUniformdv: FnPtr,
-         pub(super) GetUniformfv: FnPtr,
-         pub(super) GetUniformfvARB: FnPtr,
-         pub(super) GetUniformi64vARB: FnPtr,
-         pub(super) GetUniformi64vNV: FnPtr,
-         pub(super) GetUniformiv: FnPtr,
-         pub(super) GetUniformivARB: FnPtr,
-         pub(super) GetUniformui64vARB: FnPtr,
-         pub(super) GetUniformui64vNV: FnPtr,
-         pub(super) GetUniformuiv: FnPtr,
-         pub(super) GetUniformuivEXT: FnPtr,
-         pub(super) GetUnsignedBytei_vEXT: FnPtr,
-         pub(super) GetUnsignedBytevEXT: FnPtr,
-         pub(super) GetVariantArrayObjectfvATI: FnPtr,
-         pub(super) GetVariantArrayObjectivATI: FnPtr,
-         pub(super) GetVariantBooleanvEXT: FnPtr,
-         pub(super) GetVariantFloatvEXT: FnPtr,
-         pub(super) GetVariantIntegervEXT: FnPtr,
-         pub(super) GetVariantPointervEXT: FnPtr,
-         pub(super) GetVaryingLocationNV: FnPtr,
-         pub(super) GetVertexArrayIndexed64iv: FnPtr,
-         pub(super) GetVertexArrayIndexediv: FnPtr,
-         pub(super) GetVertexArrayIntegeri_vEXT: FnPtr,
-         pub(super) GetVertexArrayIntegervEXT: FnPtr,
-         pub(super) GetVertexArrayPointeri_vEXT: FnPtr,
-         pub(super) GetVertexArrayPointervEXT: FnPtr,
-         pub(super) GetVertexArrayiv: FnPtr,
-         pub(super) GetVertexAttribArrayObjectfvATI: FnPtr,
-         pub(super) GetVertexAttribArrayObjectivATI: FnPtr,
-         pub(super) GetVertexAttribIiv: FnPtr,
-         pub(super) GetVertexAttribIivEXT: FnPtr,
-         pub(super) GetVertexAttribIuiv: FnPtr,
-         pub(super) GetVertexAttribIuivEXT: FnPtr,
-         pub(super) GetVertexAttribLdv: FnPtr,
-         pub(super) GetVertexAttribLdvEXT: FnPtr,
-         pub(super) GetVertexAttribLi64vNV: FnPtr,
-         pub(super) GetVertexAttribLui64vARB: FnPtr,
-         pub(super) GetVertexAttribLui64vNV: FnPtr,
-         pub(super) GetVertexAttribPointerv: FnPtr,
-         pub(super) GetVertexAttribPointervARB: FnPtr,
-         pub(super) GetVertexAttribPointervNV: FnPtr,
-         pub(super) GetVertexAttribdv: FnPtr,
-         pub(super) GetVertexAttribdvARB: FnPtr,
-         pub(super) GetVertexAttribdvNV: FnPtr,
-         pub(super) GetVertexAttribfv: FnPtr,
-         pub(super) GetVertexAttribfvARB: FnPtr,
-         pub(super) GetVertexAttribfvNV: FnPtr,
-         pub(super) GetVertexAttribiv: FnPtr,
-         pub(super) GetVertexAttribivARB: FnPtr,
-         pub(super) GetVertexAttribivNV: FnPtr,
-         pub(super) GetVideoCaptureStreamdvNV: FnPtr,
-         pub(super) GetVideoCaptureStreamfvNV: FnPtr,
-         pub(super) GetVideoCaptureStreamivNV: FnPtr,
-         pub(super) GetVideoCaptureivNV: FnPtr,
-         pub(super) GetVideoi64vNV: FnPtr,
-         pub(super) GetVideoivNV: FnPtr,
-         pub(super) GetVideoui64vNV: FnPtr,
-         pub(super) GetVideouivNV: FnPtr,
-         pub(super) GetVkProcAddrNV: FnPtr,
-         pub(super) GetnColorTable: FnPtr,
-         pub(super) GetnColorTableARB: FnPtr,
-         pub(super) GetnCompressedTexImage: FnPtr,
-         pub(super) GetnCompressedTexImageARB: FnPtr,
-         pub(super) GetnConvolutionFilter: FnPtr,
-         pub(super) GetnConvolutionFilterARB: FnPtr,
-         pub(super) GetnHistogram: FnPtr,
-         pub(super) GetnHistogramARB: FnPtr,
-         pub(super) GetnMapdv: FnPtr,
-         pub(super) GetnMapdvARB: FnPtr,
-         pub(super) GetnMapfv: FnPtr,
-         pub(super) GetnMapfvARB: FnPtr,
-         pub(super) GetnMapiv: FnPtr,
-         pub(super) GetnMapivARB: FnPtr,
-         pub(super) GetnMinmax: FnPtr,
-         pub(super) GetnMinmaxARB: FnPtr,
-         pub(super) GetnPixelMapfv: FnPtr,
-         pub(super) GetnPixelMapfvARB: FnPtr,
-         pub(super) GetnPixelMapuiv: FnPtr,
-         pub(super) GetnPixelMapuivARB: FnPtr,
-         pub(super) GetnPixelMapusv: FnPtr,
-         pub(super) GetnPixelMapusvARB: FnPtr,
-         pub(super) GetnPolygonStipple: FnPtr,
-         pub(super) GetnPolygonStippleARB: FnPtr,
-         pub(super) GetnSeparableFilter: FnPtr,
-         pub(super) GetnSeparableFilterARB: FnPtr,
-         pub(super) GetnTexImage: FnPtr,
-         pub(super) GetnTexImageARB: FnPtr,
-         pub(super) GetnUniformdv: FnPtr,
-         pub(super) GetnUniformdvARB: FnPtr,
-         pub(super) GetnUniformfv: FnPtr,
-         pub(super) GetnUniformfvARB: FnPtr,
-         pub(super) GetnUniformi64vARB: FnPtr,
-         pub(super) GetnUniformiv: FnPtr,
-         pub(super) GetnUniformivARB: FnPtr,
-         pub(super) GetnUniformui64vARB: FnPtr,
-         pub(super) GetnUniformuiv: FnPtr,
-         pub(super) GetnUniformuivARB: FnPtr,
-         pub(super) GlobalAlphaFactorbSUN: FnPtr,
-         pub(super) GlobalAlphaFactordSUN: FnPtr,
-         pub(super) GlobalAlphaFactorfSUN: FnPtr,
-         pub(super) GlobalAlphaFactoriSUN: FnPtr,
-         pub(super) GlobalAlphaFactorsSUN: FnPtr,
-         pub(super) GlobalAlphaFactorubSUN: FnPtr,
-         pub(super) GlobalAlphaFactoruiSUN: FnPtr,
-         pub(super) GlobalAlphaFactorusSUN: FnPtr,
-         pub(super) Hint: FnPtr,
-         pub(super) HintPGI: FnPtr,
-         pub(super) Histogram: FnPtr,
-         pub(super) HistogramEXT: FnPtr,
-         pub(super) IglooInterfaceSGIX: FnPtr,
-         pub(super) ImageTransformParameterfHP: FnPtr,
-         pub(super) ImageTransformParameterfvHP: FnPtr,
-         pub(super) ImageTransformParameteriHP: FnPtr,
-         pub(super) ImageTransformParameterivHP: FnPtr,
-         pub(super) ImportMemoryFdEXT: FnPtr,
-         pub(super) ImportMemoryWin32HandleEXT: FnPtr,
-         pub(super) ImportMemoryWin32NameEXT: FnPtr,
-         pub(super) ImportSemaphoreFdEXT: FnPtr,
-         pub(super) ImportSemaphoreWin32HandleEXT: FnPtr,
-         pub(super) ImportSemaphoreWin32NameEXT: FnPtr,
-         pub(super) ImportSyncEXT: FnPtr,
-         pub(super) IndexFormatNV: FnPtr,
-         pub(super) IndexFuncEXT: FnPtr,
-         pub(super) IndexMask: FnPtr,
-         pub(super) IndexMaterialEXT: FnPtr,
-         pub(super) IndexPointer: FnPtr,
-         pub(super) IndexPointerEXT: FnPtr,
-         pub(super) IndexPointerListIBM: FnPtr,
-         pub(super) Indexd: FnPtr,
-         pub(super) Indexdv: FnPtr,
-         pub(super) Indexf: FnPtr,
-         pub(super) Indexfv: FnPtr,
-         pub(super) Indexi: FnPtr,
-         pub(super) Indexiv: FnPtr,
-         pub(super) Indexs: FnPtr,
-         pub(super) Indexsv: FnPtr,
-         pub(super) Indexub: FnPtr,
-         pub(super) Indexubv: FnPtr,
-         pub(super) IndexxOES: FnPtr,
-         pub(super) IndexxvOES: FnPtr,
-         pub(super) InitNames: FnPtr,
-         pub(super) InsertComponentEXT: FnPtr,
-         pub(super) InsertEventMarkerEXT: FnPtr,
-         pub(super) InstrumentsBufferSGIX: FnPtr,
-         pub(super) InterleavedArrays: FnPtr,
-         pub(super) InterpolatePathsNV: FnPtr,
-         pub(super) InvalidateBufferData: FnPtr,
-         pub(super) InvalidateBufferSubData: FnPtr,
-         pub(super) InvalidateFramebuffer: FnPtr,
-         pub(super) InvalidateNamedFramebufferData: FnPtr,
-         pub(super) InvalidateNamedFramebufferSubData: FnPtr,
-         pub(super) InvalidateSubFramebuffer: FnPtr,
-         pub(super) InvalidateTexImage: FnPtr,
-         pub(super) InvalidateTexSubImage: FnPtr,
-         pub(super) IsAsyncMarkerSGIX: FnPtr,
-         pub(super) IsBuffer: FnPtr,
-         pub(super) IsBufferARB: FnPtr,
-         pub(super) IsBufferResidentNV: FnPtr,
-         pub(super) IsCommandListNV: FnPtr,
-         pub(super) IsEnabled: FnPtr,
-         pub(super) IsEnabledIndexedEXT: FnPtr,
-         pub(super) IsEnabledi: FnPtr,
-         pub(super) IsFenceAPPLE: FnPtr,
-         pub(super) IsFenceNV: FnPtr,
-         pub(super) IsFramebuffer: FnPtr,
-         pub(super) IsFramebufferEXT: FnPtr,
-         pub(super) IsImageHandleResidentARB: FnPtr,
-         pub(super) IsImageHandleResidentNV: FnPtr,
-         pub(super) IsList: FnPtr,
-         pub(super) IsMemoryObjectEXT: FnPtr,
-         pub(super) IsNameAMD: FnPtr,
-         pub(super) IsNamedBufferResidentNV: FnPtr,
-         pub(super) IsNamedStringARB: FnPtr,
-         pub(super) IsObjectBufferATI: FnPtr,
-         pub(super) IsOcclusionQueryNV: FnPtr,
-         pub(super) IsPathNV: FnPtr,
-         pub(super) IsPointInFillPathNV: FnPtr,
-         pub(super) IsPointInStrokePathNV: FnPtr,
-         pub(super) IsProgram: FnPtr,
-         pub(super) IsProgramARB: FnPtr,
-         pub(super) IsProgramNV: FnPtr,
-         pub(super) IsProgramPipeline: FnPtr,
-         pub(super) IsQuery: FnPtr,
-         pub(super) IsQueryARB: FnPtr,
-         pub(super) IsRenderbuffer: FnPtr,
-         pub(super) IsRenderbufferEXT: FnPtr,
-         pub(super) IsSampler: FnPtr,
-         pub(super) IsSemaphoreEXT: FnPtr,
-         pub(super) IsShader: FnPtr,
-         pub(super) IsStateNV: FnPtr,
-         pub(super) IsSync: FnPtr,
-         pub(super) IsTexture: FnPtr,
-         pub(super) IsTextureEXT: FnPtr,
-         pub(super) IsTextureHandleResidentARB: FnPtr,
-         pub(super) IsTextureHandleResidentNV: FnPtr,
-         pub(super) IsTransformFeedback: FnPtr,
-         pub(super) IsTransformFeedbackNV: FnPtr,
-         pub(super) IsVariantEnabledEXT: FnPtr,
-         pub(super) IsVertexArray: FnPtr,
-         pub(super) IsVertexArrayAPPLE: FnPtr,
-         pub(super) IsVertexAttribEnabledAPPLE: FnPtr,
-         pub(super) LGPUCopyImageSubDataNVX: FnPtr,
-         pub(super) LGPUInterlockNVX: FnPtr,
-         pub(super) LGPUNamedBufferSubDataNVX: FnPtr,
-         pub(super) LabelObjectEXT: FnPtr,
-         pub(super) LightEnviSGIX: FnPtr,
-         pub(super) LightModelf: FnPtr,
-         pub(super) LightModelfv: FnPtr,
-         pub(super) LightModeli: FnPtr,
-         pub(super) LightModeliv: FnPtr,
-         pub(super) LightModelxOES: FnPtr,
-         pub(super) LightModelxvOES: FnPtr,
-         pub(super) Lightf: FnPtr,
-         pub(super) Lightfv: FnPtr,
-         pub(super) Lighti: FnPtr,
-         pub(super) Lightiv: FnPtr,
-         pub(super) LightxOES: FnPtr,
-         pub(super) LightxvOES: FnPtr,
-         pub(super) LineStipple: FnPtr,
-         pub(super) LineWidth: FnPtr,
-         pub(super) LineWidthxOES: FnPtr,
-         pub(super) LinkProgram: FnPtr,
-         pub(super) LinkProgramARB: FnPtr,
-         pub(super) ListBase: FnPtr,
-         pub(super) ListDrawCommandsStatesClientNV: FnPtr,
-         pub(super) ListParameterfSGIX: FnPtr,
-         pub(super) ListParameterfvSGIX: FnPtr,
-         pub(super) ListParameteriSGIX: FnPtr,
-         pub(super) ListParameterivSGIX: FnPtr,
-         pub(super) LoadIdentity: FnPtr,
-         pub(super) LoadIdentityDeformationMapSGIX: FnPtr,
-         pub(super) LoadMatrixd: FnPtr,
-         pub(super) LoadMatrixf: FnPtr,
-         pub(super) LoadMatrixxOES: FnPtr,
-         pub(super) LoadName: FnPtr,
-         pub(super) LoadProgramNV: FnPtr,
-         pub(super) LoadTransposeMatrixd: FnPtr,
-         pub(super) LoadTransposeMatrixdARB: FnPtr,
-         pub(super) LoadTransposeMatrixf: FnPtr,
-         pub(super) LoadTransposeMatrixfARB: FnPtr,
-         pub(super) LoadTransposeMatrixxOES: FnPtr,
-         pub(super) LockArraysEXT: FnPtr,
-         pub(super) LogicOp: FnPtr,
-         pub(super) MakeBufferNonResidentNV: FnPtr,
-         pub(super) MakeBufferResidentNV: FnPtr,
-         pub(super) MakeImageHandleNonResidentARB: FnPtr,
-         pub(super) MakeImageHandleNonResidentNV: FnPtr,
-         pub(super) MakeImageHandleResidentARB: FnPtr,
-         pub(super) MakeImageHandleResidentNV: FnPtr,
-         pub(super) MakeNamedBufferNonResidentNV: FnPtr,
-         pub(super) MakeNamedBufferResidentNV: FnPtr,
-         pub(super) MakeTextureHandleNonResidentARB: FnPtr,
-         pub(super) MakeTextureHandleNonResidentNV: FnPtr,
-         pub(super) MakeTextureHandleResidentARB: FnPtr,
-         pub(super) MakeTextureHandleResidentNV: FnPtr,
-         pub(super) Map1d: FnPtr,
-         pub(super) Map1f: FnPtr,
-         pub(super) Map1xOES: FnPtr,
-         pub(super) Map2d: FnPtr,
-         pub(super) Map2f: FnPtr,
-         pub(super) Map2xOES: FnPtr,
-         pub(super) MapBuffer: FnPtr,
-         pub(super) MapBufferARB: FnPtr,
-         pub(super) MapBufferRange: FnPtr,
-         pub(super) MapControlPointsNV: FnPtr,
-         pub(super) MapGrid1d: FnPtr,
-         pub(super) MapGrid1f: FnPtr,
-         pub(super) MapGrid1xOES: FnPtr,
-         pub(super) MapGrid2d: FnPtr,
-         pub(super) MapGrid2f: FnPtr,
-         pub(super) MapGrid2xOES: FnPtr,
-         pub(super) MapNamedBuffer: FnPtr,
-         pub(super) MapNamedBufferEXT: FnPtr,
-         pub(super) MapNamedBufferRange: FnPtr,
-         pub(super) MapNamedBufferRangeEXT: FnPtr,
-         pub(super) MapObjectBufferATI: FnPtr,
-         pub(super) MapParameterfvNV: FnPtr,
-         pub(super) MapParameterivNV: FnPtr,
-         pub(super) MapTexture2DINTEL: FnPtr,
-         pub(super) MapVertexAttrib1dAPPLE: FnPtr,
-         pub(super) MapVertexAttrib1fAPPLE: FnPtr,
-         pub(super) MapVertexAttrib2dAPPLE: FnPtr,
-         pub(super) MapVertexAttrib2fAPPLE: FnPtr,
-         pub(super) Materialf: FnPtr,
-         pub(super) Materialfv: FnPtr,
-         pub(super) Materiali: FnPtr,
-         pub(super) Materialiv: FnPtr,
-         pub(super) MaterialxOES: FnPtr,
-         pub(super) MaterialxvOES: FnPtr,
-         pub(super) MatrixFrustumEXT: FnPtr,
-         pub(super) MatrixIndexPointerARB: FnPtr,
-         pub(super) MatrixIndexubvARB: FnPtr,
-         pub(super) MatrixIndexuivARB: FnPtr,
-         pub(super) MatrixIndexusvARB: FnPtr,
-         pub(super) MatrixLoad3x2fNV: FnPtr,
-         pub(super) MatrixLoad3x3fNV: FnPtr,
-         pub(super) MatrixLoadIdentityEXT: FnPtr,
-         pub(super) MatrixLoadTranspose3x3fNV: FnPtr,
-         pub(super) MatrixLoadTransposedEXT: FnPtr,
-         pub(super) MatrixLoadTransposefEXT: FnPtr,
-         pub(super) MatrixLoaddEXT: FnPtr,
-         pub(super) MatrixLoadfEXT: FnPtr,
-         pub(super) MatrixMode: FnPtr,
-         pub(super) MatrixMult3x2fNV: FnPtr,
-         pub(super) MatrixMult3x3fNV: FnPtr,
-         pub(super) MatrixMultTranspose3x3fNV: FnPtr,
-         pub(super) MatrixMultTransposedEXT: FnPtr,
-         pub(super) MatrixMultTransposefEXT: FnPtr,
-         pub(super) MatrixMultdEXT: FnPtr,
-         pub(super) MatrixMultfEXT: FnPtr,
-         pub(super) MatrixOrthoEXT: FnPtr,
-         pub(super) MatrixPopEXT: FnPtr,
-         pub(super) MatrixPushEXT: FnPtr,
-         pub(super) MatrixRotatedEXT: FnPtr,
-         pub(super) MatrixRotatefEXT: FnPtr,
-         pub(super) MatrixScaledEXT: FnPtr,
-         pub(super) MatrixScalefEXT: FnPtr,
-         pub(super) MatrixTranslatedEXT: FnPtr,
-         pub(super) MatrixTranslatefEXT: FnPtr,
-         pub(super) MaxShaderCompilerThreadsARB: FnPtr,
-         pub(super) MaxShaderCompilerThreadsKHR: FnPtr,
-         pub(super) MemoryBarrier: FnPtr,
-         pub(super) MemoryBarrierByRegion: FnPtr,
-         pub(super) MemoryBarrierEXT: FnPtr,
-         pub(super) MemoryObjectParameterivEXT: FnPtr,
-         pub(super) MinSampleShading: FnPtr,
-         pub(super) MinSampleShadingARB: FnPtr,
-         pub(super) Minmax: FnPtr,
-         pub(super) MinmaxEXT: FnPtr,
-         pub(super) MultMatrixd: FnPtr,
-         pub(super) MultMatrixf: FnPtr,
-         pub(super) MultMatrixxOES: FnPtr,
-         pub(super) MultTransposeMatrixd: FnPtr,
-         pub(super) MultTransposeMatrixdARB: FnPtr,
-         pub(super) MultTransposeMatrixf: FnPtr,
-         pub(super) MultTransposeMatrixfARB: FnPtr,
-         pub(super) MultTransposeMatrixxOES: FnPtr,
-         pub(super) MultiDrawArrays: FnPtr,
-         pub(super) MultiDrawArraysEXT: FnPtr,
-         pub(super) MultiDrawArraysIndirect: FnPtr,
-         pub(super) MultiDrawArraysIndirectAMD: FnPtr,
-         pub(super) MultiDrawArraysIndirectBindlessCountNV: FnPtr,
-         pub(super) MultiDrawArraysIndirectBindlessNV: FnPtr,
-         pub(super) MultiDrawArraysIndirectCount: FnPtr,
-         pub(super) MultiDrawArraysIndirectCountARB: FnPtr,
-         pub(super) MultiDrawElementArrayAPPLE: FnPtr,
-         pub(super) MultiDrawElements: FnPtr,
-         pub(super) MultiDrawElementsBaseVertex: FnPtr,
-         pub(super) MultiDrawElementsEXT: FnPtr,
-         pub(super) MultiDrawElementsIndirect: FnPtr,
-         pub(super) MultiDrawElementsIndirectAMD: FnPtr,
-         pub(super) MultiDrawElementsIndirectBindlessCountNV: FnPtr,
-         pub(super) MultiDrawElementsIndirectBindlessNV: FnPtr,
-         pub(super) MultiDrawElementsIndirectCount: FnPtr,
-         pub(super) MultiDrawElementsIndirectCountARB: FnPtr,
-         pub(super) MultiDrawMeshTasksIndirectCountNV: FnPtr,
-         pub(super) MultiDrawMeshTasksIndirectNV: FnPtr,
-         pub(super) MultiDrawRangeElementArrayAPPLE: FnPtr,
-         pub(super) MultiModeDrawArraysIBM: FnPtr,
-         pub(super) MultiModeDrawElementsIBM: FnPtr,
-         pub(super) MultiTexBufferEXT: FnPtr,
-         pub(super) MultiTexCoord1bOES: FnPtr,
-         pub(super) MultiTexCoord1bvOES: FnPtr,
-         pub(super) MultiTexCoord1d: FnPtr,
-         pub(super) MultiTexCoord1dARB: FnPtr,
-         pub(super) MultiTexCoord1dv: FnPtr,
-         pub(super) MultiTexCoord1dvARB: FnPtr,
-         pub(super) MultiTexCoord1f: FnPtr,
-         pub(super) MultiTexCoord1fARB: FnPtr,
-         pub(super) MultiTexCoord1fv: FnPtr,
-         pub(super) MultiTexCoord1fvARB: FnPtr,
-         pub(super) MultiTexCoord1hNV: FnPtr,
-         pub(super) MultiTexCoord1hvNV: FnPtr,
-         pub(super) MultiTexCoord1i: FnPtr,
-         pub(super) MultiTexCoord1iARB: FnPtr,
-         pub(super) MultiTexCoord1iv: FnPtr,
-         pub(super) MultiTexCoord1ivARB: FnPtr,
-         pub(super) MultiTexCoord1s: FnPtr,
-         pub(super) MultiTexCoord1sARB: FnPtr,
-         pub(super) MultiTexCoord1sv: FnPtr,
-         pub(super) MultiTexCoord1svARB: FnPtr,
-         pub(super) MultiTexCoord1xOES: FnPtr,
-         pub(super) MultiTexCoord1xvOES: FnPtr,
-         pub(super) MultiTexCoord2bOES: FnPtr,
-         pub(super) MultiTexCoord2bvOES: FnPtr,
-         pub(super) MultiTexCoord2d: FnPtr,
-         pub(super) MultiTexCoord2dARB: FnPtr,
-         pub(super) MultiTexCoord2dv: FnPtr,
-         pub(super) MultiTexCoord2dvARB: FnPtr,
-         pub(super) MultiTexCoord2f: FnPtr,
-         pub(super) MultiTexCoord2fARB: FnPtr,
-         pub(super) MultiTexCoord2fv: FnPtr,
-         pub(super) MultiTexCoord2fvARB: FnPtr,
-         pub(super) MultiTexCoord2hNV: FnPtr,
-         pub(super) MultiTexCoord2hvNV: FnPtr,
-         pub(super) MultiTexCoord2i: FnPtr,
-         pub(super) MultiTexCoord2iARB: FnPtr,
-         pub(super) MultiTexCoord2iv: FnPtr,
-         pub(super) MultiTexCoord2ivARB: FnPtr,
-         pub(super) MultiTexCoord2s: FnPtr,
-         pub(super) MultiTexCoord2sARB: FnPtr,
-         pub(super) MultiTexCoord2sv: FnPtr,
-         pub(super) MultiTexCoord2svARB: FnPtr,
-         pub(super) MultiTexCoord2xOES: FnPtr,
-         pub(super) MultiTexCoord2xvOES: FnPtr,
-         pub(super) MultiTexCoord3bOES: FnPtr,
-         pub(super) MultiTexCoord3bvOES: FnPtr,
-         pub(super) MultiTexCoord3d: FnPtr,
-         pub(super) MultiTexCoord3dARB: FnPtr,
-         pub(super) MultiTexCoord3dv: FnPtr,
-         pub(super) MultiTexCoord3dvARB: FnPtr,
-         pub(super) MultiTexCoord3f: FnPtr,
-         pub(super) MultiTexCoord3fARB: FnPtr,
-         pub(super) MultiTexCoord3fv: FnPtr,
-         pub(super) MultiTexCoord3fvARB: FnPtr,
-         pub(super) MultiTexCoord3hNV: FnPtr,
-         pub(super) MultiTexCoord3hvNV: FnPtr,
-         pub(super) MultiTexCoord3i: FnPtr,
-         pub(super) MultiTexCoord3iARB: FnPtr,
-         pub(super) MultiTexCoord3iv: FnPtr,
-         pub(super) MultiTexCoord3ivARB: FnPtr,
-         pub(super) MultiTexCoord3s: FnPtr,
-         pub(super) MultiTexCoord3sARB: FnPtr,
-         pub(super) MultiTexCoord3sv: FnPtr,
-         pub(super) MultiTexCoord3svARB: FnPtr,
-         pub(super) MultiTexCoord3xOES: FnPtr,
-         pub(super) MultiTexCoord3xvOES: FnPtr,
-         pub(super) MultiTexCoord4bOES: FnPtr,
-         pub(super) MultiTexCoord4bvOES: FnPtr,
-         pub(super) MultiTexCoord4d: FnPtr,
-         pub(super) MultiTexCoord4dARB: FnPtr,
-         pub(super) MultiTexCoord4dv: FnPtr,
-         pub(super) MultiTexCoord4dvARB: FnPtr,
-         pub(super) MultiTexCoord4f: FnPtr,
-         pub(super) MultiTexCoord4fARB: FnPtr,
-         pub(super) MultiTexCoord4fv: FnPtr,
-         pub(super) MultiTexCoord4fvARB: FnPtr,
-         pub(super) MultiTexCoord4hNV: FnPtr,
-         pub(super) MultiTexCoord4hvNV: FnPtr,
-         pub(super) MultiTexCoord4i: FnPtr,
-         pub(super) MultiTexCoord4iARB: FnPtr,
-         pub(super) MultiTexCoord4iv: FnPtr,
-         pub(super) MultiTexCoord4ivARB: FnPtr,
-         pub(super) MultiTexCoord4s: FnPtr,
-         pub(super) MultiTexCoord4sARB: FnPtr,
-         pub(super) MultiTexCoord4sv: FnPtr,
-         pub(super) MultiTexCoord4svARB: FnPtr,
-         pub(super) MultiTexCoord4xOES: FnPtr,
-         pub(super) MultiTexCoord4xvOES: FnPtr,
-         pub(super) MultiTexCoordP1ui: FnPtr,
-         pub(super) MultiTexCoordP1uiv: FnPtr,
-         pub(super) MultiTexCoordP2ui: FnPtr,
-         pub(super) MultiTexCoordP2uiv: FnPtr,
-         pub(super) MultiTexCoordP3ui: FnPtr,
-         pub(super) MultiTexCoordP3uiv: FnPtr,
-         pub(super) MultiTexCoordP4ui: FnPtr,
-         pub(super) MultiTexCoordP4uiv: FnPtr,
-         pub(super) MultiTexCoordPointerEXT: FnPtr,
-         pub(super) MultiTexEnvfEXT: FnPtr,
-         pub(super) MultiTexEnvfvEXT: FnPtr,
-         pub(super) MultiTexEnviEXT: FnPtr,
-         pub(super) MultiTexEnvivEXT: FnPtr,
-         pub(super) MultiTexGendEXT: FnPtr,
-         pub(super) MultiTexGendvEXT: FnPtr,
-         pub(super) MultiTexGenfEXT: FnPtr,
-         pub(super) MultiTexGenfvEXT: FnPtr,
-         pub(super) MultiTexGeniEXT: FnPtr,
-         pub(super) MultiTexGenivEXT: FnPtr,
-         pub(super) MultiTexImage1DEXT: FnPtr,
-         pub(super) MultiTexImage2DEXT: FnPtr,
-         pub(super) MultiTexImage3DEXT: FnPtr,
-         pub(super) MultiTexParameterIivEXT: FnPtr,
-         pub(super) MultiTexParameterIuivEXT: FnPtr,
-         pub(super) MultiTexParameterfEXT: FnPtr,
-         pub(super) MultiTexParameterfvEXT: FnPtr,
-         pub(super) MultiTexParameteriEXT: FnPtr,
-         pub(super) MultiTexParameterivEXT: FnPtr,
-         pub(super) MultiTexRenderbufferEXT: FnPtr,
-         pub(super) MultiTexSubImage1DEXT: FnPtr,
-         pub(super) MultiTexSubImage2DEXT: FnPtr,
-         pub(super) MultiTexSubImage3DEXT: FnPtr,
-         pub(super) MulticastBarrierNV: FnPtr,
-         pub(super) MulticastBlitFramebufferNV: FnPtr,
-         pub(super) MulticastBufferSubDataNV: FnPtr,
-         pub(super) MulticastCopyBufferSubDataNV: FnPtr,
-         pub(super) MulticastCopyImageSubDataNV: FnPtr,
-         pub(super) MulticastFramebufferSampleLocationsfvNV: FnPtr,
-         pub(super) MulticastGetQueryObjecti64vNV: FnPtr,
-         pub(super) MulticastGetQueryObjectivNV: FnPtr,
-         pub(super) MulticastGetQueryObjectui64vNV: FnPtr,
-         pub(super) MulticastGetQueryObjectuivNV: FnPtr,
-         pub(super) MulticastScissorArrayvNVX: FnPtr,
-         pub(super) MulticastViewportArrayvNVX: FnPtr,
-         pub(super) MulticastViewportPositionWScaleNVX: FnPtr,
-         pub(super) MulticastWaitSyncNV: FnPtr,
-         pub(super) NamedBufferAttachMemoryNV: FnPtr,
-         pub(super) NamedBufferData: FnPtr,
-         pub(super) NamedBufferDataEXT: FnPtr,
-         pub(super) NamedBufferPageCommitmentARB: FnPtr,
-         pub(super) NamedBufferPageCommitmentEXT: FnPtr,
-         pub(super) NamedBufferPageCommitmentMemNV: FnPtr,
-         pub(super) NamedBufferStorage: FnPtr,
-         pub(super) NamedBufferStorageEXT: FnPtr,
-         pub(super) NamedBufferStorageExternalEXT: FnPtr,
-         pub(super) NamedBufferStorageMemEXT: FnPtr,
-         pub(super) NamedBufferSubData: FnPtr,
-         pub(super) NamedBufferSubDataEXT: FnPtr,
-         pub(super) NamedCopyBufferSubDataEXT: FnPtr,
-         pub(super) NamedFramebufferDrawBuffer: FnPtr,
-         pub(super) NamedFramebufferDrawBuffers: FnPtr,
-         pub(super) NamedFramebufferParameteri: FnPtr,
-         pub(super) NamedFramebufferParameteriEXT: FnPtr,
-         pub(super) NamedFramebufferReadBuffer: FnPtr,
-         pub(super) NamedFramebufferRenderbuffer: FnPtr,
-         pub(super) NamedFramebufferRenderbufferEXT: FnPtr,
-         pub(super) NamedFramebufferSampleLocationsfvARB: FnPtr,
-         pub(super) NamedFramebufferSampleLocationsfvNV: FnPtr,
-         pub(super) NamedFramebufferSamplePositionsfvAMD: FnPtr,
-         pub(super) NamedFramebufferTexture: FnPtr,
-         pub(super) NamedFramebufferTexture1DEXT: FnPtr,
-         pub(super) NamedFramebufferTexture2DEXT: FnPtr,
-         pub(super) NamedFramebufferTexture3DEXT: FnPtr,
-         pub(super) NamedFramebufferTextureEXT: FnPtr,
-         pub(super) NamedFramebufferTextureFaceEXT: FnPtr,
-         pub(super) NamedFramebufferTextureLayer: FnPtr,
-         pub(super) NamedFramebufferTextureLayerEXT: FnPtr,
-         pub(super) NamedProgramLocalParameter4dEXT: FnPtr,
-         pub(super) NamedProgramLocalParameter4dvEXT: FnPtr,
-         pub(super) NamedProgramLocalParameter4fEXT: FnPtr,
-         pub(super) NamedProgramLocalParameter4fvEXT: FnPtr,
-         pub(super) NamedProgramLocalParameterI4iEXT: FnPtr,
-         pub(super) NamedProgramLocalParameterI4ivEXT: FnPtr,
-         pub(super) NamedProgramLocalParameterI4uiEXT: FnPtr,
-         pub(super) NamedProgramLocalParameterI4uivEXT: FnPtr,
-         pub(super) NamedProgramLocalParameters4fvEXT: FnPtr,
-         pub(super) NamedProgramLocalParametersI4ivEXT: FnPtr,
-         pub(super) NamedProgramLocalParametersI4uivEXT: FnPtr,
-         pub(super) NamedProgramStringEXT: FnPtr,
-         pub(super) NamedRenderbufferStorage: FnPtr,
-         pub(super) NamedRenderbufferStorageEXT: FnPtr,
-         pub(super) NamedRenderbufferStorageMultisample: FnPtr,
-         pub(super) NamedRenderbufferStorageMultisampleAdvancedAMD: FnPtr,
-         pub(super) NamedRenderbufferStorageMultisampleCoverageEXT: FnPtr,
-         pub(super) NamedRenderbufferStorageMultisampleEXT: FnPtr,
-         pub(super) NamedStringARB: FnPtr,
-         pub(super) NewList: FnPtr,
-         pub(super) NewObjectBufferATI: FnPtr,
-         pub(super) Normal3b: FnPtr,
-         pub(super) Normal3bv: FnPtr,
-         pub(super) Normal3d: FnPtr,
-         pub(super) Normal3dv: FnPtr,
-         pub(super) Normal3f: FnPtr,
-         pub(super) Normal3fVertex3fSUN: FnPtr,
-         pub(super) Normal3fVertex3fvSUN: FnPtr,
-         pub(super) Normal3fv: FnPtr,
-         pub(super) Normal3hNV: FnPtr,
-         pub(super) Normal3hvNV: FnPtr,
-         pub(super) Normal3i: FnPtr,
-         pub(super) Normal3iv: FnPtr,
-         pub(super) Normal3s: FnPtr,
-         pub(super) Normal3sv: FnPtr,
-         pub(super) Normal3xOES: FnPtr,
-         pub(super) Normal3xvOES: FnPtr,
-         pub(super) NormalFormatNV: FnPtr,
-         pub(super) NormalP3ui: FnPtr,
-         pub(super) NormalP3uiv: FnPtr,
-         pub(super) NormalPointer: FnPtr,
-         pub(super) NormalPointerEXT: FnPtr,
-         pub(super) NormalPointerListIBM: FnPtr,
-         pub(super) NormalPointervINTEL: FnPtr,
-         pub(super) NormalStream3bATI: FnPtr,
-         pub(super) NormalStream3bvATI: FnPtr,
-         pub(super) NormalStream3dATI: FnPtr,
-         pub(super) NormalStream3dvATI: FnPtr,
-         pub(super) NormalStream3fATI: FnPtr,
-         pub(super) NormalStream3fvATI: FnPtr,
-         pub(super) NormalStream3iATI: FnPtr,
-         pub(super) NormalStream3ivATI: FnPtr,
-         pub(super) NormalStream3sATI: FnPtr,
-         pub(super) NormalStream3svATI: FnPtr,
-         pub(super) ObjectLabel: FnPtr,
-         pub(super) ObjectPtrLabel: FnPtr,
-         pub(super) ObjectPurgeableAPPLE: FnPtr,
-         pub(super) ObjectUnpurgeableAPPLE: FnPtr,
-         pub(super) Ortho: FnPtr,
-         pub(super) OrthofOES: FnPtr,
-         pub(super) OrthoxOES: FnPtr,
-         pub(super) PNTrianglesfATI: FnPtr,
-         pub(super) PNTrianglesiATI: FnPtr,
-         pub(super) PassTexCoordATI: FnPtr,
-         pub(super) PassThrough: FnPtr,
-         pub(super) PassThroughxOES: FnPtr,
-         pub(super) PatchParameterfv: FnPtr,
-         pub(super) PatchParameteri: FnPtr,
-         pub(super) PathColorGenNV: FnPtr,
-         pub(super) PathCommandsNV: FnPtr,
-         pub(super) PathCoordsNV: FnPtr,
-         pub(super) PathCoverDepthFuncNV: FnPtr,
-         pub(super) PathDashArrayNV: FnPtr,
-         pub(super) PathFogGenNV: FnPtr,
-         pub(super) PathGlyphIndexArrayNV: FnPtr,
-         pub(super) PathGlyphIndexRangeNV: FnPtr,
-         pub(super) PathGlyphRangeNV: FnPtr,
-         pub(super) PathGlyphsNV: FnPtr,
-         pub(super) PathMemoryGlyphIndexArrayNV: FnPtr,
-         pub(super) PathParameterfNV: FnPtr,
-         pub(super) PathParameterfvNV: FnPtr,
-         pub(super) PathParameteriNV: FnPtr,
-         pub(super) PathParameterivNV: FnPtr,
-         pub(super) PathStencilDepthOffsetNV: FnPtr,
-         pub(super) PathStencilFuncNV: FnPtr,
-         pub(super) PathStringNV: FnPtr,
-         pub(super) PathSubCommandsNV: FnPtr,
-         pub(super) PathSubCoordsNV: FnPtr,
-         pub(super) PathTexGenNV: FnPtr,
-         pub(super) PauseTransformFeedback: FnPtr,
-         pub(super) PauseTransformFeedbackNV: FnPtr,
-         pub(super) PixelDataRangeNV: FnPtr,
-         pub(super) PixelMapfv: FnPtr,
-         pub(super) PixelMapuiv: FnPtr,
-         pub(super) PixelMapusv: FnPtr,
-         pub(super) PixelMapx: FnPtr,
-         pub(super) PixelStoref: FnPtr,
-         pub(super) PixelStorei: FnPtr,
-         pub(super) PixelStorex: FnPtr,
-         pub(super) PixelTexGenParameterfSGIS: FnPtr,
-         pub(super) PixelTexGenParameterfvSGIS: FnPtr,
-         pub(super) PixelTexGenParameteriSGIS: FnPtr,
-         pub(super) PixelTexGenParameterivSGIS: FnPtr,
-         pub(super) PixelTexGenSGIX: FnPtr,
-         pub(super) PixelTransferf: FnPtr,
-         pub(super) PixelTransferi: FnPtr,
-         pub(super) PixelTransferxOES: FnPtr,
-         pub(super) PixelTransformParameterfEXT: FnPtr,
-         pub(super) PixelTransformParameterfvEXT: FnPtr,
-         pub(super) PixelTransformParameteriEXT: FnPtr,
-         pub(super) PixelTransformParameterivEXT: FnPtr,
-         pub(super) PixelZoom: FnPtr,
-         pub(super) PixelZoomxOES: FnPtr,
-         pub(super) PointAlongPathNV: FnPtr,
-         pub(super) PointParameterf: FnPtr,
-         pub(super) PointParameterfARB: FnPtr,
-         pub(super) PointParameterfEXT: FnPtr,
-         pub(super) PointParameterfSGIS: FnPtr,
-         pub(super) PointParameterfv: FnPtr,
-         pub(super) PointParameterfvARB: FnPtr,
-         pub(super) PointParameterfvEXT: FnPtr,
-         pub(super) PointParameterfvSGIS: FnPtr,
-         pub(super) PointParameteri: FnPtr,
-         pub(super) PointParameteriNV: FnPtr,
-         pub(super) PointParameteriv: FnPtr,
-         pub(super) PointParameterivNV: FnPtr,
-         pub(super) PointParameterxvOES: FnPtr,
-         pub(super) PointSize: FnPtr,
-         pub(super) PointSizexOES: FnPtr,
-         pub(super) PollAsyncSGIX: FnPtr,
-         pub(super) PollInstrumentsSGIX: FnPtr,
-         pub(super) PolygonMode: FnPtr,
-         pub(super) PolygonOffset: FnPtr,
-         pub(super) PolygonOffsetClamp: FnPtr,
-         pub(super) PolygonOffsetClampEXT: FnPtr,
-         pub(super) PolygonOffsetEXT: FnPtr,
-         pub(super) PolygonOffsetxOES: FnPtr,
-         pub(super) PolygonStipple: FnPtr,
-         pub(super) PopAttrib: FnPtr,
-         pub(super) PopClientAttrib: FnPtr,
-         pub(super) PopDebugGroup: FnPtr,
-         pub(super) PopGroupMarkerEXT: FnPtr,
-         pub(super) PopMatrix: FnPtr,
-         pub(super) PopName: FnPtr,
-         pub(super) PresentFrameDualFillNV: FnPtr,
-         pub(super) PresentFrameKeyedNV: FnPtr,
-         pub(super) PrimitiveBoundingBoxARB: FnPtr,
-         pub(super) PrimitiveRestartIndex: FnPtr,
-         pub(super) PrimitiveRestartIndexNV: FnPtr,
-         pub(super) PrimitiveRestartNV: FnPtr,
-         pub(super) PrioritizeTextures: FnPtr,
-         pub(super) PrioritizeTexturesEXT: FnPtr,
-         pub(super) PrioritizeTexturesxOES: FnPtr,
-         pub(super) ProgramBinary: FnPtr,
-         pub(super) ProgramBufferParametersIivNV: FnPtr,
-         pub(super) ProgramBufferParametersIuivNV: FnPtr,
-         pub(super) ProgramBufferParametersfvNV: FnPtr,
-         pub(super) ProgramEnvParameter4dARB: FnPtr,
-         pub(super) ProgramEnvParameter4dvARB: FnPtr,
-         pub(super) ProgramEnvParameter4fARB: FnPtr,
-         pub(super) ProgramEnvParameter4fvARB: FnPtr,
-         pub(super) ProgramEnvParameterI4iNV: FnPtr,
-         pub(super) ProgramEnvParameterI4ivNV: FnPtr,
-         pub(super) ProgramEnvParameterI4uiNV: FnPtr,
-         pub(super) ProgramEnvParameterI4uivNV: FnPtr,
-         pub(super) ProgramEnvParameters4fvEXT: FnPtr,
-         pub(super) ProgramEnvParametersI4ivNV: FnPtr,
-         pub(super) ProgramEnvParametersI4uivNV: FnPtr,
-         pub(super) ProgramLocalParameter4dARB: FnPtr,
-         pub(super) ProgramLocalParameter4dvARB: FnPtr,
-         pub(super) ProgramLocalParameter4fARB: FnPtr,
-         pub(super) ProgramLocalParameter4fvARB: FnPtr,
-         pub(super) ProgramLocalParameterI4iNV: FnPtr,
-         pub(super) ProgramLocalParameterI4ivNV: FnPtr,
-         pub(super) ProgramLocalParameterI4uiNV: FnPtr,
-         pub(super) ProgramLocalParameterI4uivNV: FnPtr,
-         pub(super) ProgramLocalParameters4fvEXT: FnPtr,
-         pub(super) ProgramLocalParametersI4ivNV: FnPtr,
-         pub(super) ProgramLocalParametersI4uivNV: FnPtr,
-         pub(super) ProgramNamedParameter4dNV: FnPtr,
-         pub(super) ProgramNamedParameter4dvNV: FnPtr,
-         pub(super) ProgramNamedParameter4fNV: FnPtr,
-         pub(super) ProgramNamedParameter4fvNV: FnPtr,
-         pub(super) ProgramParameter4dNV: FnPtr,
-         pub(super) ProgramParameter4dvNV: FnPtr,
-         pub(super) ProgramParameter4fNV: FnPtr,
-         pub(super) ProgramParameter4fvNV: FnPtr,
-         pub(super) ProgramParameteri: FnPtr,
-         pub(super) ProgramParameteriARB: FnPtr,
-         pub(super) ProgramParameteriEXT: FnPtr,
-         pub(super) ProgramParameters4dvNV: FnPtr,
-         pub(super) ProgramParameters4fvNV: FnPtr,
-         pub(super) ProgramPathFragmentInputGenNV: FnPtr,
-         pub(super) ProgramStringARB: FnPtr,
-         pub(super) ProgramSubroutineParametersuivNV: FnPtr,
-         pub(super) ProgramUniform1d: FnPtr,
-         pub(super) ProgramUniform1dEXT: FnPtr,
-         pub(super) ProgramUniform1dv: FnPtr,
-         pub(super) ProgramUniform1dvEXT: FnPtr,
-         pub(super) ProgramUniform1f: FnPtr,
-         pub(super) ProgramUniform1fEXT: FnPtr,
-         pub(super) ProgramUniform1fv: FnPtr,
-         pub(super) ProgramUniform1fvEXT: FnPtr,
-         pub(super) ProgramUniform1i: FnPtr,
-         pub(super) ProgramUniform1i64ARB: FnPtr,
-         pub(super) ProgramUniform1i64NV: FnPtr,
-         pub(super) ProgramUniform1i64vARB: FnPtr,
-         pub(super) ProgramUniform1i64vNV: FnPtr,
-         pub(super) ProgramUniform1iEXT: FnPtr,
-         pub(super) ProgramUniform1iv: FnPtr,
-         pub(super) ProgramUniform1ivEXT: FnPtr,
-         pub(super) ProgramUniform1ui: FnPtr,
-         pub(super) ProgramUniform1ui64ARB: FnPtr,
-         pub(super) ProgramUniform1ui64NV: FnPtr,
-         pub(super) ProgramUniform1ui64vARB: FnPtr,
-         pub(super) ProgramUniform1ui64vNV: FnPtr,
-         pub(super) ProgramUniform1uiEXT: FnPtr,
-         pub(super) ProgramUniform1uiv: FnPtr,
-         pub(super) ProgramUniform1uivEXT: FnPtr,
-         pub(super) ProgramUniform2d: FnPtr,
-         pub(super) ProgramUniform2dEXT: FnPtr,
-         pub(super) ProgramUniform2dv: FnPtr,
-         pub(super) ProgramUniform2dvEXT: FnPtr,
-         pub(super) ProgramUniform2f: FnPtr,
-         pub(super) ProgramUniform2fEXT: FnPtr,
-         pub(super) ProgramUniform2fv: FnPtr,
-         pub(super) ProgramUniform2fvEXT: FnPtr,
-         pub(super) ProgramUniform2i: FnPtr,
-         pub(super) ProgramUniform2i64ARB: FnPtr,
-         pub(super) ProgramUniform2i64NV: FnPtr,
-         pub(super) ProgramUniform2i64vARB: FnPtr,
-         pub(super) ProgramUniform2i64vNV: FnPtr,
-         pub(super) ProgramUniform2iEXT: FnPtr,
-         pub(super) ProgramUniform2iv: FnPtr,
-         pub(super) ProgramUniform2ivEXT: FnPtr,
-         pub(super) ProgramUniform2ui: FnPtr,
-         pub(super) ProgramUniform2ui64ARB: FnPtr,
-         pub(super) ProgramUniform2ui64NV: FnPtr,
-         pub(super) ProgramUniform2ui64vARB: FnPtr,
-         pub(super) ProgramUniform2ui64vNV: FnPtr,
-         pub(super) ProgramUniform2uiEXT: FnPtr,
-         pub(super) ProgramUniform2uiv: FnPtr,
-         pub(super) ProgramUniform2uivEXT: FnPtr,
-         pub(super) ProgramUniform3d: FnPtr,
-         pub(super) ProgramUniform3dEXT: FnPtr,
-         pub(super) ProgramUniform3dv: FnPtr,
-         pub(super) ProgramUniform3dvEXT: FnPtr,
-         pub(super) ProgramUniform3f: FnPtr,
-         pub(super) ProgramUniform3fEXT: FnPtr,
-         pub(super) ProgramUniform3fv: FnPtr,
-         pub(super) ProgramUniform3fvEXT: FnPtr,
-         pub(super) ProgramUniform3i: FnPtr,
-         pub(super) ProgramUniform3i64ARB: FnPtr,
-         pub(super) ProgramUniform3i64NV: FnPtr,
-         pub(super) ProgramUniform3i64vARB: FnPtr,
-         pub(super) ProgramUniform3i64vNV: FnPtr,
-         pub(super) ProgramUniform3iEXT: FnPtr,
-         pub(super) ProgramUniform3iv: FnPtr,
-         pub(super) ProgramUniform3ivEXT: FnPtr,
-         pub(super) ProgramUniform3ui: FnPtr,
-         pub(super) ProgramUniform3ui64ARB: FnPtr,
-         pub(super) ProgramUniform3ui64NV: FnPtr,
-         pub(super) ProgramUniform3ui64vARB: FnPtr,
-         pub(super) ProgramUniform3ui64vNV: FnPtr,
-         pub(super) ProgramUniform3uiEXT: FnPtr,
-         pub(super) ProgramUniform3uiv: FnPtr,
-         pub(super) ProgramUniform3uivEXT: FnPtr,
-         pub(super) ProgramUniform4d: FnPtr,
-         pub(super) ProgramUniform4dEXT: FnPtr,
-         pub(super) ProgramUniform4dv: FnPtr,
-         pub(super) ProgramUniform4dvEXT: FnPtr,
-         pub(super) ProgramUniform4f: FnPtr,
-         pub(super) ProgramUniform4fEXT: FnPtr,
-         pub(super) ProgramUniform4fv: FnPtr,
-         pub(super) ProgramUniform4fvEXT: FnPtr,
-         pub(super) ProgramUniform4i: FnPtr,
-         pub(super) ProgramUniform4i64ARB: FnPtr,
-         pub(super) ProgramUniform4i64NV: FnPtr,
-         pub(super) ProgramUniform4i64vARB: FnPtr,
-         pub(super) ProgramUniform4i64vNV: FnPtr,
-         pub(super) ProgramUniform4iEXT: FnPtr,
-         pub(super) ProgramUniform4iv: FnPtr,
-         pub(super) ProgramUniform4ivEXT: FnPtr,
-         pub(super) ProgramUniform4ui: FnPtr,
-         pub(super) ProgramUniform4ui64ARB: FnPtr,
-         pub(super) ProgramUniform4ui64NV: FnPtr,
-         pub(super) ProgramUniform4ui64vARB: FnPtr,
-         pub(super) ProgramUniform4ui64vNV: FnPtr,
-         pub(super) ProgramUniform4uiEXT: FnPtr,
-         pub(super) ProgramUniform4uiv: FnPtr,
-         pub(super) ProgramUniform4uivEXT: FnPtr,
-         pub(super) ProgramUniformHandleui64ARB: FnPtr,
-         pub(super) ProgramUniformHandleui64NV: FnPtr,
-         pub(super) ProgramUniformHandleui64vARB: FnPtr,
-         pub(super) ProgramUniformHandleui64vNV: FnPtr,
-         pub(super) ProgramUniformMatrix2dv: FnPtr,
-         pub(super) ProgramUniformMatrix2dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix2fv: FnPtr,
-         pub(super) ProgramUniformMatrix2fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix2x3dv: FnPtr,
-         pub(super) ProgramUniformMatrix2x3dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix2x3fv: FnPtr,
-         pub(super) ProgramUniformMatrix2x3fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix2x4dv: FnPtr,
-         pub(super) ProgramUniformMatrix2x4dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix2x4fv: FnPtr,
-         pub(super) ProgramUniformMatrix2x4fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3dv: FnPtr,
-         pub(super) ProgramUniformMatrix3dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3fv: FnPtr,
-         pub(super) ProgramUniformMatrix3fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3x2dv: FnPtr,
-         pub(super) ProgramUniformMatrix3x2dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3x2fv: FnPtr,
-         pub(super) ProgramUniformMatrix3x2fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3x4dv: FnPtr,
-         pub(super) ProgramUniformMatrix3x4dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix3x4fv: FnPtr,
-         pub(super) ProgramUniformMatrix3x4fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4dv: FnPtr,
-         pub(super) ProgramUniformMatrix4dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4fv: FnPtr,
-         pub(super) ProgramUniformMatrix4fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4x2dv: FnPtr,
-         pub(super) ProgramUniformMatrix4x2dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4x2fv: FnPtr,
-         pub(super) ProgramUniformMatrix4x2fvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4x3dv: FnPtr,
-         pub(super) ProgramUniformMatrix4x3dvEXT: FnPtr,
-         pub(super) ProgramUniformMatrix4x3fv: FnPtr,
-         pub(super) ProgramUniformMatrix4x3fvEXT: FnPtr,
-         pub(super) ProgramUniformui64NV: FnPtr,
-         pub(super) ProgramUniformui64vNV: FnPtr,
-         pub(super) ProgramVertexLimitNV: FnPtr,
-         pub(super) ProvokingVertex: FnPtr,
-         pub(super) ProvokingVertexEXT: FnPtr,
-         pub(super) PushAttrib: FnPtr,
-         pub(super) PushClientAttrib: FnPtr,
-         pub(super) PushClientAttribDefaultEXT: FnPtr,
-         pub(super) PushDebugGroup: FnPtr,
-         pub(super) PushGroupMarkerEXT: FnPtr,
-         pub(super) PushMatrix: FnPtr,
-         pub(super) PushName: FnPtr,
-         pub(super) QueryCounter: FnPtr,
-         pub(super) QueryMatrixxOES: FnPtr,
-         pub(super) QueryObjectParameteruiAMD: FnPtr,
-         pub(super) QueryResourceNV: FnPtr,
-         pub(super) QueryResourceTagNV: FnPtr,
-         pub(super) RasterPos2d: FnPtr,
-         pub(super) RasterPos2dv: FnPtr,
-         pub(super) RasterPos2f: FnPtr,
-         pub(super) RasterPos2fv: FnPtr,
-         pub(super) RasterPos2i: FnPtr,
-         pub(super) RasterPos2iv: FnPtr,
-         pub(super) RasterPos2s: FnPtr,
-         pub(super) RasterPos2sv: FnPtr,
-         pub(super) RasterPos2xOES: FnPtr,
-         pub(super) RasterPos2xvOES: FnPtr,
-         pub(super) RasterPos3d: FnPtr,
-         pub(super) RasterPos3dv: FnPtr,
-         pub(super) RasterPos3f: FnPtr,
-         pub(super) RasterPos3fv: FnPtr,
-         pub(super) RasterPos3i: FnPtr,
-         pub(super) RasterPos3iv: FnPtr,
-         pub(super) RasterPos3s: FnPtr,
-         pub(super) RasterPos3sv: FnPtr,
-         pub(super) RasterPos3xOES: FnPtr,
-         pub(super) RasterPos3xvOES: FnPtr,
-         pub(super) RasterPos4d: FnPtr,
-         pub(super) RasterPos4dv: FnPtr,
-         pub(super) RasterPos4f: FnPtr,
-         pub(super) RasterPos4fv: FnPtr,
-         pub(super) RasterPos4i: FnPtr,
-         pub(super) RasterPos4iv: FnPtr,
-         pub(super) RasterPos4s: FnPtr,
-         pub(super) RasterPos4sv: FnPtr,
-         pub(super) RasterPos4xOES: FnPtr,
-         pub(super) RasterPos4xvOES: FnPtr,
-         pub(super) RasterSamplesEXT: FnPtr,
-         pub(super) ReadBuffer: FnPtr,
-         pub(super) ReadInstrumentsSGIX: FnPtr,
-         pub(super) ReadPixels: FnPtr,
-         pub(super) ReadnPixels: FnPtr,
-         pub(super) ReadnPixelsARB: FnPtr,
-         pub(super) Rectd: FnPtr,
-         pub(super) Rectdv: FnPtr,
-         pub(super) Rectf: FnPtr,
-         pub(super) Rectfv: FnPtr,
-         pub(super) Recti: FnPtr,
-         pub(super) Rectiv: FnPtr,
-         pub(super) Rects: FnPtr,
-         pub(super) Rectsv: FnPtr,
-         pub(super) RectxOES: FnPtr,
-         pub(super) RectxvOES: FnPtr,
-         pub(super) ReferencePlaneSGIX: FnPtr,
-         pub(super) ReleaseKeyedMutexWin32EXT: FnPtr,
-         pub(super) ReleaseShaderCompiler: FnPtr,
-         pub(super) RenderGpuMaskNV: FnPtr,
-         pub(super) RenderMode: FnPtr,
-         pub(super) RenderbufferStorage: FnPtr,
-         pub(super) RenderbufferStorageEXT: FnPtr,
-         pub(super) RenderbufferStorageMultisample: FnPtr,
-         pub(super) RenderbufferStorageMultisampleAdvancedAMD: FnPtr,
-         pub(super) RenderbufferStorageMultisampleCoverageNV: FnPtr,
-         pub(super) RenderbufferStorageMultisampleEXT: FnPtr,
-         pub(super) ReplacementCodePointerSUN: FnPtr,
-         pub(super) ReplacementCodeubSUN: FnPtr,
-         pub(super) ReplacementCodeubvSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor3fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor3fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor4fNormal3fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor4fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor4ubVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiColor4ubVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiNormal3fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiNormal3fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiTexCoord2fVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuiVertex3fSUN: FnPtr,
-         pub(super) ReplacementCodeuiVertex3fvSUN: FnPtr,
-         pub(super) ReplacementCodeuivSUN: FnPtr,
-         pub(super) ReplacementCodeusSUN: FnPtr,
-         pub(super) ReplacementCodeusvSUN: FnPtr,
-         pub(super) RequestResidentProgramsNV: FnPtr,
-         pub(super) ResetHistogram: FnPtr,
-         pub(super) ResetHistogramEXT: FnPtr,
-         pub(super) ResetMemoryObjectParameterNV: FnPtr,
-         pub(super) ResetMinmax: FnPtr,
-         pub(super) ResetMinmaxEXT: FnPtr,
-         pub(super) ResizeBuffersMESA: FnPtr,
-         pub(super) ResolveDepthValuesNV: FnPtr,
-         pub(super) ResumeTransformFeedback: FnPtr,
-         pub(super) ResumeTransformFeedbackNV: FnPtr,
-         pub(super) Rotated: FnPtr,
-         pub(super) Rotatef: FnPtr,
-         pub(super) RotatexOES: FnPtr,
-         pub(super) SampleCoverage: FnPtr,
-         pub(super) SampleCoverageARB: FnPtr,
-         pub(super) SampleMapATI: FnPtr,
-         pub(super) SampleMaskEXT: FnPtr,
-         pub(super) SampleMaskIndexedNV: FnPtr,
-         pub(super) SampleMaskSGIS: FnPtr,
-         pub(super) SampleMaski: FnPtr,
-         pub(super) SamplePatternEXT: FnPtr,
-         pub(super) SamplePatternSGIS: FnPtr,
-         pub(super) SamplerParameterIiv: FnPtr,
-         pub(super) SamplerParameterIuiv: FnPtr,
-         pub(super) SamplerParameterf: FnPtr,
-         pub(super) SamplerParameterfv: FnPtr,
-         pub(super) SamplerParameteri: FnPtr,
-         pub(super) SamplerParameteriv: FnPtr,
-         pub(super) Scaled: FnPtr,
-         pub(super) Scalef: FnPtr,
-         pub(super) ScalexOES: FnPtr,
-         pub(super) Scissor: FnPtr,
-         pub(super) ScissorArrayv: FnPtr,
-         pub(super) ScissorExclusiveArrayvNV: FnPtr,
-         pub(super) ScissorExclusiveNV: FnPtr,
-         pub(super) ScissorIndexed: FnPtr,
-         pub(super) ScissorIndexedv: FnPtr,
-         pub(super) SecondaryColor3b: FnPtr,
-         pub(super) SecondaryColor3bEXT: FnPtr,
-         pub(super) SecondaryColor3bv: FnPtr,
-         pub(super) SecondaryColor3bvEXT: FnPtr,
-         pub(super) SecondaryColor3d: FnPtr,
-         pub(super) SecondaryColor3dEXT: FnPtr,
-         pub(super) SecondaryColor3dv: FnPtr,
-         pub(super) SecondaryColor3dvEXT: FnPtr,
-         pub(super) SecondaryColor3f: FnPtr,
-         pub(super) SecondaryColor3fEXT: FnPtr,
-         pub(super) SecondaryColor3fv: FnPtr,
-         pub(super) SecondaryColor3fvEXT: FnPtr,
-         pub(super) SecondaryColor3hNV: FnPtr,
-         pub(super) SecondaryColor3hvNV: FnPtr,
-         pub(super) SecondaryColor3i: FnPtr,
-         pub(super) SecondaryColor3iEXT: FnPtr,
-         pub(super) SecondaryColor3iv: FnPtr,
-         pub(super) SecondaryColor3ivEXT: FnPtr,
-         pub(super) SecondaryColor3s: FnPtr,
-         pub(super) SecondaryColor3sEXT: FnPtr,
-         pub(super) SecondaryColor3sv: FnPtr,
-         pub(super) SecondaryColor3svEXT: FnPtr,
-         pub(super) SecondaryColor3ub: FnPtr,
-         pub(super) SecondaryColor3ubEXT: FnPtr,
-         pub(super) SecondaryColor3ubv: FnPtr,
-         pub(super) SecondaryColor3ubvEXT: FnPtr,
-         pub(super) SecondaryColor3ui: FnPtr,
-         pub(super) SecondaryColor3uiEXT: FnPtr,
-         pub(super) SecondaryColor3uiv: FnPtr,
-         pub(super) SecondaryColor3uivEXT: FnPtr,
-         pub(super) SecondaryColor3us: FnPtr,
-         pub(super) SecondaryColor3usEXT: FnPtr,
-         pub(super) SecondaryColor3usv: FnPtr,
-         pub(super) SecondaryColor3usvEXT: FnPtr,
-         pub(super) SecondaryColorFormatNV: FnPtr,
-         pub(super) SecondaryColorP3ui: FnPtr,
-         pub(super) SecondaryColorP3uiv: FnPtr,
-         pub(super) SecondaryColorPointer: FnPtr,
-         pub(super) SecondaryColorPointerEXT: FnPtr,
-         pub(super) SecondaryColorPointerListIBM: FnPtr,
-         pub(super) SelectBuffer: FnPtr,
-         pub(super) SelectPerfMonitorCountersAMD: FnPtr,
-         pub(super) SemaphoreParameterivNV: FnPtr,
-         pub(super) SemaphoreParameterui64vEXT: FnPtr,
-         pub(super) SeparableFilter2D: FnPtr,
-         pub(super) SeparableFilter2DEXT: FnPtr,
-         pub(super) SetFenceAPPLE: FnPtr,
-         pub(super) SetFenceNV: FnPtr,
-         pub(super) SetFragmentShaderConstantATI: FnPtr,
-         pub(super) SetInvariantEXT: FnPtr,
-         pub(super) SetLocalConstantEXT: FnPtr,
-         pub(super) SetMultisamplefvAMD: FnPtr,
-         pub(super) ShadeModel: FnPtr,
-         pub(super) ShaderBinary: FnPtr,
-         pub(super) ShaderOp1EXT: FnPtr,
-         pub(super) ShaderOp2EXT: FnPtr,
-         pub(super) ShaderOp3EXT: FnPtr,
-         pub(super) ShaderSource: FnPtr,
-         pub(super) ShaderSourceARB: FnPtr,
-         pub(super) ShaderStorageBlockBinding: FnPtr,
-         pub(super) ShadingRateImageBarrierNV: FnPtr,
-         pub(super) ShadingRateImagePaletteNV: FnPtr,
-         pub(super) ShadingRateSampleOrderCustomNV: FnPtr,
-         pub(super) ShadingRateSampleOrderNV: FnPtr,
-         pub(super) SharpenTexFuncSGIS: FnPtr,
-         pub(super) SignalSemaphoreEXT: FnPtr,
-         pub(super) SignalSemaphoreui64NVX: FnPtr,
-         pub(super) SignalVkFenceNV: FnPtr,
-         pub(super) SignalVkSemaphoreNV: FnPtr,
-         pub(super) SpecializeShader: FnPtr,
-         pub(super) SpecializeShaderARB: FnPtr,
-         pub(super) SpriteParameterfSGIX: FnPtr,
-         pub(super) SpriteParameterfvSGIX: FnPtr,
-         pub(super) SpriteParameteriSGIX: FnPtr,
-         pub(super) SpriteParameterivSGIX: FnPtr,
-         pub(super) StartInstrumentsSGIX: FnPtr,
-         pub(super) StateCaptureNV: FnPtr,
-         pub(super) StencilClearTagEXT: FnPtr,
-         pub(super) StencilFillPathInstancedNV: FnPtr,
-         pub(super) StencilFillPathNV: FnPtr,
-         pub(super) StencilFunc: FnPtr,
-         pub(super) StencilFuncSeparate: FnPtr,
-         pub(super) StencilFuncSeparateATI: FnPtr,
-         pub(super) StencilMask: FnPtr,
-         pub(super) StencilMaskSeparate: FnPtr,
-         pub(super) StencilOp: FnPtr,
-         pub(super) StencilOpSeparate: FnPtr,
-         pub(super) StencilOpSeparateATI: FnPtr,
-         pub(super) StencilOpValueAMD: FnPtr,
-         pub(super) StencilStrokePathInstancedNV: FnPtr,
-         pub(super) StencilStrokePathNV: FnPtr,
-         pub(super) StencilThenCoverFillPathInstancedNV: FnPtr,
-         pub(super) StencilThenCoverFillPathNV: FnPtr,
-         pub(super) StencilThenCoverStrokePathInstancedNV: FnPtr,
-         pub(super) StencilThenCoverStrokePathNV: FnPtr,
-         pub(super) StopInstrumentsSGIX: FnPtr,
-         pub(super) StringMarkerGREMEDY: FnPtr,
-         pub(super) SubpixelPrecisionBiasNV: FnPtr,
-         pub(super) SwizzleEXT: FnPtr,
-         pub(super) SyncTextureINTEL: FnPtr,
-         pub(super) TagSampleBufferSGIX: FnPtr,
-         pub(super) Tangent3bEXT: FnPtr,
-         pub(super) Tangent3bvEXT: FnPtr,
-         pub(super) Tangent3dEXT: FnPtr,
-         pub(super) Tangent3dvEXT: FnPtr,
-         pub(super) Tangent3fEXT: FnPtr,
-         pub(super) Tangent3fvEXT: FnPtr,
-         pub(super) Tangent3iEXT: FnPtr,
-         pub(super) Tangent3ivEXT: FnPtr,
-         pub(super) Tangent3sEXT: FnPtr,
-         pub(super) Tangent3svEXT: FnPtr,
-         pub(super) TangentPointerEXT: FnPtr,
-         pub(super) TbufferMask3DFX: FnPtr,
-         pub(super) TessellationFactorAMD: FnPtr,
-         pub(super) TessellationModeAMD: FnPtr,
-         pub(super) TestFenceAPPLE: FnPtr,
-         pub(super) TestFenceNV: FnPtr,
-         pub(super) TestObjectAPPLE: FnPtr,
-         pub(super) TexAttachMemoryNV: FnPtr,
-         pub(super) TexBuffer: FnPtr,
-         pub(super) TexBufferARB: FnPtr,
-         pub(super) TexBufferEXT: FnPtr,
-         pub(super) TexBufferRange: FnPtr,
-         pub(super) TexBumpParameterfvATI: FnPtr,
-         pub(super) TexBumpParameterivATI: FnPtr,
-         pub(super) TexCoord1bOES: FnPtr,
-         pub(super) TexCoord1bvOES: FnPtr,
-         pub(super) TexCoord1d: FnPtr,
-         pub(super) TexCoord1dv: FnPtr,
-         pub(super) TexCoord1f: FnPtr,
-         pub(super) TexCoord1fv: FnPtr,
-         pub(super) TexCoord1hNV: FnPtr,
-         pub(super) TexCoord1hvNV: FnPtr,
-         pub(super) TexCoord1i: FnPtr,
-         pub(super) TexCoord1iv: FnPtr,
-         pub(super) TexCoord1s: FnPtr,
-         pub(super) TexCoord1sv: FnPtr,
-         pub(super) TexCoord1xOES: FnPtr,
-         pub(super) TexCoord1xvOES: FnPtr,
-         pub(super) TexCoord2bOES: FnPtr,
-         pub(super) TexCoord2bvOES: FnPtr,
-         pub(super) TexCoord2d: FnPtr,
-         pub(super) TexCoord2dv: FnPtr,
-         pub(super) TexCoord2f: FnPtr,
-         pub(super) TexCoord2fColor3fVertex3fSUN: FnPtr,
-         pub(super) TexCoord2fColor3fVertex3fvSUN: FnPtr,
-         pub(super) TexCoord2fColor4fNormal3fVertex3fSUN: FnPtr,
-         pub(super) TexCoord2fColor4fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) TexCoord2fColor4ubVertex3fSUN: FnPtr,
-         pub(super) TexCoord2fColor4ubVertex3fvSUN: FnPtr,
-         pub(super) TexCoord2fNormal3fVertex3fSUN: FnPtr,
-         pub(super) TexCoord2fNormal3fVertex3fvSUN: FnPtr,
-         pub(super) TexCoord2fVertex3fSUN: FnPtr,
-         pub(super) TexCoord2fVertex3fvSUN: FnPtr,
-         pub(super) TexCoord2fv: FnPtr,
-         pub(super) TexCoord2hNV: FnPtr,
-         pub(super) TexCoord2hvNV: FnPtr,
-         pub(super) TexCoord2i: FnPtr,
-         pub(super) TexCoord2iv: FnPtr,
-         pub(super) TexCoord2s: FnPtr,
-         pub(super) TexCoord2sv: FnPtr,
-         pub(super) TexCoord2xOES: FnPtr,
-         pub(super) TexCoord2xvOES: FnPtr,
-         pub(super) TexCoord3bOES: FnPtr,
-         pub(super) TexCoord3bvOES: FnPtr,
-         pub(super) TexCoord3d: FnPtr,
-         pub(super) TexCoord3dv: FnPtr,
-         pub(super) TexCoord3f: FnPtr,
-         pub(super) TexCoord3fv: FnPtr,
-         pub(super) TexCoord3hNV: FnPtr,
-         pub(super) TexCoord3hvNV: FnPtr,
-         pub(super) TexCoord3i: FnPtr,
-         pub(super) TexCoord3iv: FnPtr,
-         pub(super) TexCoord3s: FnPtr,
-         pub(super) TexCoord3sv: FnPtr,
-         pub(super) TexCoord3xOES: FnPtr,
-         pub(super) TexCoord3xvOES: FnPtr,
-         pub(super) TexCoord4bOES: FnPtr,
-         pub(super) TexCoord4bvOES: FnPtr,
-         pub(super) TexCoord4d: FnPtr,
-         pub(super) TexCoord4dv: FnPtr,
-         pub(super) TexCoord4f: FnPtr,
-         pub(super) TexCoord4fColor4fNormal3fVertex4fSUN: FnPtr,
-         pub(super) TexCoord4fColor4fNormal3fVertex4fvSUN: FnPtr,
-         pub(super) TexCoord4fVertex4fSUN: FnPtr,
-         pub(super) TexCoord4fVertex4fvSUN: FnPtr,
-         pub(super) TexCoord4fv: FnPtr,
-         pub(super) TexCoord4hNV: FnPtr,
-         pub(super) TexCoord4hvNV: FnPtr,
-         pub(super) TexCoord4i: FnPtr,
-         pub(super) TexCoord4iv: FnPtr,
-         pub(super) TexCoord4s: FnPtr,
-         pub(super) TexCoord4sv: FnPtr,
-         pub(super) TexCoord4xOES: FnPtr,
-         pub(super) TexCoord4xvOES: FnPtr,
-         pub(super) TexCoordFormatNV: FnPtr,
-         pub(super) TexCoordP1ui: FnPtr,
-         pub(super) TexCoordP1uiv: FnPtr,
-         pub(super) TexCoordP2ui: FnPtr,
-         pub(super) TexCoordP2uiv: FnPtr,
-         pub(super) TexCoordP3ui: FnPtr,
-         pub(super) TexCoordP3uiv: FnPtr,
-         pub(super) TexCoordP4ui: FnPtr,
-         pub(super) TexCoordP4uiv: FnPtr,
-         pub(super) TexCoordPointer: FnPtr,
-         pub(super) TexCoordPointerEXT: FnPtr,
-         pub(super) TexCoordPointerListIBM: FnPtr,
-         pub(super) TexCoordPointervINTEL: FnPtr,
-         pub(super) TexEnvf: FnPtr,
-         pub(super) TexEnvfv: FnPtr,
-         pub(super) TexEnvi: FnPtr,
-         pub(super) TexEnviv: FnPtr,
-         pub(super) TexEnvxOES: FnPtr,
-         pub(super) TexEnvxvOES: FnPtr,
-         pub(super) TexFilterFuncSGIS: FnPtr,
-         pub(super) TexGend: FnPtr,
-         pub(super) TexGendv: FnPtr,
-         pub(super) TexGenf: FnPtr,
-         pub(super) TexGenfv: FnPtr,
-         pub(super) TexGeni: FnPtr,
-         pub(super) TexGeniv: FnPtr,
-         pub(super) TexGenxOES: FnPtr,
-         pub(super) TexGenxvOES: FnPtr,
-         pub(super) TexImage1D: FnPtr,
-         pub(super) TexImage2D: FnPtr,
-         pub(super) TexImage2DMultisample: FnPtr,
-         pub(super) TexImage2DMultisampleCoverageNV: FnPtr,
-         pub(super) TexImage3D: FnPtr,
-         pub(super) TexImage3DEXT: FnPtr,
-         pub(super) TexImage3DMultisample: FnPtr,
-         pub(super) TexImage3DMultisampleCoverageNV: FnPtr,
-         pub(super) TexImage4DSGIS: FnPtr,
-         pub(super) TexPageCommitmentARB: FnPtr,
-         pub(super) TexPageCommitmentMemNV: FnPtr,
-         pub(super) TexParameterIiv: FnPtr,
-         pub(super) TexParameterIivEXT: FnPtr,
-         pub(super) TexParameterIuiv: FnPtr,
-         pub(super) TexParameterIuivEXT: FnPtr,
-         pub(super) TexParameterf: FnPtr,
-         pub(super) TexParameterfv: FnPtr,
-         pub(super) TexParameteri: FnPtr,
-         pub(super) TexParameteriv: FnPtr,
-         pub(super) TexParameterxOES: FnPtr,
-         pub(super) TexParameterxvOES: FnPtr,
-         pub(super) TexRenderbufferNV: FnPtr,
-         pub(super) TexStorage1D: FnPtr,
-         pub(super) TexStorage2D: FnPtr,
-         pub(super) TexStorage2DMultisample: FnPtr,
-         pub(super) TexStorage3D: FnPtr,
-         pub(super) TexStorage3DMultisample: FnPtr,
-         pub(super) TexStorageMem1DEXT: FnPtr,
-         pub(super) TexStorageMem2DEXT: FnPtr,
-         pub(super) TexStorageMem2DMultisampleEXT: FnPtr,
-         pub(super) TexStorageMem3DEXT: FnPtr,
-         pub(super) TexStorageMem3DMultisampleEXT: FnPtr,
-         pub(super) TexStorageSparseAMD: FnPtr,
-         pub(super) TexSubImage1D: FnPtr,
-         pub(super) TexSubImage1DEXT: FnPtr,
-         pub(super) TexSubImage2D: FnPtr,
-         pub(super) TexSubImage2DEXT: FnPtr,
-         pub(super) TexSubImage3D: FnPtr,
-         pub(super) TexSubImage3DEXT: FnPtr,
-         pub(super) TexSubImage4DSGIS: FnPtr,
-         pub(super) TextureAttachMemoryNV: FnPtr,
-         pub(super) TextureBarrier: FnPtr,
-         pub(super) TextureBarrierNV: FnPtr,
-         pub(super) TextureBuffer: FnPtr,
-         pub(super) TextureBufferEXT: FnPtr,
-         pub(super) TextureBufferRange: FnPtr,
-         pub(super) TextureBufferRangeEXT: FnPtr,
-         pub(super) TextureColorMaskSGIS: FnPtr,
-         pub(super) TextureImage1DEXT: FnPtr,
-         pub(super) TextureImage2DEXT: FnPtr,
-         pub(super) TextureImage2DMultisampleCoverageNV: FnPtr,
-         pub(super) TextureImage2DMultisampleNV: FnPtr,
-         pub(super) TextureImage3DEXT: FnPtr,
-         pub(super) TextureImage3DMultisampleCoverageNV: FnPtr,
-         pub(super) TextureImage3DMultisampleNV: FnPtr,
-         pub(super) TextureLightEXT: FnPtr,
-         pub(super) TextureMaterialEXT: FnPtr,
-         pub(super) TextureNormalEXT: FnPtr,
-         pub(super) TexturePageCommitmentEXT: FnPtr,
-         pub(super) TexturePageCommitmentMemNV: FnPtr,
-         pub(super) TextureParameterIiv: FnPtr,
-         pub(super) TextureParameterIivEXT: FnPtr,
-         pub(super) TextureParameterIuiv: FnPtr,
-         pub(super) TextureParameterIuivEXT: FnPtr,
-         pub(super) TextureParameterf: FnPtr,
-         pub(super) TextureParameterfEXT: FnPtr,
-         pub(super) TextureParameterfv: FnPtr,
-         pub(super) TextureParameterfvEXT: FnPtr,
-         pub(super) TextureParameteri: FnPtr,
-         pub(super) TextureParameteriEXT: FnPtr,
-         pub(super) TextureParameteriv: FnPtr,
-         pub(super) TextureParameterivEXT: FnPtr,
-         pub(super) TextureRangeAPPLE: FnPtr,
-         pub(super) TextureRenderbufferEXT: FnPtr,
-         pub(super) TextureStorage1D: FnPtr,
-         pub(super) TextureStorage1DEXT: FnPtr,
-         pub(super) TextureStorage2D: FnPtr,
-         pub(super) TextureStorage2DEXT: FnPtr,
-         pub(super) TextureStorage2DMultisample: FnPtr,
-         pub(super) TextureStorage2DMultisampleEXT: FnPtr,
-         pub(super) TextureStorage3D: FnPtr,
-         pub(super) TextureStorage3DEXT: FnPtr,
-         pub(super) TextureStorage3DMultisample: FnPtr,
-         pub(super) TextureStorage3DMultisampleEXT: FnPtr,
-         pub(super) TextureStorageMem1DEXT: FnPtr,
-         pub(super) TextureStorageMem2DEXT: FnPtr,
-         pub(super) TextureStorageMem2DMultisampleEXT: FnPtr,
-         pub(super) TextureStorageMem3DEXT: FnPtr,
-         pub(super) TextureStorageMem3DMultisampleEXT: FnPtr,
-         pub(super) TextureStorageSparseAMD: FnPtr,
-         pub(super) TextureSubImage1D: FnPtr,
-         pub(super) TextureSubImage1DEXT: FnPtr,
-         pub(super) TextureSubImage2D: FnPtr,
-         pub(super) TextureSubImage2DEXT: FnPtr,
-         pub(super) TextureSubImage3D: FnPtr,
-         pub(super) TextureSubImage3DEXT: FnPtr,
-         pub(super) TextureView: FnPtr,
-         pub(super) TrackMatrixNV: FnPtr,
-         pub(super) TransformFeedbackAttribsNV: FnPtr,
-         pub(super) TransformFeedbackBufferBase: FnPtr,
-         pub(super) TransformFeedbackBufferRange: FnPtr,
-         pub(super) TransformFeedbackStreamAttribsNV: FnPtr,
-         pub(super) TransformFeedbackVaryings: FnPtr,
-         pub(super) TransformFeedbackVaryingsEXT: FnPtr,
-         pub(super) TransformFeedbackVaryingsNV: FnPtr,
-         pub(super) TransformPathNV: FnPtr,
-         pub(super) Translated: FnPtr,
-         pub(super) Translatef: FnPtr,
-         pub(super) TranslatexOES: FnPtr,
-         pub(super) Uniform1d: FnPtr,
-         pub(super) Uniform1dv: FnPtr,
-         pub(super) Uniform1f: FnPtr,
-         pub(super) Uniform1fARB: FnPtr,
-         pub(super) Uniform1fv: FnPtr,
-         pub(super) Uniform1fvARB: FnPtr,
-         pub(super) Uniform1i: FnPtr,
-         pub(super) Uniform1i64ARB: FnPtr,
-         pub(super) Uniform1i64NV: FnPtr,
-         pub(super) Uniform1i64vARB: FnPtr,
-         pub(super) Uniform1i64vNV: FnPtr,
-         pub(super) Uniform1iARB: FnPtr,
-         pub(super) Uniform1iv: FnPtr,
-         pub(super) Uniform1ivARB: FnPtr,
-         pub(super) Uniform1ui: FnPtr,
-         pub(super) Uniform1ui64ARB: FnPtr,
-         pub(super) Uniform1ui64NV: FnPtr,
-         pub(super) Uniform1ui64vARB: FnPtr,
-         pub(super) Uniform1ui64vNV: FnPtr,
-         pub(super) Uniform1uiEXT: FnPtr,
-         pub(super) Uniform1uiv: FnPtr,
-         pub(super) Uniform1uivEXT: FnPtr,
-         pub(super) Uniform2d: FnPtr,
-         pub(super) Uniform2dv: FnPtr,
-         pub(super) Uniform2f: FnPtr,
-         pub(super) Uniform2fARB: FnPtr,
-         pub(super) Uniform2fv: FnPtr,
-         pub(super) Uniform2fvARB: FnPtr,
-         pub(super) Uniform2i: FnPtr,
-         pub(super) Uniform2i64ARB: FnPtr,
-         pub(super) Uniform2i64NV: FnPtr,
-         pub(super) Uniform2i64vARB: FnPtr,
-         pub(super) Uniform2i64vNV: FnPtr,
-         pub(super) Uniform2iARB: FnPtr,
-         pub(super) Uniform2iv: FnPtr,
-         pub(super) Uniform2ivARB: FnPtr,
-         pub(super) Uniform2ui: FnPtr,
-         pub(super) Uniform2ui64ARB: FnPtr,
-         pub(super) Uniform2ui64NV: FnPtr,
-         pub(super) Uniform2ui64vARB: FnPtr,
-         pub(super) Uniform2ui64vNV: FnPtr,
-         pub(super) Uniform2uiEXT: FnPtr,
-         pub(super) Uniform2uiv: FnPtr,
-         pub(super) Uniform2uivEXT: FnPtr,
-         pub(super) Uniform3d: FnPtr,
-         pub(super) Uniform3dv: FnPtr,
-         pub(super) Uniform3f: FnPtr,
-         pub(super) Uniform3fARB: FnPtr,
-         pub(super) Uniform3fv: FnPtr,
-         pub(super) Uniform3fvARB: FnPtr,
-         pub(super) Uniform3i: FnPtr,
-         pub(super) Uniform3i64ARB: FnPtr,
-         pub(super) Uniform3i64NV: FnPtr,
-         pub(super) Uniform3i64vARB: FnPtr,
-         pub(super) Uniform3i64vNV: FnPtr,
-         pub(super) Uniform3iARB: FnPtr,
-         pub(super) Uniform3iv: FnPtr,
-         pub(super) Uniform3ivARB: FnPtr,
-         pub(super) Uniform3ui: FnPtr,
-         pub(super) Uniform3ui64ARB: FnPtr,
-         pub(super) Uniform3ui64NV: FnPtr,
-         pub(super) Uniform3ui64vARB: FnPtr,
-         pub(super) Uniform3ui64vNV: FnPtr,
-         pub(super) Uniform3uiEXT: FnPtr,
-         pub(super) Uniform3uiv: FnPtr,
-         pub(super) Uniform3uivEXT: FnPtr,
-         pub(super) Uniform4d: FnPtr,
-         pub(super) Uniform4dv: FnPtr,
-         pub(super) Uniform4f: FnPtr,
-         pub(super) Uniform4fARB: FnPtr,
-         pub(super) Uniform4fv: FnPtr,
-         pub(super) Uniform4fvARB: FnPtr,
-         pub(super) Uniform4i: FnPtr,
-         pub(super) Uniform4i64ARB: FnPtr,
-         pub(super) Uniform4i64NV: FnPtr,
-         pub(super) Uniform4i64vARB: FnPtr,
-         pub(super) Uniform4i64vNV: FnPtr,
-         pub(super) Uniform4iARB: FnPtr,
-         pub(super) Uniform4iv: FnPtr,
-         pub(super) Uniform4ivARB: FnPtr,
-         pub(super) Uniform4ui: FnPtr,
-         pub(super) Uniform4ui64ARB: FnPtr,
-         pub(super) Uniform4ui64NV: FnPtr,
-         pub(super) Uniform4ui64vARB: FnPtr,
-         pub(super) Uniform4ui64vNV: FnPtr,
-         pub(super) Uniform4uiEXT: FnPtr,
-         pub(super) Uniform4uiv: FnPtr,
-         pub(super) Uniform4uivEXT: FnPtr,
-         pub(super) UniformBlockBinding: FnPtr,
-         pub(super) UniformBufferEXT: FnPtr,
-         pub(super) UniformHandleui64ARB: FnPtr,
-         pub(super) UniformHandleui64NV: FnPtr,
-         pub(super) UniformHandleui64vARB: FnPtr,
-         pub(super) UniformHandleui64vNV: FnPtr,
-         pub(super) UniformMatrix2dv: FnPtr,
-         pub(super) UniformMatrix2fv: FnPtr,
-         pub(super) UniformMatrix2fvARB: FnPtr,
-         pub(super) UniformMatrix2x3dv: FnPtr,
-         pub(super) UniformMatrix2x3fv: FnPtr,
-         pub(super) UniformMatrix2x4dv: FnPtr,
-         pub(super) UniformMatrix2x4fv: FnPtr,
-         pub(super) UniformMatrix3dv: FnPtr,
-         pub(super) UniformMatrix3fv: FnPtr,
-         pub(super) UniformMatrix3fvARB: FnPtr,
-         pub(super) UniformMatrix3x2dv: FnPtr,
-         pub(super) UniformMatrix3x2fv: FnPtr,
-         pub(super) UniformMatrix3x4dv: FnPtr,
-         pub(super) UniformMatrix3x4fv: FnPtr,
-         pub(super) UniformMatrix4dv: FnPtr,
-         pub(super) UniformMatrix4fv: FnPtr,
-         pub(super) UniformMatrix4fvARB: FnPtr,
-         pub(super) UniformMatrix4x2dv: FnPtr,
-         pub(super) UniformMatrix4x2fv: FnPtr,
-         pub(super) UniformMatrix4x3dv: FnPtr,
-         pub(super) UniformMatrix4x3fv: FnPtr,
-         pub(super) UniformSubroutinesuiv: FnPtr,
-         pub(super) Uniformui64NV: FnPtr,
-         pub(super) Uniformui64vNV: FnPtr,
-         pub(super) UnlockArraysEXT: FnPtr,
-         pub(super) UnmapBuffer: FnPtr,
-         pub(super) UnmapBufferARB: FnPtr,
-         pub(super) UnmapNamedBuffer: FnPtr,
-         pub(super) UnmapNamedBufferEXT: FnPtr,
-         pub(super) UnmapObjectBufferATI: FnPtr,
-         pub(super) UnmapTexture2DINTEL: FnPtr,
-         pub(super) UpdateObjectBufferATI: FnPtr,
-         pub(super) UploadGpuMaskNVX: FnPtr,
-         pub(super) UseProgram: FnPtr,
-         pub(super) UseProgramObjectARB: FnPtr,
-         pub(super) UseProgramStages: FnPtr,
-         pub(super) UseShaderProgramEXT: FnPtr,
-         pub(super) VDPAUFiniNV: FnPtr,
-         pub(super) VDPAUGetSurfaceivNV: FnPtr,
-         pub(super) VDPAUInitNV: FnPtr,
-         pub(super) VDPAUIsSurfaceNV: FnPtr,
-         pub(super) VDPAUMapSurfacesNV: FnPtr,
-         pub(super) VDPAURegisterOutputSurfaceNV: FnPtr,
-         pub(super) VDPAURegisterVideoSurfaceNV: FnPtr,
-         pub(super) VDPAURegisterVideoSurfaceWithPictureStructureNV: FnPtr,
-         pub(super) VDPAUSurfaceAccessNV: FnPtr,
-         pub(super) VDPAUUnmapSurfacesNV: FnPtr,
-         pub(super) VDPAUUnregisterSurfaceNV: FnPtr,
-         pub(super) ValidateProgram: FnPtr,
-         pub(super) ValidateProgramARB: FnPtr,
-         pub(super) ValidateProgramPipeline: FnPtr,
-         pub(super) VariantArrayObjectATI: FnPtr,
-         pub(super) VariantPointerEXT: FnPtr,
-         pub(super) VariantbvEXT: FnPtr,
-         pub(super) VariantdvEXT: FnPtr,
-         pub(super) VariantfvEXT: FnPtr,
-         pub(super) VariantivEXT: FnPtr,
-         pub(super) VariantsvEXT: FnPtr,
-         pub(super) VariantubvEXT: FnPtr,
-         pub(super) VariantuivEXT: FnPtr,
-         pub(super) VariantusvEXT: FnPtr,
-         pub(super) Vertex2bOES: FnPtr,
-         pub(super) Vertex2bvOES: FnPtr,
-         pub(super) Vertex2d: FnPtr,
-         pub(super) Vertex2dv: FnPtr,
-         pub(super) Vertex2f: FnPtr,
-         pub(super) Vertex2fv: FnPtr,
-         pub(super) Vertex2hNV: FnPtr,
-         pub(super) Vertex2hvNV: FnPtr,
-         pub(super) Vertex2i: FnPtr,
-         pub(super) Vertex2iv: FnPtr,
-         pub(super) Vertex2s: FnPtr,
-         pub(super) Vertex2sv: FnPtr,
-         pub(super) Vertex2xOES: FnPtr,
-         pub(super) Vertex2xvOES: FnPtr,
-         pub(super) Vertex3bOES: FnPtr,
-         pub(super) Vertex3bvOES: FnPtr,
-         pub(super) Vertex3d: FnPtr,
-         pub(super) Vertex3dv: FnPtr,
-         pub(super) Vertex3f: FnPtr,
-         pub(super) Vertex3fv: FnPtr,
-         pub(super) Vertex3hNV: FnPtr,
-         pub(super) Vertex3hvNV: FnPtr,
-         pub(super) Vertex3i: FnPtr,
-         pub(super) Vertex3iv: FnPtr,
-         pub(super) Vertex3s: FnPtr,
-         pub(super) Vertex3sv: FnPtr,
-         pub(super) Vertex3xOES: FnPtr,
-         pub(super) Vertex3xvOES: FnPtr,
-         pub(super) Vertex4bOES: FnPtr,
-         pub(super) Vertex4bvOES: FnPtr,
-         pub(super) Vertex4d: FnPtr,
-         pub(super) Vertex4dv: FnPtr,
-         pub(super) Vertex4f: FnPtr,
-         pub(super) Vertex4fv: FnPtr,
-         pub(super) Vertex4hNV: FnPtr,
-         pub(super) Vertex4hvNV: FnPtr,
-         pub(super) Vertex4i: FnPtr,
-         pub(super) Vertex4iv: FnPtr,
-         pub(super) Vertex4s: FnPtr,
-         pub(super) Vertex4sv: FnPtr,
-         pub(super) Vertex4xOES: FnPtr,
-         pub(super) Vertex4xvOES: FnPtr,
-         pub(super) VertexArrayAttribBinding: FnPtr,
-         pub(super) VertexArrayAttribFormat: FnPtr,
-         pub(super) VertexArrayAttribIFormat: FnPtr,
-         pub(super) VertexArrayAttribLFormat: FnPtr,
-         pub(super) VertexArrayBindVertexBufferEXT: FnPtr,
-         pub(super) VertexArrayBindingDivisor: FnPtr,
-         pub(super) VertexArrayColorOffsetEXT: FnPtr,
-         pub(super) VertexArrayEdgeFlagOffsetEXT: FnPtr,
-         pub(super) VertexArrayElementBuffer: FnPtr,
-         pub(super) VertexArrayFogCoordOffsetEXT: FnPtr,
-         pub(super) VertexArrayIndexOffsetEXT: FnPtr,
-         pub(super) VertexArrayMultiTexCoordOffsetEXT: FnPtr,
-         pub(super) VertexArrayNormalOffsetEXT: FnPtr,
-         pub(super) VertexArrayParameteriAPPLE: FnPtr,
-         pub(super) VertexArrayRangeAPPLE: FnPtr,
-         pub(super) VertexArrayRangeNV: FnPtr,
-         pub(super) VertexArraySecondaryColorOffsetEXT: FnPtr,
-         pub(super) VertexArrayTexCoordOffsetEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribBindingEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribDivisorEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribFormatEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribIFormatEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribIOffsetEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribLFormatEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribLOffsetEXT: FnPtr,
-         pub(super) VertexArrayVertexAttribOffsetEXT: FnPtr,
-         pub(super) VertexArrayVertexBindingDivisorEXT: FnPtr,
-         pub(super) VertexArrayVertexBuffer: FnPtr,
-         pub(super) VertexArrayVertexBuffers: FnPtr,
-         pub(super) VertexArrayVertexOffsetEXT: FnPtr,
-         pub(super) VertexAttrib1d: FnPtr,
-         pub(super) VertexAttrib1dARB: FnPtr,
-         pub(super) VertexAttrib1dNV: FnPtr,
-         pub(super) VertexAttrib1dv: FnPtr,
-         pub(super) VertexAttrib1dvARB: FnPtr,
-         pub(super) VertexAttrib1dvNV: FnPtr,
-         pub(super) VertexAttrib1f: FnPtr,
-         pub(super) VertexAttrib1fARB: FnPtr,
-         pub(super) VertexAttrib1fNV: FnPtr,
-         pub(super) VertexAttrib1fv: FnPtr,
-         pub(super) VertexAttrib1fvARB: FnPtr,
-         pub(super) VertexAttrib1fvNV: FnPtr,
-         pub(super) VertexAttrib1hNV: FnPtr,
-         pub(super) VertexAttrib1hvNV: FnPtr,
-         pub(super) VertexAttrib1s: FnPtr,
-         pub(super) VertexAttrib1sARB: FnPtr,
-         pub(super) VertexAttrib1sNV: FnPtr,
-         pub(super) VertexAttrib1sv: FnPtr,
-         pub(super) VertexAttrib1svARB: FnPtr,
-         pub(super) VertexAttrib1svNV: FnPtr,
-         pub(super) VertexAttrib2d: FnPtr,
-         pub(super) VertexAttrib2dARB: FnPtr,
-         pub(super) VertexAttrib2dNV: FnPtr,
-         pub(super) VertexAttrib2dv: FnPtr,
-         pub(super) VertexAttrib2dvARB: FnPtr,
-         pub(super) VertexAttrib2dvNV: FnPtr,
-         pub(super) VertexAttrib2f: FnPtr,
-         pub(super) VertexAttrib2fARB: FnPtr,
-         pub(super) VertexAttrib2fNV: FnPtr,
-         pub(super) VertexAttrib2fv: FnPtr,
-         pub(super) VertexAttrib2fvARB: FnPtr,
-         pub(super) VertexAttrib2fvNV: FnPtr,
-         pub(super) VertexAttrib2hNV: FnPtr,
-         pub(super) VertexAttrib2hvNV: FnPtr,
-         pub(super) VertexAttrib2s: FnPtr,
-         pub(super) VertexAttrib2sARB: FnPtr,
-         pub(super) VertexAttrib2sNV: FnPtr,
-         pub(super) VertexAttrib2sv: FnPtr,
-         pub(super) VertexAttrib2svARB: FnPtr,
-         pub(super) VertexAttrib2svNV: FnPtr,
-         pub(super) VertexAttrib3d: FnPtr,
-         pub(super) VertexAttrib3dARB: FnPtr,
-         pub(super) VertexAttrib3dNV: FnPtr,
-         pub(super) VertexAttrib3dv: FnPtr,
-         pub(super) VertexAttrib3dvARB: FnPtr,
-         pub(super) VertexAttrib3dvNV: FnPtr,
-         pub(super) VertexAttrib3f: FnPtr,
-         pub(super) VertexAttrib3fARB: FnPtr,
-         pub(super) VertexAttrib3fNV: FnPtr,
-         pub(super) VertexAttrib3fv: FnPtr,
-         pub(super) VertexAttrib3fvARB: FnPtr,
-         pub(super) VertexAttrib3fvNV: FnPtr,
-         pub(super) VertexAttrib3hNV: FnPtr,
-         pub(super) VertexAttrib3hvNV: FnPtr,
-         pub(super) VertexAttrib3s: FnPtr,
-         pub(super) VertexAttrib3sARB: FnPtr,
-         pub(super) VertexAttrib3sNV: FnPtr,
-         pub(super) VertexAttrib3sv: FnPtr,
-         pub(super) VertexAttrib3svARB: FnPtr,
-         pub(super) VertexAttrib3svNV: FnPtr,
-         pub(super) VertexAttrib4Nbv: FnPtr,
-         pub(super) VertexAttrib4NbvARB: FnPtr,
-         pub(super) VertexAttrib4Niv: FnPtr,
-         pub(super) VertexAttrib4NivARB: FnPtr,
-         pub(super) VertexAttrib4Nsv: FnPtr,
-         pub(super) VertexAttrib4NsvARB: FnPtr,
-         pub(super) VertexAttrib4Nub: FnPtr,
-         pub(super) VertexAttrib4NubARB: FnPtr,
-         pub(super) VertexAttrib4Nubv: FnPtr,
-         pub(super) VertexAttrib4NubvARB: FnPtr,
-         pub(super) VertexAttrib4Nuiv: FnPtr,
-         pub(super) VertexAttrib4NuivARB: FnPtr,
-         pub(super) VertexAttrib4Nusv: FnPtr,
-         pub(super) VertexAttrib4NusvARB: FnPtr,
-         pub(super) VertexAttrib4bv: FnPtr,
-         pub(super) VertexAttrib4bvARB: FnPtr,
-         pub(super) VertexAttrib4d: FnPtr,
-         pub(super) VertexAttrib4dARB: FnPtr,
-         pub(super) VertexAttrib4dNV: FnPtr,
-         pub(super) VertexAttrib4dv: FnPtr,
-         pub(super) VertexAttrib4dvARB: FnPtr,
-         pub(super) VertexAttrib4dvNV: FnPtr,
-         pub(super) VertexAttrib4f: FnPtr,
-         pub(super) VertexAttrib4fARB: FnPtr,
-         pub(super) VertexAttrib4fNV: FnPtr,
-         pub(super) VertexAttrib4fv: FnPtr,
-         pub(super) VertexAttrib4fvARB: FnPtr,
-         pub(super) VertexAttrib4fvNV: FnPtr,
-         pub(super) VertexAttrib4hNV: FnPtr,
-         pub(super) VertexAttrib4hvNV: FnPtr,
-         pub(super) VertexAttrib4iv: FnPtr,
-         pub(super) VertexAttrib4ivARB: FnPtr,
-         pub(super) VertexAttrib4s: FnPtr,
-         pub(super) VertexAttrib4sARB: FnPtr,
-         pub(super) VertexAttrib4sNV: FnPtr,
-         pub(super) VertexAttrib4sv: FnPtr,
-         pub(super) VertexAttrib4svARB: FnPtr,
-         pub(super) VertexAttrib4svNV: FnPtr,
-         pub(super) VertexAttrib4ubNV: FnPtr,
-         pub(super) VertexAttrib4ubv: FnPtr,
-         pub(super) VertexAttrib4ubvARB: FnPtr,
-         pub(super) VertexAttrib4ubvNV: FnPtr,
-         pub(super) VertexAttrib4uiv: FnPtr,
-         pub(super) VertexAttrib4uivARB: FnPtr,
-         pub(super) VertexAttrib4usv: FnPtr,
-         pub(super) VertexAttrib4usvARB: FnPtr,
-         pub(super) VertexAttribArrayObjectATI: FnPtr,
-         pub(super) VertexAttribBinding: FnPtr,
-         pub(super) VertexAttribDivisor: FnPtr,
-         pub(super) VertexAttribDivisorARB: FnPtr,
-         pub(super) VertexAttribFormat: FnPtr,
-         pub(super) VertexAttribFormatNV: FnPtr,
-         pub(super) VertexAttribI1i: FnPtr,
-         pub(super) VertexAttribI1iEXT: FnPtr,
-         pub(super) VertexAttribI1iv: FnPtr,
-         pub(super) VertexAttribI1ivEXT: FnPtr,
-         pub(super) VertexAttribI1ui: FnPtr,
-         pub(super) VertexAttribI1uiEXT: FnPtr,
-         pub(super) VertexAttribI1uiv: FnPtr,
-         pub(super) VertexAttribI1uivEXT: FnPtr,
-         pub(super) VertexAttribI2i: FnPtr,
-         pub(super) VertexAttribI2iEXT: FnPtr,
-         pub(super) VertexAttribI2iv: FnPtr,
-         pub(super) VertexAttribI2ivEXT: FnPtr,
-         pub(super) VertexAttribI2ui: FnPtr,
-         pub(super) VertexAttribI2uiEXT: FnPtr,
-         pub(super) VertexAttribI2uiv: FnPtr,
-         pub(super) VertexAttribI2uivEXT: FnPtr,
-         pub(super) VertexAttribI3i: FnPtr,
-         pub(super) VertexAttribI3iEXT: FnPtr,
-         pub(super) VertexAttribI3iv: FnPtr,
-         pub(super) VertexAttribI3ivEXT: FnPtr,
-         pub(super) VertexAttribI3ui: FnPtr,
-         pub(super) VertexAttribI3uiEXT: FnPtr,
-         pub(super) VertexAttribI3uiv: FnPtr,
-         pub(super) VertexAttribI3uivEXT: FnPtr,
-         pub(super) VertexAttribI4bv: FnPtr,
-         pub(super) VertexAttribI4bvEXT: FnPtr,
-         pub(super) VertexAttribI4i: FnPtr,
-         pub(super) VertexAttribI4iEXT: FnPtr,
-         pub(super) VertexAttribI4iv: FnPtr,
-         pub(super) VertexAttribI4ivEXT: FnPtr,
-         pub(super) VertexAttribI4sv: FnPtr,
-         pub(super) VertexAttribI4svEXT: FnPtr,
-         pub(super) VertexAttribI4ubv: FnPtr,
-         pub(super) VertexAttribI4ubvEXT: FnPtr,
-         pub(super) VertexAttribI4ui: FnPtr,
-         pub(super) VertexAttribI4uiEXT: FnPtr,
-         pub(super) VertexAttribI4uiv: FnPtr,
-         pub(super) VertexAttribI4uivEXT: FnPtr,
-         pub(super) VertexAttribI4usv: FnPtr,
-         pub(super) VertexAttribI4usvEXT: FnPtr,
-         pub(super) VertexAttribIFormat: FnPtr,
-         pub(super) VertexAttribIFormatNV: FnPtr,
-         pub(super) VertexAttribIPointer: FnPtr,
-         pub(super) VertexAttribIPointerEXT: FnPtr,
-         pub(super) VertexAttribL1d: FnPtr,
-         pub(super) VertexAttribL1dEXT: FnPtr,
-         pub(super) VertexAttribL1dv: FnPtr,
-         pub(super) VertexAttribL1dvEXT: FnPtr,
-         pub(super) VertexAttribL1i64NV: FnPtr,
-         pub(super) VertexAttribL1i64vNV: FnPtr,
-         pub(super) VertexAttribL1ui64ARB: FnPtr,
-         pub(super) VertexAttribL1ui64NV: FnPtr,
-         pub(super) VertexAttribL1ui64vARB: FnPtr,
-         pub(super) VertexAttribL1ui64vNV: FnPtr,
-         pub(super) VertexAttribL2d: FnPtr,
-         pub(super) VertexAttribL2dEXT: FnPtr,
-         pub(super) VertexAttribL2dv: FnPtr,
-         pub(super) VertexAttribL2dvEXT: FnPtr,
-         pub(super) VertexAttribL2i64NV: FnPtr,
-         pub(super) VertexAttribL2i64vNV: FnPtr,
-         pub(super) VertexAttribL2ui64NV: FnPtr,
-         pub(super) VertexAttribL2ui64vNV: FnPtr,
-         pub(super) VertexAttribL3d: FnPtr,
-         pub(super) VertexAttribL3dEXT: FnPtr,
-         pub(super) VertexAttribL3dv: FnPtr,
-         pub(super) VertexAttribL3dvEXT: FnPtr,
-         pub(super) VertexAttribL3i64NV: FnPtr,
-         pub(super) VertexAttribL3i64vNV: FnPtr,
-         pub(super) VertexAttribL3ui64NV: FnPtr,
-         pub(super) VertexAttribL3ui64vNV: FnPtr,
-         pub(super) VertexAttribL4d: FnPtr,
-         pub(super) VertexAttribL4dEXT: FnPtr,
-         pub(super) VertexAttribL4dv: FnPtr,
-         pub(super) VertexAttribL4dvEXT: FnPtr,
-         pub(super) VertexAttribL4i64NV: FnPtr,
-         pub(super) VertexAttribL4i64vNV: FnPtr,
-         pub(super) VertexAttribL4ui64NV: FnPtr,
-         pub(super) VertexAttribL4ui64vNV: FnPtr,
-         pub(super) VertexAttribLFormat: FnPtr,
-         pub(super) VertexAttribLFormatNV: FnPtr,
-         pub(super) VertexAttribLPointer: FnPtr,
-         pub(super) VertexAttribLPointerEXT: FnPtr,
-         pub(super) VertexAttribP1ui: FnPtr,
-         pub(super) VertexAttribP1uiv: FnPtr,
-         pub(super) VertexAttribP2ui: FnPtr,
-         pub(super) VertexAttribP2uiv: FnPtr,
-         pub(super) VertexAttribP3ui: FnPtr,
-         pub(super) VertexAttribP3uiv: FnPtr,
-         pub(super) VertexAttribP4ui: FnPtr,
-         pub(super) VertexAttribP4uiv: FnPtr,
-         pub(super) VertexAttribParameteriAMD: FnPtr,
-         pub(super) VertexAttribPointer: FnPtr,
-         pub(super) VertexAttribPointerARB: FnPtr,
-         pub(super) VertexAttribPointerNV: FnPtr,
-         pub(super) VertexAttribs1dvNV: FnPtr,
-         pub(super) VertexAttribs1fvNV: FnPtr,
-         pub(super) VertexAttribs1hvNV: FnPtr,
-         pub(super) VertexAttribs1svNV: FnPtr,
-         pub(super) VertexAttribs2dvNV: FnPtr,
-         pub(super) VertexAttribs2fvNV: FnPtr,
-         pub(super) VertexAttribs2hvNV: FnPtr,
-         pub(super) VertexAttribs2svNV: FnPtr,
-         pub(super) VertexAttribs3dvNV: FnPtr,
-         pub(super) VertexAttribs3fvNV: FnPtr,
-         pub(super) VertexAttribs3hvNV: FnPtr,
-         pub(super) VertexAttribs3svNV: FnPtr,
-         pub(super) VertexAttribs4dvNV: FnPtr,
-         pub(super) VertexAttribs4fvNV: FnPtr,
-         pub(super) VertexAttribs4hvNV: FnPtr,
-         pub(super) VertexAttribs4svNV: FnPtr,
-         pub(super) VertexAttribs4ubvNV: FnPtr,
-         pub(super) VertexBindingDivisor: FnPtr,
-         pub(super) VertexBlendARB: FnPtr,
-         pub(super) VertexBlendEnvfATI: FnPtr,
-         pub(super) VertexBlendEnviATI: FnPtr,
-         pub(super) VertexFormatNV: FnPtr,
-         pub(super) VertexP2ui: FnPtr,
-         pub(super) VertexP2uiv: FnPtr,
-         pub(super) VertexP3ui: FnPtr,
-         pub(super) VertexP3uiv: FnPtr,
-         pub(super) VertexP4ui: FnPtr,
-         pub(super) VertexP4uiv: FnPtr,
-         pub(super) VertexPointer: FnPtr,
-         pub(super) VertexPointerEXT: FnPtr,
-         pub(super) VertexPointerListIBM: FnPtr,
-         pub(super) VertexPointervINTEL: FnPtr,
-         pub(super) VertexStream1dATI: FnPtr,
-         pub(super) VertexStream1dvATI: FnPtr,
-         pub(super) VertexStream1fATI: FnPtr,
-         pub(super) VertexStream1fvATI: FnPtr,
-         pub(super) VertexStream1iATI: FnPtr,
-         pub(super) VertexStream1ivATI: FnPtr,
-         pub(super) VertexStream1sATI: FnPtr,
-         pub(super) VertexStream1svATI: FnPtr,
-         pub(super) VertexStream2dATI: FnPtr,
-         pub(super) VertexStream2dvATI: FnPtr,
-         pub(super) VertexStream2fATI: FnPtr,
-         pub(super) VertexStream2fvATI: FnPtr,
-         pub(super) VertexStream2iATI: FnPtr,
-         pub(super) VertexStream2ivATI: FnPtr,
-         pub(super) VertexStream2sATI: FnPtr,
-         pub(super) VertexStream2svATI: FnPtr,
-         pub(super) VertexStream3dATI: FnPtr,
-         pub(super) VertexStream3dvATI: FnPtr,
-         pub(super) VertexStream3fATI: FnPtr,
-         pub(super) VertexStream3fvATI: FnPtr,
-         pub(super) VertexStream3iATI: FnPtr,
-         pub(super) VertexStream3ivATI: FnPtr,
-         pub(super) VertexStream3sATI: FnPtr,
-         pub(super) VertexStream3svATI: FnPtr,
-         pub(super) VertexStream4dATI: FnPtr,
-         pub(super) VertexStream4dvATI: FnPtr,
-         pub(super) VertexStream4fATI: FnPtr,
-         pub(super) VertexStream4fvATI: FnPtr,
-         pub(super) VertexStream4iATI: FnPtr,
-         pub(super) VertexStream4ivATI: FnPtr,
-         pub(super) VertexStream4sATI: FnPtr,
-         pub(super) VertexStream4svATI: FnPtr,
-         pub(super) VertexWeightPointerEXT: FnPtr,
-         pub(super) VertexWeightfEXT: FnPtr,
-         pub(super) VertexWeightfvEXT: FnPtr,
-         pub(super) VertexWeighthNV: FnPtr,
-         pub(super) VertexWeighthvNV: FnPtr,
-         pub(super) VideoCaptureNV: FnPtr,
-         pub(super) VideoCaptureStreamParameterdvNV: FnPtr,
-         pub(super) VideoCaptureStreamParameterfvNV: FnPtr,
-         pub(super) VideoCaptureStreamParameterivNV: FnPtr,
-         pub(super) Viewport: FnPtr,
-         pub(super) ViewportArrayv: FnPtr,
-         pub(super) ViewportIndexedf: FnPtr,
-         pub(super) ViewportIndexedfv: FnPtr,
-         pub(super) ViewportPositionWScaleNV: FnPtr,
-         pub(super) ViewportSwizzleNV: FnPtr,
-         pub(super) WaitSemaphoreEXT: FnPtr,
-         pub(super) WaitSemaphoreui64NVX: FnPtr,
-         pub(super) WaitSync: FnPtr,
-         pub(super) WaitVkSemaphoreNV: FnPtr,
-         pub(super) WeightPathsNV: FnPtr,
-         pub(super) WeightPointerARB: FnPtr,
-         pub(super) WeightbvARB: FnPtr,
-         pub(super) WeightdvARB: FnPtr,
-         pub(super) WeightfvARB: FnPtr,
-         pub(super) WeightivARB: FnPtr,
-         pub(super) WeightsvARB: FnPtr,
-         pub(super) WeightubvARB: FnPtr,
-         pub(super) WeightuivARB: FnPtr,
-         pub(super) WeightusvARB: FnPtr,
-         pub(super) WindowPos2d: FnPtr,
-         pub(super) WindowPos2dARB: FnPtr,
-         pub(super) WindowPos2dMESA: FnPtr,
-         pub(super) WindowPos2dv: FnPtr,
-         pub(super) WindowPos2dvARB: FnPtr,
-         pub(super) WindowPos2dvMESA: FnPtr,
-         pub(super) WindowPos2f: FnPtr,
-         pub(super) WindowPos2fARB: FnPtr,
-         pub(super) WindowPos2fMESA: FnPtr,
-         pub(super) WindowPos2fv: FnPtr,
-         pub(super) WindowPos2fvARB: FnPtr,
-         pub(super) WindowPos2fvMESA: FnPtr,
-         pub(super) WindowPos2i: FnPtr,
-         pub(super) WindowPos2iARB: FnPtr,
-         pub(super) WindowPos2iMESA: FnPtr,
-         pub(super) WindowPos2iv: FnPtr,
-         pub(super) WindowPos2ivARB: FnPtr,
-         pub(super) WindowPos2ivMESA: FnPtr,
-         pub(super) WindowPos2s: FnPtr,
-         pub(super) WindowPos2sARB: FnPtr,
-         pub(super) WindowPos2sMESA: FnPtr,
-         pub(super) WindowPos2sv: FnPtr,
-         pub(super) WindowPos2svARB: FnPtr,
-         pub(super) WindowPos2svMESA: FnPtr,
-         pub(super) WindowPos3d: FnPtr,
-         pub(super) WindowPos3dARB: FnPtr,
-         pub(super) WindowPos3dMESA: FnPtr,
-         pub(super) WindowPos3dv: FnPtr,
-         pub(super) WindowPos3dvARB: FnPtr,
-         pub(super) WindowPos3dvMESA: FnPtr,
-         pub(super) WindowPos3f: FnPtr,
-         pub(super) WindowPos3fARB: FnPtr,
-         pub(super) WindowPos3fMESA: FnPtr,
-         pub(super) WindowPos3fv: FnPtr,
-         pub(super) WindowPos3fvARB: FnPtr,
-         pub(super) WindowPos3fvMESA: FnPtr,
-         pub(super) WindowPos3i: FnPtr,
-         pub(super) WindowPos3iARB: FnPtr,
-         pub(super) WindowPos3iMESA: FnPtr,
-         pub(super) WindowPos3iv: FnPtr,
-         pub(super) WindowPos3ivARB: FnPtr,
-         pub(super) WindowPos3ivMESA: FnPtr,
-         pub(super) WindowPos3s: FnPtr,
-         pub(super) WindowPos3sARB: FnPtr,
-         pub(super) WindowPos3sMESA: FnPtr,
-         pub(super) WindowPos3sv: FnPtr,
-         pub(super) WindowPos3svARB: FnPtr,
-         pub(super) WindowPos3svMESA: FnPtr,
-         pub(super) WindowPos4dMESA: FnPtr,
-         pub(super) WindowPos4dvMESA: FnPtr,
-         pub(super) WindowPos4fMESA: FnPtr,
-         pub(super) WindowPos4fvMESA: FnPtr,
-         pub(super) WindowPos4iMESA: FnPtr,
-         pub(super) WindowPos4ivMESA: FnPtr,
-         pub(super) WindowPos4sMESA: FnPtr,
-         pub(super) WindowPos4svMESA: FnPtr,
-         pub(super) WindowRectanglesEXT: FnPtr,
-         pub(super) WriteMaskEXT: FnPtr,
-    }
-    impl Gl {
 
      func!(Accum, (), op: GLenum, value: GLfloat);
      func!(AccumxOES, (), op: GLenum, value: GLfixed);
@@ -11085,4063 +8113,7042 @@ pub mod functions {
      func!(WindowRectanglesEXT, (), mode: GLenum, count: GLsizei, box_: *const GLint);
      func!(WriteMaskEXT, (), res: GLuint, in_: GLuint, outX: GLenum, outY: GLenum, outZ: GLenum, outW: GLenum);
 
-    }
+    
 }
 
+mod storage {
+    #![allow(non_snake_case, non_upper_case_globals)]
 
-pub fn load<F>(mut loadfn: F) -> functions::Gl where F: FnMut(&'static str) -> *const c_void {
-    #[allow(unused_mut)]
-    let mut gl = Gl {
-         Accum: FnPtr::new(loadfn("glAccum")),
-         AccumxOES: FnPtr::new(loadfn("glAccumxOES")),
-         AcquireKeyedMutexWin32EXT: FnPtr::new(loadfn("glAcquireKeyedMutexWin32EXT")),
-         ActiveProgramEXT: FnPtr::new(loadfn("glActiveProgramEXT")),
-         ActiveShaderProgram: FnPtr::new(loadfn("glActiveShaderProgram")),
-         ActiveStencilFaceEXT: FnPtr::new(loadfn("glActiveStencilFaceEXT")),
-         ActiveTexture: FnPtr::new(loadfn("glActiveTexture")),
-         ActiveTextureARB: FnPtr::new(loadfn("glActiveTextureARB")),
-         ActiveVaryingNV: FnPtr::new(loadfn("glActiveVaryingNV")),
-         AlphaFragmentOp1ATI: FnPtr::new(loadfn("glAlphaFragmentOp1ATI")),
-         AlphaFragmentOp2ATI: FnPtr::new(loadfn("glAlphaFragmentOp2ATI")),
-         AlphaFragmentOp3ATI: FnPtr::new(loadfn("glAlphaFragmentOp3ATI")),
-         AlphaFunc: FnPtr::new(loadfn("glAlphaFunc")),
-         AlphaFuncxOES: FnPtr::new(loadfn("glAlphaFuncxOES")),
-         AlphaToCoverageDitherControlNV: FnPtr::new(loadfn("glAlphaToCoverageDitherControlNV")),
-         ApplyFramebufferAttachmentCMAAINTEL: FnPtr::new(loadfn("glApplyFramebufferAttachmentCMAAINTEL")),
-         ApplyTextureEXT: FnPtr::new(loadfn("glApplyTextureEXT")),
-         AreProgramsResidentNV: FnPtr::new(loadfn("glAreProgramsResidentNV")),
-         AreTexturesResident: FnPtr::new(loadfn("glAreTexturesResident")),
-         AreTexturesResidentEXT: FnPtr::new(loadfn("glAreTexturesResidentEXT")),
-         ArrayElement: FnPtr::new(loadfn("glArrayElement")),
-         ArrayElementEXT: FnPtr::new(loadfn("glArrayElementEXT")),
-         ArrayObjectATI: FnPtr::new(loadfn("glArrayObjectATI")),
-         AsyncCopyBufferSubDataNVX: FnPtr::new(loadfn("glAsyncCopyBufferSubDataNVX")),
-         AsyncCopyImageSubDataNVX: FnPtr::new(loadfn("glAsyncCopyImageSubDataNVX")),
-         AsyncMarkerSGIX: FnPtr::new(loadfn("glAsyncMarkerSGIX")),
-         AttachObjectARB: FnPtr::new(loadfn("glAttachObjectARB")),
-         AttachShader: FnPtr::new(loadfn("glAttachShader")),
-         Begin: FnPtr::new(loadfn("glBegin")),
-         BeginConditionalRender: FnPtr::new(loadfn("glBeginConditionalRender")),
-         BeginConditionalRenderNV: FnPtr::new(loadfn("glBeginConditionalRenderNV")),
-         BeginConditionalRenderNVX: FnPtr::new(loadfn("glBeginConditionalRenderNVX")),
-         BeginFragmentShaderATI: FnPtr::new(loadfn("glBeginFragmentShaderATI")),
-         BeginOcclusionQueryNV: FnPtr::new(loadfn("glBeginOcclusionQueryNV")),
-         BeginPerfMonitorAMD: FnPtr::new(loadfn("glBeginPerfMonitorAMD")),
-         BeginPerfQueryINTEL: FnPtr::new(loadfn("glBeginPerfQueryINTEL")),
-         BeginQuery: FnPtr::new(loadfn("glBeginQuery")),
-         BeginQueryARB: FnPtr::new(loadfn("glBeginQueryARB")),
-         BeginQueryIndexed: FnPtr::new(loadfn("glBeginQueryIndexed")),
-         BeginTransformFeedback: FnPtr::new(loadfn("glBeginTransformFeedback")),
-         BeginTransformFeedbackEXT: FnPtr::new(loadfn("glBeginTransformFeedbackEXT")),
-         BeginTransformFeedbackNV: FnPtr::new(loadfn("glBeginTransformFeedbackNV")),
-         BeginVertexShaderEXT: FnPtr::new(loadfn("glBeginVertexShaderEXT")),
-         BeginVideoCaptureNV: FnPtr::new(loadfn("glBeginVideoCaptureNV")),
-         BindAttribLocation: FnPtr::new(loadfn("glBindAttribLocation")),
-         BindAttribLocationARB: FnPtr::new(loadfn("glBindAttribLocationARB")),
-         BindBuffer: FnPtr::new(loadfn("glBindBuffer")),
-         BindBufferARB: FnPtr::new(loadfn("glBindBufferARB")),
-         BindBufferBase: FnPtr::new(loadfn("glBindBufferBase")),
-         BindBufferBaseEXT: FnPtr::new(loadfn("glBindBufferBaseEXT")),
-         BindBufferBaseNV: FnPtr::new(loadfn("glBindBufferBaseNV")),
-         BindBufferOffsetEXT: FnPtr::new(loadfn("glBindBufferOffsetEXT")),
-         BindBufferOffsetNV: FnPtr::new(loadfn("glBindBufferOffsetNV")),
-         BindBufferRange: FnPtr::new(loadfn("glBindBufferRange")),
-         BindBufferRangeEXT: FnPtr::new(loadfn("glBindBufferRangeEXT")),
-         BindBufferRangeNV: FnPtr::new(loadfn("glBindBufferRangeNV")),
-         BindBuffersBase: FnPtr::new(loadfn("glBindBuffersBase")),
-         BindBuffersRange: FnPtr::new(loadfn("glBindBuffersRange")),
-         BindFragDataLocation: FnPtr::new(loadfn("glBindFragDataLocation")),
-         BindFragDataLocationEXT: FnPtr::new(loadfn("glBindFragDataLocationEXT")),
-         BindFragDataLocationIndexed: FnPtr::new(loadfn("glBindFragDataLocationIndexed")),
-         BindFragmentShaderATI: FnPtr::new(loadfn("glBindFragmentShaderATI")),
-         BindFramebuffer: FnPtr::new(loadfn("glBindFramebuffer")),
-         BindFramebufferEXT: FnPtr::new(loadfn("glBindFramebufferEXT")),
-         BindImageTexture: FnPtr::new(loadfn("glBindImageTexture")),
-         BindImageTextureEXT: FnPtr::new(loadfn("glBindImageTextureEXT")),
-         BindImageTextures: FnPtr::new(loadfn("glBindImageTextures")),
-         BindLightParameterEXT: FnPtr::new(loadfn("glBindLightParameterEXT")),
-         BindMaterialParameterEXT: FnPtr::new(loadfn("glBindMaterialParameterEXT")),
-         BindMultiTextureEXT: FnPtr::new(loadfn("glBindMultiTextureEXT")),
-         BindParameterEXT: FnPtr::new(loadfn("glBindParameterEXT")),
-         BindProgramARB: FnPtr::new(loadfn("glBindProgramARB")),
-         BindProgramNV: FnPtr::new(loadfn("glBindProgramNV")),
-         BindProgramPipeline: FnPtr::new(loadfn("glBindProgramPipeline")),
-         BindRenderbuffer: FnPtr::new(loadfn("glBindRenderbuffer")),
-         BindRenderbufferEXT: FnPtr::new(loadfn("glBindRenderbufferEXT")),
-         BindSampler: FnPtr::new(loadfn("glBindSampler")),
-         BindSamplers: FnPtr::new(loadfn("glBindSamplers")),
-         BindShadingRateImageNV: FnPtr::new(loadfn("glBindShadingRateImageNV")),
-         BindTexGenParameterEXT: FnPtr::new(loadfn("glBindTexGenParameterEXT")),
-         BindTexture: FnPtr::new(loadfn("glBindTexture")),
-         BindTextureEXT: FnPtr::new(loadfn("glBindTextureEXT")),
-         BindTextureUnit: FnPtr::new(loadfn("glBindTextureUnit")),
-         BindTextureUnitParameterEXT: FnPtr::new(loadfn("glBindTextureUnitParameterEXT")),
-         BindTextures: FnPtr::new(loadfn("glBindTextures")),
-         BindTransformFeedback: FnPtr::new(loadfn("glBindTransformFeedback")),
-         BindTransformFeedbackNV: FnPtr::new(loadfn("glBindTransformFeedbackNV")),
-         BindVertexArray: FnPtr::new(loadfn("glBindVertexArray")),
-         BindVertexArrayAPPLE: FnPtr::new(loadfn("glBindVertexArrayAPPLE")),
-         BindVertexBuffer: FnPtr::new(loadfn("glBindVertexBuffer")),
-         BindVertexBuffers: FnPtr::new(loadfn("glBindVertexBuffers")),
-         BindVertexShaderEXT: FnPtr::new(loadfn("glBindVertexShaderEXT")),
-         BindVideoCaptureStreamBufferNV: FnPtr::new(loadfn("glBindVideoCaptureStreamBufferNV")),
-         BindVideoCaptureStreamTextureNV: FnPtr::new(loadfn("glBindVideoCaptureStreamTextureNV")),
-         Binormal3bEXT: FnPtr::new(loadfn("glBinormal3bEXT")),
-         Binormal3bvEXT: FnPtr::new(loadfn("glBinormal3bvEXT")),
-         Binormal3dEXT: FnPtr::new(loadfn("glBinormal3dEXT")),
-         Binormal3dvEXT: FnPtr::new(loadfn("glBinormal3dvEXT")),
-         Binormal3fEXT: FnPtr::new(loadfn("glBinormal3fEXT")),
-         Binormal3fvEXT: FnPtr::new(loadfn("glBinormal3fvEXT")),
-         Binormal3iEXT: FnPtr::new(loadfn("glBinormal3iEXT")),
-         Binormal3ivEXT: FnPtr::new(loadfn("glBinormal3ivEXT")),
-         Binormal3sEXT: FnPtr::new(loadfn("glBinormal3sEXT")),
-         Binormal3svEXT: FnPtr::new(loadfn("glBinormal3svEXT")),
-         BinormalPointerEXT: FnPtr::new(loadfn("glBinormalPointerEXT")),
-         Bitmap: FnPtr::new(loadfn("glBitmap")),
-         BitmapxOES: FnPtr::new(loadfn("glBitmapxOES")),
-         BlendBarrierKHR: FnPtr::new(loadfn("glBlendBarrierKHR")),
-         BlendBarrierNV: FnPtr::new(loadfn("glBlendBarrierNV")),
-         BlendColor: FnPtr::new(loadfn("glBlendColor")),
-         BlendColorEXT: FnPtr::new(loadfn("glBlendColorEXT")),
-         BlendColorxOES: FnPtr::new(loadfn("glBlendColorxOES")),
-         BlendEquation: FnPtr::new(loadfn("glBlendEquation")),
-         BlendEquationEXT: FnPtr::new(loadfn("glBlendEquationEXT")),
-         BlendEquationIndexedAMD: FnPtr::new(loadfn("glBlendEquationIndexedAMD")),
-         BlendEquationSeparate: FnPtr::new(loadfn("glBlendEquationSeparate")),
-         BlendEquationSeparateEXT: FnPtr::new(loadfn("glBlendEquationSeparateEXT")),
-         BlendEquationSeparateIndexedAMD: FnPtr::new(loadfn("glBlendEquationSeparateIndexedAMD")),
-         BlendEquationSeparatei: FnPtr::new(loadfn("glBlendEquationSeparatei")),
-         BlendEquationSeparateiARB: FnPtr::new(loadfn("glBlendEquationSeparateiARB")),
-         BlendEquationi: FnPtr::new(loadfn("glBlendEquationi")),
-         BlendEquationiARB: FnPtr::new(loadfn("glBlendEquationiARB")),
-         BlendFunc: FnPtr::new(loadfn("glBlendFunc")),
-         BlendFuncIndexedAMD: FnPtr::new(loadfn("glBlendFuncIndexedAMD")),
-         BlendFuncSeparate: FnPtr::new(loadfn("glBlendFuncSeparate")),
-         BlendFuncSeparateEXT: FnPtr::new(loadfn("glBlendFuncSeparateEXT")),
-         BlendFuncSeparateINGR: FnPtr::new(loadfn("glBlendFuncSeparateINGR")),
-         BlendFuncSeparateIndexedAMD: FnPtr::new(loadfn("glBlendFuncSeparateIndexedAMD")),
-         BlendFuncSeparatei: FnPtr::new(loadfn("glBlendFuncSeparatei")),
-         BlendFuncSeparateiARB: FnPtr::new(loadfn("glBlendFuncSeparateiARB")),
-         BlendFunci: FnPtr::new(loadfn("glBlendFunci")),
-         BlendFunciARB: FnPtr::new(loadfn("glBlendFunciARB")),
-         BlendParameteriNV: FnPtr::new(loadfn("glBlendParameteriNV")),
-         BlitFramebuffer: FnPtr::new(loadfn("glBlitFramebuffer")),
-         BlitFramebufferEXT: FnPtr::new(loadfn("glBlitFramebufferEXT")),
-         BlitNamedFramebuffer: FnPtr::new(loadfn("glBlitNamedFramebuffer")),
-         BufferAddressRangeNV: FnPtr::new(loadfn("glBufferAddressRangeNV")),
-         BufferAttachMemoryNV: FnPtr::new(loadfn("glBufferAttachMemoryNV")),
-         BufferData: FnPtr::new(loadfn("glBufferData")),
-         BufferDataARB: FnPtr::new(loadfn("glBufferDataARB")),
-         BufferPageCommitmentARB: FnPtr::new(loadfn("glBufferPageCommitmentARB")),
-         BufferPageCommitmentMemNV: FnPtr::new(loadfn("glBufferPageCommitmentMemNV")),
-         BufferParameteriAPPLE: FnPtr::new(loadfn("glBufferParameteriAPPLE")),
-         BufferStorage: FnPtr::new(loadfn("glBufferStorage")),
-         BufferStorageExternalEXT: FnPtr::new(loadfn("glBufferStorageExternalEXT")),
-         BufferStorageMemEXT: FnPtr::new(loadfn("glBufferStorageMemEXT")),
-         BufferSubData: FnPtr::new(loadfn("glBufferSubData")),
-         BufferSubDataARB: FnPtr::new(loadfn("glBufferSubDataARB")),
-         CallCommandListNV: FnPtr::new(loadfn("glCallCommandListNV")),
-         CallList: FnPtr::new(loadfn("glCallList")),
-         CallLists: FnPtr::new(loadfn("glCallLists")),
-         CheckFramebufferStatus: FnPtr::new(loadfn("glCheckFramebufferStatus")),
-         CheckFramebufferStatusEXT: FnPtr::new(loadfn("glCheckFramebufferStatusEXT")),
-         CheckNamedFramebufferStatus: FnPtr::new(loadfn("glCheckNamedFramebufferStatus")),
-         CheckNamedFramebufferStatusEXT: FnPtr::new(loadfn("glCheckNamedFramebufferStatusEXT")),
-         ClampColor: FnPtr::new(loadfn("glClampColor")),
-         ClampColorARB: FnPtr::new(loadfn("glClampColorARB")),
-         Clear: FnPtr::new(loadfn("glClear")),
-         ClearAccum: FnPtr::new(loadfn("glClearAccum")),
-         ClearAccumxOES: FnPtr::new(loadfn("glClearAccumxOES")),
-         ClearBufferData: FnPtr::new(loadfn("glClearBufferData")),
-         ClearBufferSubData: FnPtr::new(loadfn("glClearBufferSubData")),
-         ClearBufferfi: FnPtr::new(loadfn("glClearBufferfi")),
-         ClearBufferfv: FnPtr::new(loadfn("glClearBufferfv")),
-         ClearBufferiv: FnPtr::new(loadfn("glClearBufferiv")),
-         ClearBufferuiv: FnPtr::new(loadfn("glClearBufferuiv")),
-         ClearColor: FnPtr::new(loadfn("glClearColor")),
-         ClearColorIiEXT: FnPtr::new(loadfn("glClearColorIiEXT")),
-         ClearColorIuiEXT: FnPtr::new(loadfn("glClearColorIuiEXT")),
-         ClearColorxOES: FnPtr::new(loadfn("glClearColorxOES")),
-         ClearDepth: FnPtr::new(loadfn("glClearDepth")),
-         ClearDepthdNV: FnPtr::new(loadfn("glClearDepthdNV")),
-         ClearDepthf: FnPtr::new(loadfn("glClearDepthf")),
-         ClearDepthfOES: FnPtr::new(loadfn("glClearDepthfOES")),
-         ClearDepthxOES: FnPtr::new(loadfn("glClearDepthxOES")),
-         ClearIndex: FnPtr::new(loadfn("glClearIndex")),
-         ClearNamedBufferData: FnPtr::new(loadfn("glClearNamedBufferData")),
-         ClearNamedBufferDataEXT: FnPtr::new(loadfn("glClearNamedBufferDataEXT")),
-         ClearNamedBufferSubData: FnPtr::new(loadfn("glClearNamedBufferSubData")),
-         ClearNamedBufferSubDataEXT: FnPtr::new(loadfn("glClearNamedBufferSubDataEXT")),
-         ClearNamedFramebufferfi: FnPtr::new(loadfn("glClearNamedFramebufferfi")),
-         ClearNamedFramebufferfv: FnPtr::new(loadfn("glClearNamedFramebufferfv")),
-         ClearNamedFramebufferiv: FnPtr::new(loadfn("glClearNamedFramebufferiv")),
-         ClearNamedFramebufferuiv: FnPtr::new(loadfn("glClearNamedFramebufferuiv")),
-         ClearStencil: FnPtr::new(loadfn("glClearStencil")),
-         ClearTexImage: FnPtr::new(loadfn("glClearTexImage")),
-         ClearTexSubImage: FnPtr::new(loadfn("glClearTexSubImage")),
-         ClientActiveTexture: FnPtr::new(loadfn("glClientActiveTexture")),
-         ClientActiveTextureARB: FnPtr::new(loadfn("glClientActiveTextureARB")),
-         ClientActiveVertexStreamATI: FnPtr::new(loadfn("glClientActiveVertexStreamATI")),
-         ClientAttribDefaultEXT: FnPtr::new(loadfn("glClientAttribDefaultEXT")),
-         ClientWaitSemaphoreui64NVX: FnPtr::new(loadfn("glClientWaitSemaphoreui64NVX")),
-         ClientWaitSync: FnPtr::new(loadfn("glClientWaitSync")),
-         ClipControl: FnPtr::new(loadfn("glClipControl")),
-         ClipPlane: FnPtr::new(loadfn("glClipPlane")),
-         ClipPlanefOES: FnPtr::new(loadfn("glClipPlanefOES")),
-         ClipPlanexOES: FnPtr::new(loadfn("glClipPlanexOES")),
-         Color3b: FnPtr::new(loadfn("glColor3b")),
-         Color3bv: FnPtr::new(loadfn("glColor3bv")),
-         Color3d: FnPtr::new(loadfn("glColor3d")),
-         Color3dv: FnPtr::new(loadfn("glColor3dv")),
-         Color3f: FnPtr::new(loadfn("glColor3f")),
-         Color3fVertex3fSUN: FnPtr::new(loadfn("glColor3fVertex3fSUN")),
-         Color3fVertex3fvSUN: FnPtr::new(loadfn("glColor3fVertex3fvSUN")),
-         Color3fv: FnPtr::new(loadfn("glColor3fv")),
-         Color3hNV: FnPtr::new(loadfn("glColor3hNV")),
-         Color3hvNV: FnPtr::new(loadfn("glColor3hvNV")),
-         Color3i: FnPtr::new(loadfn("glColor3i")),
-         Color3iv: FnPtr::new(loadfn("glColor3iv")),
-         Color3s: FnPtr::new(loadfn("glColor3s")),
-         Color3sv: FnPtr::new(loadfn("glColor3sv")),
-         Color3ub: FnPtr::new(loadfn("glColor3ub")),
-         Color3ubv: FnPtr::new(loadfn("glColor3ubv")),
-         Color3ui: FnPtr::new(loadfn("glColor3ui")),
-         Color3uiv: FnPtr::new(loadfn("glColor3uiv")),
-         Color3us: FnPtr::new(loadfn("glColor3us")),
-         Color3usv: FnPtr::new(loadfn("glColor3usv")),
-         Color3xOES: FnPtr::new(loadfn("glColor3xOES")),
-         Color3xvOES: FnPtr::new(loadfn("glColor3xvOES")),
-         Color4b: FnPtr::new(loadfn("glColor4b")),
-         Color4bv: FnPtr::new(loadfn("glColor4bv")),
-         Color4d: FnPtr::new(loadfn("glColor4d")),
-         Color4dv: FnPtr::new(loadfn("glColor4dv")),
-         Color4f: FnPtr::new(loadfn("glColor4f")),
-         Color4fNormal3fVertex3fSUN: FnPtr::new(loadfn("glColor4fNormal3fVertex3fSUN")),
-         Color4fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glColor4fNormal3fVertex3fvSUN")),
-         Color4fv: FnPtr::new(loadfn("glColor4fv")),
-         Color4hNV: FnPtr::new(loadfn("glColor4hNV")),
-         Color4hvNV: FnPtr::new(loadfn("glColor4hvNV")),
-         Color4i: FnPtr::new(loadfn("glColor4i")),
-         Color4iv: FnPtr::new(loadfn("glColor4iv")),
-         Color4s: FnPtr::new(loadfn("glColor4s")),
-         Color4sv: FnPtr::new(loadfn("glColor4sv")),
-         Color4ub: FnPtr::new(loadfn("glColor4ub")),
-         Color4ubVertex2fSUN: FnPtr::new(loadfn("glColor4ubVertex2fSUN")),
-         Color4ubVertex2fvSUN: FnPtr::new(loadfn("glColor4ubVertex2fvSUN")),
-         Color4ubVertex3fSUN: FnPtr::new(loadfn("glColor4ubVertex3fSUN")),
-         Color4ubVertex3fvSUN: FnPtr::new(loadfn("glColor4ubVertex3fvSUN")),
-         Color4ubv: FnPtr::new(loadfn("glColor4ubv")),
-         Color4ui: FnPtr::new(loadfn("glColor4ui")),
-         Color4uiv: FnPtr::new(loadfn("glColor4uiv")),
-         Color4us: FnPtr::new(loadfn("glColor4us")),
-         Color4usv: FnPtr::new(loadfn("glColor4usv")),
-         Color4xOES: FnPtr::new(loadfn("glColor4xOES")),
-         Color4xvOES: FnPtr::new(loadfn("glColor4xvOES")),
-         ColorFormatNV: FnPtr::new(loadfn("glColorFormatNV")),
-         ColorFragmentOp1ATI: FnPtr::new(loadfn("glColorFragmentOp1ATI")),
-         ColorFragmentOp2ATI: FnPtr::new(loadfn("glColorFragmentOp2ATI")),
-         ColorFragmentOp3ATI: FnPtr::new(loadfn("glColorFragmentOp3ATI")),
-         ColorMask: FnPtr::new(loadfn("glColorMask")),
-         ColorMaskIndexedEXT: FnPtr::new(loadfn("glColorMaskIndexedEXT")),
-         ColorMaski: FnPtr::new(loadfn("glColorMaski")),
-         ColorMaterial: FnPtr::new(loadfn("glColorMaterial")),
-         ColorP3ui: FnPtr::new(loadfn("glColorP3ui")),
-         ColorP3uiv: FnPtr::new(loadfn("glColorP3uiv")),
-         ColorP4ui: FnPtr::new(loadfn("glColorP4ui")),
-         ColorP4uiv: FnPtr::new(loadfn("glColorP4uiv")),
-         ColorPointer: FnPtr::new(loadfn("glColorPointer")),
-         ColorPointerEXT: FnPtr::new(loadfn("glColorPointerEXT")),
-         ColorPointerListIBM: FnPtr::new(loadfn("glColorPointerListIBM")),
-         ColorPointervINTEL: FnPtr::new(loadfn("glColorPointervINTEL")),
-         ColorSubTable: FnPtr::new(loadfn("glColorSubTable")),
-         ColorSubTableEXT: FnPtr::new(loadfn("glColorSubTableEXT")),
-         ColorTable: FnPtr::new(loadfn("glColorTable")),
-         ColorTableEXT: FnPtr::new(loadfn("glColorTableEXT")),
-         ColorTableParameterfv: FnPtr::new(loadfn("glColorTableParameterfv")),
-         ColorTableParameterfvSGI: FnPtr::new(loadfn("glColorTableParameterfvSGI")),
-         ColorTableParameteriv: FnPtr::new(loadfn("glColorTableParameteriv")),
-         ColorTableParameterivSGI: FnPtr::new(loadfn("glColorTableParameterivSGI")),
-         ColorTableSGI: FnPtr::new(loadfn("glColorTableSGI")),
-         CombinerInputNV: FnPtr::new(loadfn("glCombinerInputNV")),
-         CombinerOutputNV: FnPtr::new(loadfn("glCombinerOutputNV")),
-         CombinerParameterfNV: FnPtr::new(loadfn("glCombinerParameterfNV")),
-         CombinerParameterfvNV: FnPtr::new(loadfn("glCombinerParameterfvNV")),
-         CombinerParameteriNV: FnPtr::new(loadfn("glCombinerParameteriNV")),
-         CombinerParameterivNV: FnPtr::new(loadfn("glCombinerParameterivNV")),
-         CombinerStageParameterfvNV: FnPtr::new(loadfn("glCombinerStageParameterfvNV")),
-         CommandListSegmentsNV: FnPtr::new(loadfn("glCommandListSegmentsNV")),
-         CompileCommandListNV: FnPtr::new(loadfn("glCompileCommandListNV")),
-         CompileShader: FnPtr::new(loadfn("glCompileShader")),
-         CompileShaderARB: FnPtr::new(loadfn("glCompileShaderARB")),
-         CompileShaderIncludeARB: FnPtr::new(loadfn("glCompileShaderIncludeARB")),
-         CompressedMultiTexImage1DEXT: FnPtr::new(loadfn("glCompressedMultiTexImage1DEXT")),
-         CompressedMultiTexImage2DEXT: FnPtr::new(loadfn("glCompressedMultiTexImage2DEXT")),
-         CompressedMultiTexImage3DEXT: FnPtr::new(loadfn("glCompressedMultiTexImage3DEXT")),
-         CompressedMultiTexSubImage1DEXT: FnPtr::new(loadfn("glCompressedMultiTexSubImage1DEXT")),
-         CompressedMultiTexSubImage2DEXT: FnPtr::new(loadfn("glCompressedMultiTexSubImage2DEXT")),
-         CompressedMultiTexSubImage3DEXT: FnPtr::new(loadfn("glCompressedMultiTexSubImage3DEXT")),
-         CompressedTexImage1D: FnPtr::new(loadfn("glCompressedTexImage1D")),
-         CompressedTexImage1DARB: FnPtr::new(loadfn("glCompressedTexImage1DARB")),
-         CompressedTexImage2D: FnPtr::new(loadfn("glCompressedTexImage2D")),
-         CompressedTexImage2DARB: FnPtr::new(loadfn("glCompressedTexImage2DARB")),
-         CompressedTexImage3D: FnPtr::new(loadfn("glCompressedTexImage3D")),
-         CompressedTexImage3DARB: FnPtr::new(loadfn("glCompressedTexImage3DARB")),
-         CompressedTexSubImage1D: FnPtr::new(loadfn("glCompressedTexSubImage1D")),
-         CompressedTexSubImage1DARB: FnPtr::new(loadfn("glCompressedTexSubImage1DARB")),
-         CompressedTexSubImage2D: FnPtr::new(loadfn("glCompressedTexSubImage2D")),
-         CompressedTexSubImage2DARB: FnPtr::new(loadfn("glCompressedTexSubImage2DARB")),
-         CompressedTexSubImage3D: FnPtr::new(loadfn("glCompressedTexSubImage3D")),
-         CompressedTexSubImage3DARB: FnPtr::new(loadfn("glCompressedTexSubImage3DARB")),
-         CompressedTextureImage1DEXT: FnPtr::new(loadfn("glCompressedTextureImage1DEXT")),
-         CompressedTextureImage2DEXT: FnPtr::new(loadfn("glCompressedTextureImage2DEXT")),
-         CompressedTextureImage3DEXT: FnPtr::new(loadfn("glCompressedTextureImage3DEXT")),
-         CompressedTextureSubImage1D: FnPtr::new(loadfn("glCompressedTextureSubImage1D")),
-         CompressedTextureSubImage1DEXT: FnPtr::new(loadfn("glCompressedTextureSubImage1DEXT")),
-         CompressedTextureSubImage2D: FnPtr::new(loadfn("glCompressedTextureSubImage2D")),
-         CompressedTextureSubImage2DEXT: FnPtr::new(loadfn("glCompressedTextureSubImage2DEXT")),
-         CompressedTextureSubImage3D: FnPtr::new(loadfn("glCompressedTextureSubImage3D")),
-         CompressedTextureSubImage3DEXT: FnPtr::new(loadfn("glCompressedTextureSubImage3DEXT")),
-         ConservativeRasterParameterfNV: FnPtr::new(loadfn("glConservativeRasterParameterfNV")),
-         ConservativeRasterParameteriNV: FnPtr::new(loadfn("glConservativeRasterParameteriNV")),
-         ConvolutionFilter1D: FnPtr::new(loadfn("glConvolutionFilter1D")),
-         ConvolutionFilter1DEXT: FnPtr::new(loadfn("glConvolutionFilter1DEXT")),
-         ConvolutionFilter2D: FnPtr::new(loadfn("glConvolutionFilter2D")),
-         ConvolutionFilter2DEXT: FnPtr::new(loadfn("glConvolutionFilter2DEXT")),
-         ConvolutionParameterf: FnPtr::new(loadfn("glConvolutionParameterf")),
-         ConvolutionParameterfEXT: FnPtr::new(loadfn("glConvolutionParameterfEXT")),
-         ConvolutionParameterfv: FnPtr::new(loadfn("glConvolutionParameterfv")),
-         ConvolutionParameterfvEXT: FnPtr::new(loadfn("glConvolutionParameterfvEXT")),
-         ConvolutionParameteri: FnPtr::new(loadfn("glConvolutionParameteri")),
-         ConvolutionParameteriEXT: FnPtr::new(loadfn("glConvolutionParameteriEXT")),
-         ConvolutionParameteriv: FnPtr::new(loadfn("glConvolutionParameteriv")),
-         ConvolutionParameterivEXT: FnPtr::new(loadfn("glConvolutionParameterivEXT")),
-         ConvolutionParameterxOES: FnPtr::new(loadfn("glConvolutionParameterxOES")),
-         ConvolutionParameterxvOES: FnPtr::new(loadfn("glConvolutionParameterxvOES")),
-         CopyBufferSubData: FnPtr::new(loadfn("glCopyBufferSubData")),
-         CopyColorSubTable: FnPtr::new(loadfn("glCopyColorSubTable")),
-         CopyColorSubTableEXT: FnPtr::new(loadfn("glCopyColorSubTableEXT")),
-         CopyColorTable: FnPtr::new(loadfn("glCopyColorTable")),
-         CopyColorTableSGI: FnPtr::new(loadfn("glCopyColorTableSGI")),
-         CopyConvolutionFilter1D: FnPtr::new(loadfn("glCopyConvolutionFilter1D")),
-         CopyConvolutionFilter1DEXT: FnPtr::new(loadfn("glCopyConvolutionFilter1DEXT")),
-         CopyConvolutionFilter2D: FnPtr::new(loadfn("glCopyConvolutionFilter2D")),
-         CopyConvolutionFilter2DEXT: FnPtr::new(loadfn("glCopyConvolutionFilter2DEXT")),
-         CopyImageSubData: FnPtr::new(loadfn("glCopyImageSubData")),
-         CopyImageSubDataNV: FnPtr::new(loadfn("glCopyImageSubDataNV")),
-         CopyMultiTexImage1DEXT: FnPtr::new(loadfn("glCopyMultiTexImage1DEXT")),
-         CopyMultiTexImage2DEXT: FnPtr::new(loadfn("glCopyMultiTexImage2DEXT")),
-         CopyMultiTexSubImage1DEXT: FnPtr::new(loadfn("glCopyMultiTexSubImage1DEXT")),
-         CopyMultiTexSubImage2DEXT: FnPtr::new(loadfn("glCopyMultiTexSubImage2DEXT")),
-         CopyMultiTexSubImage3DEXT: FnPtr::new(loadfn("glCopyMultiTexSubImage3DEXT")),
-         CopyNamedBufferSubData: FnPtr::new(loadfn("glCopyNamedBufferSubData")),
-         CopyPathNV: FnPtr::new(loadfn("glCopyPathNV")),
-         CopyPixels: FnPtr::new(loadfn("glCopyPixels")),
-         CopyTexImage1D: FnPtr::new(loadfn("glCopyTexImage1D")),
-         CopyTexImage1DEXT: FnPtr::new(loadfn("glCopyTexImage1DEXT")),
-         CopyTexImage2D: FnPtr::new(loadfn("glCopyTexImage2D")),
-         CopyTexImage2DEXT: FnPtr::new(loadfn("glCopyTexImage2DEXT")),
-         CopyTexSubImage1D: FnPtr::new(loadfn("glCopyTexSubImage1D")),
-         CopyTexSubImage1DEXT: FnPtr::new(loadfn("glCopyTexSubImage1DEXT")),
-         CopyTexSubImage2D: FnPtr::new(loadfn("glCopyTexSubImage2D")),
-         CopyTexSubImage2DEXT: FnPtr::new(loadfn("glCopyTexSubImage2DEXT")),
-         CopyTexSubImage3D: FnPtr::new(loadfn("glCopyTexSubImage3D")),
-         CopyTexSubImage3DEXT: FnPtr::new(loadfn("glCopyTexSubImage3DEXT")),
-         CopyTextureImage1DEXT: FnPtr::new(loadfn("glCopyTextureImage1DEXT")),
-         CopyTextureImage2DEXT: FnPtr::new(loadfn("glCopyTextureImage2DEXT")),
-         CopyTextureSubImage1D: FnPtr::new(loadfn("glCopyTextureSubImage1D")),
-         CopyTextureSubImage1DEXT: FnPtr::new(loadfn("glCopyTextureSubImage1DEXT")),
-         CopyTextureSubImage2D: FnPtr::new(loadfn("glCopyTextureSubImage2D")),
-         CopyTextureSubImage2DEXT: FnPtr::new(loadfn("glCopyTextureSubImage2DEXT")),
-         CopyTextureSubImage3D: FnPtr::new(loadfn("glCopyTextureSubImage3D")),
-         CopyTextureSubImage3DEXT: FnPtr::new(loadfn("glCopyTextureSubImage3DEXT")),
-         CoverFillPathInstancedNV: FnPtr::new(loadfn("glCoverFillPathInstancedNV")),
-         CoverFillPathNV: FnPtr::new(loadfn("glCoverFillPathNV")),
-         CoverStrokePathInstancedNV: FnPtr::new(loadfn("glCoverStrokePathInstancedNV")),
-         CoverStrokePathNV: FnPtr::new(loadfn("glCoverStrokePathNV")),
-         CoverageModulationNV: FnPtr::new(loadfn("glCoverageModulationNV")),
-         CoverageModulationTableNV: FnPtr::new(loadfn("glCoverageModulationTableNV")),
-         CreateBuffers: FnPtr::new(loadfn("glCreateBuffers")),
-         CreateCommandListsNV: FnPtr::new(loadfn("glCreateCommandListsNV")),
-         CreateFramebuffers: FnPtr::new(loadfn("glCreateFramebuffers")),
-         CreateMemoryObjectsEXT: FnPtr::new(loadfn("glCreateMemoryObjectsEXT")),
-         CreatePerfQueryINTEL: FnPtr::new(loadfn("glCreatePerfQueryINTEL")),
-         CreateProgram: FnPtr::new(loadfn("glCreateProgram")),
-         CreateProgramObjectARB: FnPtr::new(loadfn("glCreateProgramObjectARB")),
-         CreateProgramPipelines: FnPtr::new(loadfn("glCreateProgramPipelines")),
-         CreateProgressFenceNVX: FnPtr::new(loadfn("glCreateProgressFenceNVX")),
-         CreateQueries: FnPtr::new(loadfn("glCreateQueries")),
-         CreateRenderbuffers: FnPtr::new(loadfn("glCreateRenderbuffers")),
-         CreateSamplers: FnPtr::new(loadfn("glCreateSamplers")),
-         CreateSemaphoresNV: FnPtr::new(loadfn("glCreateSemaphoresNV")),
-         CreateShader: FnPtr::new(loadfn("glCreateShader")),
-         CreateShaderObjectARB: FnPtr::new(loadfn("glCreateShaderObjectARB")),
-         CreateShaderProgramEXT: FnPtr::new(loadfn("glCreateShaderProgramEXT")),
-         CreateShaderProgramv: FnPtr::new(loadfn("glCreateShaderProgramv")),
-         CreateStatesNV: FnPtr::new(loadfn("glCreateStatesNV")),
-         CreateSyncFromCLeventARB: FnPtr::new(loadfn("glCreateSyncFromCLeventARB")),
-         CreateTextures: FnPtr::new(loadfn("glCreateTextures")),
-         CreateTransformFeedbacks: FnPtr::new(loadfn("glCreateTransformFeedbacks")),
-         CreateVertexArrays: FnPtr::new(loadfn("glCreateVertexArrays")),
-         CullFace: FnPtr::new(loadfn("glCullFace")),
-         CullParameterdvEXT: FnPtr::new(loadfn("glCullParameterdvEXT")),
-         CullParameterfvEXT: FnPtr::new(loadfn("glCullParameterfvEXT")),
-         CurrentPaletteMatrixARB: FnPtr::new(loadfn("glCurrentPaletteMatrixARB")),
-         DebugMessageCallback: FnPtr::new(loadfn("glDebugMessageCallback")),
-         DebugMessageCallbackAMD: FnPtr::new(loadfn("glDebugMessageCallbackAMD")),
-         DebugMessageCallbackARB: FnPtr::new(loadfn("glDebugMessageCallbackARB")),
-         DebugMessageControl: FnPtr::new(loadfn("glDebugMessageControl")),
-         DebugMessageControlARB: FnPtr::new(loadfn("glDebugMessageControlARB")),
-         DebugMessageEnableAMD: FnPtr::new(loadfn("glDebugMessageEnableAMD")),
-         DebugMessageInsert: FnPtr::new(loadfn("glDebugMessageInsert")),
-         DebugMessageInsertAMD: FnPtr::new(loadfn("glDebugMessageInsertAMD")),
-         DebugMessageInsertARB: FnPtr::new(loadfn("glDebugMessageInsertARB")),
-         DeformSGIX: FnPtr::new(loadfn("glDeformSGIX")),
-         DeformationMap3dSGIX: FnPtr::new(loadfn("glDeformationMap3dSGIX")),
-         DeformationMap3fSGIX: FnPtr::new(loadfn("glDeformationMap3fSGIX")),
-         DeleteAsyncMarkersSGIX: FnPtr::new(loadfn("glDeleteAsyncMarkersSGIX")),
-         DeleteBuffers: FnPtr::new(loadfn("glDeleteBuffers")),
-         DeleteBuffersARB: FnPtr::new(loadfn("glDeleteBuffersARB")),
-         DeleteCommandListsNV: FnPtr::new(loadfn("glDeleteCommandListsNV")),
-         DeleteFencesAPPLE: FnPtr::new(loadfn("glDeleteFencesAPPLE")),
-         DeleteFencesNV: FnPtr::new(loadfn("glDeleteFencesNV")),
-         DeleteFragmentShaderATI: FnPtr::new(loadfn("glDeleteFragmentShaderATI")),
-         DeleteFramebuffers: FnPtr::new(loadfn("glDeleteFramebuffers")),
-         DeleteFramebuffersEXT: FnPtr::new(loadfn("glDeleteFramebuffersEXT")),
-         DeleteLists: FnPtr::new(loadfn("glDeleteLists")),
-         DeleteMemoryObjectsEXT: FnPtr::new(loadfn("glDeleteMemoryObjectsEXT")),
-         DeleteNamedStringARB: FnPtr::new(loadfn("glDeleteNamedStringARB")),
-         DeleteNamesAMD: FnPtr::new(loadfn("glDeleteNamesAMD")),
-         DeleteObjectARB: FnPtr::new(loadfn("glDeleteObjectARB")),
-         DeleteOcclusionQueriesNV: FnPtr::new(loadfn("glDeleteOcclusionQueriesNV")),
-         DeletePathsNV: FnPtr::new(loadfn("glDeletePathsNV")),
-         DeletePerfMonitorsAMD: FnPtr::new(loadfn("glDeletePerfMonitorsAMD")),
-         DeletePerfQueryINTEL: FnPtr::new(loadfn("glDeletePerfQueryINTEL")),
-         DeleteProgram: FnPtr::new(loadfn("glDeleteProgram")),
-         DeleteProgramPipelines: FnPtr::new(loadfn("glDeleteProgramPipelines")),
-         DeleteProgramsARB: FnPtr::new(loadfn("glDeleteProgramsARB")),
-         DeleteProgramsNV: FnPtr::new(loadfn("glDeleteProgramsNV")),
-         DeleteQueries: FnPtr::new(loadfn("glDeleteQueries")),
-         DeleteQueriesARB: FnPtr::new(loadfn("glDeleteQueriesARB")),
-         DeleteQueryResourceTagNV: FnPtr::new(loadfn("glDeleteQueryResourceTagNV")),
-         DeleteRenderbuffers: FnPtr::new(loadfn("glDeleteRenderbuffers")),
-         DeleteRenderbuffersEXT: FnPtr::new(loadfn("glDeleteRenderbuffersEXT")),
-         DeleteSamplers: FnPtr::new(loadfn("glDeleteSamplers")),
-         DeleteSemaphoresEXT: FnPtr::new(loadfn("glDeleteSemaphoresEXT")),
-         DeleteShader: FnPtr::new(loadfn("glDeleteShader")),
-         DeleteStatesNV: FnPtr::new(loadfn("glDeleteStatesNV")),
-         DeleteSync: FnPtr::new(loadfn("glDeleteSync")),
-         DeleteTextures: FnPtr::new(loadfn("glDeleteTextures")),
-         DeleteTexturesEXT: FnPtr::new(loadfn("glDeleteTexturesEXT")),
-         DeleteTransformFeedbacks: FnPtr::new(loadfn("glDeleteTransformFeedbacks")),
-         DeleteTransformFeedbacksNV: FnPtr::new(loadfn("glDeleteTransformFeedbacksNV")),
-         DeleteVertexArrays: FnPtr::new(loadfn("glDeleteVertexArrays")),
-         DeleteVertexArraysAPPLE: FnPtr::new(loadfn("glDeleteVertexArraysAPPLE")),
-         DeleteVertexShaderEXT: FnPtr::new(loadfn("glDeleteVertexShaderEXT")),
-         DepthBoundsEXT: FnPtr::new(loadfn("glDepthBoundsEXT")),
-         DepthBoundsdNV: FnPtr::new(loadfn("glDepthBoundsdNV")),
-         DepthFunc: FnPtr::new(loadfn("glDepthFunc")),
-         DepthMask: FnPtr::new(loadfn("glDepthMask")),
-         DepthRange: FnPtr::new(loadfn("glDepthRange")),
-         DepthRangeArraydvNV: FnPtr::new(loadfn("glDepthRangeArraydvNV")),
-         DepthRangeArrayv: FnPtr::new(loadfn("glDepthRangeArrayv")),
-         DepthRangeIndexed: FnPtr::new(loadfn("glDepthRangeIndexed")),
-         DepthRangeIndexeddNV: FnPtr::new(loadfn("glDepthRangeIndexeddNV")),
-         DepthRangedNV: FnPtr::new(loadfn("glDepthRangedNV")),
-         DepthRangef: FnPtr::new(loadfn("glDepthRangef")),
-         DepthRangefOES: FnPtr::new(loadfn("glDepthRangefOES")),
-         DepthRangexOES: FnPtr::new(loadfn("glDepthRangexOES")),
-         DetachObjectARB: FnPtr::new(loadfn("glDetachObjectARB")),
-         DetachShader: FnPtr::new(loadfn("glDetachShader")),
-         DetailTexFuncSGIS: FnPtr::new(loadfn("glDetailTexFuncSGIS")),
-         Disable: FnPtr::new(loadfn("glDisable")),
-         DisableClientState: FnPtr::new(loadfn("glDisableClientState")),
-         DisableClientStateIndexedEXT: FnPtr::new(loadfn("glDisableClientStateIndexedEXT")),
-         DisableClientStateiEXT: FnPtr::new(loadfn("glDisableClientStateiEXT")),
-         DisableIndexedEXT: FnPtr::new(loadfn("glDisableIndexedEXT")),
-         DisableVariantClientStateEXT: FnPtr::new(loadfn("glDisableVariantClientStateEXT")),
-         DisableVertexArrayAttrib: FnPtr::new(loadfn("glDisableVertexArrayAttrib")),
-         DisableVertexArrayAttribEXT: FnPtr::new(loadfn("glDisableVertexArrayAttribEXT")),
-         DisableVertexArrayEXT: FnPtr::new(loadfn("glDisableVertexArrayEXT")),
-         DisableVertexAttribAPPLE: FnPtr::new(loadfn("glDisableVertexAttribAPPLE")),
-         DisableVertexAttribArray: FnPtr::new(loadfn("glDisableVertexAttribArray")),
-         DisableVertexAttribArrayARB: FnPtr::new(loadfn("glDisableVertexAttribArrayARB")),
-         Disablei: FnPtr::new(loadfn("glDisablei")),
-         DispatchCompute: FnPtr::new(loadfn("glDispatchCompute")),
-         DispatchComputeGroupSizeARB: FnPtr::new(loadfn("glDispatchComputeGroupSizeARB")),
-         DispatchComputeIndirect: FnPtr::new(loadfn("glDispatchComputeIndirect")),
-         DrawArrays: FnPtr::new(loadfn("glDrawArrays")),
-         DrawArraysEXT: FnPtr::new(loadfn("glDrawArraysEXT")),
-         DrawArraysIndirect: FnPtr::new(loadfn("glDrawArraysIndirect")),
-         DrawArraysInstanced: FnPtr::new(loadfn("glDrawArraysInstanced")),
-         DrawArraysInstancedARB: FnPtr::new(loadfn("glDrawArraysInstancedARB")),
-         DrawArraysInstancedBaseInstance: FnPtr::new(loadfn("glDrawArraysInstancedBaseInstance")),
-         DrawArraysInstancedEXT: FnPtr::new(loadfn("glDrawArraysInstancedEXT")),
-         DrawBuffer: FnPtr::new(loadfn("glDrawBuffer")),
-         DrawBuffers: FnPtr::new(loadfn("glDrawBuffers")),
-         DrawBuffersARB: FnPtr::new(loadfn("glDrawBuffersARB")),
-         DrawBuffersATI: FnPtr::new(loadfn("glDrawBuffersATI")),
-         DrawCommandsAddressNV: FnPtr::new(loadfn("glDrawCommandsAddressNV")),
-         DrawCommandsNV: FnPtr::new(loadfn("glDrawCommandsNV")),
-         DrawCommandsStatesAddressNV: FnPtr::new(loadfn("glDrawCommandsStatesAddressNV")),
-         DrawCommandsStatesNV: FnPtr::new(loadfn("glDrawCommandsStatesNV")),
-         DrawElementArrayAPPLE: FnPtr::new(loadfn("glDrawElementArrayAPPLE")),
-         DrawElementArrayATI: FnPtr::new(loadfn("glDrawElementArrayATI")),
-         DrawElements: FnPtr::new(loadfn("glDrawElements")),
-         DrawElementsBaseVertex: FnPtr::new(loadfn("glDrawElementsBaseVertex")),
-         DrawElementsIndirect: FnPtr::new(loadfn("glDrawElementsIndirect")),
-         DrawElementsInstanced: FnPtr::new(loadfn("glDrawElementsInstanced")),
-         DrawElementsInstancedARB: FnPtr::new(loadfn("glDrawElementsInstancedARB")),
-         DrawElementsInstancedBaseInstance: FnPtr::new(loadfn("glDrawElementsInstancedBaseInstance")),
-         DrawElementsInstancedBaseVertex: FnPtr::new(loadfn("glDrawElementsInstancedBaseVertex")),
-         DrawElementsInstancedBaseVertexBaseInstance: FnPtr::new(loadfn("glDrawElementsInstancedBaseVertexBaseInstance")),
-         DrawElementsInstancedEXT: FnPtr::new(loadfn("glDrawElementsInstancedEXT")),
-         DrawMeshArraysSUN: FnPtr::new(loadfn("glDrawMeshArraysSUN")),
-         DrawMeshTasksIndirectNV: FnPtr::new(loadfn("glDrawMeshTasksIndirectNV")),
-         DrawMeshTasksNV: FnPtr::new(loadfn("glDrawMeshTasksNV")),
-         DrawPixels: FnPtr::new(loadfn("glDrawPixels")),
-         DrawRangeElementArrayAPPLE: FnPtr::new(loadfn("glDrawRangeElementArrayAPPLE")),
-         DrawRangeElementArrayATI: FnPtr::new(loadfn("glDrawRangeElementArrayATI")),
-         DrawRangeElements: FnPtr::new(loadfn("glDrawRangeElements")),
-         DrawRangeElementsBaseVertex: FnPtr::new(loadfn("glDrawRangeElementsBaseVertex")),
-         DrawRangeElementsEXT: FnPtr::new(loadfn("glDrawRangeElementsEXT")),
-         DrawTextureNV: FnPtr::new(loadfn("glDrawTextureNV")),
-         DrawTransformFeedback: FnPtr::new(loadfn("glDrawTransformFeedback")),
-         DrawTransformFeedbackInstanced: FnPtr::new(loadfn("glDrawTransformFeedbackInstanced")),
-         DrawTransformFeedbackNV: FnPtr::new(loadfn("glDrawTransformFeedbackNV")),
-         DrawTransformFeedbackStream: FnPtr::new(loadfn("glDrawTransformFeedbackStream")),
-         DrawTransformFeedbackStreamInstanced: FnPtr::new(loadfn("glDrawTransformFeedbackStreamInstanced")),
-         DrawVkImageNV: FnPtr::new(loadfn("glDrawVkImageNV")),
-         EGLImageTargetTexStorageEXT: FnPtr::new(loadfn("glEGLImageTargetTexStorageEXT")),
-         EGLImageTargetTextureStorageEXT: FnPtr::new(loadfn("glEGLImageTargetTextureStorageEXT")),
-         EdgeFlag: FnPtr::new(loadfn("glEdgeFlag")),
-         EdgeFlagFormatNV: FnPtr::new(loadfn("glEdgeFlagFormatNV")),
-         EdgeFlagPointer: FnPtr::new(loadfn("glEdgeFlagPointer")),
-         EdgeFlagPointerEXT: FnPtr::new(loadfn("glEdgeFlagPointerEXT")),
-         EdgeFlagPointerListIBM: FnPtr::new(loadfn("glEdgeFlagPointerListIBM")),
-         EdgeFlagv: FnPtr::new(loadfn("glEdgeFlagv")),
-         ElementPointerAPPLE: FnPtr::new(loadfn("glElementPointerAPPLE")),
-         ElementPointerATI: FnPtr::new(loadfn("glElementPointerATI")),
-         Enable: FnPtr::new(loadfn("glEnable")),
-         EnableClientState: FnPtr::new(loadfn("glEnableClientState")),
-         EnableClientStateIndexedEXT: FnPtr::new(loadfn("glEnableClientStateIndexedEXT")),
-         EnableClientStateiEXT: FnPtr::new(loadfn("glEnableClientStateiEXT")),
-         EnableIndexedEXT: FnPtr::new(loadfn("glEnableIndexedEXT")),
-         EnableVariantClientStateEXT: FnPtr::new(loadfn("glEnableVariantClientStateEXT")),
-         EnableVertexArrayAttrib: FnPtr::new(loadfn("glEnableVertexArrayAttrib")),
-         EnableVertexArrayAttribEXT: FnPtr::new(loadfn("glEnableVertexArrayAttribEXT")),
-         EnableVertexArrayEXT: FnPtr::new(loadfn("glEnableVertexArrayEXT")),
-         EnableVertexAttribAPPLE: FnPtr::new(loadfn("glEnableVertexAttribAPPLE")),
-         EnableVertexAttribArray: FnPtr::new(loadfn("glEnableVertexAttribArray")),
-         EnableVertexAttribArrayARB: FnPtr::new(loadfn("glEnableVertexAttribArrayARB")),
-         Enablei: FnPtr::new(loadfn("glEnablei")),
-         End: FnPtr::new(loadfn("glEnd")),
-         EndConditionalRender: FnPtr::new(loadfn("glEndConditionalRender")),
-         EndConditionalRenderNV: FnPtr::new(loadfn("glEndConditionalRenderNV")),
-         EndConditionalRenderNVX: FnPtr::new(loadfn("glEndConditionalRenderNVX")),
-         EndFragmentShaderATI: FnPtr::new(loadfn("glEndFragmentShaderATI")),
-         EndList: FnPtr::new(loadfn("glEndList")),
-         EndOcclusionQueryNV: FnPtr::new(loadfn("glEndOcclusionQueryNV")),
-         EndPerfMonitorAMD: FnPtr::new(loadfn("glEndPerfMonitorAMD")),
-         EndPerfQueryINTEL: FnPtr::new(loadfn("glEndPerfQueryINTEL")),
-         EndQuery: FnPtr::new(loadfn("glEndQuery")),
-         EndQueryARB: FnPtr::new(loadfn("glEndQueryARB")),
-         EndQueryIndexed: FnPtr::new(loadfn("glEndQueryIndexed")),
-         EndTransformFeedback: FnPtr::new(loadfn("glEndTransformFeedback")),
-         EndTransformFeedbackEXT: FnPtr::new(loadfn("glEndTransformFeedbackEXT")),
-         EndTransformFeedbackNV: FnPtr::new(loadfn("glEndTransformFeedbackNV")),
-         EndVertexShaderEXT: FnPtr::new(loadfn("glEndVertexShaderEXT")),
-         EndVideoCaptureNV: FnPtr::new(loadfn("glEndVideoCaptureNV")),
-         EvalCoord1d: FnPtr::new(loadfn("glEvalCoord1d")),
-         EvalCoord1dv: FnPtr::new(loadfn("glEvalCoord1dv")),
-         EvalCoord1f: FnPtr::new(loadfn("glEvalCoord1f")),
-         EvalCoord1fv: FnPtr::new(loadfn("glEvalCoord1fv")),
-         EvalCoord1xOES: FnPtr::new(loadfn("glEvalCoord1xOES")),
-         EvalCoord1xvOES: FnPtr::new(loadfn("glEvalCoord1xvOES")),
-         EvalCoord2d: FnPtr::new(loadfn("glEvalCoord2d")),
-         EvalCoord2dv: FnPtr::new(loadfn("glEvalCoord2dv")),
-         EvalCoord2f: FnPtr::new(loadfn("glEvalCoord2f")),
-         EvalCoord2fv: FnPtr::new(loadfn("glEvalCoord2fv")),
-         EvalCoord2xOES: FnPtr::new(loadfn("glEvalCoord2xOES")),
-         EvalCoord2xvOES: FnPtr::new(loadfn("glEvalCoord2xvOES")),
-         EvalMapsNV: FnPtr::new(loadfn("glEvalMapsNV")),
-         EvalMesh1: FnPtr::new(loadfn("glEvalMesh1")),
-         EvalMesh2: FnPtr::new(loadfn("glEvalMesh2")),
-         EvalPoint1: FnPtr::new(loadfn("glEvalPoint1")),
-         EvalPoint2: FnPtr::new(loadfn("glEvalPoint2")),
-         EvaluateDepthValuesARB: FnPtr::new(loadfn("glEvaluateDepthValuesARB")),
-         ExecuteProgramNV: FnPtr::new(loadfn("glExecuteProgramNV")),
-         ExtractComponentEXT: FnPtr::new(loadfn("glExtractComponentEXT")),
-         FeedbackBuffer: FnPtr::new(loadfn("glFeedbackBuffer")),
-         FeedbackBufferxOES: FnPtr::new(loadfn("glFeedbackBufferxOES")),
-         FenceSync: FnPtr::new(loadfn("glFenceSync")),
-         FinalCombinerInputNV: FnPtr::new(loadfn("glFinalCombinerInputNV")),
-         Finish: FnPtr::new(loadfn("glFinish")),
-         FinishAsyncSGIX: FnPtr::new(loadfn("glFinishAsyncSGIX")),
-         FinishFenceAPPLE: FnPtr::new(loadfn("glFinishFenceAPPLE")),
-         FinishFenceNV: FnPtr::new(loadfn("glFinishFenceNV")),
-         FinishObjectAPPLE: FnPtr::new(loadfn("glFinishObjectAPPLE")),
-         FinishTextureSUNX: FnPtr::new(loadfn("glFinishTextureSUNX")),
-         Flush: FnPtr::new(loadfn("glFlush")),
-         FlushMappedBufferRange: FnPtr::new(loadfn("glFlushMappedBufferRange")),
-         FlushMappedBufferRangeAPPLE: FnPtr::new(loadfn("glFlushMappedBufferRangeAPPLE")),
-         FlushMappedNamedBufferRange: FnPtr::new(loadfn("glFlushMappedNamedBufferRange")),
-         FlushMappedNamedBufferRangeEXT: FnPtr::new(loadfn("glFlushMappedNamedBufferRangeEXT")),
-         FlushPixelDataRangeNV: FnPtr::new(loadfn("glFlushPixelDataRangeNV")),
-         FlushRasterSGIX: FnPtr::new(loadfn("glFlushRasterSGIX")),
-         FlushStaticDataIBM: FnPtr::new(loadfn("glFlushStaticDataIBM")),
-         FlushVertexArrayRangeAPPLE: FnPtr::new(loadfn("glFlushVertexArrayRangeAPPLE")),
-         FlushVertexArrayRangeNV: FnPtr::new(loadfn("glFlushVertexArrayRangeNV")),
-         FogCoordFormatNV: FnPtr::new(loadfn("glFogCoordFormatNV")),
-         FogCoordPointer: FnPtr::new(loadfn("glFogCoordPointer")),
-         FogCoordPointerEXT: FnPtr::new(loadfn("glFogCoordPointerEXT")),
-         FogCoordPointerListIBM: FnPtr::new(loadfn("glFogCoordPointerListIBM")),
-         FogCoordd: FnPtr::new(loadfn("glFogCoordd")),
-         FogCoorddEXT: FnPtr::new(loadfn("glFogCoorddEXT")),
-         FogCoorddv: FnPtr::new(loadfn("glFogCoorddv")),
-         FogCoorddvEXT: FnPtr::new(loadfn("glFogCoorddvEXT")),
-         FogCoordf: FnPtr::new(loadfn("glFogCoordf")),
-         FogCoordfEXT: FnPtr::new(loadfn("glFogCoordfEXT")),
-         FogCoordfv: FnPtr::new(loadfn("glFogCoordfv")),
-         FogCoordfvEXT: FnPtr::new(loadfn("glFogCoordfvEXT")),
-         FogCoordhNV: FnPtr::new(loadfn("glFogCoordhNV")),
-         FogCoordhvNV: FnPtr::new(loadfn("glFogCoordhvNV")),
-         FogFuncSGIS: FnPtr::new(loadfn("glFogFuncSGIS")),
-         Fogf: FnPtr::new(loadfn("glFogf")),
-         Fogfv: FnPtr::new(loadfn("glFogfv")),
-         Fogi: FnPtr::new(loadfn("glFogi")),
-         Fogiv: FnPtr::new(loadfn("glFogiv")),
-         FogxOES: FnPtr::new(loadfn("glFogxOES")),
-         FogxvOES: FnPtr::new(loadfn("glFogxvOES")),
-         FragmentColorMaterialSGIX: FnPtr::new(loadfn("glFragmentColorMaterialSGIX")),
-         FragmentCoverageColorNV: FnPtr::new(loadfn("glFragmentCoverageColorNV")),
-         FragmentLightModelfSGIX: FnPtr::new(loadfn("glFragmentLightModelfSGIX")),
-         FragmentLightModelfvSGIX: FnPtr::new(loadfn("glFragmentLightModelfvSGIX")),
-         FragmentLightModeliSGIX: FnPtr::new(loadfn("glFragmentLightModeliSGIX")),
-         FragmentLightModelivSGIX: FnPtr::new(loadfn("glFragmentLightModelivSGIX")),
-         FragmentLightfSGIX: FnPtr::new(loadfn("glFragmentLightfSGIX")),
-         FragmentLightfvSGIX: FnPtr::new(loadfn("glFragmentLightfvSGIX")),
-         FragmentLightiSGIX: FnPtr::new(loadfn("glFragmentLightiSGIX")),
-         FragmentLightivSGIX: FnPtr::new(loadfn("glFragmentLightivSGIX")),
-         FragmentMaterialfSGIX: FnPtr::new(loadfn("glFragmentMaterialfSGIX")),
-         FragmentMaterialfvSGIX: FnPtr::new(loadfn("glFragmentMaterialfvSGIX")),
-         FragmentMaterialiSGIX: FnPtr::new(loadfn("glFragmentMaterialiSGIX")),
-         FragmentMaterialivSGIX: FnPtr::new(loadfn("glFragmentMaterialivSGIX")),
-         FrameTerminatorGREMEDY: FnPtr::new(loadfn("glFrameTerminatorGREMEDY")),
-         FrameZoomSGIX: FnPtr::new(loadfn("glFrameZoomSGIX")),
-         FramebufferDrawBufferEXT: FnPtr::new(loadfn("glFramebufferDrawBufferEXT")),
-         FramebufferDrawBuffersEXT: FnPtr::new(loadfn("glFramebufferDrawBuffersEXT")),
-         FramebufferFetchBarrierEXT: FnPtr::new(loadfn("glFramebufferFetchBarrierEXT")),
-         FramebufferParameteri: FnPtr::new(loadfn("glFramebufferParameteri")),
-         FramebufferParameteriMESA: FnPtr::new(loadfn("glFramebufferParameteriMESA")),
-         FramebufferReadBufferEXT: FnPtr::new(loadfn("glFramebufferReadBufferEXT")),
-         FramebufferRenderbuffer: FnPtr::new(loadfn("glFramebufferRenderbuffer")),
-         FramebufferRenderbufferEXT: FnPtr::new(loadfn("glFramebufferRenderbufferEXT")),
-         FramebufferSampleLocationsfvARB: FnPtr::new(loadfn("glFramebufferSampleLocationsfvARB")),
-         FramebufferSampleLocationsfvNV: FnPtr::new(loadfn("glFramebufferSampleLocationsfvNV")),
-         FramebufferSamplePositionsfvAMD: FnPtr::new(loadfn("glFramebufferSamplePositionsfvAMD")),
-         FramebufferTexture: FnPtr::new(loadfn("glFramebufferTexture")),
-         FramebufferTexture1D: FnPtr::new(loadfn("glFramebufferTexture1D")),
-         FramebufferTexture1DEXT: FnPtr::new(loadfn("glFramebufferTexture1DEXT")),
-         FramebufferTexture2D: FnPtr::new(loadfn("glFramebufferTexture2D")),
-         FramebufferTexture2DEXT: FnPtr::new(loadfn("glFramebufferTexture2DEXT")),
-         FramebufferTexture3D: FnPtr::new(loadfn("glFramebufferTexture3D")),
-         FramebufferTexture3DEXT: FnPtr::new(loadfn("glFramebufferTexture3DEXT")),
-         FramebufferTextureARB: FnPtr::new(loadfn("glFramebufferTextureARB")),
-         FramebufferTextureEXT: FnPtr::new(loadfn("glFramebufferTextureEXT")),
-         FramebufferTextureFaceARB: FnPtr::new(loadfn("glFramebufferTextureFaceARB")),
-         FramebufferTextureFaceEXT: FnPtr::new(loadfn("glFramebufferTextureFaceEXT")),
-         FramebufferTextureLayer: FnPtr::new(loadfn("glFramebufferTextureLayer")),
-         FramebufferTextureLayerARB: FnPtr::new(loadfn("glFramebufferTextureLayerARB")),
-         FramebufferTextureLayerEXT: FnPtr::new(loadfn("glFramebufferTextureLayerEXT")),
-         FramebufferTextureMultiviewOVR: FnPtr::new(loadfn("glFramebufferTextureMultiviewOVR")),
-         FreeObjectBufferATI: FnPtr::new(loadfn("glFreeObjectBufferATI")),
-         FrontFace: FnPtr::new(loadfn("glFrontFace")),
-         Frustum: FnPtr::new(loadfn("glFrustum")),
-         FrustumfOES: FnPtr::new(loadfn("glFrustumfOES")),
-         FrustumxOES: FnPtr::new(loadfn("glFrustumxOES")),
-         GenAsyncMarkersSGIX: FnPtr::new(loadfn("glGenAsyncMarkersSGIX")),
-         GenBuffers: FnPtr::new(loadfn("glGenBuffers")),
-         GenBuffersARB: FnPtr::new(loadfn("glGenBuffersARB")),
-         GenFencesAPPLE: FnPtr::new(loadfn("glGenFencesAPPLE")),
-         GenFencesNV: FnPtr::new(loadfn("glGenFencesNV")),
-         GenFragmentShadersATI: FnPtr::new(loadfn("glGenFragmentShadersATI")),
-         GenFramebuffers: FnPtr::new(loadfn("glGenFramebuffers")),
-         GenFramebuffersEXT: FnPtr::new(loadfn("glGenFramebuffersEXT")),
-         GenLists: FnPtr::new(loadfn("glGenLists")),
-         GenNamesAMD: FnPtr::new(loadfn("glGenNamesAMD")),
-         GenOcclusionQueriesNV: FnPtr::new(loadfn("glGenOcclusionQueriesNV")),
-         GenPathsNV: FnPtr::new(loadfn("glGenPathsNV")),
-         GenPerfMonitorsAMD: FnPtr::new(loadfn("glGenPerfMonitorsAMD")),
-         GenProgramPipelines: FnPtr::new(loadfn("glGenProgramPipelines")),
-         GenProgramsARB: FnPtr::new(loadfn("glGenProgramsARB")),
-         GenProgramsNV: FnPtr::new(loadfn("glGenProgramsNV")),
-         GenQueries: FnPtr::new(loadfn("glGenQueries")),
-         GenQueriesARB: FnPtr::new(loadfn("glGenQueriesARB")),
-         GenQueryResourceTagNV: FnPtr::new(loadfn("glGenQueryResourceTagNV")),
-         GenRenderbuffers: FnPtr::new(loadfn("glGenRenderbuffers")),
-         GenRenderbuffersEXT: FnPtr::new(loadfn("glGenRenderbuffersEXT")),
-         GenSamplers: FnPtr::new(loadfn("glGenSamplers")),
-         GenSemaphoresEXT: FnPtr::new(loadfn("glGenSemaphoresEXT")),
-         GenSymbolsEXT: FnPtr::new(loadfn("glGenSymbolsEXT")),
-         GenTextures: FnPtr::new(loadfn("glGenTextures")),
-         GenTexturesEXT: FnPtr::new(loadfn("glGenTexturesEXT")),
-         GenTransformFeedbacks: FnPtr::new(loadfn("glGenTransformFeedbacks")),
-         GenTransformFeedbacksNV: FnPtr::new(loadfn("glGenTransformFeedbacksNV")),
-         GenVertexArrays: FnPtr::new(loadfn("glGenVertexArrays")),
-         GenVertexArraysAPPLE: FnPtr::new(loadfn("glGenVertexArraysAPPLE")),
-         GenVertexShadersEXT: FnPtr::new(loadfn("glGenVertexShadersEXT")),
-         GenerateMipmap: FnPtr::new(loadfn("glGenerateMipmap")),
-         GenerateMipmapEXT: FnPtr::new(loadfn("glGenerateMipmapEXT")),
-         GenerateMultiTexMipmapEXT: FnPtr::new(loadfn("glGenerateMultiTexMipmapEXT")),
-         GenerateTextureMipmap: FnPtr::new(loadfn("glGenerateTextureMipmap")),
-         GenerateTextureMipmapEXT: FnPtr::new(loadfn("glGenerateTextureMipmapEXT")),
-         GetActiveAtomicCounterBufferiv: FnPtr::new(loadfn("glGetActiveAtomicCounterBufferiv")),
-         GetActiveAttrib: FnPtr::new(loadfn("glGetActiveAttrib")),
-         GetActiveAttribARB: FnPtr::new(loadfn("glGetActiveAttribARB")),
-         GetActiveSubroutineName: FnPtr::new(loadfn("glGetActiveSubroutineName")),
-         GetActiveSubroutineUniformName: FnPtr::new(loadfn("glGetActiveSubroutineUniformName")),
-         GetActiveSubroutineUniformiv: FnPtr::new(loadfn("glGetActiveSubroutineUniformiv")),
-         GetActiveUniform: FnPtr::new(loadfn("glGetActiveUniform")),
-         GetActiveUniformARB: FnPtr::new(loadfn("glGetActiveUniformARB")),
-         GetActiveUniformBlockName: FnPtr::new(loadfn("glGetActiveUniformBlockName")),
-         GetActiveUniformBlockiv: FnPtr::new(loadfn("glGetActiveUniformBlockiv")),
-         GetActiveUniformName: FnPtr::new(loadfn("glGetActiveUniformName")),
-         GetActiveUniformsiv: FnPtr::new(loadfn("glGetActiveUniformsiv")),
-         GetActiveVaryingNV: FnPtr::new(loadfn("glGetActiveVaryingNV")),
-         GetArrayObjectfvATI: FnPtr::new(loadfn("glGetArrayObjectfvATI")),
-         GetArrayObjectivATI: FnPtr::new(loadfn("glGetArrayObjectivATI")),
-         GetAttachedObjectsARB: FnPtr::new(loadfn("glGetAttachedObjectsARB")),
-         GetAttachedShaders: FnPtr::new(loadfn("glGetAttachedShaders")),
-         GetAttribLocation: FnPtr::new(loadfn("glGetAttribLocation")),
-         GetAttribLocationARB: FnPtr::new(loadfn("glGetAttribLocationARB")),
-         GetBooleanIndexedvEXT: FnPtr::new(loadfn("glGetBooleanIndexedvEXT")),
-         GetBooleani_v: FnPtr::new(loadfn("glGetBooleani_v")),
-         GetBooleanv: FnPtr::new(loadfn("glGetBooleanv")),
-         GetBufferParameteri64v: FnPtr::new(loadfn("glGetBufferParameteri64v")),
-         GetBufferParameteriv: FnPtr::new(loadfn("glGetBufferParameteriv")),
-         GetBufferParameterivARB: FnPtr::new(loadfn("glGetBufferParameterivARB")),
-         GetBufferParameterui64vNV: FnPtr::new(loadfn("glGetBufferParameterui64vNV")),
-         GetBufferPointerv: FnPtr::new(loadfn("glGetBufferPointerv")),
-         GetBufferPointervARB: FnPtr::new(loadfn("glGetBufferPointervARB")),
-         GetBufferSubData: FnPtr::new(loadfn("glGetBufferSubData")),
-         GetBufferSubDataARB: FnPtr::new(loadfn("glGetBufferSubDataARB")),
-         GetClipPlane: FnPtr::new(loadfn("glGetClipPlane")),
-         GetClipPlanefOES: FnPtr::new(loadfn("glGetClipPlanefOES")),
-         GetClipPlanexOES: FnPtr::new(loadfn("glGetClipPlanexOES")),
-         GetColorTable: FnPtr::new(loadfn("glGetColorTable")),
-         GetColorTableEXT: FnPtr::new(loadfn("glGetColorTableEXT")),
-         GetColorTableParameterfv: FnPtr::new(loadfn("glGetColorTableParameterfv")),
-         GetColorTableParameterfvEXT: FnPtr::new(loadfn("glGetColorTableParameterfvEXT")),
-         GetColorTableParameterfvSGI: FnPtr::new(loadfn("glGetColorTableParameterfvSGI")),
-         GetColorTableParameteriv: FnPtr::new(loadfn("glGetColorTableParameteriv")),
-         GetColorTableParameterivEXT: FnPtr::new(loadfn("glGetColorTableParameterivEXT")),
-         GetColorTableParameterivSGI: FnPtr::new(loadfn("glGetColorTableParameterivSGI")),
-         GetColorTableSGI: FnPtr::new(loadfn("glGetColorTableSGI")),
-         GetCombinerInputParameterfvNV: FnPtr::new(loadfn("glGetCombinerInputParameterfvNV")),
-         GetCombinerInputParameterivNV: FnPtr::new(loadfn("glGetCombinerInputParameterivNV")),
-         GetCombinerOutputParameterfvNV: FnPtr::new(loadfn("glGetCombinerOutputParameterfvNV")),
-         GetCombinerOutputParameterivNV: FnPtr::new(loadfn("glGetCombinerOutputParameterivNV")),
-         GetCombinerStageParameterfvNV: FnPtr::new(loadfn("glGetCombinerStageParameterfvNV")),
-         GetCommandHeaderNV: FnPtr::new(loadfn("glGetCommandHeaderNV")),
-         GetCompressedMultiTexImageEXT: FnPtr::new(loadfn("glGetCompressedMultiTexImageEXT")),
-         GetCompressedTexImage: FnPtr::new(loadfn("glGetCompressedTexImage")),
-         GetCompressedTexImageARB: FnPtr::new(loadfn("glGetCompressedTexImageARB")),
-         GetCompressedTextureImage: FnPtr::new(loadfn("glGetCompressedTextureImage")),
-         GetCompressedTextureImageEXT: FnPtr::new(loadfn("glGetCompressedTextureImageEXT")),
-         GetCompressedTextureSubImage: FnPtr::new(loadfn("glGetCompressedTextureSubImage")),
-         GetConvolutionFilter: FnPtr::new(loadfn("glGetConvolutionFilter")),
-         GetConvolutionFilterEXT: FnPtr::new(loadfn("glGetConvolutionFilterEXT")),
-         GetConvolutionParameterfv: FnPtr::new(loadfn("glGetConvolutionParameterfv")),
-         GetConvolutionParameterfvEXT: FnPtr::new(loadfn("glGetConvolutionParameterfvEXT")),
-         GetConvolutionParameteriv: FnPtr::new(loadfn("glGetConvolutionParameteriv")),
-         GetConvolutionParameterivEXT: FnPtr::new(loadfn("glGetConvolutionParameterivEXT")),
-         GetConvolutionParameterxvOES: FnPtr::new(loadfn("glGetConvolutionParameterxvOES")),
-         GetCoverageModulationTableNV: FnPtr::new(loadfn("glGetCoverageModulationTableNV")),
-         GetDebugMessageLog: FnPtr::new(loadfn("glGetDebugMessageLog")),
-         GetDebugMessageLogAMD: FnPtr::new(loadfn("glGetDebugMessageLogAMD")),
-         GetDebugMessageLogARB: FnPtr::new(loadfn("glGetDebugMessageLogARB")),
-         GetDetailTexFuncSGIS: FnPtr::new(loadfn("glGetDetailTexFuncSGIS")),
-         GetDoubleIndexedvEXT: FnPtr::new(loadfn("glGetDoubleIndexedvEXT")),
-         GetDoublei_v: FnPtr::new(loadfn("glGetDoublei_v")),
-         GetDoublei_vEXT: FnPtr::new(loadfn("glGetDoublei_vEXT")),
-         GetDoublev: FnPtr::new(loadfn("glGetDoublev")),
-         GetError: FnPtr::new(loadfn("glGetError")),
-         GetFenceivNV: FnPtr::new(loadfn("glGetFenceivNV")),
-         GetFinalCombinerInputParameterfvNV: FnPtr::new(loadfn("glGetFinalCombinerInputParameterfvNV")),
-         GetFinalCombinerInputParameterivNV: FnPtr::new(loadfn("glGetFinalCombinerInputParameterivNV")),
-         GetFirstPerfQueryIdINTEL: FnPtr::new(loadfn("glGetFirstPerfQueryIdINTEL")),
-         GetFixedvOES: FnPtr::new(loadfn("glGetFixedvOES")),
-         GetFloatIndexedvEXT: FnPtr::new(loadfn("glGetFloatIndexedvEXT")),
-         GetFloati_v: FnPtr::new(loadfn("glGetFloati_v")),
-         GetFloati_vEXT: FnPtr::new(loadfn("glGetFloati_vEXT")),
-         GetFloatv: FnPtr::new(loadfn("glGetFloatv")),
-         GetFogFuncSGIS: FnPtr::new(loadfn("glGetFogFuncSGIS")),
-         GetFragDataIndex: FnPtr::new(loadfn("glGetFragDataIndex")),
-         GetFragDataLocation: FnPtr::new(loadfn("glGetFragDataLocation")),
-         GetFragDataLocationEXT: FnPtr::new(loadfn("glGetFragDataLocationEXT")),
-         GetFragmentLightfvSGIX: FnPtr::new(loadfn("glGetFragmentLightfvSGIX")),
-         GetFragmentLightivSGIX: FnPtr::new(loadfn("glGetFragmentLightivSGIX")),
-         GetFragmentMaterialfvSGIX: FnPtr::new(loadfn("glGetFragmentMaterialfvSGIX")),
-         GetFragmentMaterialivSGIX: FnPtr::new(loadfn("glGetFragmentMaterialivSGIX")),
-         GetFramebufferAttachmentParameteriv: FnPtr::new(loadfn("glGetFramebufferAttachmentParameteriv")),
-         GetFramebufferAttachmentParameterivEXT: FnPtr::new(loadfn("glGetFramebufferAttachmentParameterivEXT")),
-         GetFramebufferParameterfvAMD: FnPtr::new(loadfn("glGetFramebufferParameterfvAMD")),
-         GetFramebufferParameteriv: FnPtr::new(loadfn("glGetFramebufferParameteriv")),
-         GetFramebufferParameterivEXT: FnPtr::new(loadfn("glGetFramebufferParameterivEXT")),
-         GetFramebufferParameterivMESA: FnPtr::new(loadfn("glGetFramebufferParameterivMESA")),
-         GetGraphicsResetStatus: FnPtr::new(loadfn("glGetGraphicsResetStatus")),
-         GetGraphicsResetStatusARB: FnPtr::new(loadfn("glGetGraphicsResetStatusARB")),
-         GetHandleARB: FnPtr::new(loadfn("glGetHandleARB")),
-         GetHistogram: FnPtr::new(loadfn("glGetHistogram")),
-         GetHistogramEXT: FnPtr::new(loadfn("glGetHistogramEXT")),
-         GetHistogramParameterfv: FnPtr::new(loadfn("glGetHistogramParameterfv")),
-         GetHistogramParameterfvEXT: FnPtr::new(loadfn("glGetHistogramParameterfvEXT")),
-         GetHistogramParameteriv: FnPtr::new(loadfn("glGetHistogramParameteriv")),
-         GetHistogramParameterivEXT: FnPtr::new(loadfn("glGetHistogramParameterivEXT")),
-         GetHistogramParameterxvOES: FnPtr::new(loadfn("glGetHistogramParameterxvOES")),
-         GetImageHandleARB: FnPtr::new(loadfn("glGetImageHandleARB")),
-         GetImageHandleNV: FnPtr::new(loadfn("glGetImageHandleNV")),
-         GetImageTransformParameterfvHP: FnPtr::new(loadfn("glGetImageTransformParameterfvHP")),
-         GetImageTransformParameterivHP: FnPtr::new(loadfn("glGetImageTransformParameterivHP")),
-         GetInfoLogARB: FnPtr::new(loadfn("glGetInfoLogARB")),
-         GetInstrumentsSGIX: FnPtr::new(loadfn("glGetInstrumentsSGIX")),
-         GetInteger64i_v: FnPtr::new(loadfn("glGetInteger64i_v")),
-         GetInteger64v: FnPtr::new(loadfn("glGetInteger64v")),
-         GetIntegerIndexedvEXT: FnPtr::new(loadfn("glGetIntegerIndexedvEXT")),
-         GetIntegeri_v: FnPtr::new(loadfn("glGetIntegeri_v")),
-         GetIntegerui64i_vNV: FnPtr::new(loadfn("glGetIntegerui64i_vNV")),
-         GetIntegerui64vNV: FnPtr::new(loadfn("glGetIntegerui64vNV")),
-         GetIntegerv: FnPtr::new(loadfn("glGetIntegerv")),
-         GetInternalformatSampleivNV: FnPtr::new(loadfn("glGetInternalformatSampleivNV")),
-         GetInternalformati64v: FnPtr::new(loadfn("glGetInternalformati64v")),
-         GetInternalformativ: FnPtr::new(loadfn("glGetInternalformativ")),
-         GetInvariantBooleanvEXT: FnPtr::new(loadfn("glGetInvariantBooleanvEXT")),
-         GetInvariantFloatvEXT: FnPtr::new(loadfn("glGetInvariantFloatvEXT")),
-         GetInvariantIntegervEXT: FnPtr::new(loadfn("glGetInvariantIntegervEXT")),
-         GetLightfv: FnPtr::new(loadfn("glGetLightfv")),
-         GetLightiv: FnPtr::new(loadfn("glGetLightiv")),
-         GetLightxOES: FnPtr::new(loadfn("glGetLightxOES")),
-         GetListParameterfvSGIX: FnPtr::new(loadfn("glGetListParameterfvSGIX")),
-         GetListParameterivSGIX: FnPtr::new(loadfn("glGetListParameterivSGIX")),
-         GetLocalConstantBooleanvEXT: FnPtr::new(loadfn("glGetLocalConstantBooleanvEXT")),
-         GetLocalConstantFloatvEXT: FnPtr::new(loadfn("glGetLocalConstantFloatvEXT")),
-         GetLocalConstantIntegervEXT: FnPtr::new(loadfn("glGetLocalConstantIntegervEXT")),
-         GetMapAttribParameterfvNV: FnPtr::new(loadfn("glGetMapAttribParameterfvNV")),
-         GetMapAttribParameterivNV: FnPtr::new(loadfn("glGetMapAttribParameterivNV")),
-         GetMapControlPointsNV: FnPtr::new(loadfn("glGetMapControlPointsNV")),
-         GetMapParameterfvNV: FnPtr::new(loadfn("glGetMapParameterfvNV")),
-         GetMapParameterivNV: FnPtr::new(loadfn("glGetMapParameterivNV")),
-         GetMapdv: FnPtr::new(loadfn("glGetMapdv")),
-         GetMapfv: FnPtr::new(loadfn("glGetMapfv")),
-         GetMapiv: FnPtr::new(loadfn("glGetMapiv")),
-         GetMapxvOES: FnPtr::new(loadfn("glGetMapxvOES")),
-         GetMaterialfv: FnPtr::new(loadfn("glGetMaterialfv")),
-         GetMaterialiv: FnPtr::new(loadfn("glGetMaterialiv")),
-         GetMaterialxOES: FnPtr::new(loadfn("glGetMaterialxOES")),
-         GetMemoryObjectDetachedResourcesuivNV: FnPtr::new(loadfn("glGetMemoryObjectDetachedResourcesuivNV")),
-         GetMemoryObjectParameterivEXT: FnPtr::new(loadfn("glGetMemoryObjectParameterivEXT")),
-         GetMinmax: FnPtr::new(loadfn("glGetMinmax")),
-         GetMinmaxEXT: FnPtr::new(loadfn("glGetMinmaxEXT")),
-         GetMinmaxParameterfv: FnPtr::new(loadfn("glGetMinmaxParameterfv")),
-         GetMinmaxParameterfvEXT: FnPtr::new(loadfn("glGetMinmaxParameterfvEXT")),
-         GetMinmaxParameteriv: FnPtr::new(loadfn("glGetMinmaxParameteriv")),
-         GetMinmaxParameterivEXT: FnPtr::new(loadfn("glGetMinmaxParameterivEXT")),
-         GetMultiTexEnvfvEXT: FnPtr::new(loadfn("glGetMultiTexEnvfvEXT")),
-         GetMultiTexEnvivEXT: FnPtr::new(loadfn("glGetMultiTexEnvivEXT")),
-         GetMultiTexGendvEXT: FnPtr::new(loadfn("glGetMultiTexGendvEXT")),
-         GetMultiTexGenfvEXT: FnPtr::new(loadfn("glGetMultiTexGenfvEXT")),
-         GetMultiTexGenivEXT: FnPtr::new(loadfn("glGetMultiTexGenivEXT")),
-         GetMultiTexImageEXT: FnPtr::new(loadfn("glGetMultiTexImageEXT")),
-         GetMultiTexLevelParameterfvEXT: FnPtr::new(loadfn("glGetMultiTexLevelParameterfvEXT")),
-         GetMultiTexLevelParameterivEXT: FnPtr::new(loadfn("glGetMultiTexLevelParameterivEXT")),
-         GetMultiTexParameterIivEXT: FnPtr::new(loadfn("glGetMultiTexParameterIivEXT")),
-         GetMultiTexParameterIuivEXT: FnPtr::new(loadfn("glGetMultiTexParameterIuivEXT")),
-         GetMultiTexParameterfvEXT: FnPtr::new(loadfn("glGetMultiTexParameterfvEXT")),
-         GetMultiTexParameterivEXT: FnPtr::new(loadfn("glGetMultiTexParameterivEXT")),
-         GetMultisamplefv: FnPtr::new(loadfn("glGetMultisamplefv")),
-         GetMultisamplefvNV: FnPtr::new(loadfn("glGetMultisamplefvNV")),
-         GetNamedBufferParameteri64v: FnPtr::new(loadfn("glGetNamedBufferParameteri64v")),
-         GetNamedBufferParameteriv: FnPtr::new(loadfn("glGetNamedBufferParameteriv")),
-         GetNamedBufferParameterivEXT: FnPtr::new(loadfn("glGetNamedBufferParameterivEXT")),
-         GetNamedBufferParameterui64vNV: FnPtr::new(loadfn("glGetNamedBufferParameterui64vNV")),
-         GetNamedBufferPointerv: FnPtr::new(loadfn("glGetNamedBufferPointerv")),
-         GetNamedBufferPointervEXT: FnPtr::new(loadfn("glGetNamedBufferPointervEXT")),
-         GetNamedBufferSubData: FnPtr::new(loadfn("glGetNamedBufferSubData")),
-         GetNamedBufferSubDataEXT: FnPtr::new(loadfn("glGetNamedBufferSubDataEXT")),
-         GetNamedFramebufferAttachmentParameteriv: FnPtr::new(loadfn("glGetNamedFramebufferAttachmentParameteriv")),
-         GetNamedFramebufferAttachmentParameterivEXT: FnPtr::new(loadfn("glGetNamedFramebufferAttachmentParameterivEXT")),
-         GetNamedFramebufferParameterfvAMD: FnPtr::new(loadfn("glGetNamedFramebufferParameterfvAMD")),
-         GetNamedFramebufferParameteriv: FnPtr::new(loadfn("glGetNamedFramebufferParameteriv")),
-         GetNamedFramebufferParameterivEXT: FnPtr::new(loadfn("glGetNamedFramebufferParameterivEXT")),
-         GetNamedProgramLocalParameterIivEXT: FnPtr::new(loadfn("glGetNamedProgramLocalParameterIivEXT")),
-         GetNamedProgramLocalParameterIuivEXT: FnPtr::new(loadfn("glGetNamedProgramLocalParameterIuivEXT")),
-         GetNamedProgramLocalParameterdvEXT: FnPtr::new(loadfn("glGetNamedProgramLocalParameterdvEXT")),
-         GetNamedProgramLocalParameterfvEXT: FnPtr::new(loadfn("glGetNamedProgramLocalParameterfvEXT")),
-         GetNamedProgramStringEXT: FnPtr::new(loadfn("glGetNamedProgramStringEXT")),
-         GetNamedProgramivEXT: FnPtr::new(loadfn("glGetNamedProgramivEXT")),
-         GetNamedRenderbufferParameteriv: FnPtr::new(loadfn("glGetNamedRenderbufferParameteriv")),
-         GetNamedRenderbufferParameterivEXT: FnPtr::new(loadfn("glGetNamedRenderbufferParameterivEXT")),
-         GetNamedStringARB: FnPtr::new(loadfn("glGetNamedStringARB")),
-         GetNamedStringivARB: FnPtr::new(loadfn("glGetNamedStringivARB")),
-         GetNextPerfQueryIdINTEL: FnPtr::new(loadfn("glGetNextPerfQueryIdINTEL")),
-         GetObjectBufferfvATI: FnPtr::new(loadfn("glGetObjectBufferfvATI")),
-         GetObjectBufferivATI: FnPtr::new(loadfn("glGetObjectBufferivATI")),
-         GetObjectLabel: FnPtr::new(loadfn("glGetObjectLabel")),
-         GetObjectLabelEXT: FnPtr::new(loadfn("glGetObjectLabelEXT")),
-         GetObjectParameterfvARB: FnPtr::new(loadfn("glGetObjectParameterfvARB")),
-         GetObjectParameterivAPPLE: FnPtr::new(loadfn("glGetObjectParameterivAPPLE")),
-         GetObjectParameterivARB: FnPtr::new(loadfn("glGetObjectParameterivARB")),
-         GetObjectPtrLabel: FnPtr::new(loadfn("glGetObjectPtrLabel")),
-         GetOcclusionQueryivNV: FnPtr::new(loadfn("glGetOcclusionQueryivNV")),
-         GetOcclusionQueryuivNV: FnPtr::new(loadfn("glGetOcclusionQueryuivNV")),
-         GetPathColorGenfvNV: FnPtr::new(loadfn("glGetPathColorGenfvNV")),
-         GetPathColorGenivNV: FnPtr::new(loadfn("glGetPathColorGenivNV")),
-         GetPathCommandsNV: FnPtr::new(loadfn("glGetPathCommandsNV")),
-         GetPathCoordsNV: FnPtr::new(loadfn("glGetPathCoordsNV")),
-         GetPathDashArrayNV: FnPtr::new(loadfn("glGetPathDashArrayNV")),
-         GetPathLengthNV: FnPtr::new(loadfn("glGetPathLengthNV")),
-         GetPathMetricRangeNV: FnPtr::new(loadfn("glGetPathMetricRangeNV")),
-         GetPathMetricsNV: FnPtr::new(loadfn("glGetPathMetricsNV")),
-         GetPathParameterfvNV: FnPtr::new(loadfn("glGetPathParameterfvNV")),
-         GetPathParameterivNV: FnPtr::new(loadfn("glGetPathParameterivNV")),
-         GetPathSpacingNV: FnPtr::new(loadfn("glGetPathSpacingNV")),
-         GetPathTexGenfvNV: FnPtr::new(loadfn("glGetPathTexGenfvNV")),
-         GetPathTexGenivNV: FnPtr::new(loadfn("glGetPathTexGenivNV")),
-         GetPerfCounterInfoINTEL: FnPtr::new(loadfn("glGetPerfCounterInfoINTEL")),
-         GetPerfMonitorCounterDataAMD: FnPtr::new(loadfn("glGetPerfMonitorCounterDataAMD")),
-         GetPerfMonitorCounterInfoAMD: FnPtr::new(loadfn("glGetPerfMonitorCounterInfoAMD")),
-         GetPerfMonitorCounterStringAMD: FnPtr::new(loadfn("glGetPerfMonitorCounterStringAMD")),
-         GetPerfMonitorCountersAMD: FnPtr::new(loadfn("glGetPerfMonitorCountersAMD")),
-         GetPerfMonitorGroupStringAMD: FnPtr::new(loadfn("glGetPerfMonitorGroupStringAMD")),
-         GetPerfMonitorGroupsAMD: FnPtr::new(loadfn("glGetPerfMonitorGroupsAMD")),
-         GetPerfQueryDataINTEL: FnPtr::new(loadfn("glGetPerfQueryDataINTEL")),
-         GetPerfQueryIdByNameINTEL: FnPtr::new(loadfn("glGetPerfQueryIdByNameINTEL")),
-         GetPerfQueryInfoINTEL: FnPtr::new(loadfn("glGetPerfQueryInfoINTEL")),
-         GetPixelMapfv: FnPtr::new(loadfn("glGetPixelMapfv")),
-         GetPixelMapuiv: FnPtr::new(loadfn("glGetPixelMapuiv")),
-         GetPixelMapusv: FnPtr::new(loadfn("glGetPixelMapusv")),
-         GetPixelMapxv: FnPtr::new(loadfn("glGetPixelMapxv")),
-         GetPixelTexGenParameterfvSGIS: FnPtr::new(loadfn("glGetPixelTexGenParameterfvSGIS")),
-         GetPixelTexGenParameterivSGIS: FnPtr::new(loadfn("glGetPixelTexGenParameterivSGIS")),
-         GetPixelTransformParameterfvEXT: FnPtr::new(loadfn("glGetPixelTransformParameterfvEXT")),
-         GetPixelTransformParameterivEXT: FnPtr::new(loadfn("glGetPixelTransformParameterivEXT")),
-         GetPointerIndexedvEXT: FnPtr::new(loadfn("glGetPointerIndexedvEXT")),
-         GetPointeri_vEXT: FnPtr::new(loadfn("glGetPointeri_vEXT")),
-         GetPointerv: FnPtr::new(loadfn("glGetPointerv")),
-         GetPointervEXT: FnPtr::new(loadfn("glGetPointervEXT")),
-         GetPolygonStipple: FnPtr::new(loadfn("glGetPolygonStipple")),
-         GetProgramBinary: FnPtr::new(loadfn("glGetProgramBinary")),
-         GetProgramEnvParameterIivNV: FnPtr::new(loadfn("glGetProgramEnvParameterIivNV")),
-         GetProgramEnvParameterIuivNV: FnPtr::new(loadfn("glGetProgramEnvParameterIuivNV")),
-         GetProgramEnvParameterdvARB: FnPtr::new(loadfn("glGetProgramEnvParameterdvARB")),
-         GetProgramEnvParameterfvARB: FnPtr::new(loadfn("glGetProgramEnvParameterfvARB")),
-         GetProgramInfoLog: FnPtr::new(loadfn("glGetProgramInfoLog")),
-         GetProgramInterfaceiv: FnPtr::new(loadfn("glGetProgramInterfaceiv")),
-         GetProgramLocalParameterIivNV: FnPtr::new(loadfn("glGetProgramLocalParameterIivNV")),
-         GetProgramLocalParameterIuivNV: FnPtr::new(loadfn("glGetProgramLocalParameterIuivNV")),
-         GetProgramLocalParameterdvARB: FnPtr::new(loadfn("glGetProgramLocalParameterdvARB")),
-         GetProgramLocalParameterfvARB: FnPtr::new(loadfn("glGetProgramLocalParameterfvARB")),
-         GetProgramNamedParameterdvNV: FnPtr::new(loadfn("glGetProgramNamedParameterdvNV")),
-         GetProgramNamedParameterfvNV: FnPtr::new(loadfn("glGetProgramNamedParameterfvNV")),
-         GetProgramParameterdvNV: FnPtr::new(loadfn("glGetProgramParameterdvNV")),
-         GetProgramParameterfvNV: FnPtr::new(loadfn("glGetProgramParameterfvNV")),
-         GetProgramPipelineInfoLog: FnPtr::new(loadfn("glGetProgramPipelineInfoLog")),
-         GetProgramPipelineiv: FnPtr::new(loadfn("glGetProgramPipelineiv")),
-         GetProgramResourceIndex: FnPtr::new(loadfn("glGetProgramResourceIndex")),
-         GetProgramResourceLocation: FnPtr::new(loadfn("glGetProgramResourceLocation")),
-         GetProgramResourceLocationIndex: FnPtr::new(loadfn("glGetProgramResourceLocationIndex")),
-         GetProgramResourceName: FnPtr::new(loadfn("glGetProgramResourceName")),
-         GetProgramResourcefvNV: FnPtr::new(loadfn("glGetProgramResourcefvNV")),
-         GetProgramResourceiv: FnPtr::new(loadfn("glGetProgramResourceiv")),
-         GetProgramStageiv: FnPtr::new(loadfn("glGetProgramStageiv")),
-         GetProgramStringARB: FnPtr::new(loadfn("glGetProgramStringARB")),
-         GetProgramStringNV: FnPtr::new(loadfn("glGetProgramStringNV")),
-         GetProgramSubroutineParameteruivNV: FnPtr::new(loadfn("glGetProgramSubroutineParameteruivNV")),
-         GetProgramiv: FnPtr::new(loadfn("glGetProgramiv")),
-         GetProgramivARB: FnPtr::new(loadfn("glGetProgramivARB")),
-         GetProgramivNV: FnPtr::new(loadfn("glGetProgramivNV")),
-         GetQueryBufferObjecti64v: FnPtr::new(loadfn("glGetQueryBufferObjecti64v")),
-         GetQueryBufferObjectiv: FnPtr::new(loadfn("glGetQueryBufferObjectiv")),
-         GetQueryBufferObjectui64v: FnPtr::new(loadfn("glGetQueryBufferObjectui64v")),
-         GetQueryBufferObjectuiv: FnPtr::new(loadfn("glGetQueryBufferObjectuiv")),
-         GetQueryIndexediv: FnPtr::new(loadfn("glGetQueryIndexediv")),
-         GetQueryObjecti64v: FnPtr::new(loadfn("glGetQueryObjecti64v")),
-         GetQueryObjecti64vEXT: FnPtr::new(loadfn("glGetQueryObjecti64vEXT")),
-         GetQueryObjectiv: FnPtr::new(loadfn("glGetQueryObjectiv")),
-         GetQueryObjectivARB: FnPtr::new(loadfn("glGetQueryObjectivARB")),
-         GetQueryObjectui64v: FnPtr::new(loadfn("glGetQueryObjectui64v")),
-         GetQueryObjectui64vEXT: FnPtr::new(loadfn("glGetQueryObjectui64vEXT")),
-         GetQueryObjectuiv: FnPtr::new(loadfn("glGetQueryObjectuiv")),
-         GetQueryObjectuivARB: FnPtr::new(loadfn("glGetQueryObjectuivARB")),
-         GetQueryiv: FnPtr::new(loadfn("glGetQueryiv")),
-         GetQueryivARB: FnPtr::new(loadfn("glGetQueryivARB")),
-         GetRenderbufferParameteriv: FnPtr::new(loadfn("glGetRenderbufferParameteriv")),
-         GetRenderbufferParameterivEXT: FnPtr::new(loadfn("glGetRenderbufferParameterivEXT")),
-         GetSamplerParameterIiv: FnPtr::new(loadfn("glGetSamplerParameterIiv")),
-         GetSamplerParameterIuiv: FnPtr::new(loadfn("glGetSamplerParameterIuiv")),
-         GetSamplerParameterfv: FnPtr::new(loadfn("glGetSamplerParameterfv")),
-         GetSamplerParameteriv: FnPtr::new(loadfn("glGetSamplerParameteriv")),
-         GetSemaphoreParameterivNV: FnPtr::new(loadfn("glGetSemaphoreParameterivNV")),
-         GetSemaphoreParameterui64vEXT: FnPtr::new(loadfn("glGetSemaphoreParameterui64vEXT")),
-         GetSeparableFilter: FnPtr::new(loadfn("glGetSeparableFilter")),
-         GetSeparableFilterEXT: FnPtr::new(loadfn("glGetSeparableFilterEXT")),
-         GetShaderInfoLog: FnPtr::new(loadfn("glGetShaderInfoLog")),
-         GetShaderPrecisionFormat: FnPtr::new(loadfn("glGetShaderPrecisionFormat")),
-         GetShaderSource: FnPtr::new(loadfn("glGetShaderSource")),
-         GetShaderSourceARB: FnPtr::new(loadfn("glGetShaderSourceARB")),
-         GetShaderiv: FnPtr::new(loadfn("glGetShaderiv")),
-         GetShadingRateImagePaletteNV: FnPtr::new(loadfn("glGetShadingRateImagePaletteNV")),
-         GetShadingRateSampleLocationivNV: FnPtr::new(loadfn("glGetShadingRateSampleLocationivNV")),
-         GetSharpenTexFuncSGIS: FnPtr::new(loadfn("glGetSharpenTexFuncSGIS")),
-         GetStageIndexNV: FnPtr::new(loadfn("glGetStageIndexNV")),
-         GetString: FnPtr::new(loadfn("glGetString")),
-         GetStringi: FnPtr::new(loadfn("glGetStringi")),
-         GetSubroutineIndex: FnPtr::new(loadfn("glGetSubroutineIndex")),
-         GetSubroutineUniformLocation: FnPtr::new(loadfn("glGetSubroutineUniformLocation")),
-         GetSynciv: FnPtr::new(loadfn("glGetSynciv")),
-         GetTexBumpParameterfvATI: FnPtr::new(loadfn("glGetTexBumpParameterfvATI")),
-         GetTexBumpParameterivATI: FnPtr::new(loadfn("glGetTexBumpParameterivATI")),
-         GetTexEnvfv: FnPtr::new(loadfn("glGetTexEnvfv")),
-         GetTexEnviv: FnPtr::new(loadfn("glGetTexEnviv")),
-         GetTexEnvxvOES: FnPtr::new(loadfn("glGetTexEnvxvOES")),
-         GetTexFilterFuncSGIS: FnPtr::new(loadfn("glGetTexFilterFuncSGIS")),
-         GetTexGendv: FnPtr::new(loadfn("glGetTexGendv")),
-         GetTexGenfv: FnPtr::new(loadfn("glGetTexGenfv")),
-         GetTexGeniv: FnPtr::new(loadfn("glGetTexGeniv")),
-         GetTexGenxvOES: FnPtr::new(loadfn("glGetTexGenxvOES")),
-         GetTexImage: FnPtr::new(loadfn("glGetTexImage")),
-         GetTexLevelParameterfv: FnPtr::new(loadfn("glGetTexLevelParameterfv")),
-         GetTexLevelParameteriv: FnPtr::new(loadfn("glGetTexLevelParameteriv")),
-         GetTexLevelParameterxvOES: FnPtr::new(loadfn("glGetTexLevelParameterxvOES")),
-         GetTexParameterIiv: FnPtr::new(loadfn("glGetTexParameterIiv")),
-         GetTexParameterIivEXT: FnPtr::new(loadfn("glGetTexParameterIivEXT")),
-         GetTexParameterIuiv: FnPtr::new(loadfn("glGetTexParameterIuiv")),
-         GetTexParameterIuivEXT: FnPtr::new(loadfn("glGetTexParameterIuivEXT")),
-         GetTexParameterPointervAPPLE: FnPtr::new(loadfn("glGetTexParameterPointervAPPLE")),
-         GetTexParameterfv: FnPtr::new(loadfn("glGetTexParameterfv")),
-         GetTexParameteriv: FnPtr::new(loadfn("glGetTexParameteriv")),
-         GetTexParameterxvOES: FnPtr::new(loadfn("glGetTexParameterxvOES")),
-         GetTextureHandleARB: FnPtr::new(loadfn("glGetTextureHandleARB")),
-         GetTextureHandleNV: FnPtr::new(loadfn("glGetTextureHandleNV")),
-         GetTextureImage: FnPtr::new(loadfn("glGetTextureImage")),
-         GetTextureImageEXT: FnPtr::new(loadfn("glGetTextureImageEXT")),
-         GetTextureLevelParameterfv: FnPtr::new(loadfn("glGetTextureLevelParameterfv")),
-         GetTextureLevelParameterfvEXT: FnPtr::new(loadfn("glGetTextureLevelParameterfvEXT")),
-         GetTextureLevelParameteriv: FnPtr::new(loadfn("glGetTextureLevelParameteriv")),
-         GetTextureLevelParameterivEXT: FnPtr::new(loadfn("glGetTextureLevelParameterivEXT")),
-         GetTextureParameterIiv: FnPtr::new(loadfn("glGetTextureParameterIiv")),
-         GetTextureParameterIivEXT: FnPtr::new(loadfn("glGetTextureParameterIivEXT")),
-         GetTextureParameterIuiv: FnPtr::new(loadfn("glGetTextureParameterIuiv")),
-         GetTextureParameterIuivEXT: FnPtr::new(loadfn("glGetTextureParameterIuivEXT")),
-         GetTextureParameterfv: FnPtr::new(loadfn("glGetTextureParameterfv")),
-         GetTextureParameterfvEXT: FnPtr::new(loadfn("glGetTextureParameterfvEXT")),
-         GetTextureParameteriv: FnPtr::new(loadfn("glGetTextureParameteriv")),
-         GetTextureParameterivEXT: FnPtr::new(loadfn("glGetTextureParameterivEXT")),
-         GetTextureSamplerHandleARB: FnPtr::new(loadfn("glGetTextureSamplerHandleARB")),
-         GetTextureSamplerHandleNV: FnPtr::new(loadfn("glGetTextureSamplerHandleNV")),
-         GetTextureSubImage: FnPtr::new(loadfn("glGetTextureSubImage")),
-         GetTrackMatrixivNV: FnPtr::new(loadfn("glGetTrackMatrixivNV")),
-         GetTransformFeedbackVarying: FnPtr::new(loadfn("glGetTransformFeedbackVarying")),
-         GetTransformFeedbackVaryingEXT: FnPtr::new(loadfn("glGetTransformFeedbackVaryingEXT")),
-         GetTransformFeedbackVaryingNV: FnPtr::new(loadfn("glGetTransformFeedbackVaryingNV")),
-         GetTransformFeedbacki64_v: FnPtr::new(loadfn("glGetTransformFeedbacki64_v")),
-         GetTransformFeedbacki_v: FnPtr::new(loadfn("glGetTransformFeedbacki_v")),
-         GetTransformFeedbackiv: FnPtr::new(loadfn("glGetTransformFeedbackiv")),
-         GetUniformBlockIndex: FnPtr::new(loadfn("glGetUniformBlockIndex")),
-         GetUniformBufferSizeEXT: FnPtr::new(loadfn("glGetUniformBufferSizeEXT")),
-         GetUniformIndices: FnPtr::new(loadfn("glGetUniformIndices")),
-         GetUniformLocation: FnPtr::new(loadfn("glGetUniformLocation")),
-         GetUniformLocationARB: FnPtr::new(loadfn("glGetUniformLocationARB")),
-         GetUniformOffsetEXT: FnPtr::new(loadfn("glGetUniformOffsetEXT")),
-         GetUniformSubroutineuiv: FnPtr::new(loadfn("glGetUniformSubroutineuiv")),
-         GetUniformdv: FnPtr::new(loadfn("glGetUniformdv")),
-         GetUniformfv: FnPtr::new(loadfn("glGetUniformfv")),
-         GetUniformfvARB: FnPtr::new(loadfn("glGetUniformfvARB")),
-         GetUniformi64vARB: FnPtr::new(loadfn("glGetUniformi64vARB")),
-         GetUniformi64vNV: FnPtr::new(loadfn("glGetUniformi64vNV")),
-         GetUniformiv: FnPtr::new(loadfn("glGetUniformiv")),
-         GetUniformivARB: FnPtr::new(loadfn("glGetUniformivARB")),
-         GetUniformui64vARB: FnPtr::new(loadfn("glGetUniformui64vARB")),
-         GetUniformui64vNV: FnPtr::new(loadfn("glGetUniformui64vNV")),
-         GetUniformuiv: FnPtr::new(loadfn("glGetUniformuiv")),
-         GetUniformuivEXT: FnPtr::new(loadfn("glGetUniformuivEXT")),
-         GetUnsignedBytei_vEXT: FnPtr::new(loadfn("glGetUnsignedBytei_vEXT")),
-         GetUnsignedBytevEXT: FnPtr::new(loadfn("glGetUnsignedBytevEXT")),
-         GetVariantArrayObjectfvATI: FnPtr::new(loadfn("glGetVariantArrayObjectfvATI")),
-         GetVariantArrayObjectivATI: FnPtr::new(loadfn("glGetVariantArrayObjectivATI")),
-         GetVariantBooleanvEXT: FnPtr::new(loadfn("glGetVariantBooleanvEXT")),
-         GetVariantFloatvEXT: FnPtr::new(loadfn("glGetVariantFloatvEXT")),
-         GetVariantIntegervEXT: FnPtr::new(loadfn("glGetVariantIntegervEXT")),
-         GetVariantPointervEXT: FnPtr::new(loadfn("glGetVariantPointervEXT")),
-         GetVaryingLocationNV: FnPtr::new(loadfn("glGetVaryingLocationNV")),
-         GetVertexArrayIndexed64iv: FnPtr::new(loadfn("glGetVertexArrayIndexed64iv")),
-         GetVertexArrayIndexediv: FnPtr::new(loadfn("glGetVertexArrayIndexediv")),
-         GetVertexArrayIntegeri_vEXT: FnPtr::new(loadfn("glGetVertexArrayIntegeri_vEXT")),
-         GetVertexArrayIntegervEXT: FnPtr::new(loadfn("glGetVertexArrayIntegervEXT")),
-         GetVertexArrayPointeri_vEXT: FnPtr::new(loadfn("glGetVertexArrayPointeri_vEXT")),
-         GetVertexArrayPointervEXT: FnPtr::new(loadfn("glGetVertexArrayPointervEXT")),
-         GetVertexArrayiv: FnPtr::new(loadfn("glGetVertexArrayiv")),
-         GetVertexAttribArrayObjectfvATI: FnPtr::new(loadfn("glGetVertexAttribArrayObjectfvATI")),
-         GetVertexAttribArrayObjectivATI: FnPtr::new(loadfn("glGetVertexAttribArrayObjectivATI")),
-         GetVertexAttribIiv: FnPtr::new(loadfn("glGetVertexAttribIiv")),
-         GetVertexAttribIivEXT: FnPtr::new(loadfn("glGetVertexAttribIivEXT")),
-         GetVertexAttribIuiv: FnPtr::new(loadfn("glGetVertexAttribIuiv")),
-         GetVertexAttribIuivEXT: FnPtr::new(loadfn("glGetVertexAttribIuivEXT")),
-         GetVertexAttribLdv: FnPtr::new(loadfn("glGetVertexAttribLdv")),
-         GetVertexAttribLdvEXT: FnPtr::new(loadfn("glGetVertexAttribLdvEXT")),
-         GetVertexAttribLi64vNV: FnPtr::new(loadfn("glGetVertexAttribLi64vNV")),
-         GetVertexAttribLui64vARB: FnPtr::new(loadfn("glGetVertexAttribLui64vARB")),
-         GetVertexAttribLui64vNV: FnPtr::new(loadfn("glGetVertexAttribLui64vNV")),
-         GetVertexAttribPointerv: FnPtr::new(loadfn("glGetVertexAttribPointerv")),
-         GetVertexAttribPointervARB: FnPtr::new(loadfn("glGetVertexAttribPointervARB")),
-         GetVertexAttribPointervNV: FnPtr::new(loadfn("glGetVertexAttribPointervNV")),
-         GetVertexAttribdv: FnPtr::new(loadfn("glGetVertexAttribdv")),
-         GetVertexAttribdvARB: FnPtr::new(loadfn("glGetVertexAttribdvARB")),
-         GetVertexAttribdvNV: FnPtr::new(loadfn("glGetVertexAttribdvNV")),
-         GetVertexAttribfv: FnPtr::new(loadfn("glGetVertexAttribfv")),
-         GetVertexAttribfvARB: FnPtr::new(loadfn("glGetVertexAttribfvARB")),
-         GetVertexAttribfvNV: FnPtr::new(loadfn("glGetVertexAttribfvNV")),
-         GetVertexAttribiv: FnPtr::new(loadfn("glGetVertexAttribiv")),
-         GetVertexAttribivARB: FnPtr::new(loadfn("glGetVertexAttribivARB")),
-         GetVertexAttribivNV: FnPtr::new(loadfn("glGetVertexAttribivNV")),
-         GetVideoCaptureStreamdvNV: FnPtr::new(loadfn("glGetVideoCaptureStreamdvNV")),
-         GetVideoCaptureStreamfvNV: FnPtr::new(loadfn("glGetVideoCaptureStreamfvNV")),
-         GetVideoCaptureStreamivNV: FnPtr::new(loadfn("glGetVideoCaptureStreamivNV")),
-         GetVideoCaptureivNV: FnPtr::new(loadfn("glGetVideoCaptureivNV")),
-         GetVideoi64vNV: FnPtr::new(loadfn("glGetVideoi64vNV")),
-         GetVideoivNV: FnPtr::new(loadfn("glGetVideoivNV")),
-         GetVideoui64vNV: FnPtr::new(loadfn("glGetVideoui64vNV")),
-         GetVideouivNV: FnPtr::new(loadfn("glGetVideouivNV")),
-         GetVkProcAddrNV: FnPtr::new(loadfn("glGetVkProcAddrNV")),
-         GetnColorTable: FnPtr::new(loadfn("glGetnColorTable")),
-         GetnColorTableARB: FnPtr::new(loadfn("glGetnColorTableARB")),
-         GetnCompressedTexImage: FnPtr::new(loadfn("glGetnCompressedTexImage")),
-         GetnCompressedTexImageARB: FnPtr::new(loadfn("glGetnCompressedTexImageARB")),
-         GetnConvolutionFilter: FnPtr::new(loadfn("glGetnConvolutionFilter")),
-         GetnConvolutionFilterARB: FnPtr::new(loadfn("glGetnConvolutionFilterARB")),
-         GetnHistogram: FnPtr::new(loadfn("glGetnHistogram")),
-         GetnHistogramARB: FnPtr::new(loadfn("glGetnHistogramARB")),
-         GetnMapdv: FnPtr::new(loadfn("glGetnMapdv")),
-         GetnMapdvARB: FnPtr::new(loadfn("glGetnMapdvARB")),
-         GetnMapfv: FnPtr::new(loadfn("glGetnMapfv")),
-         GetnMapfvARB: FnPtr::new(loadfn("glGetnMapfvARB")),
-         GetnMapiv: FnPtr::new(loadfn("glGetnMapiv")),
-         GetnMapivARB: FnPtr::new(loadfn("glGetnMapivARB")),
-         GetnMinmax: FnPtr::new(loadfn("glGetnMinmax")),
-         GetnMinmaxARB: FnPtr::new(loadfn("glGetnMinmaxARB")),
-         GetnPixelMapfv: FnPtr::new(loadfn("glGetnPixelMapfv")),
-         GetnPixelMapfvARB: FnPtr::new(loadfn("glGetnPixelMapfvARB")),
-         GetnPixelMapuiv: FnPtr::new(loadfn("glGetnPixelMapuiv")),
-         GetnPixelMapuivARB: FnPtr::new(loadfn("glGetnPixelMapuivARB")),
-         GetnPixelMapusv: FnPtr::new(loadfn("glGetnPixelMapusv")),
-         GetnPixelMapusvARB: FnPtr::new(loadfn("glGetnPixelMapusvARB")),
-         GetnPolygonStipple: FnPtr::new(loadfn("glGetnPolygonStipple")),
-         GetnPolygonStippleARB: FnPtr::new(loadfn("glGetnPolygonStippleARB")),
-         GetnSeparableFilter: FnPtr::new(loadfn("glGetnSeparableFilter")),
-         GetnSeparableFilterARB: FnPtr::new(loadfn("glGetnSeparableFilterARB")),
-         GetnTexImage: FnPtr::new(loadfn("glGetnTexImage")),
-         GetnTexImageARB: FnPtr::new(loadfn("glGetnTexImageARB")),
-         GetnUniformdv: FnPtr::new(loadfn("glGetnUniformdv")),
-         GetnUniformdvARB: FnPtr::new(loadfn("glGetnUniformdvARB")),
-         GetnUniformfv: FnPtr::new(loadfn("glGetnUniformfv")),
-         GetnUniformfvARB: FnPtr::new(loadfn("glGetnUniformfvARB")),
-         GetnUniformi64vARB: FnPtr::new(loadfn("glGetnUniformi64vARB")),
-         GetnUniformiv: FnPtr::new(loadfn("glGetnUniformiv")),
-         GetnUniformivARB: FnPtr::new(loadfn("glGetnUniformivARB")),
-         GetnUniformui64vARB: FnPtr::new(loadfn("glGetnUniformui64vARB")),
-         GetnUniformuiv: FnPtr::new(loadfn("glGetnUniformuiv")),
-         GetnUniformuivARB: FnPtr::new(loadfn("glGetnUniformuivARB")),
-         GlobalAlphaFactorbSUN: FnPtr::new(loadfn("glGlobalAlphaFactorbSUN")),
-         GlobalAlphaFactordSUN: FnPtr::new(loadfn("glGlobalAlphaFactordSUN")),
-         GlobalAlphaFactorfSUN: FnPtr::new(loadfn("glGlobalAlphaFactorfSUN")),
-         GlobalAlphaFactoriSUN: FnPtr::new(loadfn("glGlobalAlphaFactoriSUN")),
-         GlobalAlphaFactorsSUN: FnPtr::new(loadfn("glGlobalAlphaFactorsSUN")),
-         GlobalAlphaFactorubSUN: FnPtr::new(loadfn("glGlobalAlphaFactorubSUN")),
-         GlobalAlphaFactoruiSUN: FnPtr::new(loadfn("glGlobalAlphaFactoruiSUN")),
-         GlobalAlphaFactorusSUN: FnPtr::new(loadfn("glGlobalAlphaFactorusSUN")),
-         Hint: FnPtr::new(loadfn("glHint")),
-         HintPGI: FnPtr::new(loadfn("glHintPGI")),
-         Histogram: FnPtr::new(loadfn("glHistogram")),
-         HistogramEXT: FnPtr::new(loadfn("glHistogramEXT")),
-         IglooInterfaceSGIX: FnPtr::new(loadfn("glIglooInterfaceSGIX")),
-         ImageTransformParameterfHP: FnPtr::new(loadfn("glImageTransformParameterfHP")),
-         ImageTransformParameterfvHP: FnPtr::new(loadfn("glImageTransformParameterfvHP")),
-         ImageTransformParameteriHP: FnPtr::new(loadfn("glImageTransformParameteriHP")),
-         ImageTransformParameterivHP: FnPtr::new(loadfn("glImageTransformParameterivHP")),
-         ImportMemoryFdEXT: FnPtr::new(loadfn("glImportMemoryFdEXT")),
-         ImportMemoryWin32HandleEXT: FnPtr::new(loadfn("glImportMemoryWin32HandleEXT")),
-         ImportMemoryWin32NameEXT: FnPtr::new(loadfn("glImportMemoryWin32NameEXT")),
-         ImportSemaphoreFdEXT: FnPtr::new(loadfn("glImportSemaphoreFdEXT")),
-         ImportSemaphoreWin32HandleEXT: FnPtr::new(loadfn("glImportSemaphoreWin32HandleEXT")),
-         ImportSemaphoreWin32NameEXT: FnPtr::new(loadfn("glImportSemaphoreWin32NameEXT")),
-         ImportSyncEXT: FnPtr::new(loadfn("glImportSyncEXT")),
-         IndexFormatNV: FnPtr::new(loadfn("glIndexFormatNV")),
-         IndexFuncEXT: FnPtr::new(loadfn("glIndexFuncEXT")),
-         IndexMask: FnPtr::new(loadfn("glIndexMask")),
-         IndexMaterialEXT: FnPtr::new(loadfn("glIndexMaterialEXT")),
-         IndexPointer: FnPtr::new(loadfn("glIndexPointer")),
-         IndexPointerEXT: FnPtr::new(loadfn("glIndexPointerEXT")),
-         IndexPointerListIBM: FnPtr::new(loadfn("glIndexPointerListIBM")),
-         Indexd: FnPtr::new(loadfn("glIndexd")),
-         Indexdv: FnPtr::new(loadfn("glIndexdv")),
-         Indexf: FnPtr::new(loadfn("glIndexf")),
-         Indexfv: FnPtr::new(loadfn("glIndexfv")),
-         Indexi: FnPtr::new(loadfn("glIndexi")),
-         Indexiv: FnPtr::new(loadfn("glIndexiv")),
-         Indexs: FnPtr::new(loadfn("glIndexs")),
-         Indexsv: FnPtr::new(loadfn("glIndexsv")),
-         Indexub: FnPtr::new(loadfn("glIndexub")),
-         Indexubv: FnPtr::new(loadfn("glIndexubv")),
-         IndexxOES: FnPtr::new(loadfn("glIndexxOES")),
-         IndexxvOES: FnPtr::new(loadfn("glIndexxvOES")),
-         InitNames: FnPtr::new(loadfn("glInitNames")),
-         InsertComponentEXT: FnPtr::new(loadfn("glInsertComponentEXT")),
-         InsertEventMarkerEXT: FnPtr::new(loadfn("glInsertEventMarkerEXT")),
-         InstrumentsBufferSGIX: FnPtr::new(loadfn("glInstrumentsBufferSGIX")),
-         InterleavedArrays: FnPtr::new(loadfn("glInterleavedArrays")),
-         InterpolatePathsNV: FnPtr::new(loadfn("glInterpolatePathsNV")),
-         InvalidateBufferData: FnPtr::new(loadfn("glInvalidateBufferData")),
-         InvalidateBufferSubData: FnPtr::new(loadfn("glInvalidateBufferSubData")),
-         InvalidateFramebuffer: FnPtr::new(loadfn("glInvalidateFramebuffer")),
-         InvalidateNamedFramebufferData: FnPtr::new(loadfn("glInvalidateNamedFramebufferData")),
-         InvalidateNamedFramebufferSubData: FnPtr::new(loadfn("glInvalidateNamedFramebufferSubData")),
-         InvalidateSubFramebuffer: FnPtr::new(loadfn("glInvalidateSubFramebuffer")),
-         InvalidateTexImage: FnPtr::new(loadfn("glInvalidateTexImage")),
-         InvalidateTexSubImage: FnPtr::new(loadfn("glInvalidateTexSubImage")),
-         IsAsyncMarkerSGIX: FnPtr::new(loadfn("glIsAsyncMarkerSGIX")),
-         IsBuffer: FnPtr::new(loadfn("glIsBuffer")),
-         IsBufferARB: FnPtr::new(loadfn("glIsBufferARB")),
-         IsBufferResidentNV: FnPtr::new(loadfn("glIsBufferResidentNV")),
-         IsCommandListNV: FnPtr::new(loadfn("glIsCommandListNV")),
-         IsEnabled: FnPtr::new(loadfn("glIsEnabled")),
-         IsEnabledIndexedEXT: FnPtr::new(loadfn("glIsEnabledIndexedEXT")),
-         IsEnabledi: FnPtr::new(loadfn("glIsEnabledi")),
-         IsFenceAPPLE: FnPtr::new(loadfn("glIsFenceAPPLE")),
-         IsFenceNV: FnPtr::new(loadfn("glIsFenceNV")),
-         IsFramebuffer: FnPtr::new(loadfn("glIsFramebuffer")),
-         IsFramebufferEXT: FnPtr::new(loadfn("glIsFramebufferEXT")),
-         IsImageHandleResidentARB: FnPtr::new(loadfn("glIsImageHandleResidentARB")),
-         IsImageHandleResidentNV: FnPtr::new(loadfn("glIsImageHandleResidentNV")),
-         IsList: FnPtr::new(loadfn("glIsList")),
-         IsMemoryObjectEXT: FnPtr::new(loadfn("glIsMemoryObjectEXT")),
-         IsNameAMD: FnPtr::new(loadfn("glIsNameAMD")),
-         IsNamedBufferResidentNV: FnPtr::new(loadfn("glIsNamedBufferResidentNV")),
-         IsNamedStringARB: FnPtr::new(loadfn("glIsNamedStringARB")),
-         IsObjectBufferATI: FnPtr::new(loadfn("glIsObjectBufferATI")),
-         IsOcclusionQueryNV: FnPtr::new(loadfn("glIsOcclusionQueryNV")),
-         IsPathNV: FnPtr::new(loadfn("glIsPathNV")),
-         IsPointInFillPathNV: FnPtr::new(loadfn("glIsPointInFillPathNV")),
-         IsPointInStrokePathNV: FnPtr::new(loadfn("glIsPointInStrokePathNV")),
-         IsProgram: FnPtr::new(loadfn("glIsProgram")),
-         IsProgramARB: FnPtr::new(loadfn("glIsProgramARB")),
-         IsProgramNV: FnPtr::new(loadfn("glIsProgramNV")),
-         IsProgramPipeline: FnPtr::new(loadfn("glIsProgramPipeline")),
-         IsQuery: FnPtr::new(loadfn("glIsQuery")),
-         IsQueryARB: FnPtr::new(loadfn("glIsQueryARB")),
-         IsRenderbuffer: FnPtr::new(loadfn("glIsRenderbuffer")),
-         IsRenderbufferEXT: FnPtr::new(loadfn("glIsRenderbufferEXT")),
-         IsSampler: FnPtr::new(loadfn("glIsSampler")),
-         IsSemaphoreEXT: FnPtr::new(loadfn("glIsSemaphoreEXT")),
-         IsShader: FnPtr::new(loadfn("glIsShader")),
-         IsStateNV: FnPtr::new(loadfn("glIsStateNV")),
-         IsSync: FnPtr::new(loadfn("glIsSync")),
-         IsTexture: FnPtr::new(loadfn("glIsTexture")),
-         IsTextureEXT: FnPtr::new(loadfn("glIsTextureEXT")),
-         IsTextureHandleResidentARB: FnPtr::new(loadfn("glIsTextureHandleResidentARB")),
-         IsTextureHandleResidentNV: FnPtr::new(loadfn("glIsTextureHandleResidentNV")),
-         IsTransformFeedback: FnPtr::new(loadfn("glIsTransformFeedback")),
-         IsTransformFeedbackNV: FnPtr::new(loadfn("glIsTransformFeedbackNV")),
-         IsVariantEnabledEXT: FnPtr::new(loadfn("glIsVariantEnabledEXT")),
-         IsVertexArray: FnPtr::new(loadfn("glIsVertexArray")),
-         IsVertexArrayAPPLE: FnPtr::new(loadfn("glIsVertexArrayAPPLE")),
-         IsVertexAttribEnabledAPPLE: FnPtr::new(loadfn("glIsVertexAttribEnabledAPPLE")),
-         LGPUCopyImageSubDataNVX: FnPtr::new(loadfn("glLGPUCopyImageSubDataNVX")),
-         LGPUInterlockNVX: FnPtr::new(loadfn("glLGPUInterlockNVX")),
-         LGPUNamedBufferSubDataNVX: FnPtr::new(loadfn("glLGPUNamedBufferSubDataNVX")),
-         LabelObjectEXT: FnPtr::new(loadfn("glLabelObjectEXT")),
-         LightEnviSGIX: FnPtr::new(loadfn("glLightEnviSGIX")),
-         LightModelf: FnPtr::new(loadfn("glLightModelf")),
-         LightModelfv: FnPtr::new(loadfn("glLightModelfv")),
-         LightModeli: FnPtr::new(loadfn("glLightModeli")),
-         LightModeliv: FnPtr::new(loadfn("glLightModeliv")),
-         LightModelxOES: FnPtr::new(loadfn("glLightModelxOES")),
-         LightModelxvOES: FnPtr::new(loadfn("glLightModelxvOES")),
-         Lightf: FnPtr::new(loadfn("glLightf")),
-         Lightfv: FnPtr::new(loadfn("glLightfv")),
-         Lighti: FnPtr::new(loadfn("glLighti")),
-         Lightiv: FnPtr::new(loadfn("glLightiv")),
-         LightxOES: FnPtr::new(loadfn("glLightxOES")),
-         LightxvOES: FnPtr::new(loadfn("glLightxvOES")),
-         LineStipple: FnPtr::new(loadfn("glLineStipple")),
-         LineWidth: FnPtr::new(loadfn("glLineWidth")),
-         LineWidthxOES: FnPtr::new(loadfn("glLineWidthxOES")),
-         LinkProgram: FnPtr::new(loadfn("glLinkProgram")),
-         LinkProgramARB: FnPtr::new(loadfn("glLinkProgramARB")),
-         ListBase: FnPtr::new(loadfn("glListBase")),
-         ListDrawCommandsStatesClientNV: FnPtr::new(loadfn("glListDrawCommandsStatesClientNV")),
-         ListParameterfSGIX: FnPtr::new(loadfn("glListParameterfSGIX")),
-         ListParameterfvSGIX: FnPtr::new(loadfn("glListParameterfvSGIX")),
-         ListParameteriSGIX: FnPtr::new(loadfn("glListParameteriSGIX")),
-         ListParameterivSGIX: FnPtr::new(loadfn("glListParameterivSGIX")),
-         LoadIdentity: FnPtr::new(loadfn("glLoadIdentity")),
-         LoadIdentityDeformationMapSGIX: FnPtr::new(loadfn("glLoadIdentityDeformationMapSGIX")),
-         LoadMatrixd: FnPtr::new(loadfn("glLoadMatrixd")),
-         LoadMatrixf: FnPtr::new(loadfn("glLoadMatrixf")),
-         LoadMatrixxOES: FnPtr::new(loadfn("glLoadMatrixxOES")),
-         LoadName: FnPtr::new(loadfn("glLoadName")),
-         LoadProgramNV: FnPtr::new(loadfn("glLoadProgramNV")),
-         LoadTransposeMatrixd: FnPtr::new(loadfn("glLoadTransposeMatrixd")),
-         LoadTransposeMatrixdARB: FnPtr::new(loadfn("glLoadTransposeMatrixdARB")),
-         LoadTransposeMatrixf: FnPtr::new(loadfn("glLoadTransposeMatrixf")),
-         LoadTransposeMatrixfARB: FnPtr::new(loadfn("glLoadTransposeMatrixfARB")),
-         LoadTransposeMatrixxOES: FnPtr::new(loadfn("glLoadTransposeMatrixxOES")),
-         LockArraysEXT: FnPtr::new(loadfn("glLockArraysEXT")),
-         LogicOp: FnPtr::new(loadfn("glLogicOp")),
-         MakeBufferNonResidentNV: FnPtr::new(loadfn("glMakeBufferNonResidentNV")),
-         MakeBufferResidentNV: FnPtr::new(loadfn("glMakeBufferResidentNV")),
-         MakeImageHandleNonResidentARB: FnPtr::new(loadfn("glMakeImageHandleNonResidentARB")),
-         MakeImageHandleNonResidentNV: FnPtr::new(loadfn("glMakeImageHandleNonResidentNV")),
-         MakeImageHandleResidentARB: FnPtr::new(loadfn("glMakeImageHandleResidentARB")),
-         MakeImageHandleResidentNV: FnPtr::new(loadfn("glMakeImageHandleResidentNV")),
-         MakeNamedBufferNonResidentNV: FnPtr::new(loadfn("glMakeNamedBufferNonResidentNV")),
-         MakeNamedBufferResidentNV: FnPtr::new(loadfn("glMakeNamedBufferResidentNV")),
-         MakeTextureHandleNonResidentARB: FnPtr::new(loadfn("glMakeTextureHandleNonResidentARB")),
-         MakeTextureHandleNonResidentNV: FnPtr::new(loadfn("glMakeTextureHandleNonResidentNV")),
-         MakeTextureHandleResidentARB: FnPtr::new(loadfn("glMakeTextureHandleResidentARB")),
-         MakeTextureHandleResidentNV: FnPtr::new(loadfn("glMakeTextureHandleResidentNV")),
-         Map1d: FnPtr::new(loadfn("glMap1d")),
-         Map1f: FnPtr::new(loadfn("glMap1f")),
-         Map1xOES: FnPtr::new(loadfn("glMap1xOES")),
-         Map2d: FnPtr::new(loadfn("glMap2d")),
-         Map2f: FnPtr::new(loadfn("glMap2f")),
-         Map2xOES: FnPtr::new(loadfn("glMap2xOES")),
-         MapBuffer: FnPtr::new(loadfn("glMapBuffer")),
-         MapBufferARB: FnPtr::new(loadfn("glMapBufferARB")),
-         MapBufferRange: FnPtr::new(loadfn("glMapBufferRange")),
-         MapControlPointsNV: FnPtr::new(loadfn("glMapControlPointsNV")),
-         MapGrid1d: FnPtr::new(loadfn("glMapGrid1d")),
-         MapGrid1f: FnPtr::new(loadfn("glMapGrid1f")),
-         MapGrid1xOES: FnPtr::new(loadfn("glMapGrid1xOES")),
-         MapGrid2d: FnPtr::new(loadfn("glMapGrid2d")),
-         MapGrid2f: FnPtr::new(loadfn("glMapGrid2f")),
-         MapGrid2xOES: FnPtr::new(loadfn("glMapGrid2xOES")),
-         MapNamedBuffer: FnPtr::new(loadfn("glMapNamedBuffer")),
-         MapNamedBufferEXT: FnPtr::new(loadfn("glMapNamedBufferEXT")),
-         MapNamedBufferRange: FnPtr::new(loadfn("glMapNamedBufferRange")),
-         MapNamedBufferRangeEXT: FnPtr::new(loadfn("glMapNamedBufferRangeEXT")),
-         MapObjectBufferATI: FnPtr::new(loadfn("glMapObjectBufferATI")),
-         MapParameterfvNV: FnPtr::new(loadfn("glMapParameterfvNV")),
-         MapParameterivNV: FnPtr::new(loadfn("glMapParameterivNV")),
-         MapTexture2DINTEL: FnPtr::new(loadfn("glMapTexture2DINTEL")),
-         MapVertexAttrib1dAPPLE: FnPtr::new(loadfn("glMapVertexAttrib1dAPPLE")),
-         MapVertexAttrib1fAPPLE: FnPtr::new(loadfn("glMapVertexAttrib1fAPPLE")),
-         MapVertexAttrib2dAPPLE: FnPtr::new(loadfn("glMapVertexAttrib2dAPPLE")),
-         MapVertexAttrib2fAPPLE: FnPtr::new(loadfn("glMapVertexAttrib2fAPPLE")),
-         Materialf: FnPtr::new(loadfn("glMaterialf")),
-         Materialfv: FnPtr::new(loadfn("glMaterialfv")),
-         Materiali: FnPtr::new(loadfn("glMateriali")),
-         Materialiv: FnPtr::new(loadfn("glMaterialiv")),
-         MaterialxOES: FnPtr::new(loadfn("glMaterialxOES")),
-         MaterialxvOES: FnPtr::new(loadfn("glMaterialxvOES")),
-         MatrixFrustumEXT: FnPtr::new(loadfn("glMatrixFrustumEXT")),
-         MatrixIndexPointerARB: FnPtr::new(loadfn("glMatrixIndexPointerARB")),
-         MatrixIndexubvARB: FnPtr::new(loadfn("glMatrixIndexubvARB")),
-         MatrixIndexuivARB: FnPtr::new(loadfn("glMatrixIndexuivARB")),
-         MatrixIndexusvARB: FnPtr::new(loadfn("glMatrixIndexusvARB")),
-         MatrixLoad3x2fNV: FnPtr::new(loadfn("glMatrixLoad3x2fNV")),
-         MatrixLoad3x3fNV: FnPtr::new(loadfn("glMatrixLoad3x3fNV")),
-         MatrixLoadIdentityEXT: FnPtr::new(loadfn("glMatrixLoadIdentityEXT")),
-         MatrixLoadTranspose3x3fNV: FnPtr::new(loadfn("glMatrixLoadTranspose3x3fNV")),
-         MatrixLoadTransposedEXT: FnPtr::new(loadfn("glMatrixLoadTransposedEXT")),
-         MatrixLoadTransposefEXT: FnPtr::new(loadfn("glMatrixLoadTransposefEXT")),
-         MatrixLoaddEXT: FnPtr::new(loadfn("glMatrixLoaddEXT")),
-         MatrixLoadfEXT: FnPtr::new(loadfn("glMatrixLoadfEXT")),
-         MatrixMode: FnPtr::new(loadfn("glMatrixMode")),
-         MatrixMult3x2fNV: FnPtr::new(loadfn("glMatrixMult3x2fNV")),
-         MatrixMult3x3fNV: FnPtr::new(loadfn("glMatrixMult3x3fNV")),
-         MatrixMultTranspose3x3fNV: FnPtr::new(loadfn("glMatrixMultTranspose3x3fNV")),
-         MatrixMultTransposedEXT: FnPtr::new(loadfn("glMatrixMultTransposedEXT")),
-         MatrixMultTransposefEXT: FnPtr::new(loadfn("glMatrixMultTransposefEXT")),
-         MatrixMultdEXT: FnPtr::new(loadfn("glMatrixMultdEXT")),
-         MatrixMultfEXT: FnPtr::new(loadfn("glMatrixMultfEXT")),
-         MatrixOrthoEXT: FnPtr::new(loadfn("glMatrixOrthoEXT")),
-         MatrixPopEXT: FnPtr::new(loadfn("glMatrixPopEXT")),
-         MatrixPushEXT: FnPtr::new(loadfn("glMatrixPushEXT")),
-         MatrixRotatedEXT: FnPtr::new(loadfn("glMatrixRotatedEXT")),
-         MatrixRotatefEXT: FnPtr::new(loadfn("glMatrixRotatefEXT")),
-         MatrixScaledEXT: FnPtr::new(loadfn("glMatrixScaledEXT")),
-         MatrixScalefEXT: FnPtr::new(loadfn("glMatrixScalefEXT")),
-         MatrixTranslatedEXT: FnPtr::new(loadfn("glMatrixTranslatedEXT")),
-         MatrixTranslatefEXT: FnPtr::new(loadfn("glMatrixTranslatefEXT")),
-         MaxShaderCompilerThreadsARB: FnPtr::new(loadfn("glMaxShaderCompilerThreadsARB")),
-         MaxShaderCompilerThreadsKHR: FnPtr::new(loadfn("glMaxShaderCompilerThreadsKHR")),
-         MemoryBarrier: FnPtr::new(loadfn("glMemoryBarrier")),
-         MemoryBarrierByRegion: FnPtr::new(loadfn("glMemoryBarrierByRegion")),
-         MemoryBarrierEXT: FnPtr::new(loadfn("glMemoryBarrierEXT")),
-         MemoryObjectParameterivEXT: FnPtr::new(loadfn("glMemoryObjectParameterivEXT")),
-         MinSampleShading: FnPtr::new(loadfn("glMinSampleShading")),
-         MinSampleShadingARB: FnPtr::new(loadfn("glMinSampleShadingARB")),
-         Minmax: FnPtr::new(loadfn("glMinmax")),
-         MinmaxEXT: FnPtr::new(loadfn("glMinmaxEXT")),
-         MultMatrixd: FnPtr::new(loadfn("glMultMatrixd")),
-         MultMatrixf: FnPtr::new(loadfn("glMultMatrixf")),
-         MultMatrixxOES: FnPtr::new(loadfn("glMultMatrixxOES")),
-         MultTransposeMatrixd: FnPtr::new(loadfn("glMultTransposeMatrixd")),
-         MultTransposeMatrixdARB: FnPtr::new(loadfn("glMultTransposeMatrixdARB")),
-         MultTransposeMatrixf: FnPtr::new(loadfn("glMultTransposeMatrixf")),
-         MultTransposeMatrixfARB: FnPtr::new(loadfn("glMultTransposeMatrixfARB")),
-         MultTransposeMatrixxOES: FnPtr::new(loadfn("glMultTransposeMatrixxOES")),
-         MultiDrawArrays: FnPtr::new(loadfn("glMultiDrawArrays")),
-         MultiDrawArraysEXT: FnPtr::new(loadfn("glMultiDrawArraysEXT")),
-         MultiDrawArraysIndirect: FnPtr::new(loadfn("glMultiDrawArraysIndirect")),
-         MultiDrawArraysIndirectAMD: FnPtr::new(loadfn("glMultiDrawArraysIndirectAMD")),
-         MultiDrawArraysIndirectBindlessCountNV: FnPtr::new(loadfn("glMultiDrawArraysIndirectBindlessCountNV")),
-         MultiDrawArraysIndirectBindlessNV: FnPtr::new(loadfn("glMultiDrawArraysIndirectBindlessNV")),
-         MultiDrawArraysIndirectCount: FnPtr::new(loadfn("glMultiDrawArraysIndirectCount")),
-         MultiDrawArraysIndirectCountARB: FnPtr::new(loadfn("glMultiDrawArraysIndirectCountARB")),
-         MultiDrawElementArrayAPPLE: FnPtr::new(loadfn("glMultiDrawElementArrayAPPLE")),
-         MultiDrawElements: FnPtr::new(loadfn("glMultiDrawElements")),
-         MultiDrawElementsBaseVertex: FnPtr::new(loadfn("glMultiDrawElementsBaseVertex")),
-         MultiDrawElementsEXT: FnPtr::new(loadfn("glMultiDrawElementsEXT")),
-         MultiDrawElementsIndirect: FnPtr::new(loadfn("glMultiDrawElementsIndirect")),
-         MultiDrawElementsIndirectAMD: FnPtr::new(loadfn("glMultiDrawElementsIndirectAMD")),
-         MultiDrawElementsIndirectBindlessCountNV: FnPtr::new(loadfn("glMultiDrawElementsIndirectBindlessCountNV")),
-         MultiDrawElementsIndirectBindlessNV: FnPtr::new(loadfn("glMultiDrawElementsIndirectBindlessNV")),
-         MultiDrawElementsIndirectCount: FnPtr::new(loadfn("glMultiDrawElementsIndirectCount")),
-         MultiDrawElementsIndirectCountARB: FnPtr::new(loadfn("glMultiDrawElementsIndirectCountARB")),
-         MultiDrawMeshTasksIndirectCountNV: FnPtr::new(loadfn("glMultiDrawMeshTasksIndirectCountNV")),
-         MultiDrawMeshTasksIndirectNV: FnPtr::new(loadfn("glMultiDrawMeshTasksIndirectNV")),
-         MultiDrawRangeElementArrayAPPLE: FnPtr::new(loadfn("glMultiDrawRangeElementArrayAPPLE")),
-         MultiModeDrawArraysIBM: FnPtr::new(loadfn("glMultiModeDrawArraysIBM")),
-         MultiModeDrawElementsIBM: FnPtr::new(loadfn("glMultiModeDrawElementsIBM")),
-         MultiTexBufferEXT: FnPtr::new(loadfn("glMultiTexBufferEXT")),
-         MultiTexCoord1bOES: FnPtr::new(loadfn("glMultiTexCoord1bOES")),
-         MultiTexCoord1bvOES: FnPtr::new(loadfn("glMultiTexCoord1bvOES")),
-         MultiTexCoord1d: FnPtr::new(loadfn("glMultiTexCoord1d")),
-         MultiTexCoord1dARB: FnPtr::new(loadfn("glMultiTexCoord1dARB")),
-         MultiTexCoord1dv: FnPtr::new(loadfn("glMultiTexCoord1dv")),
-         MultiTexCoord1dvARB: FnPtr::new(loadfn("glMultiTexCoord1dvARB")),
-         MultiTexCoord1f: FnPtr::new(loadfn("glMultiTexCoord1f")),
-         MultiTexCoord1fARB: FnPtr::new(loadfn("glMultiTexCoord1fARB")),
-         MultiTexCoord1fv: FnPtr::new(loadfn("glMultiTexCoord1fv")),
-         MultiTexCoord1fvARB: FnPtr::new(loadfn("glMultiTexCoord1fvARB")),
-         MultiTexCoord1hNV: FnPtr::new(loadfn("glMultiTexCoord1hNV")),
-         MultiTexCoord1hvNV: FnPtr::new(loadfn("glMultiTexCoord1hvNV")),
-         MultiTexCoord1i: FnPtr::new(loadfn("glMultiTexCoord1i")),
-         MultiTexCoord1iARB: FnPtr::new(loadfn("glMultiTexCoord1iARB")),
-         MultiTexCoord1iv: FnPtr::new(loadfn("glMultiTexCoord1iv")),
-         MultiTexCoord1ivARB: FnPtr::new(loadfn("glMultiTexCoord1ivARB")),
-         MultiTexCoord1s: FnPtr::new(loadfn("glMultiTexCoord1s")),
-         MultiTexCoord1sARB: FnPtr::new(loadfn("glMultiTexCoord1sARB")),
-         MultiTexCoord1sv: FnPtr::new(loadfn("glMultiTexCoord1sv")),
-         MultiTexCoord1svARB: FnPtr::new(loadfn("glMultiTexCoord1svARB")),
-         MultiTexCoord1xOES: FnPtr::new(loadfn("glMultiTexCoord1xOES")),
-         MultiTexCoord1xvOES: FnPtr::new(loadfn("glMultiTexCoord1xvOES")),
-         MultiTexCoord2bOES: FnPtr::new(loadfn("glMultiTexCoord2bOES")),
-         MultiTexCoord2bvOES: FnPtr::new(loadfn("glMultiTexCoord2bvOES")),
-         MultiTexCoord2d: FnPtr::new(loadfn("glMultiTexCoord2d")),
-         MultiTexCoord2dARB: FnPtr::new(loadfn("glMultiTexCoord2dARB")),
-         MultiTexCoord2dv: FnPtr::new(loadfn("glMultiTexCoord2dv")),
-         MultiTexCoord2dvARB: FnPtr::new(loadfn("glMultiTexCoord2dvARB")),
-         MultiTexCoord2f: FnPtr::new(loadfn("glMultiTexCoord2f")),
-         MultiTexCoord2fARB: FnPtr::new(loadfn("glMultiTexCoord2fARB")),
-         MultiTexCoord2fv: FnPtr::new(loadfn("glMultiTexCoord2fv")),
-         MultiTexCoord2fvARB: FnPtr::new(loadfn("glMultiTexCoord2fvARB")),
-         MultiTexCoord2hNV: FnPtr::new(loadfn("glMultiTexCoord2hNV")),
-         MultiTexCoord2hvNV: FnPtr::new(loadfn("glMultiTexCoord2hvNV")),
-         MultiTexCoord2i: FnPtr::new(loadfn("glMultiTexCoord2i")),
-         MultiTexCoord2iARB: FnPtr::new(loadfn("glMultiTexCoord2iARB")),
-         MultiTexCoord2iv: FnPtr::new(loadfn("glMultiTexCoord2iv")),
-         MultiTexCoord2ivARB: FnPtr::new(loadfn("glMultiTexCoord2ivARB")),
-         MultiTexCoord2s: FnPtr::new(loadfn("glMultiTexCoord2s")),
-         MultiTexCoord2sARB: FnPtr::new(loadfn("glMultiTexCoord2sARB")),
-         MultiTexCoord2sv: FnPtr::new(loadfn("glMultiTexCoord2sv")),
-         MultiTexCoord2svARB: FnPtr::new(loadfn("glMultiTexCoord2svARB")),
-         MultiTexCoord2xOES: FnPtr::new(loadfn("glMultiTexCoord2xOES")),
-         MultiTexCoord2xvOES: FnPtr::new(loadfn("glMultiTexCoord2xvOES")),
-         MultiTexCoord3bOES: FnPtr::new(loadfn("glMultiTexCoord3bOES")),
-         MultiTexCoord3bvOES: FnPtr::new(loadfn("glMultiTexCoord3bvOES")),
-         MultiTexCoord3d: FnPtr::new(loadfn("glMultiTexCoord3d")),
-         MultiTexCoord3dARB: FnPtr::new(loadfn("glMultiTexCoord3dARB")),
-         MultiTexCoord3dv: FnPtr::new(loadfn("glMultiTexCoord3dv")),
-         MultiTexCoord3dvARB: FnPtr::new(loadfn("glMultiTexCoord3dvARB")),
-         MultiTexCoord3f: FnPtr::new(loadfn("glMultiTexCoord3f")),
-         MultiTexCoord3fARB: FnPtr::new(loadfn("glMultiTexCoord3fARB")),
-         MultiTexCoord3fv: FnPtr::new(loadfn("glMultiTexCoord3fv")),
-         MultiTexCoord3fvARB: FnPtr::new(loadfn("glMultiTexCoord3fvARB")),
-         MultiTexCoord3hNV: FnPtr::new(loadfn("glMultiTexCoord3hNV")),
-         MultiTexCoord3hvNV: FnPtr::new(loadfn("glMultiTexCoord3hvNV")),
-         MultiTexCoord3i: FnPtr::new(loadfn("glMultiTexCoord3i")),
-         MultiTexCoord3iARB: FnPtr::new(loadfn("glMultiTexCoord3iARB")),
-         MultiTexCoord3iv: FnPtr::new(loadfn("glMultiTexCoord3iv")),
-         MultiTexCoord3ivARB: FnPtr::new(loadfn("glMultiTexCoord3ivARB")),
-         MultiTexCoord3s: FnPtr::new(loadfn("glMultiTexCoord3s")),
-         MultiTexCoord3sARB: FnPtr::new(loadfn("glMultiTexCoord3sARB")),
-         MultiTexCoord3sv: FnPtr::new(loadfn("glMultiTexCoord3sv")),
-         MultiTexCoord3svARB: FnPtr::new(loadfn("glMultiTexCoord3svARB")),
-         MultiTexCoord3xOES: FnPtr::new(loadfn("glMultiTexCoord3xOES")),
-         MultiTexCoord3xvOES: FnPtr::new(loadfn("glMultiTexCoord3xvOES")),
-         MultiTexCoord4bOES: FnPtr::new(loadfn("glMultiTexCoord4bOES")),
-         MultiTexCoord4bvOES: FnPtr::new(loadfn("glMultiTexCoord4bvOES")),
-         MultiTexCoord4d: FnPtr::new(loadfn("glMultiTexCoord4d")),
-         MultiTexCoord4dARB: FnPtr::new(loadfn("glMultiTexCoord4dARB")),
-         MultiTexCoord4dv: FnPtr::new(loadfn("glMultiTexCoord4dv")),
-         MultiTexCoord4dvARB: FnPtr::new(loadfn("glMultiTexCoord4dvARB")),
-         MultiTexCoord4f: FnPtr::new(loadfn("glMultiTexCoord4f")),
-         MultiTexCoord4fARB: FnPtr::new(loadfn("glMultiTexCoord4fARB")),
-         MultiTexCoord4fv: FnPtr::new(loadfn("glMultiTexCoord4fv")),
-         MultiTexCoord4fvARB: FnPtr::new(loadfn("glMultiTexCoord4fvARB")),
-         MultiTexCoord4hNV: FnPtr::new(loadfn("glMultiTexCoord4hNV")),
-         MultiTexCoord4hvNV: FnPtr::new(loadfn("glMultiTexCoord4hvNV")),
-         MultiTexCoord4i: FnPtr::new(loadfn("glMultiTexCoord4i")),
-         MultiTexCoord4iARB: FnPtr::new(loadfn("glMultiTexCoord4iARB")),
-         MultiTexCoord4iv: FnPtr::new(loadfn("glMultiTexCoord4iv")),
-         MultiTexCoord4ivARB: FnPtr::new(loadfn("glMultiTexCoord4ivARB")),
-         MultiTexCoord4s: FnPtr::new(loadfn("glMultiTexCoord4s")),
-         MultiTexCoord4sARB: FnPtr::new(loadfn("glMultiTexCoord4sARB")),
-         MultiTexCoord4sv: FnPtr::new(loadfn("glMultiTexCoord4sv")),
-         MultiTexCoord4svARB: FnPtr::new(loadfn("glMultiTexCoord4svARB")),
-         MultiTexCoord4xOES: FnPtr::new(loadfn("glMultiTexCoord4xOES")),
-         MultiTexCoord4xvOES: FnPtr::new(loadfn("glMultiTexCoord4xvOES")),
-         MultiTexCoordP1ui: FnPtr::new(loadfn("glMultiTexCoordP1ui")),
-         MultiTexCoordP1uiv: FnPtr::new(loadfn("glMultiTexCoordP1uiv")),
-         MultiTexCoordP2ui: FnPtr::new(loadfn("glMultiTexCoordP2ui")),
-         MultiTexCoordP2uiv: FnPtr::new(loadfn("glMultiTexCoordP2uiv")),
-         MultiTexCoordP3ui: FnPtr::new(loadfn("glMultiTexCoordP3ui")),
-         MultiTexCoordP3uiv: FnPtr::new(loadfn("glMultiTexCoordP3uiv")),
-         MultiTexCoordP4ui: FnPtr::new(loadfn("glMultiTexCoordP4ui")),
-         MultiTexCoordP4uiv: FnPtr::new(loadfn("glMultiTexCoordP4uiv")),
-         MultiTexCoordPointerEXT: FnPtr::new(loadfn("glMultiTexCoordPointerEXT")),
-         MultiTexEnvfEXT: FnPtr::new(loadfn("glMultiTexEnvfEXT")),
-         MultiTexEnvfvEXT: FnPtr::new(loadfn("glMultiTexEnvfvEXT")),
-         MultiTexEnviEXT: FnPtr::new(loadfn("glMultiTexEnviEXT")),
-         MultiTexEnvivEXT: FnPtr::new(loadfn("glMultiTexEnvivEXT")),
-         MultiTexGendEXT: FnPtr::new(loadfn("glMultiTexGendEXT")),
-         MultiTexGendvEXT: FnPtr::new(loadfn("glMultiTexGendvEXT")),
-         MultiTexGenfEXT: FnPtr::new(loadfn("glMultiTexGenfEXT")),
-         MultiTexGenfvEXT: FnPtr::new(loadfn("glMultiTexGenfvEXT")),
-         MultiTexGeniEXT: FnPtr::new(loadfn("glMultiTexGeniEXT")),
-         MultiTexGenivEXT: FnPtr::new(loadfn("glMultiTexGenivEXT")),
-         MultiTexImage1DEXT: FnPtr::new(loadfn("glMultiTexImage1DEXT")),
-         MultiTexImage2DEXT: FnPtr::new(loadfn("glMultiTexImage2DEXT")),
-         MultiTexImage3DEXT: FnPtr::new(loadfn("glMultiTexImage3DEXT")),
-         MultiTexParameterIivEXT: FnPtr::new(loadfn("glMultiTexParameterIivEXT")),
-         MultiTexParameterIuivEXT: FnPtr::new(loadfn("glMultiTexParameterIuivEXT")),
-         MultiTexParameterfEXT: FnPtr::new(loadfn("glMultiTexParameterfEXT")),
-         MultiTexParameterfvEXT: FnPtr::new(loadfn("glMultiTexParameterfvEXT")),
-         MultiTexParameteriEXT: FnPtr::new(loadfn("glMultiTexParameteriEXT")),
-         MultiTexParameterivEXT: FnPtr::new(loadfn("glMultiTexParameterivEXT")),
-         MultiTexRenderbufferEXT: FnPtr::new(loadfn("glMultiTexRenderbufferEXT")),
-         MultiTexSubImage1DEXT: FnPtr::new(loadfn("glMultiTexSubImage1DEXT")),
-         MultiTexSubImage2DEXT: FnPtr::new(loadfn("glMultiTexSubImage2DEXT")),
-         MultiTexSubImage3DEXT: FnPtr::new(loadfn("glMultiTexSubImage3DEXT")),
-         MulticastBarrierNV: FnPtr::new(loadfn("glMulticastBarrierNV")),
-         MulticastBlitFramebufferNV: FnPtr::new(loadfn("glMulticastBlitFramebufferNV")),
-         MulticastBufferSubDataNV: FnPtr::new(loadfn("glMulticastBufferSubDataNV")),
-         MulticastCopyBufferSubDataNV: FnPtr::new(loadfn("glMulticastCopyBufferSubDataNV")),
-         MulticastCopyImageSubDataNV: FnPtr::new(loadfn("glMulticastCopyImageSubDataNV")),
-         MulticastFramebufferSampleLocationsfvNV: FnPtr::new(loadfn("glMulticastFramebufferSampleLocationsfvNV")),
-         MulticastGetQueryObjecti64vNV: FnPtr::new(loadfn("glMulticastGetQueryObjecti64vNV")),
-         MulticastGetQueryObjectivNV: FnPtr::new(loadfn("glMulticastGetQueryObjectivNV")),
-         MulticastGetQueryObjectui64vNV: FnPtr::new(loadfn("glMulticastGetQueryObjectui64vNV")),
-         MulticastGetQueryObjectuivNV: FnPtr::new(loadfn("glMulticastGetQueryObjectuivNV")),
-         MulticastScissorArrayvNVX: FnPtr::new(loadfn("glMulticastScissorArrayvNVX")),
-         MulticastViewportArrayvNVX: FnPtr::new(loadfn("glMulticastViewportArrayvNVX")),
-         MulticastViewportPositionWScaleNVX: FnPtr::new(loadfn("glMulticastViewportPositionWScaleNVX")),
-         MulticastWaitSyncNV: FnPtr::new(loadfn("glMulticastWaitSyncNV")),
-         NamedBufferAttachMemoryNV: FnPtr::new(loadfn("glNamedBufferAttachMemoryNV")),
-         NamedBufferData: FnPtr::new(loadfn("glNamedBufferData")),
-         NamedBufferDataEXT: FnPtr::new(loadfn("glNamedBufferDataEXT")),
-         NamedBufferPageCommitmentARB: FnPtr::new(loadfn("glNamedBufferPageCommitmentARB")),
-         NamedBufferPageCommitmentEXT: FnPtr::new(loadfn("glNamedBufferPageCommitmentEXT")),
-         NamedBufferPageCommitmentMemNV: FnPtr::new(loadfn("glNamedBufferPageCommitmentMemNV")),
-         NamedBufferStorage: FnPtr::new(loadfn("glNamedBufferStorage")),
-         NamedBufferStorageEXT: FnPtr::new(loadfn("glNamedBufferStorageEXT")),
-         NamedBufferStorageExternalEXT: FnPtr::new(loadfn("glNamedBufferStorageExternalEXT")),
-         NamedBufferStorageMemEXT: FnPtr::new(loadfn("glNamedBufferStorageMemEXT")),
-         NamedBufferSubData: FnPtr::new(loadfn("glNamedBufferSubData")),
-         NamedBufferSubDataEXT: FnPtr::new(loadfn("glNamedBufferSubDataEXT")),
-         NamedCopyBufferSubDataEXT: FnPtr::new(loadfn("glNamedCopyBufferSubDataEXT")),
-         NamedFramebufferDrawBuffer: FnPtr::new(loadfn("glNamedFramebufferDrawBuffer")),
-         NamedFramebufferDrawBuffers: FnPtr::new(loadfn("glNamedFramebufferDrawBuffers")),
-         NamedFramebufferParameteri: FnPtr::new(loadfn("glNamedFramebufferParameteri")),
-         NamedFramebufferParameteriEXT: FnPtr::new(loadfn("glNamedFramebufferParameteriEXT")),
-         NamedFramebufferReadBuffer: FnPtr::new(loadfn("glNamedFramebufferReadBuffer")),
-         NamedFramebufferRenderbuffer: FnPtr::new(loadfn("glNamedFramebufferRenderbuffer")),
-         NamedFramebufferRenderbufferEXT: FnPtr::new(loadfn("glNamedFramebufferRenderbufferEXT")),
-         NamedFramebufferSampleLocationsfvARB: FnPtr::new(loadfn("glNamedFramebufferSampleLocationsfvARB")),
-         NamedFramebufferSampleLocationsfvNV: FnPtr::new(loadfn("glNamedFramebufferSampleLocationsfvNV")),
-         NamedFramebufferSamplePositionsfvAMD: FnPtr::new(loadfn("glNamedFramebufferSamplePositionsfvAMD")),
-         NamedFramebufferTexture: FnPtr::new(loadfn("glNamedFramebufferTexture")),
-         NamedFramebufferTexture1DEXT: FnPtr::new(loadfn("glNamedFramebufferTexture1DEXT")),
-         NamedFramebufferTexture2DEXT: FnPtr::new(loadfn("glNamedFramebufferTexture2DEXT")),
-         NamedFramebufferTexture3DEXT: FnPtr::new(loadfn("glNamedFramebufferTexture3DEXT")),
-         NamedFramebufferTextureEXT: FnPtr::new(loadfn("glNamedFramebufferTextureEXT")),
-         NamedFramebufferTextureFaceEXT: FnPtr::new(loadfn("glNamedFramebufferTextureFaceEXT")),
-         NamedFramebufferTextureLayer: FnPtr::new(loadfn("glNamedFramebufferTextureLayer")),
-         NamedFramebufferTextureLayerEXT: FnPtr::new(loadfn("glNamedFramebufferTextureLayerEXT")),
-         NamedProgramLocalParameter4dEXT: FnPtr::new(loadfn("glNamedProgramLocalParameter4dEXT")),
-         NamedProgramLocalParameter4dvEXT: FnPtr::new(loadfn("glNamedProgramLocalParameter4dvEXT")),
-         NamedProgramLocalParameter4fEXT: FnPtr::new(loadfn("glNamedProgramLocalParameter4fEXT")),
-         NamedProgramLocalParameter4fvEXT: FnPtr::new(loadfn("glNamedProgramLocalParameter4fvEXT")),
-         NamedProgramLocalParameterI4iEXT: FnPtr::new(loadfn("glNamedProgramLocalParameterI4iEXT")),
-         NamedProgramLocalParameterI4ivEXT: FnPtr::new(loadfn("glNamedProgramLocalParameterI4ivEXT")),
-         NamedProgramLocalParameterI4uiEXT: FnPtr::new(loadfn("glNamedProgramLocalParameterI4uiEXT")),
-         NamedProgramLocalParameterI4uivEXT: FnPtr::new(loadfn("glNamedProgramLocalParameterI4uivEXT")),
-         NamedProgramLocalParameters4fvEXT: FnPtr::new(loadfn("glNamedProgramLocalParameters4fvEXT")),
-         NamedProgramLocalParametersI4ivEXT: FnPtr::new(loadfn("glNamedProgramLocalParametersI4ivEXT")),
-         NamedProgramLocalParametersI4uivEXT: FnPtr::new(loadfn("glNamedProgramLocalParametersI4uivEXT")),
-         NamedProgramStringEXT: FnPtr::new(loadfn("glNamedProgramStringEXT")),
-         NamedRenderbufferStorage: FnPtr::new(loadfn("glNamedRenderbufferStorage")),
-         NamedRenderbufferStorageEXT: FnPtr::new(loadfn("glNamedRenderbufferStorageEXT")),
-         NamedRenderbufferStorageMultisample: FnPtr::new(loadfn("glNamedRenderbufferStorageMultisample")),
-         NamedRenderbufferStorageMultisampleAdvancedAMD: FnPtr::new(loadfn("glNamedRenderbufferStorageMultisampleAdvancedAMD")),
-         NamedRenderbufferStorageMultisampleCoverageEXT: FnPtr::new(loadfn("glNamedRenderbufferStorageMultisampleCoverageEXT")),
-         NamedRenderbufferStorageMultisampleEXT: FnPtr::new(loadfn("glNamedRenderbufferStorageMultisampleEXT")),
-         NamedStringARB: FnPtr::new(loadfn("glNamedStringARB")),
-         NewList: FnPtr::new(loadfn("glNewList")),
-         NewObjectBufferATI: FnPtr::new(loadfn("glNewObjectBufferATI")),
-         Normal3b: FnPtr::new(loadfn("glNormal3b")),
-         Normal3bv: FnPtr::new(loadfn("glNormal3bv")),
-         Normal3d: FnPtr::new(loadfn("glNormal3d")),
-         Normal3dv: FnPtr::new(loadfn("glNormal3dv")),
-         Normal3f: FnPtr::new(loadfn("glNormal3f")),
-         Normal3fVertex3fSUN: FnPtr::new(loadfn("glNormal3fVertex3fSUN")),
-         Normal3fVertex3fvSUN: FnPtr::new(loadfn("glNormal3fVertex3fvSUN")),
-         Normal3fv: FnPtr::new(loadfn("glNormal3fv")),
-         Normal3hNV: FnPtr::new(loadfn("glNormal3hNV")),
-         Normal3hvNV: FnPtr::new(loadfn("glNormal3hvNV")),
-         Normal3i: FnPtr::new(loadfn("glNormal3i")),
-         Normal3iv: FnPtr::new(loadfn("glNormal3iv")),
-         Normal3s: FnPtr::new(loadfn("glNormal3s")),
-         Normal3sv: FnPtr::new(loadfn("glNormal3sv")),
-         Normal3xOES: FnPtr::new(loadfn("glNormal3xOES")),
-         Normal3xvOES: FnPtr::new(loadfn("glNormal3xvOES")),
-         NormalFormatNV: FnPtr::new(loadfn("glNormalFormatNV")),
-         NormalP3ui: FnPtr::new(loadfn("glNormalP3ui")),
-         NormalP3uiv: FnPtr::new(loadfn("glNormalP3uiv")),
-         NormalPointer: FnPtr::new(loadfn("glNormalPointer")),
-         NormalPointerEXT: FnPtr::new(loadfn("glNormalPointerEXT")),
-         NormalPointerListIBM: FnPtr::new(loadfn("glNormalPointerListIBM")),
-         NormalPointervINTEL: FnPtr::new(loadfn("glNormalPointervINTEL")),
-         NormalStream3bATI: FnPtr::new(loadfn("glNormalStream3bATI")),
-         NormalStream3bvATI: FnPtr::new(loadfn("glNormalStream3bvATI")),
-         NormalStream3dATI: FnPtr::new(loadfn("glNormalStream3dATI")),
-         NormalStream3dvATI: FnPtr::new(loadfn("glNormalStream3dvATI")),
-         NormalStream3fATI: FnPtr::new(loadfn("glNormalStream3fATI")),
-         NormalStream3fvATI: FnPtr::new(loadfn("glNormalStream3fvATI")),
-         NormalStream3iATI: FnPtr::new(loadfn("glNormalStream3iATI")),
-         NormalStream3ivATI: FnPtr::new(loadfn("glNormalStream3ivATI")),
-         NormalStream3sATI: FnPtr::new(loadfn("glNormalStream3sATI")),
-         NormalStream3svATI: FnPtr::new(loadfn("glNormalStream3svATI")),
-         ObjectLabel: FnPtr::new(loadfn("glObjectLabel")),
-         ObjectPtrLabel: FnPtr::new(loadfn("glObjectPtrLabel")),
-         ObjectPurgeableAPPLE: FnPtr::new(loadfn("glObjectPurgeableAPPLE")),
-         ObjectUnpurgeableAPPLE: FnPtr::new(loadfn("glObjectUnpurgeableAPPLE")),
-         Ortho: FnPtr::new(loadfn("glOrtho")),
-         OrthofOES: FnPtr::new(loadfn("glOrthofOES")),
-         OrthoxOES: FnPtr::new(loadfn("glOrthoxOES")),
-         PNTrianglesfATI: FnPtr::new(loadfn("glPNTrianglesfATI")),
-         PNTrianglesiATI: FnPtr::new(loadfn("glPNTrianglesiATI")),
-         PassTexCoordATI: FnPtr::new(loadfn("glPassTexCoordATI")),
-         PassThrough: FnPtr::new(loadfn("glPassThrough")),
-         PassThroughxOES: FnPtr::new(loadfn("glPassThroughxOES")),
-         PatchParameterfv: FnPtr::new(loadfn("glPatchParameterfv")),
-         PatchParameteri: FnPtr::new(loadfn("glPatchParameteri")),
-         PathColorGenNV: FnPtr::new(loadfn("glPathColorGenNV")),
-         PathCommandsNV: FnPtr::new(loadfn("glPathCommandsNV")),
-         PathCoordsNV: FnPtr::new(loadfn("glPathCoordsNV")),
-         PathCoverDepthFuncNV: FnPtr::new(loadfn("glPathCoverDepthFuncNV")),
-         PathDashArrayNV: FnPtr::new(loadfn("glPathDashArrayNV")),
-         PathFogGenNV: FnPtr::new(loadfn("glPathFogGenNV")),
-         PathGlyphIndexArrayNV: FnPtr::new(loadfn("glPathGlyphIndexArrayNV")),
-         PathGlyphIndexRangeNV: FnPtr::new(loadfn("glPathGlyphIndexRangeNV")),
-         PathGlyphRangeNV: FnPtr::new(loadfn("glPathGlyphRangeNV")),
-         PathGlyphsNV: FnPtr::new(loadfn("glPathGlyphsNV")),
-         PathMemoryGlyphIndexArrayNV: FnPtr::new(loadfn("glPathMemoryGlyphIndexArrayNV")),
-         PathParameterfNV: FnPtr::new(loadfn("glPathParameterfNV")),
-         PathParameterfvNV: FnPtr::new(loadfn("glPathParameterfvNV")),
-         PathParameteriNV: FnPtr::new(loadfn("glPathParameteriNV")),
-         PathParameterivNV: FnPtr::new(loadfn("glPathParameterivNV")),
-         PathStencilDepthOffsetNV: FnPtr::new(loadfn("glPathStencilDepthOffsetNV")),
-         PathStencilFuncNV: FnPtr::new(loadfn("glPathStencilFuncNV")),
-         PathStringNV: FnPtr::new(loadfn("glPathStringNV")),
-         PathSubCommandsNV: FnPtr::new(loadfn("glPathSubCommandsNV")),
-         PathSubCoordsNV: FnPtr::new(loadfn("glPathSubCoordsNV")),
-         PathTexGenNV: FnPtr::new(loadfn("glPathTexGenNV")),
-         PauseTransformFeedback: FnPtr::new(loadfn("glPauseTransformFeedback")),
-         PauseTransformFeedbackNV: FnPtr::new(loadfn("glPauseTransformFeedbackNV")),
-         PixelDataRangeNV: FnPtr::new(loadfn("glPixelDataRangeNV")),
-         PixelMapfv: FnPtr::new(loadfn("glPixelMapfv")),
-         PixelMapuiv: FnPtr::new(loadfn("glPixelMapuiv")),
-         PixelMapusv: FnPtr::new(loadfn("glPixelMapusv")),
-         PixelMapx: FnPtr::new(loadfn("glPixelMapx")),
-         PixelStoref: FnPtr::new(loadfn("glPixelStoref")),
-         PixelStorei: FnPtr::new(loadfn("glPixelStorei")),
-         PixelStorex: FnPtr::new(loadfn("glPixelStorex")),
-         PixelTexGenParameterfSGIS: FnPtr::new(loadfn("glPixelTexGenParameterfSGIS")),
-         PixelTexGenParameterfvSGIS: FnPtr::new(loadfn("glPixelTexGenParameterfvSGIS")),
-         PixelTexGenParameteriSGIS: FnPtr::new(loadfn("glPixelTexGenParameteriSGIS")),
-         PixelTexGenParameterivSGIS: FnPtr::new(loadfn("glPixelTexGenParameterivSGIS")),
-         PixelTexGenSGIX: FnPtr::new(loadfn("glPixelTexGenSGIX")),
-         PixelTransferf: FnPtr::new(loadfn("glPixelTransferf")),
-         PixelTransferi: FnPtr::new(loadfn("glPixelTransferi")),
-         PixelTransferxOES: FnPtr::new(loadfn("glPixelTransferxOES")),
-         PixelTransformParameterfEXT: FnPtr::new(loadfn("glPixelTransformParameterfEXT")),
-         PixelTransformParameterfvEXT: FnPtr::new(loadfn("glPixelTransformParameterfvEXT")),
-         PixelTransformParameteriEXT: FnPtr::new(loadfn("glPixelTransformParameteriEXT")),
-         PixelTransformParameterivEXT: FnPtr::new(loadfn("glPixelTransformParameterivEXT")),
-         PixelZoom: FnPtr::new(loadfn("glPixelZoom")),
-         PixelZoomxOES: FnPtr::new(loadfn("glPixelZoomxOES")),
-         PointAlongPathNV: FnPtr::new(loadfn("glPointAlongPathNV")),
-         PointParameterf: FnPtr::new(loadfn("glPointParameterf")),
-         PointParameterfARB: FnPtr::new(loadfn("glPointParameterfARB")),
-         PointParameterfEXT: FnPtr::new(loadfn("glPointParameterfEXT")),
-         PointParameterfSGIS: FnPtr::new(loadfn("glPointParameterfSGIS")),
-         PointParameterfv: FnPtr::new(loadfn("glPointParameterfv")),
-         PointParameterfvARB: FnPtr::new(loadfn("glPointParameterfvARB")),
-         PointParameterfvEXT: FnPtr::new(loadfn("glPointParameterfvEXT")),
-         PointParameterfvSGIS: FnPtr::new(loadfn("glPointParameterfvSGIS")),
-         PointParameteri: FnPtr::new(loadfn("glPointParameteri")),
-         PointParameteriNV: FnPtr::new(loadfn("glPointParameteriNV")),
-         PointParameteriv: FnPtr::new(loadfn("glPointParameteriv")),
-         PointParameterivNV: FnPtr::new(loadfn("glPointParameterivNV")),
-         PointParameterxvOES: FnPtr::new(loadfn("glPointParameterxvOES")),
-         PointSize: FnPtr::new(loadfn("glPointSize")),
-         PointSizexOES: FnPtr::new(loadfn("glPointSizexOES")),
-         PollAsyncSGIX: FnPtr::new(loadfn("glPollAsyncSGIX")),
-         PollInstrumentsSGIX: FnPtr::new(loadfn("glPollInstrumentsSGIX")),
-         PolygonMode: FnPtr::new(loadfn("glPolygonMode")),
-         PolygonOffset: FnPtr::new(loadfn("glPolygonOffset")),
-         PolygonOffsetClamp: FnPtr::new(loadfn("glPolygonOffsetClamp")),
-         PolygonOffsetClampEXT: FnPtr::new(loadfn("glPolygonOffsetClampEXT")),
-         PolygonOffsetEXT: FnPtr::new(loadfn("glPolygonOffsetEXT")),
-         PolygonOffsetxOES: FnPtr::new(loadfn("glPolygonOffsetxOES")),
-         PolygonStipple: FnPtr::new(loadfn("glPolygonStipple")),
-         PopAttrib: FnPtr::new(loadfn("glPopAttrib")),
-         PopClientAttrib: FnPtr::new(loadfn("glPopClientAttrib")),
-         PopDebugGroup: FnPtr::new(loadfn("glPopDebugGroup")),
-         PopGroupMarkerEXT: FnPtr::new(loadfn("glPopGroupMarkerEXT")),
-         PopMatrix: FnPtr::new(loadfn("glPopMatrix")),
-         PopName: FnPtr::new(loadfn("glPopName")),
-         PresentFrameDualFillNV: FnPtr::new(loadfn("glPresentFrameDualFillNV")),
-         PresentFrameKeyedNV: FnPtr::new(loadfn("glPresentFrameKeyedNV")),
-         PrimitiveBoundingBoxARB: FnPtr::new(loadfn("glPrimitiveBoundingBoxARB")),
-         PrimitiveRestartIndex: FnPtr::new(loadfn("glPrimitiveRestartIndex")),
-         PrimitiveRestartIndexNV: FnPtr::new(loadfn("glPrimitiveRestartIndexNV")),
-         PrimitiveRestartNV: FnPtr::new(loadfn("glPrimitiveRestartNV")),
-         PrioritizeTextures: FnPtr::new(loadfn("glPrioritizeTextures")),
-         PrioritizeTexturesEXT: FnPtr::new(loadfn("glPrioritizeTexturesEXT")),
-         PrioritizeTexturesxOES: FnPtr::new(loadfn("glPrioritizeTexturesxOES")),
-         ProgramBinary: FnPtr::new(loadfn("glProgramBinary")),
-         ProgramBufferParametersIivNV: FnPtr::new(loadfn("glProgramBufferParametersIivNV")),
-         ProgramBufferParametersIuivNV: FnPtr::new(loadfn("glProgramBufferParametersIuivNV")),
-         ProgramBufferParametersfvNV: FnPtr::new(loadfn("glProgramBufferParametersfvNV")),
-         ProgramEnvParameter4dARB: FnPtr::new(loadfn("glProgramEnvParameter4dARB")),
-         ProgramEnvParameter4dvARB: FnPtr::new(loadfn("glProgramEnvParameter4dvARB")),
-         ProgramEnvParameter4fARB: FnPtr::new(loadfn("glProgramEnvParameter4fARB")),
-         ProgramEnvParameter4fvARB: FnPtr::new(loadfn("glProgramEnvParameter4fvARB")),
-         ProgramEnvParameterI4iNV: FnPtr::new(loadfn("glProgramEnvParameterI4iNV")),
-         ProgramEnvParameterI4ivNV: FnPtr::new(loadfn("glProgramEnvParameterI4ivNV")),
-         ProgramEnvParameterI4uiNV: FnPtr::new(loadfn("glProgramEnvParameterI4uiNV")),
-         ProgramEnvParameterI4uivNV: FnPtr::new(loadfn("glProgramEnvParameterI4uivNV")),
-         ProgramEnvParameters4fvEXT: FnPtr::new(loadfn("glProgramEnvParameters4fvEXT")),
-         ProgramEnvParametersI4ivNV: FnPtr::new(loadfn("glProgramEnvParametersI4ivNV")),
-         ProgramEnvParametersI4uivNV: FnPtr::new(loadfn("glProgramEnvParametersI4uivNV")),
-         ProgramLocalParameter4dARB: FnPtr::new(loadfn("glProgramLocalParameter4dARB")),
-         ProgramLocalParameter4dvARB: FnPtr::new(loadfn("glProgramLocalParameter4dvARB")),
-         ProgramLocalParameter4fARB: FnPtr::new(loadfn("glProgramLocalParameter4fARB")),
-         ProgramLocalParameter4fvARB: FnPtr::new(loadfn("glProgramLocalParameter4fvARB")),
-         ProgramLocalParameterI4iNV: FnPtr::new(loadfn("glProgramLocalParameterI4iNV")),
-         ProgramLocalParameterI4ivNV: FnPtr::new(loadfn("glProgramLocalParameterI4ivNV")),
-         ProgramLocalParameterI4uiNV: FnPtr::new(loadfn("glProgramLocalParameterI4uiNV")),
-         ProgramLocalParameterI4uivNV: FnPtr::new(loadfn("glProgramLocalParameterI4uivNV")),
-         ProgramLocalParameters4fvEXT: FnPtr::new(loadfn("glProgramLocalParameters4fvEXT")),
-         ProgramLocalParametersI4ivNV: FnPtr::new(loadfn("glProgramLocalParametersI4ivNV")),
-         ProgramLocalParametersI4uivNV: FnPtr::new(loadfn("glProgramLocalParametersI4uivNV")),
-         ProgramNamedParameter4dNV: FnPtr::new(loadfn("glProgramNamedParameter4dNV")),
-         ProgramNamedParameter4dvNV: FnPtr::new(loadfn("glProgramNamedParameter4dvNV")),
-         ProgramNamedParameter4fNV: FnPtr::new(loadfn("glProgramNamedParameter4fNV")),
-         ProgramNamedParameter4fvNV: FnPtr::new(loadfn("glProgramNamedParameter4fvNV")),
-         ProgramParameter4dNV: FnPtr::new(loadfn("glProgramParameter4dNV")),
-         ProgramParameter4dvNV: FnPtr::new(loadfn("glProgramParameter4dvNV")),
-         ProgramParameter4fNV: FnPtr::new(loadfn("glProgramParameter4fNV")),
-         ProgramParameter4fvNV: FnPtr::new(loadfn("glProgramParameter4fvNV")),
-         ProgramParameteri: FnPtr::new(loadfn("glProgramParameteri")),
-         ProgramParameteriARB: FnPtr::new(loadfn("glProgramParameteriARB")),
-         ProgramParameteriEXT: FnPtr::new(loadfn("glProgramParameteriEXT")),
-         ProgramParameters4dvNV: FnPtr::new(loadfn("glProgramParameters4dvNV")),
-         ProgramParameters4fvNV: FnPtr::new(loadfn("glProgramParameters4fvNV")),
-         ProgramPathFragmentInputGenNV: FnPtr::new(loadfn("glProgramPathFragmentInputGenNV")),
-         ProgramStringARB: FnPtr::new(loadfn("glProgramStringARB")),
-         ProgramSubroutineParametersuivNV: FnPtr::new(loadfn("glProgramSubroutineParametersuivNV")),
-         ProgramUniform1d: FnPtr::new(loadfn("glProgramUniform1d")),
-         ProgramUniform1dEXT: FnPtr::new(loadfn("glProgramUniform1dEXT")),
-         ProgramUniform1dv: FnPtr::new(loadfn("glProgramUniform1dv")),
-         ProgramUniform1dvEXT: FnPtr::new(loadfn("glProgramUniform1dvEXT")),
-         ProgramUniform1f: FnPtr::new(loadfn("glProgramUniform1f")),
-         ProgramUniform1fEXT: FnPtr::new(loadfn("glProgramUniform1fEXT")),
-         ProgramUniform1fv: FnPtr::new(loadfn("glProgramUniform1fv")),
-         ProgramUniform1fvEXT: FnPtr::new(loadfn("glProgramUniform1fvEXT")),
-         ProgramUniform1i: FnPtr::new(loadfn("glProgramUniform1i")),
-         ProgramUniform1i64ARB: FnPtr::new(loadfn("glProgramUniform1i64ARB")),
-         ProgramUniform1i64NV: FnPtr::new(loadfn("glProgramUniform1i64NV")),
-         ProgramUniform1i64vARB: FnPtr::new(loadfn("glProgramUniform1i64vARB")),
-         ProgramUniform1i64vNV: FnPtr::new(loadfn("glProgramUniform1i64vNV")),
-         ProgramUniform1iEXT: FnPtr::new(loadfn("glProgramUniform1iEXT")),
-         ProgramUniform1iv: FnPtr::new(loadfn("glProgramUniform1iv")),
-         ProgramUniform1ivEXT: FnPtr::new(loadfn("glProgramUniform1ivEXT")),
-         ProgramUniform1ui: FnPtr::new(loadfn("glProgramUniform1ui")),
-         ProgramUniform1ui64ARB: FnPtr::new(loadfn("glProgramUniform1ui64ARB")),
-         ProgramUniform1ui64NV: FnPtr::new(loadfn("glProgramUniform1ui64NV")),
-         ProgramUniform1ui64vARB: FnPtr::new(loadfn("glProgramUniform1ui64vARB")),
-         ProgramUniform1ui64vNV: FnPtr::new(loadfn("glProgramUniform1ui64vNV")),
-         ProgramUniform1uiEXT: FnPtr::new(loadfn("glProgramUniform1uiEXT")),
-         ProgramUniform1uiv: FnPtr::new(loadfn("glProgramUniform1uiv")),
-         ProgramUniform1uivEXT: FnPtr::new(loadfn("glProgramUniform1uivEXT")),
-         ProgramUniform2d: FnPtr::new(loadfn("glProgramUniform2d")),
-         ProgramUniform2dEXT: FnPtr::new(loadfn("glProgramUniform2dEXT")),
-         ProgramUniform2dv: FnPtr::new(loadfn("glProgramUniform2dv")),
-         ProgramUniform2dvEXT: FnPtr::new(loadfn("glProgramUniform2dvEXT")),
-         ProgramUniform2f: FnPtr::new(loadfn("glProgramUniform2f")),
-         ProgramUniform2fEXT: FnPtr::new(loadfn("glProgramUniform2fEXT")),
-         ProgramUniform2fv: FnPtr::new(loadfn("glProgramUniform2fv")),
-         ProgramUniform2fvEXT: FnPtr::new(loadfn("glProgramUniform2fvEXT")),
-         ProgramUniform2i: FnPtr::new(loadfn("glProgramUniform2i")),
-         ProgramUniform2i64ARB: FnPtr::new(loadfn("glProgramUniform2i64ARB")),
-         ProgramUniform2i64NV: FnPtr::new(loadfn("glProgramUniform2i64NV")),
-         ProgramUniform2i64vARB: FnPtr::new(loadfn("glProgramUniform2i64vARB")),
-         ProgramUniform2i64vNV: FnPtr::new(loadfn("glProgramUniform2i64vNV")),
-         ProgramUniform2iEXT: FnPtr::new(loadfn("glProgramUniform2iEXT")),
-         ProgramUniform2iv: FnPtr::new(loadfn("glProgramUniform2iv")),
-         ProgramUniform2ivEXT: FnPtr::new(loadfn("glProgramUniform2ivEXT")),
-         ProgramUniform2ui: FnPtr::new(loadfn("glProgramUniform2ui")),
-         ProgramUniform2ui64ARB: FnPtr::new(loadfn("glProgramUniform2ui64ARB")),
-         ProgramUniform2ui64NV: FnPtr::new(loadfn("glProgramUniform2ui64NV")),
-         ProgramUniform2ui64vARB: FnPtr::new(loadfn("glProgramUniform2ui64vARB")),
-         ProgramUniform2ui64vNV: FnPtr::new(loadfn("glProgramUniform2ui64vNV")),
-         ProgramUniform2uiEXT: FnPtr::new(loadfn("glProgramUniform2uiEXT")),
-         ProgramUniform2uiv: FnPtr::new(loadfn("glProgramUniform2uiv")),
-         ProgramUniform2uivEXT: FnPtr::new(loadfn("glProgramUniform2uivEXT")),
-         ProgramUniform3d: FnPtr::new(loadfn("glProgramUniform3d")),
-         ProgramUniform3dEXT: FnPtr::new(loadfn("glProgramUniform3dEXT")),
-         ProgramUniform3dv: FnPtr::new(loadfn("glProgramUniform3dv")),
-         ProgramUniform3dvEXT: FnPtr::new(loadfn("glProgramUniform3dvEXT")),
-         ProgramUniform3f: FnPtr::new(loadfn("glProgramUniform3f")),
-         ProgramUniform3fEXT: FnPtr::new(loadfn("glProgramUniform3fEXT")),
-         ProgramUniform3fv: FnPtr::new(loadfn("glProgramUniform3fv")),
-         ProgramUniform3fvEXT: FnPtr::new(loadfn("glProgramUniform3fvEXT")),
-         ProgramUniform3i: FnPtr::new(loadfn("glProgramUniform3i")),
-         ProgramUniform3i64ARB: FnPtr::new(loadfn("glProgramUniform3i64ARB")),
-         ProgramUniform3i64NV: FnPtr::new(loadfn("glProgramUniform3i64NV")),
-         ProgramUniform3i64vARB: FnPtr::new(loadfn("glProgramUniform3i64vARB")),
-         ProgramUniform3i64vNV: FnPtr::new(loadfn("glProgramUniform3i64vNV")),
-         ProgramUniform3iEXT: FnPtr::new(loadfn("glProgramUniform3iEXT")),
-         ProgramUniform3iv: FnPtr::new(loadfn("glProgramUniform3iv")),
-         ProgramUniform3ivEXT: FnPtr::new(loadfn("glProgramUniform3ivEXT")),
-         ProgramUniform3ui: FnPtr::new(loadfn("glProgramUniform3ui")),
-         ProgramUniform3ui64ARB: FnPtr::new(loadfn("glProgramUniform3ui64ARB")),
-         ProgramUniform3ui64NV: FnPtr::new(loadfn("glProgramUniform3ui64NV")),
-         ProgramUniform3ui64vARB: FnPtr::new(loadfn("glProgramUniform3ui64vARB")),
-         ProgramUniform3ui64vNV: FnPtr::new(loadfn("glProgramUniform3ui64vNV")),
-         ProgramUniform3uiEXT: FnPtr::new(loadfn("glProgramUniform3uiEXT")),
-         ProgramUniform3uiv: FnPtr::new(loadfn("glProgramUniform3uiv")),
-         ProgramUniform3uivEXT: FnPtr::new(loadfn("glProgramUniform3uivEXT")),
-         ProgramUniform4d: FnPtr::new(loadfn("glProgramUniform4d")),
-         ProgramUniform4dEXT: FnPtr::new(loadfn("glProgramUniform4dEXT")),
-         ProgramUniform4dv: FnPtr::new(loadfn("glProgramUniform4dv")),
-         ProgramUniform4dvEXT: FnPtr::new(loadfn("glProgramUniform4dvEXT")),
-         ProgramUniform4f: FnPtr::new(loadfn("glProgramUniform4f")),
-         ProgramUniform4fEXT: FnPtr::new(loadfn("glProgramUniform4fEXT")),
-         ProgramUniform4fv: FnPtr::new(loadfn("glProgramUniform4fv")),
-         ProgramUniform4fvEXT: FnPtr::new(loadfn("glProgramUniform4fvEXT")),
-         ProgramUniform4i: FnPtr::new(loadfn("glProgramUniform4i")),
-         ProgramUniform4i64ARB: FnPtr::new(loadfn("glProgramUniform4i64ARB")),
-         ProgramUniform4i64NV: FnPtr::new(loadfn("glProgramUniform4i64NV")),
-         ProgramUniform4i64vARB: FnPtr::new(loadfn("glProgramUniform4i64vARB")),
-         ProgramUniform4i64vNV: FnPtr::new(loadfn("glProgramUniform4i64vNV")),
-         ProgramUniform4iEXT: FnPtr::new(loadfn("glProgramUniform4iEXT")),
-         ProgramUniform4iv: FnPtr::new(loadfn("glProgramUniform4iv")),
-         ProgramUniform4ivEXT: FnPtr::new(loadfn("glProgramUniform4ivEXT")),
-         ProgramUniform4ui: FnPtr::new(loadfn("glProgramUniform4ui")),
-         ProgramUniform4ui64ARB: FnPtr::new(loadfn("glProgramUniform4ui64ARB")),
-         ProgramUniform4ui64NV: FnPtr::new(loadfn("glProgramUniform4ui64NV")),
-         ProgramUniform4ui64vARB: FnPtr::new(loadfn("glProgramUniform4ui64vARB")),
-         ProgramUniform4ui64vNV: FnPtr::new(loadfn("glProgramUniform4ui64vNV")),
-         ProgramUniform4uiEXT: FnPtr::new(loadfn("glProgramUniform4uiEXT")),
-         ProgramUniform4uiv: FnPtr::new(loadfn("glProgramUniform4uiv")),
-         ProgramUniform4uivEXT: FnPtr::new(loadfn("glProgramUniform4uivEXT")),
-         ProgramUniformHandleui64ARB: FnPtr::new(loadfn("glProgramUniformHandleui64ARB")),
-         ProgramUniformHandleui64NV: FnPtr::new(loadfn("glProgramUniformHandleui64NV")),
-         ProgramUniformHandleui64vARB: FnPtr::new(loadfn("glProgramUniformHandleui64vARB")),
-         ProgramUniformHandleui64vNV: FnPtr::new(loadfn("glProgramUniformHandleui64vNV")),
-         ProgramUniformMatrix2dv: FnPtr::new(loadfn("glProgramUniformMatrix2dv")),
-         ProgramUniformMatrix2dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2dvEXT")),
-         ProgramUniformMatrix2fv: FnPtr::new(loadfn("glProgramUniformMatrix2fv")),
-         ProgramUniformMatrix2fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2fvEXT")),
-         ProgramUniformMatrix2x3dv: FnPtr::new(loadfn("glProgramUniformMatrix2x3dv")),
-         ProgramUniformMatrix2x3dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2x3dvEXT")),
-         ProgramUniformMatrix2x3fv: FnPtr::new(loadfn("glProgramUniformMatrix2x3fv")),
-         ProgramUniformMatrix2x3fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2x3fvEXT")),
-         ProgramUniformMatrix2x4dv: FnPtr::new(loadfn("glProgramUniformMatrix2x4dv")),
-         ProgramUniformMatrix2x4dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2x4dvEXT")),
-         ProgramUniformMatrix2x4fv: FnPtr::new(loadfn("glProgramUniformMatrix2x4fv")),
-         ProgramUniformMatrix2x4fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix2x4fvEXT")),
-         ProgramUniformMatrix3dv: FnPtr::new(loadfn("glProgramUniformMatrix3dv")),
-         ProgramUniformMatrix3dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3dvEXT")),
-         ProgramUniformMatrix3fv: FnPtr::new(loadfn("glProgramUniformMatrix3fv")),
-         ProgramUniformMatrix3fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3fvEXT")),
-         ProgramUniformMatrix3x2dv: FnPtr::new(loadfn("glProgramUniformMatrix3x2dv")),
-         ProgramUniformMatrix3x2dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3x2dvEXT")),
-         ProgramUniformMatrix3x2fv: FnPtr::new(loadfn("glProgramUniformMatrix3x2fv")),
-         ProgramUniformMatrix3x2fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3x2fvEXT")),
-         ProgramUniformMatrix3x4dv: FnPtr::new(loadfn("glProgramUniformMatrix3x4dv")),
-         ProgramUniformMatrix3x4dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3x4dvEXT")),
-         ProgramUniformMatrix3x4fv: FnPtr::new(loadfn("glProgramUniformMatrix3x4fv")),
-         ProgramUniformMatrix3x4fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix3x4fvEXT")),
-         ProgramUniformMatrix4dv: FnPtr::new(loadfn("glProgramUniformMatrix4dv")),
-         ProgramUniformMatrix4dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4dvEXT")),
-         ProgramUniformMatrix4fv: FnPtr::new(loadfn("glProgramUniformMatrix4fv")),
-         ProgramUniformMatrix4fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4fvEXT")),
-         ProgramUniformMatrix4x2dv: FnPtr::new(loadfn("glProgramUniformMatrix4x2dv")),
-         ProgramUniformMatrix4x2dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4x2dvEXT")),
-         ProgramUniformMatrix4x2fv: FnPtr::new(loadfn("glProgramUniformMatrix4x2fv")),
-         ProgramUniformMatrix4x2fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4x2fvEXT")),
-         ProgramUniformMatrix4x3dv: FnPtr::new(loadfn("glProgramUniformMatrix4x3dv")),
-         ProgramUniformMatrix4x3dvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4x3dvEXT")),
-         ProgramUniformMatrix4x3fv: FnPtr::new(loadfn("glProgramUniformMatrix4x3fv")),
-         ProgramUniformMatrix4x3fvEXT: FnPtr::new(loadfn("glProgramUniformMatrix4x3fvEXT")),
-         ProgramUniformui64NV: FnPtr::new(loadfn("glProgramUniformui64NV")),
-         ProgramUniformui64vNV: FnPtr::new(loadfn("glProgramUniformui64vNV")),
-         ProgramVertexLimitNV: FnPtr::new(loadfn("glProgramVertexLimitNV")),
-         ProvokingVertex: FnPtr::new(loadfn("glProvokingVertex")),
-         ProvokingVertexEXT: FnPtr::new(loadfn("glProvokingVertexEXT")),
-         PushAttrib: FnPtr::new(loadfn("glPushAttrib")),
-         PushClientAttrib: FnPtr::new(loadfn("glPushClientAttrib")),
-         PushClientAttribDefaultEXT: FnPtr::new(loadfn("glPushClientAttribDefaultEXT")),
-         PushDebugGroup: FnPtr::new(loadfn("glPushDebugGroup")),
-         PushGroupMarkerEXT: FnPtr::new(loadfn("glPushGroupMarkerEXT")),
-         PushMatrix: FnPtr::new(loadfn("glPushMatrix")),
-         PushName: FnPtr::new(loadfn("glPushName")),
-         QueryCounter: FnPtr::new(loadfn("glQueryCounter")),
-         QueryMatrixxOES: FnPtr::new(loadfn("glQueryMatrixxOES")),
-         QueryObjectParameteruiAMD: FnPtr::new(loadfn("glQueryObjectParameteruiAMD")),
-         QueryResourceNV: FnPtr::new(loadfn("glQueryResourceNV")),
-         QueryResourceTagNV: FnPtr::new(loadfn("glQueryResourceTagNV")),
-         RasterPos2d: FnPtr::new(loadfn("glRasterPos2d")),
-         RasterPos2dv: FnPtr::new(loadfn("glRasterPos2dv")),
-         RasterPos2f: FnPtr::new(loadfn("glRasterPos2f")),
-         RasterPos2fv: FnPtr::new(loadfn("glRasterPos2fv")),
-         RasterPos2i: FnPtr::new(loadfn("glRasterPos2i")),
-         RasterPos2iv: FnPtr::new(loadfn("glRasterPos2iv")),
-         RasterPos2s: FnPtr::new(loadfn("glRasterPos2s")),
-         RasterPos2sv: FnPtr::new(loadfn("glRasterPos2sv")),
-         RasterPos2xOES: FnPtr::new(loadfn("glRasterPos2xOES")),
-         RasterPos2xvOES: FnPtr::new(loadfn("glRasterPos2xvOES")),
-         RasterPos3d: FnPtr::new(loadfn("glRasterPos3d")),
-         RasterPos3dv: FnPtr::new(loadfn("glRasterPos3dv")),
-         RasterPos3f: FnPtr::new(loadfn("glRasterPos3f")),
-         RasterPos3fv: FnPtr::new(loadfn("glRasterPos3fv")),
-         RasterPos3i: FnPtr::new(loadfn("glRasterPos3i")),
-         RasterPos3iv: FnPtr::new(loadfn("glRasterPos3iv")),
-         RasterPos3s: FnPtr::new(loadfn("glRasterPos3s")),
-         RasterPos3sv: FnPtr::new(loadfn("glRasterPos3sv")),
-         RasterPos3xOES: FnPtr::new(loadfn("glRasterPos3xOES")),
-         RasterPos3xvOES: FnPtr::new(loadfn("glRasterPos3xvOES")),
-         RasterPos4d: FnPtr::new(loadfn("glRasterPos4d")),
-         RasterPos4dv: FnPtr::new(loadfn("glRasterPos4dv")),
-         RasterPos4f: FnPtr::new(loadfn("glRasterPos4f")),
-         RasterPos4fv: FnPtr::new(loadfn("glRasterPos4fv")),
-         RasterPos4i: FnPtr::new(loadfn("glRasterPos4i")),
-         RasterPos4iv: FnPtr::new(loadfn("glRasterPos4iv")),
-         RasterPos4s: FnPtr::new(loadfn("glRasterPos4s")),
-         RasterPos4sv: FnPtr::new(loadfn("glRasterPos4sv")),
-         RasterPos4xOES: FnPtr::new(loadfn("glRasterPos4xOES")),
-         RasterPos4xvOES: FnPtr::new(loadfn("glRasterPos4xvOES")),
-         RasterSamplesEXT: FnPtr::new(loadfn("glRasterSamplesEXT")),
-         ReadBuffer: FnPtr::new(loadfn("glReadBuffer")),
-         ReadInstrumentsSGIX: FnPtr::new(loadfn("glReadInstrumentsSGIX")),
-         ReadPixels: FnPtr::new(loadfn("glReadPixels")),
-         ReadnPixels: FnPtr::new(loadfn("glReadnPixels")),
-         ReadnPixelsARB: FnPtr::new(loadfn("glReadnPixelsARB")),
-         Rectd: FnPtr::new(loadfn("glRectd")),
-         Rectdv: FnPtr::new(loadfn("glRectdv")),
-         Rectf: FnPtr::new(loadfn("glRectf")),
-         Rectfv: FnPtr::new(loadfn("glRectfv")),
-         Recti: FnPtr::new(loadfn("glRecti")),
-         Rectiv: FnPtr::new(loadfn("glRectiv")),
-         Rects: FnPtr::new(loadfn("glRects")),
-         Rectsv: FnPtr::new(loadfn("glRectsv")),
-         RectxOES: FnPtr::new(loadfn("glRectxOES")),
-         RectxvOES: FnPtr::new(loadfn("glRectxvOES")),
-         ReferencePlaneSGIX: FnPtr::new(loadfn("glReferencePlaneSGIX")),
-         ReleaseKeyedMutexWin32EXT: FnPtr::new(loadfn("glReleaseKeyedMutexWin32EXT")),
-         ReleaseShaderCompiler: FnPtr::new(loadfn("glReleaseShaderCompiler")),
-         RenderGpuMaskNV: FnPtr::new(loadfn("glRenderGpuMaskNV")),
-         RenderMode: FnPtr::new(loadfn("glRenderMode")),
-         RenderbufferStorage: FnPtr::new(loadfn("glRenderbufferStorage")),
-         RenderbufferStorageEXT: FnPtr::new(loadfn("glRenderbufferStorageEXT")),
-         RenderbufferStorageMultisample: FnPtr::new(loadfn("glRenderbufferStorageMultisample")),
-         RenderbufferStorageMultisampleAdvancedAMD: FnPtr::new(loadfn("glRenderbufferStorageMultisampleAdvancedAMD")),
-         RenderbufferStorageMultisampleCoverageNV: FnPtr::new(loadfn("glRenderbufferStorageMultisampleCoverageNV")),
-         RenderbufferStorageMultisampleEXT: FnPtr::new(loadfn("glRenderbufferStorageMultisampleEXT")),
-         ReplacementCodePointerSUN: FnPtr::new(loadfn("glReplacementCodePointerSUN")),
-         ReplacementCodeubSUN: FnPtr::new(loadfn("glReplacementCodeubSUN")),
-         ReplacementCodeubvSUN: FnPtr::new(loadfn("glReplacementCodeubvSUN")),
-         ReplacementCodeuiColor3fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiColor3fVertex3fSUN")),
-         ReplacementCodeuiColor3fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiColor3fVertex3fvSUN")),
-         ReplacementCodeuiColor4fNormal3fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiColor4fNormal3fVertex3fSUN")),
-         ReplacementCodeuiColor4fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiColor4fNormal3fVertex3fvSUN")),
-         ReplacementCodeuiColor4ubVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiColor4ubVertex3fSUN")),
-         ReplacementCodeuiColor4ubVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiColor4ubVertex3fvSUN")),
-         ReplacementCodeuiNormal3fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiNormal3fVertex3fSUN")),
-         ReplacementCodeuiNormal3fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiNormal3fVertex3fvSUN")),
-         ReplacementCodeuiSUN: FnPtr::new(loadfn("glReplacementCodeuiSUN")),
-         ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN")),
-         ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN")),
-         ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN")),
-         ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN")),
-         ReplacementCodeuiTexCoord2fVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fVertex3fSUN")),
-         ReplacementCodeuiTexCoord2fVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiTexCoord2fVertex3fvSUN")),
-         ReplacementCodeuiVertex3fSUN: FnPtr::new(loadfn("glReplacementCodeuiVertex3fSUN")),
-         ReplacementCodeuiVertex3fvSUN: FnPtr::new(loadfn("glReplacementCodeuiVertex3fvSUN")),
-         ReplacementCodeuivSUN: FnPtr::new(loadfn("glReplacementCodeuivSUN")),
-         ReplacementCodeusSUN: FnPtr::new(loadfn("glReplacementCodeusSUN")),
-         ReplacementCodeusvSUN: FnPtr::new(loadfn("glReplacementCodeusvSUN")),
-         RequestResidentProgramsNV: FnPtr::new(loadfn("glRequestResidentProgramsNV")),
-         ResetHistogram: FnPtr::new(loadfn("glResetHistogram")),
-         ResetHistogramEXT: FnPtr::new(loadfn("glResetHistogramEXT")),
-         ResetMemoryObjectParameterNV: FnPtr::new(loadfn("glResetMemoryObjectParameterNV")),
-         ResetMinmax: FnPtr::new(loadfn("glResetMinmax")),
-         ResetMinmaxEXT: FnPtr::new(loadfn("glResetMinmaxEXT")),
-         ResizeBuffersMESA: FnPtr::new(loadfn("glResizeBuffersMESA")),
-         ResolveDepthValuesNV: FnPtr::new(loadfn("glResolveDepthValuesNV")),
-         ResumeTransformFeedback: FnPtr::new(loadfn("glResumeTransformFeedback")),
-         ResumeTransformFeedbackNV: FnPtr::new(loadfn("glResumeTransformFeedbackNV")),
-         Rotated: FnPtr::new(loadfn("glRotated")),
-         Rotatef: FnPtr::new(loadfn("glRotatef")),
-         RotatexOES: FnPtr::new(loadfn("glRotatexOES")),
-         SampleCoverage: FnPtr::new(loadfn("glSampleCoverage")),
-         SampleCoverageARB: FnPtr::new(loadfn("glSampleCoverageARB")),
-         SampleMapATI: FnPtr::new(loadfn("glSampleMapATI")),
-         SampleMaskEXT: FnPtr::new(loadfn("glSampleMaskEXT")),
-         SampleMaskIndexedNV: FnPtr::new(loadfn("glSampleMaskIndexedNV")),
-         SampleMaskSGIS: FnPtr::new(loadfn("glSampleMaskSGIS")),
-         SampleMaski: FnPtr::new(loadfn("glSampleMaski")),
-         SamplePatternEXT: FnPtr::new(loadfn("glSamplePatternEXT")),
-         SamplePatternSGIS: FnPtr::new(loadfn("glSamplePatternSGIS")),
-         SamplerParameterIiv: FnPtr::new(loadfn("glSamplerParameterIiv")),
-         SamplerParameterIuiv: FnPtr::new(loadfn("glSamplerParameterIuiv")),
-         SamplerParameterf: FnPtr::new(loadfn("glSamplerParameterf")),
-         SamplerParameterfv: FnPtr::new(loadfn("glSamplerParameterfv")),
-         SamplerParameteri: FnPtr::new(loadfn("glSamplerParameteri")),
-         SamplerParameteriv: FnPtr::new(loadfn("glSamplerParameteriv")),
-         Scaled: FnPtr::new(loadfn("glScaled")),
-         Scalef: FnPtr::new(loadfn("glScalef")),
-         ScalexOES: FnPtr::new(loadfn("glScalexOES")),
-         Scissor: FnPtr::new(loadfn("glScissor")),
-         ScissorArrayv: FnPtr::new(loadfn("glScissorArrayv")),
-         ScissorExclusiveArrayvNV: FnPtr::new(loadfn("glScissorExclusiveArrayvNV")),
-         ScissorExclusiveNV: FnPtr::new(loadfn("glScissorExclusiveNV")),
-         ScissorIndexed: FnPtr::new(loadfn("glScissorIndexed")),
-         ScissorIndexedv: FnPtr::new(loadfn("glScissorIndexedv")),
-         SecondaryColor3b: FnPtr::new(loadfn("glSecondaryColor3b")),
-         SecondaryColor3bEXT: FnPtr::new(loadfn("glSecondaryColor3bEXT")),
-         SecondaryColor3bv: FnPtr::new(loadfn("glSecondaryColor3bv")),
-         SecondaryColor3bvEXT: FnPtr::new(loadfn("glSecondaryColor3bvEXT")),
-         SecondaryColor3d: FnPtr::new(loadfn("glSecondaryColor3d")),
-         SecondaryColor3dEXT: FnPtr::new(loadfn("glSecondaryColor3dEXT")),
-         SecondaryColor3dv: FnPtr::new(loadfn("glSecondaryColor3dv")),
-         SecondaryColor3dvEXT: FnPtr::new(loadfn("glSecondaryColor3dvEXT")),
-         SecondaryColor3f: FnPtr::new(loadfn("glSecondaryColor3f")),
-         SecondaryColor3fEXT: FnPtr::new(loadfn("glSecondaryColor3fEXT")),
-         SecondaryColor3fv: FnPtr::new(loadfn("glSecondaryColor3fv")),
-         SecondaryColor3fvEXT: FnPtr::new(loadfn("glSecondaryColor3fvEXT")),
-         SecondaryColor3hNV: FnPtr::new(loadfn("glSecondaryColor3hNV")),
-         SecondaryColor3hvNV: FnPtr::new(loadfn("glSecondaryColor3hvNV")),
-         SecondaryColor3i: FnPtr::new(loadfn("glSecondaryColor3i")),
-         SecondaryColor3iEXT: FnPtr::new(loadfn("glSecondaryColor3iEXT")),
-         SecondaryColor3iv: FnPtr::new(loadfn("glSecondaryColor3iv")),
-         SecondaryColor3ivEXT: FnPtr::new(loadfn("glSecondaryColor3ivEXT")),
-         SecondaryColor3s: FnPtr::new(loadfn("glSecondaryColor3s")),
-         SecondaryColor3sEXT: FnPtr::new(loadfn("glSecondaryColor3sEXT")),
-         SecondaryColor3sv: FnPtr::new(loadfn("glSecondaryColor3sv")),
-         SecondaryColor3svEXT: FnPtr::new(loadfn("glSecondaryColor3svEXT")),
-         SecondaryColor3ub: FnPtr::new(loadfn("glSecondaryColor3ub")),
-         SecondaryColor3ubEXT: FnPtr::new(loadfn("glSecondaryColor3ubEXT")),
-         SecondaryColor3ubv: FnPtr::new(loadfn("glSecondaryColor3ubv")),
-         SecondaryColor3ubvEXT: FnPtr::new(loadfn("glSecondaryColor3ubvEXT")),
-         SecondaryColor3ui: FnPtr::new(loadfn("glSecondaryColor3ui")),
-         SecondaryColor3uiEXT: FnPtr::new(loadfn("glSecondaryColor3uiEXT")),
-         SecondaryColor3uiv: FnPtr::new(loadfn("glSecondaryColor3uiv")),
-         SecondaryColor3uivEXT: FnPtr::new(loadfn("glSecondaryColor3uivEXT")),
-         SecondaryColor3us: FnPtr::new(loadfn("glSecondaryColor3us")),
-         SecondaryColor3usEXT: FnPtr::new(loadfn("glSecondaryColor3usEXT")),
-         SecondaryColor3usv: FnPtr::new(loadfn("glSecondaryColor3usv")),
-         SecondaryColor3usvEXT: FnPtr::new(loadfn("glSecondaryColor3usvEXT")),
-         SecondaryColorFormatNV: FnPtr::new(loadfn("glSecondaryColorFormatNV")),
-         SecondaryColorP3ui: FnPtr::new(loadfn("glSecondaryColorP3ui")),
-         SecondaryColorP3uiv: FnPtr::new(loadfn("glSecondaryColorP3uiv")),
-         SecondaryColorPointer: FnPtr::new(loadfn("glSecondaryColorPointer")),
-         SecondaryColorPointerEXT: FnPtr::new(loadfn("glSecondaryColorPointerEXT")),
-         SecondaryColorPointerListIBM: FnPtr::new(loadfn("glSecondaryColorPointerListIBM")),
-         SelectBuffer: FnPtr::new(loadfn("glSelectBuffer")),
-         SelectPerfMonitorCountersAMD: FnPtr::new(loadfn("glSelectPerfMonitorCountersAMD")),
-         SemaphoreParameterivNV: FnPtr::new(loadfn("glSemaphoreParameterivNV")),
-         SemaphoreParameterui64vEXT: FnPtr::new(loadfn("glSemaphoreParameterui64vEXT")),
-         SeparableFilter2D: FnPtr::new(loadfn("glSeparableFilter2D")),
-         SeparableFilter2DEXT: FnPtr::new(loadfn("glSeparableFilter2DEXT")),
-         SetFenceAPPLE: FnPtr::new(loadfn("glSetFenceAPPLE")),
-         SetFenceNV: FnPtr::new(loadfn("glSetFenceNV")),
-         SetFragmentShaderConstantATI: FnPtr::new(loadfn("glSetFragmentShaderConstantATI")),
-         SetInvariantEXT: FnPtr::new(loadfn("glSetInvariantEXT")),
-         SetLocalConstantEXT: FnPtr::new(loadfn("glSetLocalConstantEXT")),
-         SetMultisamplefvAMD: FnPtr::new(loadfn("glSetMultisamplefvAMD")),
-         ShadeModel: FnPtr::new(loadfn("glShadeModel")),
-         ShaderBinary: FnPtr::new(loadfn("glShaderBinary")),
-         ShaderOp1EXT: FnPtr::new(loadfn("glShaderOp1EXT")),
-         ShaderOp2EXT: FnPtr::new(loadfn("glShaderOp2EXT")),
-         ShaderOp3EXT: FnPtr::new(loadfn("glShaderOp3EXT")),
-         ShaderSource: FnPtr::new(loadfn("glShaderSource")),
-         ShaderSourceARB: FnPtr::new(loadfn("glShaderSourceARB")),
-         ShaderStorageBlockBinding: FnPtr::new(loadfn("glShaderStorageBlockBinding")),
-         ShadingRateImageBarrierNV: FnPtr::new(loadfn("glShadingRateImageBarrierNV")),
-         ShadingRateImagePaletteNV: FnPtr::new(loadfn("glShadingRateImagePaletteNV")),
-         ShadingRateSampleOrderCustomNV: FnPtr::new(loadfn("glShadingRateSampleOrderCustomNV")),
-         ShadingRateSampleOrderNV: FnPtr::new(loadfn("glShadingRateSampleOrderNV")),
-         SharpenTexFuncSGIS: FnPtr::new(loadfn("glSharpenTexFuncSGIS")),
-         SignalSemaphoreEXT: FnPtr::new(loadfn("glSignalSemaphoreEXT")),
-         SignalSemaphoreui64NVX: FnPtr::new(loadfn("glSignalSemaphoreui64NVX")),
-         SignalVkFenceNV: FnPtr::new(loadfn("glSignalVkFenceNV")),
-         SignalVkSemaphoreNV: FnPtr::new(loadfn("glSignalVkSemaphoreNV")),
-         SpecializeShader: FnPtr::new(loadfn("glSpecializeShader")),
-         SpecializeShaderARB: FnPtr::new(loadfn("glSpecializeShaderARB")),
-         SpriteParameterfSGIX: FnPtr::new(loadfn("glSpriteParameterfSGIX")),
-         SpriteParameterfvSGIX: FnPtr::new(loadfn("glSpriteParameterfvSGIX")),
-         SpriteParameteriSGIX: FnPtr::new(loadfn("glSpriteParameteriSGIX")),
-         SpriteParameterivSGIX: FnPtr::new(loadfn("glSpriteParameterivSGIX")),
-         StartInstrumentsSGIX: FnPtr::new(loadfn("glStartInstrumentsSGIX")),
-         StateCaptureNV: FnPtr::new(loadfn("glStateCaptureNV")),
-         StencilClearTagEXT: FnPtr::new(loadfn("glStencilClearTagEXT")),
-         StencilFillPathInstancedNV: FnPtr::new(loadfn("glStencilFillPathInstancedNV")),
-         StencilFillPathNV: FnPtr::new(loadfn("glStencilFillPathNV")),
-         StencilFunc: FnPtr::new(loadfn("glStencilFunc")),
-         StencilFuncSeparate: FnPtr::new(loadfn("glStencilFuncSeparate")),
-         StencilFuncSeparateATI: FnPtr::new(loadfn("glStencilFuncSeparateATI")),
-         StencilMask: FnPtr::new(loadfn("glStencilMask")),
-         StencilMaskSeparate: FnPtr::new(loadfn("glStencilMaskSeparate")),
-         StencilOp: FnPtr::new(loadfn("glStencilOp")),
-         StencilOpSeparate: FnPtr::new(loadfn("glStencilOpSeparate")),
-         StencilOpSeparateATI: FnPtr::new(loadfn("glStencilOpSeparateATI")),
-         StencilOpValueAMD: FnPtr::new(loadfn("glStencilOpValueAMD")),
-         StencilStrokePathInstancedNV: FnPtr::new(loadfn("glStencilStrokePathInstancedNV")),
-         StencilStrokePathNV: FnPtr::new(loadfn("glStencilStrokePathNV")),
-         StencilThenCoverFillPathInstancedNV: FnPtr::new(loadfn("glStencilThenCoverFillPathInstancedNV")),
-         StencilThenCoverFillPathNV: FnPtr::new(loadfn("glStencilThenCoverFillPathNV")),
-         StencilThenCoverStrokePathInstancedNV: FnPtr::new(loadfn("glStencilThenCoverStrokePathInstancedNV")),
-         StencilThenCoverStrokePathNV: FnPtr::new(loadfn("glStencilThenCoverStrokePathNV")),
-         StopInstrumentsSGIX: FnPtr::new(loadfn("glStopInstrumentsSGIX")),
-         StringMarkerGREMEDY: FnPtr::new(loadfn("glStringMarkerGREMEDY")),
-         SubpixelPrecisionBiasNV: FnPtr::new(loadfn("glSubpixelPrecisionBiasNV")),
-         SwizzleEXT: FnPtr::new(loadfn("glSwizzleEXT")),
-         SyncTextureINTEL: FnPtr::new(loadfn("glSyncTextureINTEL")),
-         TagSampleBufferSGIX: FnPtr::new(loadfn("glTagSampleBufferSGIX")),
-         Tangent3bEXT: FnPtr::new(loadfn("glTangent3bEXT")),
-         Tangent3bvEXT: FnPtr::new(loadfn("glTangent3bvEXT")),
-         Tangent3dEXT: FnPtr::new(loadfn("glTangent3dEXT")),
-         Tangent3dvEXT: FnPtr::new(loadfn("glTangent3dvEXT")),
-         Tangent3fEXT: FnPtr::new(loadfn("glTangent3fEXT")),
-         Tangent3fvEXT: FnPtr::new(loadfn("glTangent3fvEXT")),
-         Tangent3iEXT: FnPtr::new(loadfn("glTangent3iEXT")),
-         Tangent3ivEXT: FnPtr::new(loadfn("glTangent3ivEXT")),
-         Tangent3sEXT: FnPtr::new(loadfn("glTangent3sEXT")),
-         Tangent3svEXT: FnPtr::new(loadfn("glTangent3svEXT")),
-         TangentPointerEXT: FnPtr::new(loadfn("glTangentPointerEXT")),
-         TbufferMask3DFX: FnPtr::new(loadfn("glTbufferMask3DFX")),
-         TessellationFactorAMD: FnPtr::new(loadfn("glTessellationFactorAMD")),
-         TessellationModeAMD: FnPtr::new(loadfn("glTessellationModeAMD")),
-         TestFenceAPPLE: FnPtr::new(loadfn("glTestFenceAPPLE")),
-         TestFenceNV: FnPtr::new(loadfn("glTestFenceNV")),
-         TestObjectAPPLE: FnPtr::new(loadfn("glTestObjectAPPLE")),
-         TexAttachMemoryNV: FnPtr::new(loadfn("glTexAttachMemoryNV")),
-         TexBuffer: FnPtr::new(loadfn("glTexBuffer")),
-         TexBufferARB: FnPtr::new(loadfn("glTexBufferARB")),
-         TexBufferEXT: FnPtr::new(loadfn("glTexBufferEXT")),
-         TexBufferRange: FnPtr::new(loadfn("glTexBufferRange")),
-         TexBumpParameterfvATI: FnPtr::new(loadfn("glTexBumpParameterfvATI")),
-         TexBumpParameterivATI: FnPtr::new(loadfn("glTexBumpParameterivATI")),
-         TexCoord1bOES: FnPtr::new(loadfn("glTexCoord1bOES")),
-         TexCoord1bvOES: FnPtr::new(loadfn("glTexCoord1bvOES")),
-         TexCoord1d: FnPtr::new(loadfn("glTexCoord1d")),
-         TexCoord1dv: FnPtr::new(loadfn("glTexCoord1dv")),
-         TexCoord1f: FnPtr::new(loadfn("glTexCoord1f")),
-         TexCoord1fv: FnPtr::new(loadfn("glTexCoord1fv")),
-         TexCoord1hNV: FnPtr::new(loadfn("glTexCoord1hNV")),
-         TexCoord1hvNV: FnPtr::new(loadfn("glTexCoord1hvNV")),
-         TexCoord1i: FnPtr::new(loadfn("glTexCoord1i")),
-         TexCoord1iv: FnPtr::new(loadfn("glTexCoord1iv")),
-         TexCoord1s: FnPtr::new(loadfn("glTexCoord1s")),
-         TexCoord1sv: FnPtr::new(loadfn("glTexCoord1sv")),
-         TexCoord1xOES: FnPtr::new(loadfn("glTexCoord1xOES")),
-         TexCoord1xvOES: FnPtr::new(loadfn("glTexCoord1xvOES")),
-         TexCoord2bOES: FnPtr::new(loadfn("glTexCoord2bOES")),
-         TexCoord2bvOES: FnPtr::new(loadfn("glTexCoord2bvOES")),
-         TexCoord2d: FnPtr::new(loadfn("glTexCoord2d")),
-         TexCoord2dv: FnPtr::new(loadfn("glTexCoord2dv")),
-         TexCoord2f: FnPtr::new(loadfn("glTexCoord2f")),
-         TexCoord2fColor3fVertex3fSUN: FnPtr::new(loadfn("glTexCoord2fColor3fVertex3fSUN")),
-         TexCoord2fColor3fVertex3fvSUN: FnPtr::new(loadfn("glTexCoord2fColor3fVertex3fvSUN")),
-         TexCoord2fColor4fNormal3fVertex3fSUN: FnPtr::new(loadfn("glTexCoord2fColor4fNormal3fVertex3fSUN")),
-         TexCoord2fColor4fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glTexCoord2fColor4fNormal3fVertex3fvSUN")),
-         TexCoord2fColor4ubVertex3fSUN: FnPtr::new(loadfn("glTexCoord2fColor4ubVertex3fSUN")),
-         TexCoord2fColor4ubVertex3fvSUN: FnPtr::new(loadfn("glTexCoord2fColor4ubVertex3fvSUN")),
-         TexCoord2fNormal3fVertex3fSUN: FnPtr::new(loadfn("glTexCoord2fNormal3fVertex3fSUN")),
-         TexCoord2fNormal3fVertex3fvSUN: FnPtr::new(loadfn("glTexCoord2fNormal3fVertex3fvSUN")),
-         TexCoord2fVertex3fSUN: FnPtr::new(loadfn("glTexCoord2fVertex3fSUN")),
-         TexCoord2fVertex3fvSUN: FnPtr::new(loadfn("glTexCoord2fVertex3fvSUN")),
-         TexCoord2fv: FnPtr::new(loadfn("glTexCoord2fv")),
-         TexCoord2hNV: FnPtr::new(loadfn("glTexCoord2hNV")),
-         TexCoord2hvNV: FnPtr::new(loadfn("glTexCoord2hvNV")),
-         TexCoord2i: FnPtr::new(loadfn("glTexCoord2i")),
-         TexCoord2iv: FnPtr::new(loadfn("glTexCoord2iv")),
-         TexCoord2s: FnPtr::new(loadfn("glTexCoord2s")),
-         TexCoord2sv: FnPtr::new(loadfn("glTexCoord2sv")),
-         TexCoord2xOES: FnPtr::new(loadfn("glTexCoord2xOES")),
-         TexCoord2xvOES: FnPtr::new(loadfn("glTexCoord2xvOES")),
-         TexCoord3bOES: FnPtr::new(loadfn("glTexCoord3bOES")),
-         TexCoord3bvOES: FnPtr::new(loadfn("glTexCoord3bvOES")),
-         TexCoord3d: FnPtr::new(loadfn("glTexCoord3d")),
-         TexCoord3dv: FnPtr::new(loadfn("glTexCoord3dv")),
-         TexCoord3f: FnPtr::new(loadfn("glTexCoord3f")),
-         TexCoord3fv: FnPtr::new(loadfn("glTexCoord3fv")),
-         TexCoord3hNV: FnPtr::new(loadfn("glTexCoord3hNV")),
-         TexCoord3hvNV: FnPtr::new(loadfn("glTexCoord3hvNV")),
-         TexCoord3i: FnPtr::new(loadfn("glTexCoord3i")),
-         TexCoord3iv: FnPtr::new(loadfn("glTexCoord3iv")),
-         TexCoord3s: FnPtr::new(loadfn("glTexCoord3s")),
-         TexCoord3sv: FnPtr::new(loadfn("glTexCoord3sv")),
-         TexCoord3xOES: FnPtr::new(loadfn("glTexCoord3xOES")),
-         TexCoord3xvOES: FnPtr::new(loadfn("glTexCoord3xvOES")),
-         TexCoord4bOES: FnPtr::new(loadfn("glTexCoord4bOES")),
-         TexCoord4bvOES: FnPtr::new(loadfn("glTexCoord4bvOES")),
-         TexCoord4d: FnPtr::new(loadfn("glTexCoord4d")),
-         TexCoord4dv: FnPtr::new(loadfn("glTexCoord4dv")),
-         TexCoord4f: FnPtr::new(loadfn("glTexCoord4f")),
-         TexCoord4fColor4fNormal3fVertex4fSUN: FnPtr::new(loadfn("glTexCoord4fColor4fNormal3fVertex4fSUN")),
-         TexCoord4fColor4fNormal3fVertex4fvSUN: FnPtr::new(loadfn("glTexCoord4fColor4fNormal3fVertex4fvSUN")),
-         TexCoord4fVertex4fSUN: FnPtr::new(loadfn("glTexCoord4fVertex4fSUN")),
-         TexCoord4fVertex4fvSUN: FnPtr::new(loadfn("glTexCoord4fVertex4fvSUN")),
-         TexCoord4fv: FnPtr::new(loadfn("glTexCoord4fv")),
-         TexCoord4hNV: FnPtr::new(loadfn("glTexCoord4hNV")),
-         TexCoord4hvNV: FnPtr::new(loadfn("glTexCoord4hvNV")),
-         TexCoord4i: FnPtr::new(loadfn("glTexCoord4i")),
-         TexCoord4iv: FnPtr::new(loadfn("glTexCoord4iv")),
-         TexCoord4s: FnPtr::new(loadfn("glTexCoord4s")),
-         TexCoord4sv: FnPtr::new(loadfn("glTexCoord4sv")),
-         TexCoord4xOES: FnPtr::new(loadfn("glTexCoord4xOES")),
-         TexCoord4xvOES: FnPtr::new(loadfn("glTexCoord4xvOES")),
-         TexCoordFormatNV: FnPtr::new(loadfn("glTexCoordFormatNV")),
-         TexCoordP1ui: FnPtr::new(loadfn("glTexCoordP1ui")),
-         TexCoordP1uiv: FnPtr::new(loadfn("glTexCoordP1uiv")),
-         TexCoordP2ui: FnPtr::new(loadfn("glTexCoordP2ui")),
-         TexCoordP2uiv: FnPtr::new(loadfn("glTexCoordP2uiv")),
-         TexCoordP3ui: FnPtr::new(loadfn("glTexCoordP3ui")),
-         TexCoordP3uiv: FnPtr::new(loadfn("glTexCoordP3uiv")),
-         TexCoordP4ui: FnPtr::new(loadfn("glTexCoordP4ui")),
-         TexCoordP4uiv: FnPtr::new(loadfn("glTexCoordP4uiv")),
-         TexCoordPointer: FnPtr::new(loadfn("glTexCoordPointer")),
-         TexCoordPointerEXT: FnPtr::new(loadfn("glTexCoordPointerEXT")),
-         TexCoordPointerListIBM: FnPtr::new(loadfn("glTexCoordPointerListIBM")),
-         TexCoordPointervINTEL: FnPtr::new(loadfn("glTexCoordPointervINTEL")),
-         TexEnvf: FnPtr::new(loadfn("glTexEnvf")),
-         TexEnvfv: FnPtr::new(loadfn("glTexEnvfv")),
-         TexEnvi: FnPtr::new(loadfn("glTexEnvi")),
-         TexEnviv: FnPtr::new(loadfn("glTexEnviv")),
-         TexEnvxOES: FnPtr::new(loadfn("glTexEnvxOES")),
-         TexEnvxvOES: FnPtr::new(loadfn("glTexEnvxvOES")),
-         TexFilterFuncSGIS: FnPtr::new(loadfn("glTexFilterFuncSGIS")),
-         TexGend: FnPtr::new(loadfn("glTexGend")),
-         TexGendv: FnPtr::new(loadfn("glTexGendv")),
-         TexGenf: FnPtr::new(loadfn("glTexGenf")),
-         TexGenfv: FnPtr::new(loadfn("glTexGenfv")),
-         TexGeni: FnPtr::new(loadfn("glTexGeni")),
-         TexGeniv: FnPtr::new(loadfn("glTexGeniv")),
-         TexGenxOES: FnPtr::new(loadfn("glTexGenxOES")),
-         TexGenxvOES: FnPtr::new(loadfn("glTexGenxvOES")),
-         TexImage1D: FnPtr::new(loadfn("glTexImage1D")),
-         TexImage2D: FnPtr::new(loadfn("glTexImage2D")),
-         TexImage2DMultisample: FnPtr::new(loadfn("glTexImage2DMultisample")),
-         TexImage2DMultisampleCoverageNV: FnPtr::new(loadfn("glTexImage2DMultisampleCoverageNV")),
-         TexImage3D: FnPtr::new(loadfn("glTexImage3D")),
-         TexImage3DEXT: FnPtr::new(loadfn("glTexImage3DEXT")),
-         TexImage3DMultisample: FnPtr::new(loadfn("glTexImage3DMultisample")),
-         TexImage3DMultisampleCoverageNV: FnPtr::new(loadfn("glTexImage3DMultisampleCoverageNV")),
-         TexImage4DSGIS: FnPtr::new(loadfn("glTexImage4DSGIS")),
-         TexPageCommitmentARB: FnPtr::new(loadfn("glTexPageCommitmentARB")),
-         TexPageCommitmentMemNV: FnPtr::new(loadfn("glTexPageCommitmentMemNV")),
-         TexParameterIiv: FnPtr::new(loadfn("glTexParameterIiv")),
-         TexParameterIivEXT: FnPtr::new(loadfn("glTexParameterIivEXT")),
-         TexParameterIuiv: FnPtr::new(loadfn("glTexParameterIuiv")),
-         TexParameterIuivEXT: FnPtr::new(loadfn("glTexParameterIuivEXT")),
-         TexParameterf: FnPtr::new(loadfn("glTexParameterf")),
-         TexParameterfv: FnPtr::new(loadfn("glTexParameterfv")),
-         TexParameteri: FnPtr::new(loadfn("glTexParameteri")),
-         TexParameteriv: FnPtr::new(loadfn("glTexParameteriv")),
-         TexParameterxOES: FnPtr::new(loadfn("glTexParameterxOES")),
-         TexParameterxvOES: FnPtr::new(loadfn("glTexParameterxvOES")),
-         TexRenderbufferNV: FnPtr::new(loadfn("glTexRenderbufferNV")),
-         TexStorage1D: FnPtr::new(loadfn("glTexStorage1D")),
-         TexStorage2D: FnPtr::new(loadfn("glTexStorage2D")),
-         TexStorage2DMultisample: FnPtr::new(loadfn("glTexStorage2DMultisample")),
-         TexStorage3D: FnPtr::new(loadfn("glTexStorage3D")),
-         TexStorage3DMultisample: FnPtr::new(loadfn("glTexStorage3DMultisample")),
-         TexStorageMem1DEXT: FnPtr::new(loadfn("glTexStorageMem1DEXT")),
-         TexStorageMem2DEXT: FnPtr::new(loadfn("glTexStorageMem2DEXT")),
-         TexStorageMem2DMultisampleEXT: FnPtr::new(loadfn("glTexStorageMem2DMultisampleEXT")),
-         TexStorageMem3DEXT: FnPtr::new(loadfn("glTexStorageMem3DEXT")),
-         TexStorageMem3DMultisampleEXT: FnPtr::new(loadfn("glTexStorageMem3DMultisampleEXT")),
-         TexStorageSparseAMD: FnPtr::new(loadfn("glTexStorageSparseAMD")),
-         TexSubImage1D: FnPtr::new(loadfn("glTexSubImage1D")),
-         TexSubImage1DEXT: FnPtr::new(loadfn("glTexSubImage1DEXT")),
-         TexSubImage2D: FnPtr::new(loadfn("glTexSubImage2D")),
-         TexSubImage2DEXT: FnPtr::new(loadfn("glTexSubImage2DEXT")),
-         TexSubImage3D: FnPtr::new(loadfn("glTexSubImage3D")),
-         TexSubImage3DEXT: FnPtr::new(loadfn("glTexSubImage3DEXT")),
-         TexSubImage4DSGIS: FnPtr::new(loadfn("glTexSubImage4DSGIS")),
-         TextureAttachMemoryNV: FnPtr::new(loadfn("glTextureAttachMemoryNV")),
-         TextureBarrier: FnPtr::new(loadfn("glTextureBarrier")),
-         TextureBarrierNV: FnPtr::new(loadfn("glTextureBarrierNV")),
-         TextureBuffer: FnPtr::new(loadfn("glTextureBuffer")),
-         TextureBufferEXT: FnPtr::new(loadfn("glTextureBufferEXT")),
-         TextureBufferRange: FnPtr::new(loadfn("glTextureBufferRange")),
-         TextureBufferRangeEXT: FnPtr::new(loadfn("glTextureBufferRangeEXT")),
-         TextureColorMaskSGIS: FnPtr::new(loadfn("glTextureColorMaskSGIS")),
-         TextureImage1DEXT: FnPtr::new(loadfn("glTextureImage1DEXT")),
-         TextureImage2DEXT: FnPtr::new(loadfn("glTextureImage2DEXT")),
-         TextureImage2DMultisampleCoverageNV: FnPtr::new(loadfn("glTextureImage2DMultisampleCoverageNV")),
-         TextureImage2DMultisampleNV: FnPtr::new(loadfn("glTextureImage2DMultisampleNV")),
-         TextureImage3DEXT: FnPtr::new(loadfn("glTextureImage3DEXT")),
-         TextureImage3DMultisampleCoverageNV: FnPtr::new(loadfn("glTextureImage3DMultisampleCoverageNV")),
-         TextureImage3DMultisampleNV: FnPtr::new(loadfn("glTextureImage3DMultisampleNV")),
-         TextureLightEXT: FnPtr::new(loadfn("glTextureLightEXT")),
-         TextureMaterialEXT: FnPtr::new(loadfn("glTextureMaterialEXT")),
-         TextureNormalEXT: FnPtr::new(loadfn("glTextureNormalEXT")),
-         TexturePageCommitmentEXT: FnPtr::new(loadfn("glTexturePageCommitmentEXT")),
-         TexturePageCommitmentMemNV: FnPtr::new(loadfn("glTexturePageCommitmentMemNV")),
-         TextureParameterIiv: FnPtr::new(loadfn("glTextureParameterIiv")),
-         TextureParameterIivEXT: FnPtr::new(loadfn("glTextureParameterIivEXT")),
-         TextureParameterIuiv: FnPtr::new(loadfn("glTextureParameterIuiv")),
-         TextureParameterIuivEXT: FnPtr::new(loadfn("glTextureParameterIuivEXT")),
-         TextureParameterf: FnPtr::new(loadfn("glTextureParameterf")),
-         TextureParameterfEXT: FnPtr::new(loadfn("glTextureParameterfEXT")),
-         TextureParameterfv: FnPtr::new(loadfn("glTextureParameterfv")),
-         TextureParameterfvEXT: FnPtr::new(loadfn("glTextureParameterfvEXT")),
-         TextureParameteri: FnPtr::new(loadfn("glTextureParameteri")),
-         TextureParameteriEXT: FnPtr::new(loadfn("glTextureParameteriEXT")),
-         TextureParameteriv: FnPtr::new(loadfn("glTextureParameteriv")),
-         TextureParameterivEXT: FnPtr::new(loadfn("glTextureParameterivEXT")),
-         TextureRangeAPPLE: FnPtr::new(loadfn("glTextureRangeAPPLE")),
-         TextureRenderbufferEXT: FnPtr::new(loadfn("glTextureRenderbufferEXT")),
-         TextureStorage1D: FnPtr::new(loadfn("glTextureStorage1D")),
-         TextureStorage1DEXT: FnPtr::new(loadfn("glTextureStorage1DEXT")),
-         TextureStorage2D: FnPtr::new(loadfn("glTextureStorage2D")),
-         TextureStorage2DEXT: FnPtr::new(loadfn("glTextureStorage2DEXT")),
-         TextureStorage2DMultisample: FnPtr::new(loadfn("glTextureStorage2DMultisample")),
-         TextureStorage2DMultisampleEXT: FnPtr::new(loadfn("glTextureStorage2DMultisampleEXT")),
-         TextureStorage3D: FnPtr::new(loadfn("glTextureStorage3D")),
-         TextureStorage3DEXT: FnPtr::new(loadfn("glTextureStorage3DEXT")),
-         TextureStorage3DMultisample: FnPtr::new(loadfn("glTextureStorage3DMultisample")),
-         TextureStorage3DMultisampleEXT: FnPtr::new(loadfn("glTextureStorage3DMultisampleEXT")),
-         TextureStorageMem1DEXT: FnPtr::new(loadfn("glTextureStorageMem1DEXT")),
-         TextureStorageMem2DEXT: FnPtr::new(loadfn("glTextureStorageMem2DEXT")),
-         TextureStorageMem2DMultisampleEXT: FnPtr::new(loadfn("glTextureStorageMem2DMultisampleEXT")),
-         TextureStorageMem3DEXT: FnPtr::new(loadfn("glTextureStorageMem3DEXT")),
-         TextureStorageMem3DMultisampleEXT: FnPtr::new(loadfn("glTextureStorageMem3DMultisampleEXT")),
-         TextureStorageSparseAMD: FnPtr::new(loadfn("glTextureStorageSparseAMD")),
-         TextureSubImage1D: FnPtr::new(loadfn("glTextureSubImage1D")),
-         TextureSubImage1DEXT: FnPtr::new(loadfn("glTextureSubImage1DEXT")),
-         TextureSubImage2D: FnPtr::new(loadfn("glTextureSubImage2D")),
-         TextureSubImage2DEXT: FnPtr::new(loadfn("glTextureSubImage2DEXT")),
-         TextureSubImage3D: FnPtr::new(loadfn("glTextureSubImage3D")),
-         TextureSubImage3DEXT: FnPtr::new(loadfn("glTextureSubImage3DEXT")),
-         TextureView: FnPtr::new(loadfn("glTextureView")),
-         TrackMatrixNV: FnPtr::new(loadfn("glTrackMatrixNV")),
-         TransformFeedbackAttribsNV: FnPtr::new(loadfn("glTransformFeedbackAttribsNV")),
-         TransformFeedbackBufferBase: FnPtr::new(loadfn("glTransformFeedbackBufferBase")),
-         TransformFeedbackBufferRange: FnPtr::new(loadfn("glTransformFeedbackBufferRange")),
-         TransformFeedbackStreamAttribsNV: FnPtr::new(loadfn("glTransformFeedbackStreamAttribsNV")),
-         TransformFeedbackVaryings: FnPtr::new(loadfn("glTransformFeedbackVaryings")),
-         TransformFeedbackVaryingsEXT: FnPtr::new(loadfn("glTransformFeedbackVaryingsEXT")),
-         TransformFeedbackVaryingsNV: FnPtr::new(loadfn("glTransformFeedbackVaryingsNV")),
-         TransformPathNV: FnPtr::new(loadfn("glTransformPathNV")),
-         Translated: FnPtr::new(loadfn("glTranslated")),
-         Translatef: FnPtr::new(loadfn("glTranslatef")),
-         TranslatexOES: FnPtr::new(loadfn("glTranslatexOES")),
-         Uniform1d: FnPtr::new(loadfn("glUniform1d")),
-         Uniform1dv: FnPtr::new(loadfn("glUniform1dv")),
-         Uniform1f: FnPtr::new(loadfn("glUniform1f")),
-         Uniform1fARB: FnPtr::new(loadfn("glUniform1fARB")),
-         Uniform1fv: FnPtr::new(loadfn("glUniform1fv")),
-         Uniform1fvARB: FnPtr::new(loadfn("glUniform1fvARB")),
-         Uniform1i: FnPtr::new(loadfn("glUniform1i")),
-         Uniform1i64ARB: FnPtr::new(loadfn("glUniform1i64ARB")),
-         Uniform1i64NV: FnPtr::new(loadfn("glUniform1i64NV")),
-         Uniform1i64vARB: FnPtr::new(loadfn("glUniform1i64vARB")),
-         Uniform1i64vNV: FnPtr::new(loadfn("glUniform1i64vNV")),
-         Uniform1iARB: FnPtr::new(loadfn("glUniform1iARB")),
-         Uniform1iv: FnPtr::new(loadfn("glUniform1iv")),
-         Uniform1ivARB: FnPtr::new(loadfn("glUniform1ivARB")),
-         Uniform1ui: FnPtr::new(loadfn("glUniform1ui")),
-         Uniform1ui64ARB: FnPtr::new(loadfn("glUniform1ui64ARB")),
-         Uniform1ui64NV: FnPtr::new(loadfn("glUniform1ui64NV")),
-         Uniform1ui64vARB: FnPtr::new(loadfn("glUniform1ui64vARB")),
-         Uniform1ui64vNV: FnPtr::new(loadfn("glUniform1ui64vNV")),
-         Uniform1uiEXT: FnPtr::new(loadfn("glUniform1uiEXT")),
-         Uniform1uiv: FnPtr::new(loadfn("glUniform1uiv")),
-         Uniform1uivEXT: FnPtr::new(loadfn("glUniform1uivEXT")),
-         Uniform2d: FnPtr::new(loadfn("glUniform2d")),
-         Uniform2dv: FnPtr::new(loadfn("glUniform2dv")),
-         Uniform2f: FnPtr::new(loadfn("glUniform2f")),
-         Uniform2fARB: FnPtr::new(loadfn("glUniform2fARB")),
-         Uniform2fv: FnPtr::new(loadfn("glUniform2fv")),
-         Uniform2fvARB: FnPtr::new(loadfn("glUniform2fvARB")),
-         Uniform2i: FnPtr::new(loadfn("glUniform2i")),
-         Uniform2i64ARB: FnPtr::new(loadfn("glUniform2i64ARB")),
-         Uniform2i64NV: FnPtr::new(loadfn("glUniform2i64NV")),
-         Uniform2i64vARB: FnPtr::new(loadfn("glUniform2i64vARB")),
-         Uniform2i64vNV: FnPtr::new(loadfn("glUniform2i64vNV")),
-         Uniform2iARB: FnPtr::new(loadfn("glUniform2iARB")),
-         Uniform2iv: FnPtr::new(loadfn("glUniform2iv")),
-         Uniform2ivARB: FnPtr::new(loadfn("glUniform2ivARB")),
-         Uniform2ui: FnPtr::new(loadfn("glUniform2ui")),
-         Uniform2ui64ARB: FnPtr::new(loadfn("glUniform2ui64ARB")),
-         Uniform2ui64NV: FnPtr::new(loadfn("glUniform2ui64NV")),
-         Uniform2ui64vARB: FnPtr::new(loadfn("glUniform2ui64vARB")),
-         Uniform2ui64vNV: FnPtr::new(loadfn("glUniform2ui64vNV")),
-         Uniform2uiEXT: FnPtr::new(loadfn("glUniform2uiEXT")),
-         Uniform2uiv: FnPtr::new(loadfn("glUniform2uiv")),
-         Uniform2uivEXT: FnPtr::new(loadfn("glUniform2uivEXT")),
-         Uniform3d: FnPtr::new(loadfn("glUniform3d")),
-         Uniform3dv: FnPtr::new(loadfn("glUniform3dv")),
-         Uniform3f: FnPtr::new(loadfn("glUniform3f")),
-         Uniform3fARB: FnPtr::new(loadfn("glUniform3fARB")),
-         Uniform3fv: FnPtr::new(loadfn("glUniform3fv")),
-         Uniform3fvARB: FnPtr::new(loadfn("glUniform3fvARB")),
-         Uniform3i: FnPtr::new(loadfn("glUniform3i")),
-         Uniform3i64ARB: FnPtr::new(loadfn("glUniform3i64ARB")),
-         Uniform3i64NV: FnPtr::new(loadfn("glUniform3i64NV")),
-         Uniform3i64vARB: FnPtr::new(loadfn("glUniform3i64vARB")),
-         Uniform3i64vNV: FnPtr::new(loadfn("glUniform3i64vNV")),
-         Uniform3iARB: FnPtr::new(loadfn("glUniform3iARB")),
-         Uniform3iv: FnPtr::new(loadfn("glUniform3iv")),
-         Uniform3ivARB: FnPtr::new(loadfn("glUniform3ivARB")),
-         Uniform3ui: FnPtr::new(loadfn("glUniform3ui")),
-         Uniform3ui64ARB: FnPtr::new(loadfn("glUniform3ui64ARB")),
-         Uniform3ui64NV: FnPtr::new(loadfn("glUniform3ui64NV")),
-         Uniform3ui64vARB: FnPtr::new(loadfn("glUniform3ui64vARB")),
-         Uniform3ui64vNV: FnPtr::new(loadfn("glUniform3ui64vNV")),
-         Uniform3uiEXT: FnPtr::new(loadfn("glUniform3uiEXT")),
-         Uniform3uiv: FnPtr::new(loadfn("glUniform3uiv")),
-         Uniform3uivEXT: FnPtr::new(loadfn("glUniform3uivEXT")),
-         Uniform4d: FnPtr::new(loadfn("glUniform4d")),
-         Uniform4dv: FnPtr::new(loadfn("glUniform4dv")),
-         Uniform4f: FnPtr::new(loadfn("glUniform4f")),
-         Uniform4fARB: FnPtr::new(loadfn("glUniform4fARB")),
-         Uniform4fv: FnPtr::new(loadfn("glUniform4fv")),
-         Uniform4fvARB: FnPtr::new(loadfn("glUniform4fvARB")),
-         Uniform4i: FnPtr::new(loadfn("glUniform4i")),
-         Uniform4i64ARB: FnPtr::new(loadfn("glUniform4i64ARB")),
-         Uniform4i64NV: FnPtr::new(loadfn("glUniform4i64NV")),
-         Uniform4i64vARB: FnPtr::new(loadfn("glUniform4i64vARB")),
-         Uniform4i64vNV: FnPtr::new(loadfn("glUniform4i64vNV")),
-         Uniform4iARB: FnPtr::new(loadfn("glUniform4iARB")),
-         Uniform4iv: FnPtr::new(loadfn("glUniform4iv")),
-         Uniform4ivARB: FnPtr::new(loadfn("glUniform4ivARB")),
-         Uniform4ui: FnPtr::new(loadfn("glUniform4ui")),
-         Uniform4ui64ARB: FnPtr::new(loadfn("glUniform4ui64ARB")),
-         Uniform4ui64NV: FnPtr::new(loadfn("glUniform4ui64NV")),
-         Uniform4ui64vARB: FnPtr::new(loadfn("glUniform4ui64vARB")),
-         Uniform4ui64vNV: FnPtr::new(loadfn("glUniform4ui64vNV")),
-         Uniform4uiEXT: FnPtr::new(loadfn("glUniform4uiEXT")),
-         Uniform4uiv: FnPtr::new(loadfn("glUniform4uiv")),
-         Uniform4uivEXT: FnPtr::new(loadfn("glUniform4uivEXT")),
-         UniformBlockBinding: FnPtr::new(loadfn("glUniformBlockBinding")),
-         UniformBufferEXT: FnPtr::new(loadfn("glUniformBufferEXT")),
-         UniformHandleui64ARB: FnPtr::new(loadfn("glUniformHandleui64ARB")),
-         UniformHandleui64NV: FnPtr::new(loadfn("glUniformHandleui64NV")),
-         UniformHandleui64vARB: FnPtr::new(loadfn("glUniformHandleui64vARB")),
-         UniformHandleui64vNV: FnPtr::new(loadfn("glUniformHandleui64vNV")),
-         UniformMatrix2dv: FnPtr::new(loadfn("glUniformMatrix2dv")),
-         UniformMatrix2fv: FnPtr::new(loadfn("glUniformMatrix2fv")),
-         UniformMatrix2fvARB: FnPtr::new(loadfn("glUniformMatrix2fvARB")),
-         UniformMatrix2x3dv: FnPtr::new(loadfn("glUniformMatrix2x3dv")),
-         UniformMatrix2x3fv: FnPtr::new(loadfn("glUniformMatrix2x3fv")),
-         UniformMatrix2x4dv: FnPtr::new(loadfn("glUniformMatrix2x4dv")),
-         UniformMatrix2x4fv: FnPtr::new(loadfn("glUniformMatrix2x4fv")),
-         UniformMatrix3dv: FnPtr::new(loadfn("glUniformMatrix3dv")),
-         UniformMatrix3fv: FnPtr::new(loadfn("glUniformMatrix3fv")),
-         UniformMatrix3fvARB: FnPtr::new(loadfn("glUniformMatrix3fvARB")),
-         UniformMatrix3x2dv: FnPtr::new(loadfn("glUniformMatrix3x2dv")),
-         UniformMatrix3x2fv: FnPtr::new(loadfn("glUniformMatrix3x2fv")),
-         UniformMatrix3x4dv: FnPtr::new(loadfn("glUniformMatrix3x4dv")),
-         UniformMatrix3x4fv: FnPtr::new(loadfn("glUniformMatrix3x4fv")),
-         UniformMatrix4dv: FnPtr::new(loadfn("glUniformMatrix4dv")),
-         UniformMatrix4fv: FnPtr::new(loadfn("glUniformMatrix4fv")),
-         UniformMatrix4fvARB: FnPtr::new(loadfn("glUniformMatrix4fvARB")),
-         UniformMatrix4x2dv: FnPtr::new(loadfn("glUniformMatrix4x2dv")),
-         UniformMatrix4x2fv: FnPtr::new(loadfn("glUniformMatrix4x2fv")),
-         UniformMatrix4x3dv: FnPtr::new(loadfn("glUniformMatrix4x3dv")),
-         UniformMatrix4x3fv: FnPtr::new(loadfn("glUniformMatrix4x3fv")),
-         UniformSubroutinesuiv: FnPtr::new(loadfn("glUniformSubroutinesuiv")),
-         Uniformui64NV: FnPtr::new(loadfn("glUniformui64NV")),
-         Uniformui64vNV: FnPtr::new(loadfn("glUniformui64vNV")),
-         UnlockArraysEXT: FnPtr::new(loadfn("glUnlockArraysEXT")),
-         UnmapBuffer: FnPtr::new(loadfn("glUnmapBuffer")),
-         UnmapBufferARB: FnPtr::new(loadfn("glUnmapBufferARB")),
-         UnmapNamedBuffer: FnPtr::new(loadfn("glUnmapNamedBuffer")),
-         UnmapNamedBufferEXT: FnPtr::new(loadfn("glUnmapNamedBufferEXT")),
-         UnmapObjectBufferATI: FnPtr::new(loadfn("glUnmapObjectBufferATI")),
-         UnmapTexture2DINTEL: FnPtr::new(loadfn("glUnmapTexture2DINTEL")),
-         UpdateObjectBufferATI: FnPtr::new(loadfn("glUpdateObjectBufferATI")),
-         UploadGpuMaskNVX: FnPtr::new(loadfn("glUploadGpuMaskNVX")),
-         UseProgram: FnPtr::new(loadfn("glUseProgram")),
-         UseProgramObjectARB: FnPtr::new(loadfn("glUseProgramObjectARB")),
-         UseProgramStages: FnPtr::new(loadfn("glUseProgramStages")),
-         UseShaderProgramEXT: FnPtr::new(loadfn("glUseShaderProgramEXT")),
-         VDPAUFiniNV: FnPtr::new(loadfn("glVDPAUFiniNV")),
-         VDPAUGetSurfaceivNV: FnPtr::new(loadfn("glVDPAUGetSurfaceivNV")),
-         VDPAUInitNV: FnPtr::new(loadfn("glVDPAUInitNV")),
-         VDPAUIsSurfaceNV: FnPtr::new(loadfn("glVDPAUIsSurfaceNV")),
-         VDPAUMapSurfacesNV: FnPtr::new(loadfn("glVDPAUMapSurfacesNV")),
-         VDPAURegisterOutputSurfaceNV: FnPtr::new(loadfn("glVDPAURegisterOutputSurfaceNV")),
-         VDPAURegisterVideoSurfaceNV: FnPtr::new(loadfn("glVDPAURegisterVideoSurfaceNV")),
-         VDPAURegisterVideoSurfaceWithPictureStructureNV: FnPtr::new(loadfn("glVDPAURegisterVideoSurfaceWithPictureStructureNV")),
-         VDPAUSurfaceAccessNV: FnPtr::new(loadfn("glVDPAUSurfaceAccessNV")),
-         VDPAUUnmapSurfacesNV: FnPtr::new(loadfn("glVDPAUUnmapSurfacesNV")),
-         VDPAUUnregisterSurfaceNV: FnPtr::new(loadfn("glVDPAUUnregisterSurfaceNV")),
-         ValidateProgram: FnPtr::new(loadfn("glValidateProgram")),
-         ValidateProgramARB: FnPtr::new(loadfn("glValidateProgramARB")),
-         ValidateProgramPipeline: FnPtr::new(loadfn("glValidateProgramPipeline")),
-         VariantArrayObjectATI: FnPtr::new(loadfn("glVariantArrayObjectATI")),
-         VariantPointerEXT: FnPtr::new(loadfn("glVariantPointerEXT")),
-         VariantbvEXT: FnPtr::new(loadfn("glVariantbvEXT")),
-         VariantdvEXT: FnPtr::new(loadfn("glVariantdvEXT")),
-         VariantfvEXT: FnPtr::new(loadfn("glVariantfvEXT")),
-         VariantivEXT: FnPtr::new(loadfn("glVariantivEXT")),
-         VariantsvEXT: FnPtr::new(loadfn("glVariantsvEXT")),
-         VariantubvEXT: FnPtr::new(loadfn("glVariantubvEXT")),
-         VariantuivEXT: FnPtr::new(loadfn("glVariantuivEXT")),
-         VariantusvEXT: FnPtr::new(loadfn("glVariantusvEXT")),
-         Vertex2bOES: FnPtr::new(loadfn("glVertex2bOES")),
-         Vertex2bvOES: FnPtr::new(loadfn("glVertex2bvOES")),
-         Vertex2d: FnPtr::new(loadfn("glVertex2d")),
-         Vertex2dv: FnPtr::new(loadfn("glVertex2dv")),
-         Vertex2f: FnPtr::new(loadfn("glVertex2f")),
-         Vertex2fv: FnPtr::new(loadfn("glVertex2fv")),
-         Vertex2hNV: FnPtr::new(loadfn("glVertex2hNV")),
-         Vertex2hvNV: FnPtr::new(loadfn("glVertex2hvNV")),
-         Vertex2i: FnPtr::new(loadfn("glVertex2i")),
-         Vertex2iv: FnPtr::new(loadfn("glVertex2iv")),
-         Vertex2s: FnPtr::new(loadfn("glVertex2s")),
-         Vertex2sv: FnPtr::new(loadfn("glVertex2sv")),
-         Vertex2xOES: FnPtr::new(loadfn("glVertex2xOES")),
-         Vertex2xvOES: FnPtr::new(loadfn("glVertex2xvOES")),
-         Vertex3bOES: FnPtr::new(loadfn("glVertex3bOES")),
-         Vertex3bvOES: FnPtr::new(loadfn("glVertex3bvOES")),
-         Vertex3d: FnPtr::new(loadfn("glVertex3d")),
-         Vertex3dv: FnPtr::new(loadfn("glVertex3dv")),
-         Vertex3f: FnPtr::new(loadfn("glVertex3f")),
-         Vertex3fv: FnPtr::new(loadfn("glVertex3fv")),
-         Vertex3hNV: FnPtr::new(loadfn("glVertex3hNV")),
-         Vertex3hvNV: FnPtr::new(loadfn("glVertex3hvNV")),
-         Vertex3i: FnPtr::new(loadfn("glVertex3i")),
-         Vertex3iv: FnPtr::new(loadfn("glVertex3iv")),
-         Vertex3s: FnPtr::new(loadfn("glVertex3s")),
-         Vertex3sv: FnPtr::new(loadfn("glVertex3sv")),
-         Vertex3xOES: FnPtr::new(loadfn("glVertex3xOES")),
-         Vertex3xvOES: FnPtr::new(loadfn("glVertex3xvOES")),
-         Vertex4bOES: FnPtr::new(loadfn("glVertex4bOES")),
-         Vertex4bvOES: FnPtr::new(loadfn("glVertex4bvOES")),
-         Vertex4d: FnPtr::new(loadfn("glVertex4d")),
-         Vertex4dv: FnPtr::new(loadfn("glVertex4dv")),
-         Vertex4f: FnPtr::new(loadfn("glVertex4f")),
-         Vertex4fv: FnPtr::new(loadfn("glVertex4fv")),
-         Vertex4hNV: FnPtr::new(loadfn("glVertex4hNV")),
-         Vertex4hvNV: FnPtr::new(loadfn("glVertex4hvNV")),
-         Vertex4i: FnPtr::new(loadfn("glVertex4i")),
-         Vertex4iv: FnPtr::new(loadfn("glVertex4iv")),
-         Vertex4s: FnPtr::new(loadfn("glVertex4s")),
-         Vertex4sv: FnPtr::new(loadfn("glVertex4sv")),
-         Vertex4xOES: FnPtr::new(loadfn("glVertex4xOES")),
-         Vertex4xvOES: FnPtr::new(loadfn("glVertex4xvOES")),
-         VertexArrayAttribBinding: FnPtr::new(loadfn("glVertexArrayAttribBinding")),
-         VertexArrayAttribFormat: FnPtr::new(loadfn("glVertexArrayAttribFormat")),
-         VertexArrayAttribIFormat: FnPtr::new(loadfn("glVertexArrayAttribIFormat")),
-         VertexArrayAttribLFormat: FnPtr::new(loadfn("glVertexArrayAttribLFormat")),
-         VertexArrayBindVertexBufferEXT: FnPtr::new(loadfn("glVertexArrayBindVertexBufferEXT")),
-         VertexArrayBindingDivisor: FnPtr::new(loadfn("glVertexArrayBindingDivisor")),
-         VertexArrayColorOffsetEXT: FnPtr::new(loadfn("glVertexArrayColorOffsetEXT")),
-         VertexArrayEdgeFlagOffsetEXT: FnPtr::new(loadfn("glVertexArrayEdgeFlagOffsetEXT")),
-         VertexArrayElementBuffer: FnPtr::new(loadfn("glVertexArrayElementBuffer")),
-         VertexArrayFogCoordOffsetEXT: FnPtr::new(loadfn("glVertexArrayFogCoordOffsetEXT")),
-         VertexArrayIndexOffsetEXT: FnPtr::new(loadfn("glVertexArrayIndexOffsetEXT")),
-         VertexArrayMultiTexCoordOffsetEXT: FnPtr::new(loadfn("glVertexArrayMultiTexCoordOffsetEXT")),
-         VertexArrayNormalOffsetEXT: FnPtr::new(loadfn("glVertexArrayNormalOffsetEXT")),
-         VertexArrayParameteriAPPLE: FnPtr::new(loadfn("glVertexArrayParameteriAPPLE")),
-         VertexArrayRangeAPPLE: FnPtr::new(loadfn("glVertexArrayRangeAPPLE")),
-         VertexArrayRangeNV: FnPtr::new(loadfn("glVertexArrayRangeNV")),
-         VertexArraySecondaryColorOffsetEXT: FnPtr::new(loadfn("glVertexArraySecondaryColorOffsetEXT")),
-         VertexArrayTexCoordOffsetEXT: FnPtr::new(loadfn("glVertexArrayTexCoordOffsetEXT")),
-         VertexArrayVertexAttribBindingEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribBindingEXT")),
-         VertexArrayVertexAttribDivisorEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribDivisorEXT")),
-         VertexArrayVertexAttribFormatEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribFormatEXT")),
-         VertexArrayVertexAttribIFormatEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribIFormatEXT")),
-         VertexArrayVertexAttribIOffsetEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribIOffsetEXT")),
-         VertexArrayVertexAttribLFormatEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribLFormatEXT")),
-         VertexArrayVertexAttribLOffsetEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribLOffsetEXT")),
-         VertexArrayVertexAttribOffsetEXT: FnPtr::new(loadfn("glVertexArrayVertexAttribOffsetEXT")),
-         VertexArrayVertexBindingDivisorEXT: FnPtr::new(loadfn("glVertexArrayVertexBindingDivisorEXT")),
-         VertexArrayVertexBuffer: FnPtr::new(loadfn("glVertexArrayVertexBuffer")),
-         VertexArrayVertexBuffers: FnPtr::new(loadfn("glVertexArrayVertexBuffers")),
-         VertexArrayVertexOffsetEXT: FnPtr::new(loadfn("glVertexArrayVertexOffsetEXT")),
-         VertexAttrib1d: FnPtr::new(loadfn("glVertexAttrib1d")),
-         VertexAttrib1dARB: FnPtr::new(loadfn("glVertexAttrib1dARB")),
-         VertexAttrib1dNV: FnPtr::new(loadfn("glVertexAttrib1dNV")),
-         VertexAttrib1dv: FnPtr::new(loadfn("glVertexAttrib1dv")),
-         VertexAttrib1dvARB: FnPtr::new(loadfn("glVertexAttrib1dvARB")),
-         VertexAttrib1dvNV: FnPtr::new(loadfn("glVertexAttrib1dvNV")),
-         VertexAttrib1f: FnPtr::new(loadfn("glVertexAttrib1f")),
-         VertexAttrib1fARB: FnPtr::new(loadfn("glVertexAttrib1fARB")),
-         VertexAttrib1fNV: FnPtr::new(loadfn("glVertexAttrib1fNV")),
-         VertexAttrib1fv: FnPtr::new(loadfn("glVertexAttrib1fv")),
-         VertexAttrib1fvARB: FnPtr::new(loadfn("glVertexAttrib1fvARB")),
-         VertexAttrib1fvNV: FnPtr::new(loadfn("glVertexAttrib1fvNV")),
-         VertexAttrib1hNV: FnPtr::new(loadfn("glVertexAttrib1hNV")),
-         VertexAttrib1hvNV: FnPtr::new(loadfn("glVertexAttrib1hvNV")),
-         VertexAttrib1s: FnPtr::new(loadfn("glVertexAttrib1s")),
-         VertexAttrib1sARB: FnPtr::new(loadfn("glVertexAttrib1sARB")),
-         VertexAttrib1sNV: FnPtr::new(loadfn("glVertexAttrib1sNV")),
-         VertexAttrib1sv: FnPtr::new(loadfn("glVertexAttrib1sv")),
-         VertexAttrib1svARB: FnPtr::new(loadfn("glVertexAttrib1svARB")),
-         VertexAttrib1svNV: FnPtr::new(loadfn("glVertexAttrib1svNV")),
-         VertexAttrib2d: FnPtr::new(loadfn("glVertexAttrib2d")),
-         VertexAttrib2dARB: FnPtr::new(loadfn("glVertexAttrib2dARB")),
-         VertexAttrib2dNV: FnPtr::new(loadfn("glVertexAttrib2dNV")),
-         VertexAttrib2dv: FnPtr::new(loadfn("glVertexAttrib2dv")),
-         VertexAttrib2dvARB: FnPtr::new(loadfn("glVertexAttrib2dvARB")),
-         VertexAttrib2dvNV: FnPtr::new(loadfn("glVertexAttrib2dvNV")),
-         VertexAttrib2f: FnPtr::new(loadfn("glVertexAttrib2f")),
-         VertexAttrib2fARB: FnPtr::new(loadfn("glVertexAttrib2fARB")),
-         VertexAttrib2fNV: FnPtr::new(loadfn("glVertexAttrib2fNV")),
-         VertexAttrib2fv: FnPtr::new(loadfn("glVertexAttrib2fv")),
-         VertexAttrib2fvARB: FnPtr::new(loadfn("glVertexAttrib2fvARB")),
-         VertexAttrib2fvNV: FnPtr::new(loadfn("glVertexAttrib2fvNV")),
-         VertexAttrib2hNV: FnPtr::new(loadfn("glVertexAttrib2hNV")),
-         VertexAttrib2hvNV: FnPtr::new(loadfn("glVertexAttrib2hvNV")),
-         VertexAttrib2s: FnPtr::new(loadfn("glVertexAttrib2s")),
-         VertexAttrib2sARB: FnPtr::new(loadfn("glVertexAttrib2sARB")),
-         VertexAttrib2sNV: FnPtr::new(loadfn("glVertexAttrib2sNV")),
-         VertexAttrib2sv: FnPtr::new(loadfn("glVertexAttrib2sv")),
-         VertexAttrib2svARB: FnPtr::new(loadfn("glVertexAttrib2svARB")),
-         VertexAttrib2svNV: FnPtr::new(loadfn("glVertexAttrib2svNV")),
-         VertexAttrib3d: FnPtr::new(loadfn("glVertexAttrib3d")),
-         VertexAttrib3dARB: FnPtr::new(loadfn("glVertexAttrib3dARB")),
-         VertexAttrib3dNV: FnPtr::new(loadfn("glVertexAttrib3dNV")),
-         VertexAttrib3dv: FnPtr::new(loadfn("glVertexAttrib3dv")),
-         VertexAttrib3dvARB: FnPtr::new(loadfn("glVertexAttrib3dvARB")),
-         VertexAttrib3dvNV: FnPtr::new(loadfn("glVertexAttrib3dvNV")),
-         VertexAttrib3f: FnPtr::new(loadfn("glVertexAttrib3f")),
-         VertexAttrib3fARB: FnPtr::new(loadfn("glVertexAttrib3fARB")),
-         VertexAttrib3fNV: FnPtr::new(loadfn("glVertexAttrib3fNV")),
-         VertexAttrib3fv: FnPtr::new(loadfn("glVertexAttrib3fv")),
-         VertexAttrib3fvARB: FnPtr::new(loadfn("glVertexAttrib3fvARB")),
-         VertexAttrib3fvNV: FnPtr::new(loadfn("glVertexAttrib3fvNV")),
-         VertexAttrib3hNV: FnPtr::new(loadfn("glVertexAttrib3hNV")),
-         VertexAttrib3hvNV: FnPtr::new(loadfn("glVertexAttrib3hvNV")),
-         VertexAttrib3s: FnPtr::new(loadfn("glVertexAttrib3s")),
-         VertexAttrib3sARB: FnPtr::new(loadfn("glVertexAttrib3sARB")),
-         VertexAttrib3sNV: FnPtr::new(loadfn("glVertexAttrib3sNV")),
-         VertexAttrib3sv: FnPtr::new(loadfn("glVertexAttrib3sv")),
-         VertexAttrib3svARB: FnPtr::new(loadfn("glVertexAttrib3svARB")),
-         VertexAttrib3svNV: FnPtr::new(loadfn("glVertexAttrib3svNV")),
-         VertexAttrib4Nbv: FnPtr::new(loadfn("glVertexAttrib4Nbv")),
-         VertexAttrib4NbvARB: FnPtr::new(loadfn("glVertexAttrib4NbvARB")),
-         VertexAttrib4Niv: FnPtr::new(loadfn("glVertexAttrib4Niv")),
-         VertexAttrib4NivARB: FnPtr::new(loadfn("glVertexAttrib4NivARB")),
-         VertexAttrib4Nsv: FnPtr::new(loadfn("glVertexAttrib4Nsv")),
-         VertexAttrib4NsvARB: FnPtr::new(loadfn("glVertexAttrib4NsvARB")),
-         VertexAttrib4Nub: FnPtr::new(loadfn("glVertexAttrib4Nub")),
-         VertexAttrib4NubARB: FnPtr::new(loadfn("glVertexAttrib4NubARB")),
-         VertexAttrib4Nubv: FnPtr::new(loadfn("glVertexAttrib4Nubv")),
-         VertexAttrib4NubvARB: FnPtr::new(loadfn("glVertexAttrib4NubvARB")),
-         VertexAttrib4Nuiv: FnPtr::new(loadfn("glVertexAttrib4Nuiv")),
-         VertexAttrib4NuivARB: FnPtr::new(loadfn("glVertexAttrib4NuivARB")),
-         VertexAttrib4Nusv: FnPtr::new(loadfn("glVertexAttrib4Nusv")),
-         VertexAttrib4NusvARB: FnPtr::new(loadfn("glVertexAttrib4NusvARB")),
-         VertexAttrib4bv: FnPtr::new(loadfn("glVertexAttrib4bv")),
-         VertexAttrib4bvARB: FnPtr::new(loadfn("glVertexAttrib4bvARB")),
-         VertexAttrib4d: FnPtr::new(loadfn("glVertexAttrib4d")),
-         VertexAttrib4dARB: FnPtr::new(loadfn("glVertexAttrib4dARB")),
-         VertexAttrib4dNV: FnPtr::new(loadfn("glVertexAttrib4dNV")),
-         VertexAttrib4dv: FnPtr::new(loadfn("glVertexAttrib4dv")),
-         VertexAttrib4dvARB: FnPtr::new(loadfn("glVertexAttrib4dvARB")),
-         VertexAttrib4dvNV: FnPtr::new(loadfn("glVertexAttrib4dvNV")),
-         VertexAttrib4f: FnPtr::new(loadfn("glVertexAttrib4f")),
-         VertexAttrib4fARB: FnPtr::new(loadfn("glVertexAttrib4fARB")),
-         VertexAttrib4fNV: FnPtr::new(loadfn("glVertexAttrib4fNV")),
-         VertexAttrib4fv: FnPtr::new(loadfn("glVertexAttrib4fv")),
-         VertexAttrib4fvARB: FnPtr::new(loadfn("glVertexAttrib4fvARB")),
-         VertexAttrib4fvNV: FnPtr::new(loadfn("glVertexAttrib4fvNV")),
-         VertexAttrib4hNV: FnPtr::new(loadfn("glVertexAttrib4hNV")),
-         VertexAttrib4hvNV: FnPtr::new(loadfn("glVertexAttrib4hvNV")),
-         VertexAttrib4iv: FnPtr::new(loadfn("glVertexAttrib4iv")),
-         VertexAttrib4ivARB: FnPtr::new(loadfn("glVertexAttrib4ivARB")),
-         VertexAttrib4s: FnPtr::new(loadfn("glVertexAttrib4s")),
-         VertexAttrib4sARB: FnPtr::new(loadfn("glVertexAttrib4sARB")),
-         VertexAttrib4sNV: FnPtr::new(loadfn("glVertexAttrib4sNV")),
-         VertexAttrib4sv: FnPtr::new(loadfn("glVertexAttrib4sv")),
-         VertexAttrib4svARB: FnPtr::new(loadfn("glVertexAttrib4svARB")),
-         VertexAttrib4svNV: FnPtr::new(loadfn("glVertexAttrib4svNV")),
-         VertexAttrib4ubNV: FnPtr::new(loadfn("glVertexAttrib4ubNV")),
-         VertexAttrib4ubv: FnPtr::new(loadfn("glVertexAttrib4ubv")),
-         VertexAttrib4ubvARB: FnPtr::new(loadfn("glVertexAttrib4ubvARB")),
-         VertexAttrib4ubvNV: FnPtr::new(loadfn("glVertexAttrib4ubvNV")),
-         VertexAttrib4uiv: FnPtr::new(loadfn("glVertexAttrib4uiv")),
-         VertexAttrib4uivARB: FnPtr::new(loadfn("glVertexAttrib4uivARB")),
-         VertexAttrib4usv: FnPtr::new(loadfn("glVertexAttrib4usv")),
-         VertexAttrib4usvARB: FnPtr::new(loadfn("glVertexAttrib4usvARB")),
-         VertexAttribArrayObjectATI: FnPtr::new(loadfn("glVertexAttribArrayObjectATI")),
-         VertexAttribBinding: FnPtr::new(loadfn("glVertexAttribBinding")),
-         VertexAttribDivisor: FnPtr::new(loadfn("glVertexAttribDivisor")),
-         VertexAttribDivisorARB: FnPtr::new(loadfn("glVertexAttribDivisorARB")),
-         VertexAttribFormat: FnPtr::new(loadfn("glVertexAttribFormat")),
-         VertexAttribFormatNV: FnPtr::new(loadfn("glVertexAttribFormatNV")),
-         VertexAttribI1i: FnPtr::new(loadfn("glVertexAttribI1i")),
-         VertexAttribI1iEXT: FnPtr::new(loadfn("glVertexAttribI1iEXT")),
-         VertexAttribI1iv: FnPtr::new(loadfn("glVertexAttribI1iv")),
-         VertexAttribI1ivEXT: FnPtr::new(loadfn("glVertexAttribI1ivEXT")),
-         VertexAttribI1ui: FnPtr::new(loadfn("glVertexAttribI1ui")),
-         VertexAttribI1uiEXT: FnPtr::new(loadfn("glVertexAttribI1uiEXT")),
-         VertexAttribI1uiv: FnPtr::new(loadfn("glVertexAttribI1uiv")),
-         VertexAttribI1uivEXT: FnPtr::new(loadfn("glVertexAttribI1uivEXT")),
-         VertexAttribI2i: FnPtr::new(loadfn("glVertexAttribI2i")),
-         VertexAttribI2iEXT: FnPtr::new(loadfn("glVertexAttribI2iEXT")),
-         VertexAttribI2iv: FnPtr::new(loadfn("glVertexAttribI2iv")),
-         VertexAttribI2ivEXT: FnPtr::new(loadfn("glVertexAttribI2ivEXT")),
-         VertexAttribI2ui: FnPtr::new(loadfn("glVertexAttribI2ui")),
-         VertexAttribI2uiEXT: FnPtr::new(loadfn("glVertexAttribI2uiEXT")),
-         VertexAttribI2uiv: FnPtr::new(loadfn("glVertexAttribI2uiv")),
-         VertexAttribI2uivEXT: FnPtr::new(loadfn("glVertexAttribI2uivEXT")),
-         VertexAttribI3i: FnPtr::new(loadfn("glVertexAttribI3i")),
-         VertexAttribI3iEXT: FnPtr::new(loadfn("glVertexAttribI3iEXT")),
-         VertexAttribI3iv: FnPtr::new(loadfn("glVertexAttribI3iv")),
-         VertexAttribI3ivEXT: FnPtr::new(loadfn("glVertexAttribI3ivEXT")),
-         VertexAttribI3ui: FnPtr::new(loadfn("glVertexAttribI3ui")),
-         VertexAttribI3uiEXT: FnPtr::new(loadfn("glVertexAttribI3uiEXT")),
-         VertexAttribI3uiv: FnPtr::new(loadfn("glVertexAttribI3uiv")),
-         VertexAttribI3uivEXT: FnPtr::new(loadfn("glVertexAttribI3uivEXT")),
-         VertexAttribI4bv: FnPtr::new(loadfn("glVertexAttribI4bv")),
-         VertexAttribI4bvEXT: FnPtr::new(loadfn("glVertexAttribI4bvEXT")),
-         VertexAttribI4i: FnPtr::new(loadfn("glVertexAttribI4i")),
-         VertexAttribI4iEXT: FnPtr::new(loadfn("glVertexAttribI4iEXT")),
-         VertexAttribI4iv: FnPtr::new(loadfn("glVertexAttribI4iv")),
-         VertexAttribI4ivEXT: FnPtr::new(loadfn("glVertexAttribI4ivEXT")),
-         VertexAttribI4sv: FnPtr::new(loadfn("glVertexAttribI4sv")),
-         VertexAttribI4svEXT: FnPtr::new(loadfn("glVertexAttribI4svEXT")),
-         VertexAttribI4ubv: FnPtr::new(loadfn("glVertexAttribI4ubv")),
-         VertexAttribI4ubvEXT: FnPtr::new(loadfn("glVertexAttribI4ubvEXT")),
-         VertexAttribI4ui: FnPtr::new(loadfn("glVertexAttribI4ui")),
-         VertexAttribI4uiEXT: FnPtr::new(loadfn("glVertexAttribI4uiEXT")),
-         VertexAttribI4uiv: FnPtr::new(loadfn("glVertexAttribI4uiv")),
-         VertexAttribI4uivEXT: FnPtr::new(loadfn("glVertexAttribI4uivEXT")),
-         VertexAttribI4usv: FnPtr::new(loadfn("glVertexAttribI4usv")),
-         VertexAttribI4usvEXT: FnPtr::new(loadfn("glVertexAttribI4usvEXT")),
-         VertexAttribIFormat: FnPtr::new(loadfn("glVertexAttribIFormat")),
-         VertexAttribIFormatNV: FnPtr::new(loadfn("glVertexAttribIFormatNV")),
-         VertexAttribIPointer: FnPtr::new(loadfn("glVertexAttribIPointer")),
-         VertexAttribIPointerEXT: FnPtr::new(loadfn("glVertexAttribIPointerEXT")),
-         VertexAttribL1d: FnPtr::new(loadfn("glVertexAttribL1d")),
-         VertexAttribL1dEXT: FnPtr::new(loadfn("glVertexAttribL1dEXT")),
-         VertexAttribL1dv: FnPtr::new(loadfn("glVertexAttribL1dv")),
-         VertexAttribL1dvEXT: FnPtr::new(loadfn("glVertexAttribL1dvEXT")),
-         VertexAttribL1i64NV: FnPtr::new(loadfn("glVertexAttribL1i64NV")),
-         VertexAttribL1i64vNV: FnPtr::new(loadfn("glVertexAttribL1i64vNV")),
-         VertexAttribL1ui64ARB: FnPtr::new(loadfn("glVertexAttribL1ui64ARB")),
-         VertexAttribL1ui64NV: FnPtr::new(loadfn("glVertexAttribL1ui64NV")),
-         VertexAttribL1ui64vARB: FnPtr::new(loadfn("glVertexAttribL1ui64vARB")),
-         VertexAttribL1ui64vNV: FnPtr::new(loadfn("glVertexAttribL1ui64vNV")),
-         VertexAttribL2d: FnPtr::new(loadfn("glVertexAttribL2d")),
-         VertexAttribL2dEXT: FnPtr::new(loadfn("glVertexAttribL2dEXT")),
-         VertexAttribL2dv: FnPtr::new(loadfn("glVertexAttribL2dv")),
-         VertexAttribL2dvEXT: FnPtr::new(loadfn("glVertexAttribL2dvEXT")),
-         VertexAttribL2i64NV: FnPtr::new(loadfn("glVertexAttribL2i64NV")),
-         VertexAttribL2i64vNV: FnPtr::new(loadfn("glVertexAttribL2i64vNV")),
-         VertexAttribL2ui64NV: FnPtr::new(loadfn("glVertexAttribL2ui64NV")),
-         VertexAttribL2ui64vNV: FnPtr::new(loadfn("glVertexAttribL2ui64vNV")),
-         VertexAttribL3d: FnPtr::new(loadfn("glVertexAttribL3d")),
-         VertexAttribL3dEXT: FnPtr::new(loadfn("glVertexAttribL3dEXT")),
-         VertexAttribL3dv: FnPtr::new(loadfn("glVertexAttribL3dv")),
-         VertexAttribL3dvEXT: FnPtr::new(loadfn("glVertexAttribL3dvEXT")),
-         VertexAttribL3i64NV: FnPtr::new(loadfn("glVertexAttribL3i64NV")),
-         VertexAttribL3i64vNV: FnPtr::new(loadfn("glVertexAttribL3i64vNV")),
-         VertexAttribL3ui64NV: FnPtr::new(loadfn("glVertexAttribL3ui64NV")),
-         VertexAttribL3ui64vNV: FnPtr::new(loadfn("glVertexAttribL3ui64vNV")),
-         VertexAttribL4d: FnPtr::new(loadfn("glVertexAttribL4d")),
-         VertexAttribL4dEXT: FnPtr::new(loadfn("glVertexAttribL4dEXT")),
-         VertexAttribL4dv: FnPtr::new(loadfn("glVertexAttribL4dv")),
-         VertexAttribL4dvEXT: FnPtr::new(loadfn("glVertexAttribL4dvEXT")),
-         VertexAttribL4i64NV: FnPtr::new(loadfn("glVertexAttribL4i64NV")),
-         VertexAttribL4i64vNV: FnPtr::new(loadfn("glVertexAttribL4i64vNV")),
-         VertexAttribL4ui64NV: FnPtr::new(loadfn("glVertexAttribL4ui64NV")),
-         VertexAttribL4ui64vNV: FnPtr::new(loadfn("glVertexAttribL4ui64vNV")),
-         VertexAttribLFormat: FnPtr::new(loadfn("glVertexAttribLFormat")),
-         VertexAttribLFormatNV: FnPtr::new(loadfn("glVertexAttribLFormatNV")),
-         VertexAttribLPointer: FnPtr::new(loadfn("glVertexAttribLPointer")),
-         VertexAttribLPointerEXT: FnPtr::new(loadfn("glVertexAttribLPointerEXT")),
-         VertexAttribP1ui: FnPtr::new(loadfn("glVertexAttribP1ui")),
-         VertexAttribP1uiv: FnPtr::new(loadfn("glVertexAttribP1uiv")),
-         VertexAttribP2ui: FnPtr::new(loadfn("glVertexAttribP2ui")),
-         VertexAttribP2uiv: FnPtr::new(loadfn("glVertexAttribP2uiv")),
-         VertexAttribP3ui: FnPtr::new(loadfn("glVertexAttribP3ui")),
-         VertexAttribP3uiv: FnPtr::new(loadfn("glVertexAttribP3uiv")),
-         VertexAttribP4ui: FnPtr::new(loadfn("glVertexAttribP4ui")),
-         VertexAttribP4uiv: FnPtr::new(loadfn("glVertexAttribP4uiv")),
-         VertexAttribParameteriAMD: FnPtr::new(loadfn("glVertexAttribParameteriAMD")),
-         VertexAttribPointer: FnPtr::new(loadfn("glVertexAttribPointer")),
-         VertexAttribPointerARB: FnPtr::new(loadfn("glVertexAttribPointerARB")),
-         VertexAttribPointerNV: FnPtr::new(loadfn("glVertexAttribPointerNV")),
-         VertexAttribs1dvNV: FnPtr::new(loadfn("glVertexAttribs1dvNV")),
-         VertexAttribs1fvNV: FnPtr::new(loadfn("glVertexAttribs1fvNV")),
-         VertexAttribs1hvNV: FnPtr::new(loadfn("glVertexAttribs1hvNV")),
-         VertexAttribs1svNV: FnPtr::new(loadfn("glVertexAttribs1svNV")),
-         VertexAttribs2dvNV: FnPtr::new(loadfn("glVertexAttribs2dvNV")),
-         VertexAttribs2fvNV: FnPtr::new(loadfn("glVertexAttribs2fvNV")),
-         VertexAttribs2hvNV: FnPtr::new(loadfn("glVertexAttribs2hvNV")),
-         VertexAttribs2svNV: FnPtr::new(loadfn("glVertexAttribs2svNV")),
-         VertexAttribs3dvNV: FnPtr::new(loadfn("glVertexAttribs3dvNV")),
-         VertexAttribs3fvNV: FnPtr::new(loadfn("glVertexAttribs3fvNV")),
-         VertexAttribs3hvNV: FnPtr::new(loadfn("glVertexAttribs3hvNV")),
-         VertexAttribs3svNV: FnPtr::new(loadfn("glVertexAttribs3svNV")),
-         VertexAttribs4dvNV: FnPtr::new(loadfn("glVertexAttribs4dvNV")),
-         VertexAttribs4fvNV: FnPtr::new(loadfn("glVertexAttribs4fvNV")),
-         VertexAttribs4hvNV: FnPtr::new(loadfn("glVertexAttribs4hvNV")),
-         VertexAttribs4svNV: FnPtr::new(loadfn("glVertexAttribs4svNV")),
-         VertexAttribs4ubvNV: FnPtr::new(loadfn("glVertexAttribs4ubvNV")),
-         VertexBindingDivisor: FnPtr::new(loadfn("glVertexBindingDivisor")),
-         VertexBlendARB: FnPtr::new(loadfn("glVertexBlendARB")),
-         VertexBlendEnvfATI: FnPtr::new(loadfn("glVertexBlendEnvfATI")),
-         VertexBlendEnviATI: FnPtr::new(loadfn("glVertexBlendEnviATI")),
-         VertexFormatNV: FnPtr::new(loadfn("glVertexFormatNV")),
-         VertexP2ui: FnPtr::new(loadfn("glVertexP2ui")),
-         VertexP2uiv: FnPtr::new(loadfn("glVertexP2uiv")),
-         VertexP3ui: FnPtr::new(loadfn("glVertexP3ui")),
-         VertexP3uiv: FnPtr::new(loadfn("glVertexP3uiv")),
-         VertexP4ui: FnPtr::new(loadfn("glVertexP4ui")),
-         VertexP4uiv: FnPtr::new(loadfn("glVertexP4uiv")),
-         VertexPointer: FnPtr::new(loadfn("glVertexPointer")),
-         VertexPointerEXT: FnPtr::new(loadfn("glVertexPointerEXT")),
-         VertexPointerListIBM: FnPtr::new(loadfn("glVertexPointerListIBM")),
-         VertexPointervINTEL: FnPtr::new(loadfn("glVertexPointervINTEL")),
-         VertexStream1dATI: FnPtr::new(loadfn("glVertexStream1dATI")),
-         VertexStream1dvATI: FnPtr::new(loadfn("glVertexStream1dvATI")),
-         VertexStream1fATI: FnPtr::new(loadfn("glVertexStream1fATI")),
-         VertexStream1fvATI: FnPtr::new(loadfn("glVertexStream1fvATI")),
-         VertexStream1iATI: FnPtr::new(loadfn("glVertexStream1iATI")),
-         VertexStream1ivATI: FnPtr::new(loadfn("glVertexStream1ivATI")),
-         VertexStream1sATI: FnPtr::new(loadfn("glVertexStream1sATI")),
-         VertexStream1svATI: FnPtr::new(loadfn("glVertexStream1svATI")),
-         VertexStream2dATI: FnPtr::new(loadfn("glVertexStream2dATI")),
-         VertexStream2dvATI: FnPtr::new(loadfn("glVertexStream2dvATI")),
-         VertexStream2fATI: FnPtr::new(loadfn("glVertexStream2fATI")),
-         VertexStream2fvATI: FnPtr::new(loadfn("glVertexStream2fvATI")),
-         VertexStream2iATI: FnPtr::new(loadfn("glVertexStream2iATI")),
-         VertexStream2ivATI: FnPtr::new(loadfn("glVertexStream2ivATI")),
-         VertexStream2sATI: FnPtr::new(loadfn("glVertexStream2sATI")),
-         VertexStream2svATI: FnPtr::new(loadfn("glVertexStream2svATI")),
-         VertexStream3dATI: FnPtr::new(loadfn("glVertexStream3dATI")),
-         VertexStream3dvATI: FnPtr::new(loadfn("glVertexStream3dvATI")),
-         VertexStream3fATI: FnPtr::new(loadfn("glVertexStream3fATI")),
-         VertexStream3fvATI: FnPtr::new(loadfn("glVertexStream3fvATI")),
-         VertexStream3iATI: FnPtr::new(loadfn("glVertexStream3iATI")),
-         VertexStream3ivATI: FnPtr::new(loadfn("glVertexStream3ivATI")),
-         VertexStream3sATI: FnPtr::new(loadfn("glVertexStream3sATI")),
-         VertexStream3svATI: FnPtr::new(loadfn("glVertexStream3svATI")),
-         VertexStream4dATI: FnPtr::new(loadfn("glVertexStream4dATI")),
-         VertexStream4dvATI: FnPtr::new(loadfn("glVertexStream4dvATI")),
-         VertexStream4fATI: FnPtr::new(loadfn("glVertexStream4fATI")),
-         VertexStream4fvATI: FnPtr::new(loadfn("glVertexStream4fvATI")),
-         VertexStream4iATI: FnPtr::new(loadfn("glVertexStream4iATI")),
-         VertexStream4ivATI: FnPtr::new(loadfn("glVertexStream4ivATI")),
-         VertexStream4sATI: FnPtr::new(loadfn("glVertexStream4sATI")),
-         VertexStream4svATI: FnPtr::new(loadfn("glVertexStream4svATI")),
-         VertexWeightPointerEXT: FnPtr::new(loadfn("glVertexWeightPointerEXT")),
-         VertexWeightfEXT: FnPtr::new(loadfn("glVertexWeightfEXT")),
-         VertexWeightfvEXT: FnPtr::new(loadfn("glVertexWeightfvEXT")),
-         VertexWeighthNV: FnPtr::new(loadfn("glVertexWeighthNV")),
-         VertexWeighthvNV: FnPtr::new(loadfn("glVertexWeighthvNV")),
-         VideoCaptureNV: FnPtr::new(loadfn("glVideoCaptureNV")),
-         VideoCaptureStreamParameterdvNV: FnPtr::new(loadfn("glVideoCaptureStreamParameterdvNV")),
-         VideoCaptureStreamParameterfvNV: FnPtr::new(loadfn("glVideoCaptureStreamParameterfvNV")),
-         VideoCaptureStreamParameterivNV: FnPtr::new(loadfn("glVideoCaptureStreamParameterivNV")),
-         Viewport: FnPtr::new(loadfn("glViewport")),
-         ViewportArrayv: FnPtr::new(loadfn("glViewportArrayv")),
-         ViewportIndexedf: FnPtr::new(loadfn("glViewportIndexedf")),
-         ViewportIndexedfv: FnPtr::new(loadfn("glViewportIndexedfv")),
-         ViewportPositionWScaleNV: FnPtr::new(loadfn("glViewportPositionWScaleNV")),
-         ViewportSwizzleNV: FnPtr::new(loadfn("glViewportSwizzleNV")),
-         WaitSemaphoreEXT: FnPtr::new(loadfn("glWaitSemaphoreEXT")),
-         WaitSemaphoreui64NVX: FnPtr::new(loadfn("glWaitSemaphoreui64NVX")),
-         WaitSync: FnPtr::new(loadfn("glWaitSync")),
-         WaitVkSemaphoreNV: FnPtr::new(loadfn("glWaitVkSemaphoreNV")),
-         WeightPathsNV: FnPtr::new(loadfn("glWeightPathsNV")),
-         WeightPointerARB: FnPtr::new(loadfn("glWeightPointerARB")),
-         WeightbvARB: FnPtr::new(loadfn("glWeightbvARB")),
-         WeightdvARB: FnPtr::new(loadfn("glWeightdvARB")),
-         WeightfvARB: FnPtr::new(loadfn("glWeightfvARB")),
-         WeightivARB: FnPtr::new(loadfn("glWeightivARB")),
-         WeightsvARB: FnPtr::new(loadfn("glWeightsvARB")),
-         WeightubvARB: FnPtr::new(loadfn("glWeightubvARB")),
-         WeightuivARB: FnPtr::new(loadfn("glWeightuivARB")),
-         WeightusvARB: FnPtr::new(loadfn("glWeightusvARB")),
-         WindowPos2d: FnPtr::new(loadfn("glWindowPos2d")),
-         WindowPos2dARB: FnPtr::new(loadfn("glWindowPos2dARB")),
-         WindowPos2dMESA: FnPtr::new(loadfn("glWindowPos2dMESA")),
-         WindowPos2dv: FnPtr::new(loadfn("glWindowPos2dv")),
-         WindowPos2dvARB: FnPtr::new(loadfn("glWindowPos2dvARB")),
-         WindowPos2dvMESA: FnPtr::new(loadfn("glWindowPos2dvMESA")),
-         WindowPos2f: FnPtr::new(loadfn("glWindowPos2f")),
-         WindowPos2fARB: FnPtr::new(loadfn("glWindowPos2fARB")),
-         WindowPos2fMESA: FnPtr::new(loadfn("glWindowPos2fMESA")),
-         WindowPos2fv: FnPtr::new(loadfn("glWindowPos2fv")),
-         WindowPos2fvARB: FnPtr::new(loadfn("glWindowPos2fvARB")),
-         WindowPos2fvMESA: FnPtr::new(loadfn("glWindowPos2fvMESA")),
-         WindowPos2i: FnPtr::new(loadfn("glWindowPos2i")),
-         WindowPos2iARB: FnPtr::new(loadfn("glWindowPos2iARB")),
-         WindowPos2iMESA: FnPtr::new(loadfn("glWindowPos2iMESA")),
-         WindowPos2iv: FnPtr::new(loadfn("glWindowPos2iv")),
-         WindowPos2ivARB: FnPtr::new(loadfn("glWindowPos2ivARB")),
-         WindowPos2ivMESA: FnPtr::new(loadfn("glWindowPos2ivMESA")),
-         WindowPos2s: FnPtr::new(loadfn("glWindowPos2s")),
-         WindowPos2sARB: FnPtr::new(loadfn("glWindowPos2sARB")),
-         WindowPos2sMESA: FnPtr::new(loadfn("glWindowPos2sMESA")),
-         WindowPos2sv: FnPtr::new(loadfn("glWindowPos2sv")),
-         WindowPos2svARB: FnPtr::new(loadfn("glWindowPos2svARB")),
-         WindowPos2svMESA: FnPtr::new(loadfn("glWindowPos2svMESA")),
-         WindowPos3d: FnPtr::new(loadfn("glWindowPos3d")),
-         WindowPos3dARB: FnPtr::new(loadfn("glWindowPos3dARB")),
-         WindowPos3dMESA: FnPtr::new(loadfn("glWindowPos3dMESA")),
-         WindowPos3dv: FnPtr::new(loadfn("glWindowPos3dv")),
-         WindowPos3dvARB: FnPtr::new(loadfn("glWindowPos3dvARB")),
-         WindowPos3dvMESA: FnPtr::new(loadfn("glWindowPos3dvMESA")),
-         WindowPos3f: FnPtr::new(loadfn("glWindowPos3f")),
-         WindowPos3fARB: FnPtr::new(loadfn("glWindowPos3fARB")),
-         WindowPos3fMESA: FnPtr::new(loadfn("glWindowPos3fMESA")),
-         WindowPos3fv: FnPtr::new(loadfn("glWindowPos3fv")),
-         WindowPos3fvARB: FnPtr::new(loadfn("glWindowPos3fvARB")),
-         WindowPos3fvMESA: FnPtr::new(loadfn("glWindowPos3fvMESA")),
-         WindowPos3i: FnPtr::new(loadfn("glWindowPos3i")),
-         WindowPos3iARB: FnPtr::new(loadfn("glWindowPos3iARB")),
-         WindowPos3iMESA: FnPtr::new(loadfn("glWindowPos3iMESA")),
-         WindowPos3iv: FnPtr::new(loadfn("glWindowPos3iv")),
-         WindowPos3ivARB: FnPtr::new(loadfn("glWindowPos3ivARB")),
-         WindowPos3ivMESA: FnPtr::new(loadfn("glWindowPos3ivMESA")),
-         WindowPos3s: FnPtr::new(loadfn("glWindowPos3s")),
-         WindowPos3sARB: FnPtr::new(loadfn("glWindowPos3sARB")),
-         WindowPos3sMESA: FnPtr::new(loadfn("glWindowPos3sMESA")),
-         WindowPos3sv: FnPtr::new(loadfn("glWindowPos3sv")),
-         WindowPos3svARB: FnPtr::new(loadfn("glWindowPos3svARB")),
-         WindowPos3svMESA: FnPtr::new(loadfn("glWindowPos3svMESA")),
-         WindowPos4dMESA: FnPtr::new(loadfn("glWindowPos4dMESA")),
-         WindowPos4dvMESA: FnPtr::new(loadfn("glWindowPos4dvMESA")),
-         WindowPos4fMESA: FnPtr::new(loadfn("glWindowPos4fMESA")),
-         WindowPos4fvMESA: FnPtr::new(loadfn("glWindowPos4fvMESA")),
-         WindowPos4iMESA: FnPtr::new(loadfn("glWindowPos4iMESA")),
-         WindowPos4ivMESA: FnPtr::new(loadfn("glWindowPos4ivMESA")),
-         WindowPos4sMESA: FnPtr::new(loadfn("glWindowPos4sMESA")),
-         WindowPos4svMESA: FnPtr::new(loadfn("glWindowPos4svMESA")),
-         WindowRectanglesEXT: FnPtr::new(loadfn("glWindowRectanglesEXT")),
-         WriteMaskEXT: FnPtr::new(loadfn("glWriteMaskEXT")),
-    };
+    use super::FnPtr;
+    use std::os::raw::*;
 
-     gl.ActiveTexture.aliased(&gl.ActiveTextureARB);
-     gl.ActiveTextureARB.aliased(&gl.ActiveTexture);
-     gl.ArrayElement.aliased(&gl.ArrayElementEXT);
-     gl.ArrayElementEXT.aliased(&gl.ArrayElement);
-     gl.AttachObjectARB.aliased(&gl.AttachShader);
-     gl.AttachShader.aliased(&gl.AttachObjectARB);
-     gl.BeginConditionalRender.aliased(&gl.BeginConditionalRenderNV);
-     gl.BeginConditionalRenderNV.aliased(&gl.BeginConditionalRender);
-     gl.BeginQuery.aliased(&gl.BeginQueryARB);
-     gl.BeginQueryARB.aliased(&gl.BeginQuery);
-     gl.BeginTransformFeedback.aliased(&gl.BeginTransformFeedbackEXT);
-     gl.BeginTransformFeedback.aliased(&gl.BeginTransformFeedbackNV);
-     gl.BeginTransformFeedbackEXT.aliased(&gl.BeginTransformFeedback);
-     gl.BeginTransformFeedbackEXT.aliased(&gl.BeginTransformFeedbackNV);
-     gl.BeginTransformFeedbackNV.aliased(&gl.BeginTransformFeedback);
-     gl.BeginTransformFeedbackNV.aliased(&gl.BeginTransformFeedbackEXT);
-     gl.BindAttribLocation.aliased(&gl.BindAttribLocationARB);
-     gl.BindAttribLocationARB.aliased(&gl.BindAttribLocation);
-     gl.BindBuffer.aliased(&gl.BindBufferARB);
-     gl.BindBufferARB.aliased(&gl.BindBuffer);
-     gl.BindBufferBase.aliased(&gl.BindBufferBaseEXT);
-     gl.BindBufferBase.aliased(&gl.BindBufferBaseNV);
-     gl.BindBufferBaseEXT.aliased(&gl.BindBufferBase);
-     gl.BindBufferBaseEXT.aliased(&gl.BindBufferBaseNV);
-     gl.BindBufferBaseNV.aliased(&gl.BindBufferBase);
-     gl.BindBufferBaseNV.aliased(&gl.BindBufferBaseEXT);
-     gl.BindBufferOffsetEXT.aliased(&gl.BindBufferOffsetNV);
-     gl.BindBufferOffsetNV.aliased(&gl.BindBufferOffsetEXT);
-     gl.BindBufferRange.aliased(&gl.BindBufferRangeEXT);
-     gl.BindBufferRange.aliased(&gl.BindBufferRangeNV);
-     gl.BindBufferRangeEXT.aliased(&gl.BindBufferRange);
-     gl.BindBufferRangeEXT.aliased(&gl.BindBufferRangeNV);
-     gl.BindBufferRangeNV.aliased(&gl.BindBufferRange);
-     gl.BindBufferRangeNV.aliased(&gl.BindBufferRangeEXT);
-     gl.BindFragDataLocation.aliased(&gl.BindFragDataLocationEXT);
-     gl.BindFragDataLocationEXT.aliased(&gl.BindFragDataLocation);
-     gl.BindProgramARB.aliased(&gl.BindProgramNV);
-     gl.BindProgramNV.aliased(&gl.BindProgramARB);
-     gl.BindTexture.aliased(&gl.BindTextureEXT);
-     gl.BindTextureEXT.aliased(&gl.BindTexture);
-     gl.BlendColor.aliased(&gl.BlendColorEXT);
-     gl.BlendColorEXT.aliased(&gl.BlendColor);
-     gl.BlendEquation.aliased(&gl.BlendEquationEXT);
-     gl.BlendEquationEXT.aliased(&gl.BlendEquation);
-     gl.BlendEquationi.aliased(&gl.BlendEquationIndexedAMD);
-     gl.BlendEquationi.aliased(&gl.BlendEquationiARB);
-     gl.BlendEquationiARB.aliased(&gl.BlendEquationIndexedAMD);
-     gl.BlendEquationiARB.aliased(&gl.BlendEquationi);
-     gl.BlendEquationIndexedAMD.aliased(&gl.BlendEquationi);
-     gl.BlendEquationIndexedAMD.aliased(&gl.BlendEquationiARB);
-     gl.BlendEquationSeparate.aliased(&gl.BlendEquationSeparateEXT);
-     gl.BlendEquationSeparateEXT.aliased(&gl.BlendEquationSeparate);
-     gl.BlendEquationSeparatei.aliased(&gl.BlendEquationSeparateIndexedAMD);
-     gl.BlendEquationSeparatei.aliased(&gl.BlendEquationSeparateiARB);
-     gl.BlendEquationSeparateiARB.aliased(&gl.BlendEquationSeparateIndexedAMD);
-     gl.BlendEquationSeparateiARB.aliased(&gl.BlendEquationSeparatei);
-     gl.BlendEquationSeparateIndexedAMD.aliased(&gl.BlendEquationSeparatei);
-     gl.BlendEquationSeparateIndexedAMD.aliased(&gl.BlendEquationSeparateiARB);
-     gl.BlendFunci.aliased(&gl.BlendFuncIndexedAMD);
-     gl.BlendFunci.aliased(&gl.BlendFunciARB);
-     gl.BlendFunciARB.aliased(&gl.BlendFuncIndexedAMD);
-     gl.BlendFunciARB.aliased(&gl.BlendFunci);
-     gl.BlendFuncIndexedAMD.aliased(&gl.BlendFunci);
-     gl.BlendFuncIndexedAMD.aliased(&gl.BlendFunciARB);
-     gl.BlendFuncSeparate.aliased(&gl.BlendFuncSeparateEXT);
-     gl.BlendFuncSeparate.aliased(&gl.BlendFuncSeparateINGR);
-     gl.BlendFuncSeparateEXT.aliased(&gl.BlendFuncSeparate);
-     gl.BlendFuncSeparateEXT.aliased(&gl.BlendFuncSeparateINGR);
-     gl.BlendFuncSeparatei.aliased(&gl.BlendFuncSeparateIndexedAMD);
-     gl.BlendFuncSeparatei.aliased(&gl.BlendFuncSeparateiARB);
-     gl.BlendFuncSeparateiARB.aliased(&gl.BlendFuncSeparateIndexedAMD);
-     gl.BlendFuncSeparateiARB.aliased(&gl.BlendFuncSeparatei);
-     gl.BlendFuncSeparateIndexedAMD.aliased(&gl.BlendFuncSeparatei);
-     gl.BlendFuncSeparateIndexedAMD.aliased(&gl.BlendFuncSeparateiARB);
-     gl.BlendFuncSeparateINGR.aliased(&gl.BlendFuncSeparate);
-     gl.BlendFuncSeparateINGR.aliased(&gl.BlendFuncSeparateEXT);
-     gl.BlitFramebuffer.aliased(&gl.BlitFramebufferEXT);
-     gl.BlitFramebufferEXT.aliased(&gl.BlitFramebuffer);
-     gl.BufferData.aliased(&gl.BufferDataARB);
-     gl.BufferDataARB.aliased(&gl.BufferData);
-     gl.BufferSubData.aliased(&gl.BufferSubDataARB);
-     gl.BufferSubDataARB.aliased(&gl.BufferSubData);
-     gl.CheckFramebufferStatus.aliased(&gl.CheckFramebufferStatusEXT);
-     gl.CheckFramebufferStatusEXT.aliased(&gl.CheckFramebufferStatus);
-     gl.ClampColor.aliased(&gl.ClampColorARB);
-     gl.ClampColorARB.aliased(&gl.ClampColor);
-     gl.ClearDepthf.aliased(&gl.ClearDepthfOES);
-     gl.ClearDepthfOES.aliased(&gl.ClearDepthf);
-     gl.ClientActiveTexture.aliased(&gl.ClientActiveTextureARB);
-     gl.ClientActiveTextureARB.aliased(&gl.ClientActiveTexture);
-     gl.ColorMaski.aliased(&gl.ColorMaskIndexedEXT);
-     gl.ColorMaskIndexedEXT.aliased(&gl.ColorMaski);
-     gl.ColorSubTable.aliased(&gl.ColorSubTableEXT);
-     gl.ColorSubTableEXT.aliased(&gl.ColorSubTable);
-     gl.ColorTable.aliased(&gl.ColorTableEXT);
-     gl.ColorTable.aliased(&gl.ColorTableSGI);
-     gl.ColorTableEXT.aliased(&gl.ColorTable);
-     gl.ColorTableEXT.aliased(&gl.ColorTableSGI);
-     gl.ColorTableParameterfv.aliased(&gl.ColorTableParameterfvSGI);
-     gl.ColorTableParameterfvSGI.aliased(&gl.ColorTableParameterfv);
-     gl.ColorTableParameteriv.aliased(&gl.ColorTableParameterivSGI);
-     gl.ColorTableParameterivSGI.aliased(&gl.ColorTableParameteriv);
-     gl.ColorTableSGI.aliased(&gl.ColorTable);
-     gl.ColorTableSGI.aliased(&gl.ColorTableEXT);
-     gl.CompileShader.aliased(&gl.CompileShaderARB);
-     gl.CompileShaderARB.aliased(&gl.CompileShader);
-     gl.CompressedTexImage1D.aliased(&gl.CompressedTexImage1DARB);
-     gl.CompressedTexImage1DARB.aliased(&gl.CompressedTexImage1D);
-     gl.CompressedTexImage2D.aliased(&gl.CompressedTexImage2DARB);
-     gl.CompressedTexImage2DARB.aliased(&gl.CompressedTexImage2D);
-     gl.CompressedTexImage3D.aliased(&gl.CompressedTexImage3DARB);
-     gl.CompressedTexImage3DARB.aliased(&gl.CompressedTexImage3D);
-     gl.CompressedTexSubImage1D.aliased(&gl.CompressedTexSubImage1DARB);
-     gl.CompressedTexSubImage1DARB.aliased(&gl.CompressedTexSubImage1D);
-     gl.CompressedTexSubImage2D.aliased(&gl.CompressedTexSubImage2DARB);
-     gl.CompressedTexSubImage2DARB.aliased(&gl.CompressedTexSubImage2D);
-     gl.CompressedTexSubImage3D.aliased(&gl.CompressedTexSubImage3DARB);
-     gl.CompressedTexSubImage3DARB.aliased(&gl.CompressedTexSubImage3D);
-     gl.ConvolutionFilter1D.aliased(&gl.ConvolutionFilter1DEXT);
-     gl.ConvolutionFilter1DEXT.aliased(&gl.ConvolutionFilter1D);
-     gl.ConvolutionFilter2D.aliased(&gl.ConvolutionFilter2DEXT);
-     gl.ConvolutionFilter2DEXT.aliased(&gl.ConvolutionFilter2D);
-     gl.ConvolutionParameterf.aliased(&gl.ConvolutionParameterfEXT);
-     gl.ConvolutionParameterfEXT.aliased(&gl.ConvolutionParameterf);
-     gl.ConvolutionParameterfv.aliased(&gl.ConvolutionParameterfvEXT);
-     gl.ConvolutionParameterfvEXT.aliased(&gl.ConvolutionParameterfv);
-     gl.ConvolutionParameteri.aliased(&gl.ConvolutionParameteriEXT);
-     gl.ConvolutionParameteriEXT.aliased(&gl.ConvolutionParameteri);
-     gl.ConvolutionParameteriv.aliased(&gl.ConvolutionParameterivEXT);
-     gl.ConvolutionParameterivEXT.aliased(&gl.ConvolutionParameteriv);
-     gl.CopyColorSubTable.aliased(&gl.CopyColorSubTableEXT);
-     gl.CopyColorSubTableEXT.aliased(&gl.CopyColorSubTable);
-     gl.CopyColorTable.aliased(&gl.CopyColorTableSGI);
-     gl.CopyColorTableSGI.aliased(&gl.CopyColorTable);
-     gl.CopyConvolutionFilter1D.aliased(&gl.CopyConvolutionFilter1DEXT);
-     gl.CopyConvolutionFilter1DEXT.aliased(&gl.CopyConvolutionFilter1D);
-     gl.CopyConvolutionFilter2D.aliased(&gl.CopyConvolutionFilter2DEXT);
-     gl.CopyConvolutionFilter2DEXT.aliased(&gl.CopyConvolutionFilter2D);
-     gl.CopyTexImage1D.aliased(&gl.CopyTexImage1DEXT);
-     gl.CopyTexImage1DEXT.aliased(&gl.CopyTexImage1D);
-     gl.CopyTexImage2D.aliased(&gl.CopyTexImage2DEXT);
-     gl.CopyTexImage2DEXT.aliased(&gl.CopyTexImage2D);
-     gl.CopyTexSubImage1D.aliased(&gl.CopyTexSubImage1DEXT);
-     gl.CopyTexSubImage1DEXT.aliased(&gl.CopyTexSubImage1D);
-     gl.CopyTexSubImage2D.aliased(&gl.CopyTexSubImage2DEXT);
-     gl.CopyTexSubImage2DEXT.aliased(&gl.CopyTexSubImage2D);
-     gl.CopyTexSubImage3D.aliased(&gl.CopyTexSubImage3DEXT);
-     gl.CopyTexSubImage3DEXT.aliased(&gl.CopyTexSubImage3D);
-     gl.CreateProgram.aliased(&gl.CreateProgramObjectARB);
-     gl.CreateProgramObjectARB.aliased(&gl.CreateProgram);
-     gl.CreateShader.aliased(&gl.CreateShaderObjectARB);
-     gl.CreateShaderObjectARB.aliased(&gl.CreateShader);
-     gl.DebugMessageCallback.aliased(&gl.DebugMessageCallbackARB);
-     gl.DebugMessageCallbackARB.aliased(&gl.DebugMessageCallback);
-     gl.DebugMessageControl.aliased(&gl.DebugMessageControlARB);
-     gl.DebugMessageControlARB.aliased(&gl.DebugMessageControl);
-     gl.DebugMessageInsert.aliased(&gl.DebugMessageInsertARB);
-     gl.DebugMessageInsertARB.aliased(&gl.DebugMessageInsert);
-     gl.DeleteBuffers.aliased(&gl.DeleteBuffersARB);
-     gl.DeleteBuffersARB.aliased(&gl.DeleteBuffers);
-     gl.DeleteFramebuffers.aliased(&gl.DeleteFramebuffersEXT);
-     gl.DeleteFramebuffersEXT.aliased(&gl.DeleteFramebuffers);
-     gl.DeleteProgramsARB.aliased(&gl.DeleteProgramsNV);
-     gl.DeleteProgramsNV.aliased(&gl.DeleteProgramsARB);
-     gl.DeleteQueries.aliased(&gl.DeleteQueriesARB);
-     gl.DeleteQueriesARB.aliased(&gl.DeleteQueries);
-     gl.DeleteRenderbuffers.aliased(&gl.DeleteRenderbuffersEXT);
-     gl.DeleteRenderbuffersEXT.aliased(&gl.DeleteRenderbuffers);
-     gl.DeleteTransformFeedbacks.aliased(&gl.DeleteTransformFeedbacksNV);
-     gl.DeleteTransformFeedbacksNV.aliased(&gl.DeleteTransformFeedbacks);
-     gl.DeleteVertexArrays.aliased(&gl.DeleteVertexArraysAPPLE);
-     gl.DeleteVertexArraysAPPLE.aliased(&gl.DeleteVertexArrays);
-     gl.DepthRangef.aliased(&gl.DepthRangefOES);
-     gl.DepthRangefOES.aliased(&gl.DepthRangef);
-     gl.DetachObjectARB.aliased(&gl.DetachShader);
-     gl.DetachShader.aliased(&gl.DetachObjectARB);
-     gl.Disablei.aliased(&gl.DisableIndexedEXT);
-     gl.DisableIndexedEXT.aliased(&gl.Disablei);
-     gl.DisableVertexAttribArray.aliased(&gl.DisableVertexAttribArrayARB);
-     gl.DisableVertexAttribArrayARB.aliased(&gl.DisableVertexAttribArray);
-     gl.DrawArrays.aliased(&gl.DrawArraysEXT);
-     gl.DrawArraysEXT.aliased(&gl.DrawArrays);
-     gl.DrawArraysInstanced.aliased(&gl.DrawArraysInstancedARB);
-     gl.DrawArraysInstanced.aliased(&gl.DrawArraysInstancedEXT);
-     gl.DrawArraysInstancedARB.aliased(&gl.DrawArraysInstanced);
-     gl.DrawArraysInstancedARB.aliased(&gl.DrawArraysInstancedEXT);
-     gl.DrawArraysInstancedEXT.aliased(&gl.DrawArraysInstanced);
-     gl.DrawArraysInstancedEXT.aliased(&gl.DrawArraysInstancedARB);
-     gl.DrawBuffers.aliased(&gl.DrawBuffersARB);
-     gl.DrawBuffers.aliased(&gl.DrawBuffersATI);
-     gl.DrawBuffersARB.aliased(&gl.DrawBuffers);
-     gl.DrawBuffersARB.aliased(&gl.DrawBuffersATI);
-     gl.DrawBuffersATI.aliased(&gl.DrawBuffers);
-     gl.DrawBuffersATI.aliased(&gl.DrawBuffersARB);
-     gl.DrawElementsInstanced.aliased(&gl.DrawElementsInstancedARB);
-     gl.DrawElementsInstanced.aliased(&gl.DrawElementsInstancedEXT);
-     gl.DrawElementsInstancedARB.aliased(&gl.DrawElementsInstanced);
-     gl.DrawElementsInstancedARB.aliased(&gl.DrawElementsInstancedEXT);
-     gl.DrawElementsInstancedEXT.aliased(&gl.DrawElementsInstanced);
-     gl.DrawElementsInstancedEXT.aliased(&gl.DrawElementsInstancedARB);
-     gl.DrawRangeElements.aliased(&gl.DrawRangeElementsEXT);
-     gl.DrawRangeElementsEXT.aliased(&gl.DrawRangeElements);
-     gl.DrawTransformFeedback.aliased(&gl.DrawTransformFeedbackNV);
-     gl.DrawTransformFeedbackNV.aliased(&gl.DrawTransformFeedback);
-     gl.Enablei.aliased(&gl.EnableIndexedEXT);
-     gl.EnableIndexedEXT.aliased(&gl.Enablei);
-     gl.EnableVertexAttribArray.aliased(&gl.EnableVertexAttribArrayARB);
-     gl.EnableVertexAttribArrayARB.aliased(&gl.EnableVertexAttribArray);
-     gl.EndConditionalRender.aliased(&gl.EndConditionalRenderNV);
-     gl.EndConditionalRender.aliased(&gl.EndConditionalRenderNVX);
-     gl.EndConditionalRenderNV.aliased(&gl.EndConditionalRender);
-     gl.EndConditionalRenderNV.aliased(&gl.EndConditionalRenderNVX);
-     gl.EndConditionalRenderNVX.aliased(&gl.EndConditionalRender);
-     gl.EndConditionalRenderNVX.aliased(&gl.EndConditionalRenderNV);
-     gl.EndQuery.aliased(&gl.EndQueryARB);
-     gl.EndQueryARB.aliased(&gl.EndQuery);
-     gl.EndTransformFeedback.aliased(&gl.EndTransformFeedbackEXT);
-     gl.EndTransformFeedback.aliased(&gl.EndTransformFeedbackNV);
-     gl.EndTransformFeedbackEXT.aliased(&gl.EndTransformFeedback);
-     gl.EndTransformFeedbackEXT.aliased(&gl.EndTransformFeedbackNV);
-     gl.EndTransformFeedbackNV.aliased(&gl.EndTransformFeedback);
-     gl.EndTransformFeedbackNV.aliased(&gl.EndTransformFeedbackEXT);
-     gl.FlushMappedBufferRange.aliased(&gl.FlushMappedBufferRangeAPPLE);
-     gl.FlushMappedBufferRangeAPPLE.aliased(&gl.FlushMappedBufferRange);
-     gl.FogCoordd.aliased(&gl.FogCoorddEXT);
-     gl.FogCoorddEXT.aliased(&gl.FogCoordd);
-     gl.FogCoorddv.aliased(&gl.FogCoorddvEXT);
-     gl.FogCoorddvEXT.aliased(&gl.FogCoorddv);
-     gl.FogCoordf.aliased(&gl.FogCoordfEXT);
-     gl.FogCoordfEXT.aliased(&gl.FogCoordf);
-     gl.FogCoordfv.aliased(&gl.FogCoordfvEXT);
-     gl.FogCoordfvEXT.aliased(&gl.FogCoordfv);
-     gl.FogCoordPointer.aliased(&gl.FogCoordPointerEXT);
-     gl.FogCoordPointerEXT.aliased(&gl.FogCoordPointer);
-     gl.FramebufferRenderbuffer.aliased(&gl.FramebufferRenderbufferEXT);
-     gl.FramebufferRenderbufferEXT.aliased(&gl.FramebufferRenderbuffer);
-     gl.FramebufferTexture.aliased(&gl.FramebufferTextureARB);
-     gl.FramebufferTexture.aliased(&gl.FramebufferTextureEXT);
-     gl.FramebufferTexture1D.aliased(&gl.FramebufferTexture1DEXT);
-     gl.FramebufferTexture1DEXT.aliased(&gl.FramebufferTexture1D);
-     gl.FramebufferTexture2D.aliased(&gl.FramebufferTexture2DEXT);
-     gl.FramebufferTexture2DEXT.aliased(&gl.FramebufferTexture2D);
-     gl.FramebufferTexture3D.aliased(&gl.FramebufferTexture3DEXT);
-     gl.FramebufferTexture3DEXT.aliased(&gl.FramebufferTexture3D);
-     gl.FramebufferTextureARB.aliased(&gl.FramebufferTexture);
-     gl.FramebufferTextureARB.aliased(&gl.FramebufferTextureEXT);
-     gl.FramebufferTextureEXT.aliased(&gl.FramebufferTexture);
-     gl.FramebufferTextureEXT.aliased(&gl.FramebufferTextureARB);
-     gl.FramebufferTextureFaceARB.aliased(&gl.FramebufferTextureFaceEXT);
-     gl.FramebufferTextureFaceEXT.aliased(&gl.FramebufferTextureFaceARB);
-     gl.FramebufferTextureLayer.aliased(&gl.FramebufferTextureLayerARB);
-     gl.FramebufferTextureLayer.aliased(&gl.FramebufferTextureLayerEXT);
-     gl.FramebufferTextureLayerARB.aliased(&gl.FramebufferTextureLayer);
-     gl.FramebufferTextureLayerARB.aliased(&gl.FramebufferTextureLayerEXT);
-     gl.FramebufferTextureLayerEXT.aliased(&gl.FramebufferTextureLayer);
-     gl.FramebufferTextureLayerEXT.aliased(&gl.FramebufferTextureLayerARB);
-     gl.GenBuffers.aliased(&gl.GenBuffersARB);
-     gl.GenBuffersARB.aliased(&gl.GenBuffers);
-     gl.GenerateMipmap.aliased(&gl.GenerateMipmapEXT);
-     gl.GenerateMipmapEXT.aliased(&gl.GenerateMipmap);
-     gl.GenFramebuffers.aliased(&gl.GenFramebuffersEXT);
-     gl.GenFramebuffersEXT.aliased(&gl.GenFramebuffers);
-     gl.GenProgramsARB.aliased(&gl.GenProgramsNV);
-     gl.GenProgramsNV.aliased(&gl.GenProgramsARB);
-     gl.GenQueries.aliased(&gl.GenQueriesARB);
-     gl.GenQueriesARB.aliased(&gl.GenQueries);
-     gl.GenRenderbuffers.aliased(&gl.GenRenderbuffersEXT);
-     gl.GenRenderbuffersEXT.aliased(&gl.GenRenderbuffers);
-     gl.GenTransformFeedbacks.aliased(&gl.GenTransformFeedbacksNV);
-     gl.GenTransformFeedbacksNV.aliased(&gl.GenTransformFeedbacks);
-     gl.GenVertexArrays.aliased(&gl.GenVertexArraysAPPLE);
-     gl.GenVertexArraysAPPLE.aliased(&gl.GenVertexArrays);
-     gl.GetActiveAttrib.aliased(&gl.GetActiveAttribARB);
-     gl.GetActiveAttribARB.aliased(&gl.GetActiveAttrib);
-     gl.GetActiveUniform.aliased(&gl.GetActiveUniformARB);
-     gl.GetActiveUniformARB.aliased(&gl.GetActiveUniform);
-     gl.GetAttribLocation.aliased(&gl.GetAttribLocationARB);
-     gl.GetAttribLocationARB.aliased(&gl.GetAttribLocation);
-     gl.GetBooleani_v.aliased(&gl.GetBooleanIndexedvEXT);
-     gl.GetBooleanIndexedvEXT.aliased(&gl.GetBooleani_v);
-     gl.GetBufferParameteriv.aliased(&gl.GetBufferParameterivARB);
-     gl.GetBufferParameterivARB.aliased(&gl.GetBufferParameteriv);
-     gl.GetBufferPointerv.aliased(&gl.GetBufferPointervARB);
-     gl.GetBufferPointervARB.aliased(&gl.GetBufferPointerv);
-     gl.GetBufferSubData.aliased(&gl.GetBufferSubDataARB);
-     gl.GetBufferSubDataARB.aliased(&gl.GetBufferSubData);
-     gl.GetColorTable.aliased(&gl.GetColorTableEXT);
-     gl.GetColorTableEXT.aliased(&gl.GetColorTable);
-     gl.GetColorTableParameterfv.aliased(&gl.GetColorTableParameterfvEXT);
-     gl.GetColorTableParameterfvEXT.aliased(&gl.GetColorTableParameterfv);
-     gl.GetColorTableParameteriv.aliased(&gl.GetColorTableParameterivEXT);
-     gl.GetColorTableParameterivEXT.aliased(&gl.GetColorTableParameteriv);
-     gl.GetCompressedTexImage.aliased(&gl.GetCompressedTexImageARB);
-     gl.GetCompressedTexImageARB.aliased(&gl.GetCompressedTexImage);
-     gl.GetDebugMessageLog.aliased(&gl.GetDebugMessageLogARB);
-     gl.GetDebugMessageLogARB.aliased(&gl.GetDebugMessageLog);
-     gl.GetDoublei_v.aliased(&gl.GetDoubleIndexedvEXT);
-     gl.GetDoublei_v.aliased(&gl.GetDoublei_vEXT);
-     gl.GetDoublei_vEXT.aliased(&gl.GetDoubleIndexedvEXT);
-     gl.GetDoublei_vEXT.aliased(&gl.GetDoublei_v);
-     gl.GetDoubleIndexedvEXT.aliased(&gl.GetDoublei_v);
-     gl.GetDoubleIndexedvEXT.aliased(&gl.GetDoublei_vEXT);
-     gl.GetFloati_v.aliased(&gl.GetFloatIndexedvEXT);
-     gl.GetFloati_v.aliased(&gl.GetFloati_vEXT);
-     gl.GetFloati_vEXT.aliased(&gl.GetFloatIndexedvEXT);
-     gl.GetFloati_vEXT.aliased(&gl.GetFloati_v);
-     gl.GetFloatIndexedvEXT.aliased(&gl.GetFloati_v);
-     gl.GetFloatIndexedvEXT.aliased(&gl.GetFloati_vEXT);
-     gl.GetFragDataLocation.aliased(&gl.GetFragDataLocationEXT);
-     gl.GetFragDataLocationEXT.aliased(&gl.GetFragDataLocation);
-     gl.GetFramebufferAttachmentParameteriv.aliased(&gl.GetFramebufferAttachmentParameterivEXT);
-     gl.GetFramebufferAttachmentParameterivEXT.aliased(&gl.GetFramebufferAttachmentParameteriv);
-     gl.GetIntegeri_v.aliased(&gl.GetIntegerIndexedvEXT);
-     gl.GetIntegerIndexedvEXT.aliased(&gl.GetIntegeri_v);
-     gl.GetMultisamplefv.aliased(&gl.GetMultisamplefvNV);
-     gl.GetMultisamplefvNV.aliased(&gl.GetMultisamplefv);
-     gl.GetPointerv.aliased(&gl.GetPointervEXT);
-     gl.GetPointervEXT.aliased(&gl.GetPointerv);
-     gl.GetQueryiv.aliased(&gl.GetQueryivARB);
-     gl.GetQueryivARB.aliased(&gl.GetQueryiv);
-     gl.GetQueryObjecti64v.aliased(&gl.GetQueryObjecti64vEXT);
-     gl.GetQueryObjecti64vEXT.aliased(&gl.GetQueryObjecti64v);
-     gl.GetQueryObjectiv.aliased(&gl.GetQueryObjectivARB);
-     gl.GetQueryObjectivARB.aliased(&gl.GetQueryObjectiv);
-     gl.GetQueryObjectui64v.aliased(&gl.GetQueryObjectui64vEXT);
-     gl.GetQueryObjectui64vEXT.aliased(&gl.GetQueryObjectui64v);
-     gl.GetQueryObjectuiv.aliased(&gl.GetQueryObjectuivARB);
-     gl.GetQueryObjectuivARB.aliased(&gl.GetQueryObjectuiv);
-     gl.GetRenderbufferParameteriv.aliased(&gl.GetRenderbufferParameterivEXT);
-     gl.GetRenderbufferParameterivEXT.aliased(&gl.GetRenderbufferParameteriv);
-     gl.GetShaderSource.aliased(&gl.GetShaderSourceARB);
-     gl.GetShaderSourceARB.aliased(&gl.GetShaderSource);
-     gl.GetTexParameterIiv.aliased(&gl.GetTexParameterIivEXT);
-     gl.GetTexParameterIivEXT.aliased(&gl.GetTexParameterIiv);
-     gl.GetTexParameterIuiv.aliased(&gl.GetTexParameterIuivEXT);
-     gl.GetTexParameterIuivEXT.aliased(&gl.GetTexParameterIuiv);
-     gl.GetTransformFeedbackVarying.aliased(&gl.GetTransformFeedbackVaryingEXT);
-     gl.GetTransformFeedbackVaryingEXT.aliased(&gl.GetTransformFeedbackVarying);
-     gl.GetUniformfv.aliased(&gl.GetUniformfvARB);
-     gl.GetUniformfvARB.aliased(&gl.GetUniformfv);
-     gl.GetUniformiv.aliased(&gl.GetUniformivARB);
-     gl.GetUniformivARB.aliased(&gl.GetUniformiv);
-     gl.GetUniformLocation.aliased(&gl.GetUniformLocationARB);
-     gl.GetUniformLocationARB.aliased(&gl.GetUniformLocation);
-     gl.GetUniformuiv.aliased(&gl.GetUniformuivEXT);
-     gl.GetUniformuivEXT.aliased(&gl.GetUniformuiv);
-     gl.GetVertexAttribdv.aliased(&gl.GetVertexAttribdvARB);
-     gl.GetVertexAttribdv.aliased(&gl.GetVertexAttribdvNV);
-     gl.GetVertexAttribdvARB.aliased(&gl.GetVertexAttribdv);
-     gl.GetVertexAttribdvARB.aliased(&gl.GetVertexAttribdvNV);
-     gl.GetVertexAttribdvNV.aliased(&gl.GetVertexAttribdv);
-     gl.GetVertexAttribdvNV.aliased(&gl.GetVertexAttribdvARB);
-     gl.GetVertexAttribfv.aliased(&gl.GetVertexAttribfvARB);
-     gl.GetVertexAttribfv.aliased(&gl.GetVertexAttribfvNV);
-     gl.GetVertexAttribfvARB.aliased(&gl.GetVertexAttribfv);
-     gl.GetVertexAttribfvARB.aliased(&gl.GetVertexAttribfvNV);
-     gl.GetVertexAttribfvNV.aliased(&gl.GetVertexAttribfv);
-     gl.GetVertexAttribfvNV.aliased(&gl.GetVertexAttribfvARB);
-     gl.GetVertexAttribIiv.aliased(&gl.GetVertexAttribIivEXT);
-     gl.GetVertexAttribIivEXT.aliased(&gl.GetVertexAttribIiv);
-     gl.GetVertexAttribIuiv.aliased(&gl.GetVertexAttribIuivEXT);
-     gl.GetVertexAttribIuivEXT.aliased(&gl.GetVertexAttribIuiv);
-     gl.GetVertexAttribiv.aliased(&gl.GetVertexAttribivARB);
-     gl.GetVertexAttribiv.aliased(&gl.GetVertexAttribivNV);
-     gl.GetVertexAttribivARB.aliased(&gl.GetVertexAttribiv);
-     gl.GetVertexAttribivARB.aliased(&gl.GetVertexAttribivNV);
-     gl.GetVertexAttribivNV.aliased(&gl.GetVertexAttribiv);
-     gl.GetVertexAttribivNV.aliased(&gl.GetVertexAttribivARB);
-     gl.GetVertexAttribLdv.aliased(&gl.GetVertexAttribLdvEXT);
-     gl.GetVertexAttribLdvEXT.aliased(&gl.GetVertexAttribLdv);
-     gl.GetVertexAttribPointerv.aliased(&gl.GetVertexAttribPointervARB);
-     gl.GetVertexAttribPointerv.aliased(&gl.GetVertexAttribPointervNV);
-     gl.GetVertexAttribPointervARB.aliased(&gl.GetVertexAttribPointerv);
-     gl.GetVertexAttribPointervARB.aliased(&gl.GetVertexAttribPointervNV);
-     gl.GetVertexAttribPointervNV.aliased(&gl.GetVertexAttribPointerv);
-     gl.GetVertexAttribPointervNV.aliased(&gl.GetVertexAttribPointervARB);
-     gl.Histogram.aliased(&gl.HistogramEXT);
-     gl.HistogramEXT.aliased(&gl.Histogram);
-     gl.IsBuffer.aliased(&gl.IsBufferARB);
-     gl.IsBufferARB.aliased(&gl.IsBuffer);
-     gl.IsEnabledi.aliased(&gl.IsEnabledIndexedEXT);
-     gl.IsEnabledIndexedEXT.aliased(&gl.IsEnabledi);
-     gl.IsFramebuffer.aliased(&gl.IsFramebufferEXT);
-     gl.IsFramebufferEXT.aliased(&gl.IsFramebuffer);
-     gl.IsProgramARB.aliased(&gl.IsProgramNV);
-     gl.IsProgramNV.aliased(&gl.IsProgramARB);
-     gl.IsQuery.aliased(&gl.IsQueryARB);
-     gl.IsQueryARB.aliased(&gl.IsQuery);
-     gl.IsRenderbuffer.aliased(&gl.IsRenderbufferEXT);
-     gl.IsRenderbufferEXT.aliased(&gl.IsRenderbuffer);
-     gl.IsTransformFeedback.aliased(&gl.IsTransformFeedbackNV);
-     gl.IsTransformFeedbackNV.aliased(&gl.IsTransformFeedback);
-     gl.IsVertexArray.aliased(&gl.IsVertexArrayAPPLE);
-     gl.IsVertexArrayAPPLE.aliased(&gl.IsVertexArray);
-     gl.LinkProgram.aliased(&gl.LinkProgramARB);
-     gl.LinkProgramARB.aliased(&gl.LinkProgram);
-     gl.LoadTransposeMatrixd.aliased(&gl.LoadTransposeMatrixdARB);
-     gl.LoadTransposeMatrixdARB.aliased(&gl.LoadTransposeMatrixd);
-     gl.LoadTransposeMatrixf.aliased(&gl.LoadTransposeMatrixfARB);
-     gl.LoadTransposeMatrixfARB.aliased(&gl.LoadTransposeMatrixf);
-     gl.MapBuffer.aliased(&gl.MapBufferARB);
-     gl.MapBufferARB.aliased(&gl.MapBuffer);
-     gl.MaxShaderCompilerThreadsARB.aliased(&gl.MaxShaderCompilerThreadsKHR);
-     gl.MaxShaderCompilerThreadsKHR.aliased(&gl.MaxShaderCompilerThreadsARB);
-     gl.MemoryBarrier.aliased(&gl.MemoryBarrierEXT);
-     gl.MemoryBarrierEXT.aliased(&gl.MemoryBarrier);
-     gl.Minmax.aliased(&gl.MinmaxEXT);
-     gl.MinmaxEXT.aliased(&gl.Minmax);
-     gl.MinSampleShading.aliased(&gl.MinSampleShadingARB);
-     gl.MinSampleShadingARB.aliased(&gl.MinSampleShading);
-     gl.MultiDrawArrays.aliased(&gl.MultiDrawArraysEXT);
-     gl.MultiDrawArraysEXT.aliased(&gl.MultiDrawArrays);
-     gl.MultiDrawArraysIndirect.aliased(&gl.MultiDrawArraysIndirectAMD);
-     gl.MultiDrawArraysIndirectAMD.aliased(&gl.MultiDrawArraysIndirect);
-     gl.MultiDrawArraysIndirectCount.aliased(&gl.MultiDrawArraysIndirectCountARB);
-     gl.MultiDrawArraysIndirectCountARB.aliased(&gl.MultiDrawArraysIndirectCount);
-     gl.MultiDrawElements.aliased(&gl.MultiDrawElementsEXT);
-     gl.MultiDrawElementsEXT.aliased(&gl.MultiDrawElements);
-     gl.MultiDrawElementsIndirect.aliased(&gl.MultiDrawElementsIndirectAMD);
-     gl.MultiDrawElementsIndirectAMD.aliased(&gl.MultiDrawElementsIndirect);
-     gl.MultiDrawElementsIndirectCount.aliased(&gl.MultiDrawElementsIndirectCountARB);
-     gl.MultiDrawElementsIndirectCountARB.aliased(&gl.MultiDrawElementsIndirectCount);
-     gl.MultiTexCoord1d.aliased(&gl.MultiTexCoord1dARB);
-     gl.MultiTexCoord1dARB.aliased(&gl.MultiTexCoord1d);
-     gl.MultiTexCoord1dv.aliased(&gl.MultiTexCoord1dvARB);
-     gl.MultiTexCoord1dvARB.aliased(&gl.MultiTexCoord1dv);
-     gl.MultiTexCoord1f.aliased(&gl.MultiTexCoord1fARB);
-     gl.MultiTexCoord1fARB.aliased(&gl.MultiTexCoord1f);
-     gl.MultiTexCoord1fv.aliased(&gl.MultiTexCoord1fvARB);
-     gl.MultiTexCoord1fvARB.aliased(&gl.MultiTexCoord1fv);
-     gl.MultiTexCoord1i.aliased(&gl.MultiTexCoord1iARB);
-     gl.MultiTexCoord1iARB.aliased(&gl.MultiTexCoord1i);
-     gl.MultiTexCoord1iv.aliased(&gl.MultiTexCoord1ivARB);
-     gl.MultiTexCoord1ivARB.aliased(&gl.MultiTexCoord1iv);
-     gl.MultiTexCoord1s.aliased(&gl.MultiTexCoord1sARB);
-     gl.MultiTexCoord1sARB.aliased(&gl.MultiTexCoord1s);
-     gl.MultiTexCoord1sv.aliased(&gl.MultiTexCoord1svARB);
-     gl.MultiTexCoord1svARB.aliased(&gl.MultiTexCoord1sv);
-     gl.MultiTexCoord2d.aliased(&gl.MultiTexCoord2dARB);
-     gl.MultiTexCoord2dARB.aliased(&gl.MultiTexCoord2d);
-     gl.MultiTexCoord2dv.aliased(&gl.MultiTexCoord2dvARB);
-     gl.MultiTexCoord2dvARB.aliased(&gl.MultiTexCoord2dv);
-     gl.MultiTexCoord2f.aliased(&gl.MultiTexCoord2fARB);
-     gl.MultiTexCoord2fARB.aliased(&gl.MultiTexCoord2f);
-     gl.MultiTexCoord2fv.aliased(&gl.MultiTexCoord2fvARB);
-     gl.MultiTexCoord2fvARB.aliased(&gl.MultiTexCoord2fv);
-     gl.MultiTexCoord2i.aliased(&gl.MultiTexCoord2iARB);
-     gl.MultiTexCoord2iARB.aliased(&gl.MultiTexCoord2i);
-     gl.MultiTexCoord2iv.aliased(&gl.MultiTexCoord2ivARB);
-     gl.MultiTexCoord2ivARB.aliased(&gl.MultiTexCoord2iv);
-     gl.MultiTexCoord2s.aliased(&gl.MultiTexCoord2sARB);
-     gl.MultiTexCoord2sARB.aliased(&gl.MultiTexCoord2s);
-     gl.MultiTexCoord2sv.aliased(&gl.MultiTexCoord2svARB);
-     gl.MultiTexCoord2svARB.aliased(&gl.MultiTexCoord2sv);
-     gl.MultiTexCoord3d.aliased(&gl.MultiTexCoord3dARB);
-     gl.MultiTexCoord3dARB.aliased(&gl.MultiTexCoord3d);
-     gl.MultiTexCoord3dv.aliased(&gl.MultiTexCoord3dvARB);
-     gl.MultiTexCoord3dvARB.aliased(&gl.MultiTexCoord3dv);
-     gl.MultiTexCoord3f.aliased(&gl.MultiTexCoord3fARB);
-     gl.MultiTexCoord3fARB.aliased(&gl.MultiTexCoord3f);
-     gl.MultiTexCoord3fv.aliased(&gl.MultiTexCoord3fvARB);
-     gl.MultiTexCoord3fvARB.aliased(&gl.MultiTexCoord3fv);
-     gl.MultiTexCoord3i.aliased(&gl.MultiTexCoord3iARB);
-     gl.MultiTexCoord3iARB.aliased(&gl.MultiTexCoord3i);
-     gl.MultiTexCoord3iv.aliased(&gl.MultiTexCoord3ivARB);
-     gl.MultiTexCoord3ivARB.aliased(&gl.MultiTexCoord3iv);
-     gl.MultiTexCoord3s.aliased(&gl.MultiTexCoord3sARB);
-     gl.MultiTexCoord3sARB.aliased(&gl.MultiTexCoord3s);
-     gl.MultiTexCoord3sv.aliased(&gl.MultiTexCoord3svARB);
-     gl.MultiTexCoord3svARB.aliased(&gl.MultiTexCoord3sv);
-     gl.MultiTexCoord4d.aliased(&gl.MultiTexCoord4dARB);
-     gl.MultiTexCoord4dARB.aliased(&gl.MultiTexCoord4d);
-     gl.MultiTexCoord4dv.aliased(&gl.MultiTexCoord4dvARB);
-     gl.MultiTexCoord4dvARB.aliased(&gl.MultiTexCoord4dv);
-     gl.MultiTexCoord4f.aliased(&gl.MultiTexCoord4fARB);
-     gl.MultiTexCoord4fARB.aliased(&gl.MultiTexCoord4f);
-     gl.MultiTexCoord4fv.aliased(&gl.MultiTexCoord4fvARB);
-     gl.MultiTexCoord4fvARB.aliased(&gl.MultiTexCoord4fv);
-     gl.MultiTexCoord4i.aliased(&gl.MultiTexCoord4iARB);
-     gl.MultiTexCoord4iARB.aliased(&gl.MultiTexCoord4i);
-     gl.MultiTexCoord4iv.aliased(&gl.MultiTexCoord4ivARB);
-     gl.MultiTexCoord4ivARB.aliased(&gl.MultiTexCoord4iv);
-     gl.MultiTexCoord4s.aliased(&gl.MultiTexCoord4sARB);
-     gl.MultiTexCoord4sARB.aliased(&gl.MultiTexCoord4s);
-     gl.MultiTexCoord4sv.aliased(&gl.MultiTexCoord4svARB);
-     gl.MultiTexCoord4svARB.aliased(&gl.MultiTexCoord4sv);
-     gl.MultTransposeMatrixd.aliased(&gl.MultTransposeMatrixdARB);
-     gl.MultTransposeMatrixdARB.aliased(&gl.MultTransposeMatrixd);
-     gl.MultTransposeMatrixf.aliased(&gl.MultTransposeMatrixfARB);
-     gl.MultTransposeMatrixfARB.aliased(&gl.MultTransposeMatrixf);
-     gl.NamedBufferStorage.aliased(&gl.NamedBufferStorageEXT);
-     gl.NamedBufferStorageEXT.aliased(&gl.NamedBufferStorage);
-     gl.NamedBufferSubData.aliased(&gl.NamedBufferSubDataEXT);
-     gl.NamedBufferSubDataEXT.aliased(&gl.NamedBufferSubData);
-     gl.PauseTransformFeedback.aliased(&gl.PauseTransformFeedbackNV);
-     gl.PauseTransformFeedbackNV.aliased(&gl.PauseTransformFeedback);
-     gl.PointParameterf.aliased(&gl.PointParameterfARB);
-     gl.PointParameterf.aliased(&gl.PointParameterfEXT);
-     gl.PointParameterf.aliased(&gl.PointParameterfSGIS);
-     gl.PointParameterfARB.aliased(&gl.PointParameterf);
-     gl.PointParameterfARB.aliased(&gl.PointParameterfEXT);
-     gl.PointParameterfARB.aliased(&gl.PointParameterfSGIS);
-     gl.PointParameterfEXT.aliased(&gl.PointParameterf);
-     gl.PointParameterfEXT.aliased(&gl.PointParameterfARB);
-     gl.PointParameterfEXT.aliased(&gl.PointParameterfSGIS);
-     gl.PointParameterfSGIS.aliased(&gl.PointParameterf);
-     gl.PointParameterfSGIS.aliased(&gl.PointParameterfARB);
-     gl.PointParameterfSGIS.aliased(&gl.PointParameterfEXT);
-     gl.PointParameterfv.aliased(&gl.PointParameterfvARB);
-     gl.PointParameterfv.aliased(&gl.PointParameterfvEXT);
-     gl.PointParameterfv.aliased(&gl.PointParameterfvSGIS);
-     gl.PointParameterfvARB.aliased(&gl.PointParameterfv);
-     gl.PointParameterfvARB.aliased(&gl.PointParameterfvEXT);
-     gl.PointParameterfvARB.aliased(&gl.PointParameterfvSGIS);
-     gl.PointParameterfvEXT.aliased(&gl.PointParameterfv);
-     gl.PointParameterfvEXT.aliased(&gl.PointParameterfvARB);
-     gl.PointParameterfvEXT.aliased(&gl.PointParameterfvSGIS);
-     gl.PointParameterfvSGIS.aliased(&gl.PointParameterfv);
-     gl.PointParameterfvSGIS.aliased(&gl.PointParameterfvARB);
-     gl.PointParameterfvSGIS.aliased(&gl.PointParameterfvEXT);
-     gl.PointParameteri.aliased(&gl.PointParameteriNV);
-     gl.PointParameteriNV.aliased(&gl.PointParameteri);
-     gl.PointParameteriv.aliased(&gl.PointParameterivNV);
-     gl.PointParameterivNV.aliased(&gl.PointParameteriv);
-     gl.PolygonOffsetClamp.aliased(&gl.PolygonOffsetClampEXT);
-     gl.PolygonOffsetClampEXT.aliased(&gl.PolygonOffsetClamp);
-     gl.PrioritizeTextures.aliased(&gl.PrioritizeTexturesEXT);
-     gl.PrioritizeTexturesEXT.aliased(&gl.PrioritizeTextures);
-     gl.ProgramParameteri.aliased(&gl.ProgramParameteriARB);
-     gl.ProgramParameteri.aliased(&gl.ProgramParameteriEXT);
-     gl.ProgramParameteriARB.aliased(&gl.ProgramParameteri);
-     gl.ProgramParameteriARB.aliased(&gl.ProgramParameteriEXT);
-     gl.ProgramParameteriEXT.aliased(&gl.ProgramParameteri);
-     gl.ProgramParameteriEXT.aliased(&gl.ProgramParameteriARB);
-     gl.ProgramUniform1f.aliased(&gl.ProgramUniform1fEXT);
-     gl.ProgramUniform1fEXT.aliased(&gl.ProgramUniform1f);
-     gl.ProgramUniform1fv.aliased(&gl.ProgramUniform1fvEXT);
-     gl.ProgramUniform1fvEXT.aliased(&gl.ProgramUniform1fv);
-     gl.ProgramUniform1i.aliased(&gl.ProgramUniform1iEXT);
-     gl.ProgramUniform1iEXT.aliased(&gl.ProgramUniform1i);
-     gl.ProgramUniform1iv.aliased(&gl.ProgramUniform1ivEXT);
-     gl.ProgramUniform1ivEXT.aliased(&gl.ProgramUniform1iv);
-     gl.ProgramUniform1ui.aliased(&gl.ProgramUniform1uiEXT);
-     gl.ProgramUniform1uiEXT.aliased(&gl.ProgramUniform1ui);
-     gl.ProgramUniform1uiv.aliased(&gl.ProgramUniform1uivEXT);
-     gl.ProgramUniform1uivEXT.aliased(&gl.ProgramUniform1uiv);
-     gl.ProgramUniform2f.aliased(&gl.ProgramUniform2fEXT);
-     gl.ProgramUniform2fEXT.aliased(&gl.ProgramUniform2f);
-     gl.ProgramUniform2fv.aliased(&gl.ProgramUniform2fvEXT);
-     gl.ProgramUniform2fvEXT.aliased(&gl.ProgramUniform2fv);
-     gl.ProgramUniform2i.aliased(&gl.ProgramUniform2iEXT);
-     gl.ProgramUniform2iEXT.aliased(&gl.ProgramUniform2i);
-     gl.ProgramUniform2iv.aliased(&gl.ProgramUniform2ivEXT);
-     gl.ProgramUniform2ivEXT.aliased(&gl.ProgramUniform2iv);
-     gl.ProgramUniform2ui.aliased(&gl.ProgramUniform2uiEXT);
-     gl.ProgramUniform2uiEXT.aliased(&gl.ProgramUniform2ui);
-     gl.ProgramUniform2uiv.aliased(&gl.ProgramUniform2uivEXT);
-     gl.ProgramUniform2uivEXT.aliased(&gl.ProgramUniform2uiv);
-     gl.ProgramUniform3f.aliased(&gl.ProgramUniform3fEXT);
-     gl.ProgramUniform3fEXT.aliased(&gl.ProgramUniform3f);
-     gl.ProgramUniform3fv.aliased(&gl.ProgramUniform3fvEXT);
-     gl.ProgramUniform3fvEXT.aliased(&gl.ProgramUniform3fv);
-     gl.ProgramUniform3i.aliased(&gl.ProgramUniform3iEXT);
-     gl.ProgramUniform3iEXT.aliased(&gl.ProgramUniform3i);
-     gl.ProgramUniform3iv.aliased(&gl.ProgramUniform3ivEXT);
-     gl.ProgramUniform3ivEXT.aliased(&gl.ProgramUniform3iv);
-     gl.ProgramUniform3ui.aliased(&gl.ProgramUniform3uiEXT);
-     gl.ProgramUniform3uiEXT.aliased(&gl.ProgramUniform3ui);
-     gl.ProgramUniform3uiv.aliased(&gl.ProgramUniform3uivEXT);
-     gl.ProgramUniform3uivEXT.aliased(&gl.ProgramUniform3uiv);
-     gl.ProgramUniform4f.aliased(&gl.ProgramUniform4fEXT);
-     gl.ProgramUniform4fEXT.aliased(&gl.ProgramUniform4f);
-     gl.ProgramUniform4fv.aliased(&gl.ProgramUniform4fvEXT);
-     gl.ProgramUniform4fvEXT.aliased(&gl.ProgramUniform4fv);
-     gl.ProgramUniform4i.aliased(&gl.ProgramUniform4iEXT);
-     gl.ProgramUniform4iEXT.aliased(&gl.ProgramUniform4i);
-     gl.ProgramUniform4iv.aliased(&gl.ProgramUniform4ivEXT);
-     gl.ProgramUniform4ivEXT.aliased(&gl.ProgramUniform4iv);
-     gl.ProgramUniform4ui.aliased(&gl.ProgramUniform4uiEXT);
-     gl.ProgramUniform4uiEXT.aliased(&gl.ProgramUniform4ui);
-     gl.ProgramUniform4uiv.aliased(&gl.ProgramUniform4uivEXT);
-     gl.ProgramUniform4uivEXT.aliased(&gl.ProgramUniform4uiv);
-     gl.ProgramUniformMatrix2fv.aliased(&gl.ProgramUniformMatrix2fvEXT);
-     gl.ProgramUniformMatrix2fvEXT.aliased(&gl.ProgramUniformMatrix2fv);
-     gl.ProgramUniformMatrix2x3fv.aliased(&gl.ProgramUniformMatrix2x3fvEXT);
-     gl.ProgramUniformMatrix2x3fvEXT.aliased(&gl.ProgramUniformMatrix2x3fv);
-     gl.ProgramUniformMatrix2x4fv.aliased(&gl.ProgramUniformMatrix2x4fvEXT);
-     gl.ProgramUniformMatrix2x4fvEXT.aliased(&gl.ProgramUniformMatrix2x4fv);
-     gl.ProgramUniformMatrix3fv.aliased(&gl.ProgramUniformMatrix3fvEXT);
-     gl.ProgramUniformMatrix3fvEXT.aliased(&gl.ProgramUniformMatrix3fv);
-     gl.ProgramUniformMatrix3x2fv.aliased(&gl.ProgramUniformMatrix3x2fvEXT);
-     gl.ProgramUniformMatrix3x2fvEXT.aliased(&gl.ProgramUniformMatrix3x2fv);
-     gl.ProgramUniformMatrix3x4fv.aliased(&gl.ProgramUniformMatrix3x4fvEXT);
-     gl.ProgramUniformMatrix3x4fvEXT.aliased(&gl.ProgramUniformMatrix3x4fv);
-     gl.ProgramUniformMatrix4fv.aliased(&gl.ProgramUniformMatrix4fvEXT);
-     gl.ProgramUniformMatrix4fvEXT.aliased(&gl.ProgramUniformMatrix4fv);
-     gl.ProgramUniformMatrix4x2fv.aliased(&gl.ProgramUniformMatrix4x2fvEXT);
-     gl.ProgramUniformMatrix4x2fvEXT.aliased(&gl.ProgramUniformMatrix4x2fv);
-     gl.ProgramUniformMatrix4x3fv.aliased(&gl.ProgramUniformMatrix4x3fvEXT);
-     gl.ProgramUniformMatrix4x3fvEXT.aliased(&gl.ProgramUniformMatrix4x3fv);
-     gl.ProvokingVertex.aliased(&gl.ProvokingVertexEXT);
-     gl.ProvokingVertexEXT.aliased(&gl.ProvokingVertex);
-     gl.ReadnPixels.aliased(&gl.ReadnPixelsARB);
-     gl.ReadnPixelsARB.aliased(&gl.ReadnPixels);
-     gl.RenderbufferStorage.aliased(&gl.RenderbufferStorageEXT);
-     gl.RenderbufferStorageEXT.aliased(&gl.RenderbufferStorage);
-     gl.RenderbufferStorageMultisample.aliased(&gl.RenderbufferStorageMultisampleEXT);
-     gl.RenderbufferStorageMultisampleEXT.aliased(&gl.RenderbufferStorageMultisample);
-     gl.ResetHistogram.aliased(&gl.ResetHistogramEXT);
-     gl.ResetHistogramEXT.aliased(&gl.ResetHistogram);
-     gl.ResetMinmax.aliased(&gl.ResetMinmaxEXT);
-     gl.ResetMinmaxEXT.aliased(&gl.ResetMinmax);
-     gl.ResumeTransformFeedback.aliased(&gl.ResumeTransformFeedbackNV);
-     gl.ResumeTransformFeedbackNV.aliased(&gl.ResumeTransformFeedback);
-     gl.SampleCoverage.aliased(&gl.SampleCoverageARB);
-     gl.SampleCoverageARB.aliased(&gl.SampleCoverage);
-     gl.SampleMaskEXT.aliased(&gl.SampleMaskSGIS);
-     gl.SampleMaskSGIS.aliased(&gl.SampleMaskEXT);
-     gl.SamplePatternEXT.aliased(&gl.SamplePatternSGIS);
-     gl.SamplePatternSGIS.aliased(&gl.SamplePatternEXT);
-     gl.SecondaryColor3b.aliased(&gl.SecondaryColor3bEXT);
-     gl.SecondaryColor3bEXT.aliased(&gl.SecondaryColor3b);
-     gl.SecondaryColor3bv.aliased(&gl.SecondaryColor3bvEXT);
-     gl.SecondaryColor3bvEXT.aliased(&gl.SecondaryColor3bv);
-     gl.SecondaryColor3d.aliased(&gl.SecondaryColor3dEXT);
-     gl.SecondaryColor3dEXT.aliased(&gl.SecondaryColor3d);
-     gl.SecondaryColor3dv.aliased(&gl.SecondaryColor3dvEXT);
-     gl.SecondaryColor3dvEXT.aliased(&gl.SecondaryColor3dv);
-     gl.SecondaryColor3f.aliased(&gl.SecondaryColor3fEXT);
-     gl.SecondaryColor3fEXT.aliased(&gl.SecondaryColor3f);
-     gl.SecondaryColor3fv.aliased(&gl.SecondaryColor3fvEXT);
-     gl.SecondaryColor3fvEXT.aliased(&gl.SecondaryColor3fv);
-     gl.SecondaryColor3i.aliased(&gl.SecondaryColor3iEXT);
-     gl.SecondaryColor3iEXT.aliased(&gl.SecondaryColor3i);
-     gl.SecondaryColor3iv.aliased(&gl.SecondaryColor3ivEXT);
-     gl.SecondaryColor3ivEXT.aliased(&gl.SecondaryColor3iv);
-     gl.SecondaryColor3s.aliased(&gl.SecondaryColor3sEXT);
-     gl.SecondaryColor3sEXT.aliased(&gl.SecondaryColor3s);
-     gl.SecondaryColor3sv.aliased(&gl.SecondaryColor3svEXT);
-     gl.SecondaryColor3svEXT.aliased(&gl.SecondaryColor3sv);
-     gl.SecondaryColor3ub.aliased(&gl.SecondaryColor3ubEXT);
-     gl.SecondaryColor3ubEXT.aliased(&gl.SecondaryColor3ub);
-     gl.SecondaryColor3ubv.aliased(&gl.SecondaryColor3ubvEXT);
-     gl.SecondaryColor3ubvEXT.aliased(&gl.SecondaryColor3ubv);
-     gl.SecondaryColor3ui.aliased(&gl.SecondaryColor3uiEXT);
-     gl.SecondaryColor3uiEXT.aliased(&gl.SecondaryColor3ui);
-     gl.SecondaryColor3uiv.aliased(&gl.SecondaryColor3uivEXT);
-     gl.SecondaryColor3uivEXT.aliased(&gl.SecondaryColor3uiv);
-     gl.SecondaryColor3us.aliased(&gl.SecondaryColor3usEXT);
-     gl.SecondaryColor3usEXT.aliased(&gl.SecondaryColor3us);
-     gl.SecondaryColor3usv.aliased(&gl.SecondaryColor3usvEXT);
-     gl.SecondaryColor3usvEXT.aliased(&gl.SecondaryColor3usv);
-     gl.SecondaryColorPointer.aliased(&gl.SecondaryColorPointerEXT);
-     gl.SecondaryColorPointerEXT.aliased(&gl.SecondaryColorPointer);
-     gl.SeparableFilter2D.aliased(&gl.SeparableFilter2DEXT);
-     gl.SeparableFilter2DEXT.aliased(&gl.SeparableFilter2D);
-     gl.ShaderSource.aliased(&gl.ShaderSourceARB);
-     gl.ShaderSourceARB.aliased(&gl.ShaderSource);
-     gl.SpecializeShader.aliased(&gl.SpecializeShaderARB);
-     gl.SpecializeShaderARB.aliased(&gl.SpecializeShader);
-     gl.StencilOpSeparate.aliased(&gl.StencilOpSeparateATI);
-     gl.StencilOpSeparateATI.aliased(&gl.StencilOpSeparate);
-     gl.TexBuffer.aliased(&gl.TexBufferARB);
-     gl.TexBuffer.aliased(&gl.TexBufferEXT);
-     gl.TexBufferARB.aliased(&gl.TexBuffer);
-     gl.TexBufferARB.aliased(&gl.TexBufferEXT);
-     gl.TexBufferEXT.aliased(&gl.TexBuffer);
-     gl.TexBufferEXT.aliased(&gl.TexBufferARB);
-     gl.TexImage3D.aliased(&gl.TexImage3DEXT);
-     gl.TexImage3DEXT.aliased(&gl.TexImage3D);
-     gl.TexParameterIiv.aliased(&gl.TexParameterIivEXT);
-     gl.TexParameterIivEXT.aliased(&gl.TexParameterIiv);
-     gl.TexParameterIuiv.aliased(&gl.TexParameterIuivEXT);
-     gl.TexParameterIuivEXT.aliased(&gl.TexParameterIuiv);
-     gl.TexSubImage1D.aliased(&gl.TexSubImage1DEXT);
-     gl.TexSubImage1DEXT.aliased(&gl.TexSubImage1D);
-     gl.TexSubImage2D.aliased(&gl.TexSubImage2DEXT);
-     gl.TexSubImage2DEXT.aliased(&gl.TexSubImage2D);
-     gl.TexSubImage3D.aliased(&gl.TexSubImage3DEXT);
-     gl.TexSubImage3DEXT.aliased(&gl.TexSubImage3D);
-     gl.TransformFeedbackVaryings.aliased(&gl.TransformFeedbackVaryingsEXT);
-     gl.TransformFeedbackVaryingsEXT.aliased(&gl.TransformFeedbackVaryings);
-     gl.Uniform1f.aliased(&gl.Uniform1fARB);
-     gl.Uniform1fARB.aliased(&gl.Uniform1f);
-     gl.Uniform1fv.aliased(&gl.Uniform1fvARB);
-     gl.Uniform1fvARB.aliased(&gl.Uniform1fv);
-     gl.Uniform1i.aliased(&gl.Uniform1iARB);
-     gl.Uniform1iARB.aliased(&gl.Uniform1i);
-     gl.Uniform1iv.aliased(&gl.Uniform1ivARB);
-     gl.Uniform1ivARB.aliased(&gl.Uniform1iv);
-     gl.Uniform1ui.aliased(&gl.Uniform1uiEXT);
-     gl.Uniform1uiEXT.aliased(&gl.Uniform1ui);
-     gl.Uniform1uiv.aliased(&gl.Uniform1uivEXT);
-     gl.Uniform1uivEXT.aliased(&gl.Uniform1uiv);
-     gl.Uniform2f.aliased(&gl.Uniform2fARB);
-     gl.Uniform2fARB.aliased(&gl.Uniform2f);
-     gl.Uniform2fv.aliased(&gl.Uniform2fvARB);
-     gl.Uniform2fvARB.aliased(&gl.Uniform2fv);
-     gl.Uniform2i.aliased(&gl.Uniform2iARB);
-     gl.Uniform2iARB.aliased(&gl.Uniform2i);
-     gl.Uniform2iv.aliased(&gl.Uniform2ivARB);
-     gl.Uniform2ivARB.aliased(&gl.Uniform2iv);
-     gl.Uniform2ui.aliased(&gl.Uniform2uiEXT);
-     gl.Uniform2uiEXT.aliased(&gl.Uniform2ui);
-     gl.Uniform2uiv.aliased(&gl.Uniform2uivEXT);
-     gl.Uniform2uivEXT.aliased(&gl.Uniform2uiv);
-     gl.Uniform3f.aliased(&gl.Uniform3fARB);
-     gl.Uniform3fARB.aliased(&gl.Uniform3f);
-     gl.Uniform3fv.aliased(&gl.Uniform3fvARB);
-     gl.Uniform3fvARB.aliased(&gl.Uniform3fv);
-     gl.Uniform3i.aliased(&gl.Uniform3iARB);
-     gl.Uniform3iARB.aliased(&gl.Uniform3i);
-     gl.Uniform3iv.aliased(&gl.Uniform3ivARB);
-     gl.Uniform3ivARB.aliased(&gl.Uniform3iv);
-     gl.Uniform3ui.aliased(&gl.Uniform3uiEXT);
-     gl.Uniform3uiEXT.aliased(&gl.Uniform3ui);
-     gl.Uniform3uiv.aliased(&gl.Uniform3uivEXT);
-     gl.Uniform3uivEXT.aliased(&gl.Uniform3uiv);
-     gl.Uniform4f.aliased(&gl.Uniform4fARB);
-     gl.Uniform4fARB.aliased(&gl.Uniform4f);
-     gl.Uniform4fv.aliased(&gl.Uniform4fvARB);
-     gl.Uniform4fvARB.aliased(&gl.Uniform4fv);
-     gl.Uniform4i.aliased(&gl.Uniform4iARB);
-     gl.Uniform4iARB.aliased(&gl.Uniform4i);
-     gl.Uniform4iv.aliased(&gl.Uniform4ivARB);
-     gl.Uniform4ivARB.aliased(&gl.Uniform4iv);
-     gl.Uniform4ui.aliased(&gl.Uniform4uiEXT);
-     gl.Uniform4uiEXT.aliased(&gl.Uniform4ui);
-     gl.Uniform4uiv.aliased(&gl.Uniform4uivEXT);
-     gl.Uniform4uivEXT.aliased(&gl.Uniform4uiv);
-     gl.UniformMatrix2fv.aliased(&gl.UniformMatrix2fvARB);
-     gl.UniformMatrix2fvARB.aliased(&gl.UniformMatrix2fv);
-     gl.UniformMatrix3fv.aliased(&gl.UniformMatrix3fvARB);
-     gl.UniformMatrix3fvARB.aliased(&gl.UniformMatrix3fv);
-     gl.UniformMatrix4fv.aliased(&gl.UniformMatrix4fvARB);
-     gl.UniformMatrix4fvARB.aliased(&gl.UniformMatrix4fv);
-     gl.UnmapBuffer.aliased(&gl.UnmapBufferARB);
-     gl.UnmapBufferARB.aliased(&gl.UnmapBuffer);
-     gl.UseProgram.aliased(&gl.UseProgramObjectARB);
-     gl.UseProgramObjectARB.aliased(&gl.UseProgram);
-     gl.ValidateProgram.aliased(&gl.ValidateProgramARB);
-     gl.ValidateProgramARB.aliased(&gl.ValidateProgram);
-     gl.VertexAttrib1d.aliased(&gl.VertexAttrib1dARB);
-     gl.VertexAttrib1d.aliased(&gl.VertexAttrib1dNV);
-     gl.VertexAttrib1dARB.aliased(&gl.VertexAttrib1d);
-     gl.VertexAttrib1dARB.aliased(&gl.VertexAttrib1dNV);
-     gl.VertexAttrib1dNV.aliased(&gl.VertexAttrib1d);
-     gl.VertexAttrib1dNV.aliased(&gl.VertexAttrib1dARB);
-     gl.VertexAttrib1dv.aliased(&gl.VertexAttrib1dvARB);
-     gl.VertexAttrib1dv.aliased(&gl.VertexAttrib1dvNV);
-     gl.VertexAttrib1dvARB.aliased(&gl.VertexAttrib1dv);
-     gl.VertexAttrib1dvARB.aliased(&gl.VertexAttrib1dvNV);
-     gl.VertexAttrib1dvNV.aliased(&gl.VertexAttrib1dv);
-     gl.VertexAttrib1dvNV.aliased(&gl.VertexAttrib1dvARB);
-     gl.VertexAttrib1f.aliased(&gl.VertexAttrib1fARB);
-     gl.VertexAttrib1f.aliased(&gl.VertexAttrib1fNV);
-     gl.VertexAttrib1fARB.aliased(&gl.VertexAttrib1f);
-     gl.VertexAttrib1fARB.aliased(&gl.VertexAttrib1fNV);
-     gl.VertexAttrib1fNV.aliased(&gl.VertexAttrib1f);
-     gl.VertexAttrib1fNV.aliased(&gl.VertexAttrib1fARB);
-     gl.VertexAttrib1fv.aliased(&gl.VertexAttrib1fvARB);
-     gl.VertexAttrib1fv.aliased(&gl.VertexAttrib1fvNV);
-     gl.VertexAttrib1fvARB.aliased(&gl.VertexAttrib1fv);
-     gl.VertexAttrib1fvARB.aliased(&gl.VertexAttrib1fvNV);
-     gl.VertexAttrib1fvNV.aliased(&gl.VertexAttrib1fv);
-     gl.VertexAttrib1fvNV.aliased(&gl.VertexAttrib1fvARB);
-     gl.VertexAttrib1s.aliased(&gl.VertexAttrib1sARB);
-     gl.VertexAttrib1s.aliased(&gl.VertexAttrib1sNV);
-     gl.VertexAttrib1sARB.aliased(&gl.VertexAttrib1s);
-     gl.VertexAttrib1sARB.aliased(&gl.VertexAttrib1sNV);
-     gl.VertexAttrib1sNV.aliased(&gl.VertexAttrib1s);
-     gl.VertexAttrib1sNV.aliased(&gl.VertexAttrib1sARB);
-     gl.VertexAttrib1sv.aliased(&gl.VertexAttrib1svARB);
-     gl.VertexAttrib1sv.aliased(&gl.VertexAttrib1svNV);
-     gl.VertexAttrib1svARB.aliased(&gl.VertexAttrib1sv);
-     gl.VertexAttrib1svARB.aliased(&gl.VertexAttrib1svNV);
-     gl.VertexAttrib1svNV.aliased(&gl.VertexAttrib1sv);
-     gl.VertexAttrib1svNV.aliased(&gl.VertexAttrib1svARB);
-     gl.VertexAttrib2d.aliased(&gl.VertexAttrib2dARB);
-     gl.VertexAttrib2d.aliased(&gl.VertexAttrib2dNV);
-     gl.VertexAttrib2dARB.aliased(&gl.VertexAttrib2d);
-     gl.VertexAttrib2dARB.aliased(&gl.VertexAttrib2dNV);
-     gl.VertexAttrib2dNV.aliased(&gl.VertexAttrib2d);
-     gl.VertexAttrib2dNV.aliased(&gl.VertexAttrib2dARB);
-     gl.VertexAttrib2dv.aliased(&gl.VertexAttrib2dvARB);
-     gl.VertexAttrib2dv.aliased(&gl.VertexAttrib2dvNV);
-     gl.VertexAttrib2dvARB.aliased(&gl.VertexAttrib2dv);
-     gl.VertexAttrib2dvARB.aliased(&gl.VertexAttrib2dvNV);
-     gl.VertexAttrib2dvNV.aliased(&gl.VertexAttrib2dv);
-     gl.VertexAttrib2dvNV.aliased(&gl.VertexAttrib2dvARB);
-     gl.VertexAttrib2f.aliased(&gl.VertexAttrib2fARB);
-     gl.VertexAttrib2f.aliased(&gl.VertexAttrib2fNV);
-     gl.VertexAttrib2fARB.aliased(&gl.VertexAttrib2f);
-     gl.VertexAttrib2fARB.aliased(&gl.VertexAttrib2fNV);
-     gl.VertexAttrib2fNV.aliased(&gl.VertexAttrib2f);
-     gl.VertexAttrib2fNV.aliased(&gl.VertexAttrib2fARB);
-     gl.VertexAttrib2fv.aliased(&gl.VertexAttrib2fvARB);
-     gl.VertexAttrib2fv.aliased(&gl.VertexAttrib2fvNV);
-     gl.VertexAttrib2fvARB.aliased(&gl.VertexAttrib2fv);
-     gl.VertexAttrib2fvARB.aliased(&gl.VertexAttrib2fvNV);
-     gl.VertexAttrib2fvNV.aliased(&gl.VertexAttrib2fv);
-     gl.VertexAttrib2fvNV.aliased(&gl.VertexAttrib2fvARB);
-     gl.VertexAttrib2s.aliased(&gl.VertexAttrib2sARB);
-     gl.VertexAttrib2s.aliased(&gl.VertexAttrib2sNV);
-     gl.VertexAttrib2sARB.aliased(&gl.VertexAttrib2s);
-     gl.VertexAttrib2sARB.aliased(&gl.VertexAttrib2sNV);
-     gl.VertexAttrib2sNV.aliased(&gl.VertexAttrib2s);
-     gl.VertexAttrib2sNV.aliased(&gl.VertexAttrib2sARB);
-     gl.VertexAttrib2sv.aliased(&gl.VertexAttrib2svARB);
-     gl.VertexAttrib2sv.aliased(&gl.VertexAttrib2svNV);
-     gl.VertexAttrib2svARB.aliased(&gl.VertexAttrib2sv);
-     gl.VertexAttrib2svARB.aliased(&gl.VertexAttrib2svNV);
-     gl.VertexAttrib2svNV.aliased(&gl.VertexAttrib2sv);
-     gl.VertexAttrib2svNV.aliased(&gl.VertexAttrib2svARB);
-     gl.VertexAttrib3d.aliased(&gl.VertexAttrib3dARB);
-     gl.VertexAttrib3d.aliased(&gl.VertexAttrib3dNV);
-     gl.VertexAttrib3dARB.aliased(&gl.VertexAttrib3d);
-     gl.VertexAttrib3dARB.aliased(&gl.VertexAttrib3dNV);
-     gl.VertexAttrib3dNV.aliased(&gl.VertexAttrib3d);
-     gl.VertexAttrib3dNV.aliased(&gl.VertexAttrib3dARB);
-     gl.VertexAttrib3dv.aliased(&gl.VertexAttrib3dvARB);
-     gl.VertexAttrib3dv.aliased(&gl.VertexAttrib3dvNV);
-     gl.VertexAttrib3dvARB.aliased(&gl.VertexAttrib3dv);
-     gl.VertexAttrib3dvARB.aliased(&gl.VertexAttrib3dvNV);
-     gl.VertexAttrib3dvNV.aliased(&gl.VertexAttrib3dv);
-     gl.VertexAttrib3dvNV.aliased(&gl.VertexAttrib3dvARB);
-     gl.VertexAttrib3f.aliased(&gl.VertexAttrib3fARB);
-     gl.VertexAttrib3f.aliased(&gl.VertexAttrib3fNV);
-     gl.VertexAttrib3fARB.aliased(&gl.VertexAttrib3f);
-     gl.VertexAttrib3fARB.aliased(&gl.VertexAttrib3fNV);
-     gl.VertexAttrib3fNV.aliased(&gl.VertexAttrib3f);
-     gl.VertexAttrib3fNV.aliased(&gl.VertexAttrib3fARB);
-     gl.VertexAttrib3fv.aliased(&gl.VertexAttrib3fvARB);
-     gl.VertexAttrib3fv.aliased(&gl.VertexAttrib3fvNV);
-     gl.VertexAttrib3fvARB.aliased(&gl.VertexAttrib3fv);
-     gl.VertexAttrib3fvARB.aliased(&gl.VertexAttrib3fvNV);
-     gl.VertexAttrib3fvNV.aliased(&gl.VertexAttrib3fv);
-     gl.VertexAttrib3fvNV.aliased(&gl.VertexAttrib3fvARB);
-     gl.VertexAttrib3s.aliased(&gl.VertexAttrib3sARB);
-     gl.VertexAttrib3s.aliased(&gl.VertexAttrib3sNV);
-     gl.VertexAttrib3sARB.aliased(&gl.VertexAttrib3s);
-     gl.VertexAttrib3sARB.aliased(&gl.VertexAttrib3sNV);
-     gl.VertexAttrib3sNV.aliased(&gl.VertexAttrib3s);
-     gl.VertexAttrib3sNV.aliased(&gl.VertexAttrib3sARB);
-     gl.VertexAttrib3sv.aliased(&gl.VertexAttrib3svARB);
-     gl.VertexAttrib3sv.aliased(&gl.VertexAttrib3svNV);
-     gl.VertexAttrib3svARB.aliased(&gl.VertexAttrib3sv);
-     gl.VertexAttrib3svARB.aliased(&gl.VertexAttrib3svNV);
-     gl.VertexAttrib3svNV.aliased(&gl.VertexAttrib3sv);
-     gl.VertexAttrib3svNV.aliased(&gl.VertexAttrib3svARB);
-     gl.VertexAttrib4bv.aliased(&gl.VertexAttrib4bvARB);
-     gl.VertexAttrib4bvARB.aliased(&gl.VertexAttrib4bv);
-     gl.VertexAttrib4d.aliased(&gl.VertexAttrib4dARB);
-     gl.VertexAttrib4d.aliased(&gl.VertexAttrib4dNV);
-     gl.VertexAttrib4dARB.aliased(&gl.VertexAttrib4d);
-     gl.VertexAttrib4dARB.aliased(&gl.VertexAttrib4dNV);
-     gl.VertexAttrib4dNV.aliased(&gl.VertexAttrib4d);
-     gl.VertexAttrib4dNV.aliased(&gl.VertexAttrib4dARB);
-     gl.VertexAttrib4dv.aliased(&gl.VertexAttrib4dvARB);
-     gl.VertexAttrib4dv.aliased(&gl.VertexAttrib4dvNV);
-     gl.VertexAttrib4dvARB.aliased(&gl.VertexAttrib4dv);
-     gl.VertexAttrib4dvARB.aliased(&gl.VertexAttrib4dvNV);
-     gl.VertexAttrib4dvNV.aliased(&gl.VertexAttrib4dv);
-     gl.VertexAttrib4dvNV.aliased(&gl.VertexAttrib4dvARB);
-     gl.VertexAttrib4f.aliased(&gl.VertexAttrib4fARB);
-     gl.VertexAttrib4f.aliased(&gl.VertexAttrib4fNV);
-     gl.VertexAttrib4fARB.aliased(&gl.VertexAttrib4f);
-     gl.VertexAttrib4fARB.aliased(&gl.VertexAttrib4fNV);
-     gl.VertexAttrib4fNV.aliased(&gl.VertexAttrib4f);
-     gl.VertexAttrib4fNV.aliased(&gl.VertexAttrib4fARB);
-     gl.VertexAttrib4fv.aliased(&gl.VertexAttrib4fvARB);
-     gl.VertexAttrib4fv.aliased(&gl.VertexAttrib4fvNV);
-     gl.VertexAttrib4fvARB.aliased(&gl.VertexAttrib4fv);
-     gl.VertexAttrib4fvARB.aliased(&gl.VertexAttrib4fvNV);
-     gl.VertexAttrib4fvNV.aliased(&gl.VertexAttrib4fv);
-     gl.VertexAttrib4fvNV.aliased(&gl.VertexAttrib4fvARB);
-     gl.VertexAttrib4iv.aliased(&gl.VertexAttrib4ivARB);
-     gl.VertexAttrib4ivARB.aliased(&gl.VertexAttrib4iv);
-     gl.VertexAttrib4Nbv.aliased(&gl.VertexAttrib4NbvARB);
-     gl.VertexAttrib4NbvARB.aliased(&gl.VertexAttrib4Nbv);
-     gl.VertexAttrib4Niv.aliased(&gl.VertexAttrib4NivARB);
-     gl.VertexAttrib4NivARB.aliased(&gl.VertexAttrib4Niv);
-     gl.VertexAttrib4Nsv.aliased(&gl.VertexAttrib4NsvARB);
-     gl.VertexAttrib4NsvARB.aliased(&gl.VertexAttrib4Nsv);
-     gl.VertexAttrib4Nub.aliased(&gl.VertexAttrib4NubARB);
-     gl.VertexAttrib4Nub.aliased(&gl.VertexAttrib4ubNV);
-     gl.VertexAttrib4NubARB.aliased(&gl.VertexAttrib4Nub);
-     gl.VertexAttrib4NubARB.aliased(&gl.VertexAttrib4ubNV);
-     gl.VertexAttrib4Nubv.aliased(&gl.VertexAttrib4NubvARB);
-     gl.VertexAttrib4Nubv.aliased(&gl.VertexAttrib4ubvNV);
-     gl.VertexAttrib4NubvARB.aliased(&gl.VertexAttrib4Nubv);
-     gl.VertexAttrib4NubvARB.aliased(&gl.VertexAttrib4ubvNV);
-     gl.VertexAttrib4Nuiv.aliased(&gl.VertexAttrib4NuivARB);
-     gl.VertexAttrib4NuivARB.aliased(&gl.VertexAttrib4Nuiv);
-     gl.VertexAttrib4Nusv.aliased(&gl.VertexAttrib4NusvARB);
-     gl.VertexAttrib4NusvARB.aliased(&gl.VertexAttrib4Nusv);
-     gl.VertexAttrib4s.aliased(&gl.VertexAttrib4sARB);
-     gl.VertexAttrib4s.aliased(&gl.VertexAttrib4sNV);
-     gl.VertexAttrib4sARB.aliased(&gl.VertexAttrib4s);
-     gl.VertexAttrib4sARB.aliased(&gl.VertexAttrib4sNV);
-     gl.VertexAttrib4sNV.aliased(&gl.VertexAttrib4s);
-     gl.VertexAttrib4sNV.aliased(&gl.VertexAttrib4sARB);
-     gl.VertexAttrib4sv.aliased(&gl.VertexAttrib4svARB);
-     gl.VertexAttrib4sv.aliased(&gl.VertexAttrib4svNV);
-     gl.VertexAttrib4svARB.aliased(&gl.VertexAttrib4sv);
-     gl.VertexAttrib4svARB.aliased(&gl.VertexAttrib4svNV);
-     gl.VertexAttrib4svNV.aliased(&gl.VertexAttrib4sv);
-     gl.VertexAttrib4svNV.aliased(&gl.VertexAttrib4svARB);
-     gl.VertexAttrib4ubNV.aliased(&gl.VertexAttrib4Nub);
-     gl.VertexAttrib4ubNV.aliased(&gl.VertexAttrib4NubARB);
-     gl.VertexAttrib4ubv.aliased(&gl.VertexAttrib4ubvARB);
-     gl.VertexAttrib4ubvARB.aliased(&gl.VertexAttrib4ubv);
-     gl.VertexAttrib4ubvNV.aliased(&gl.VertexAttrib4Nubv);
-     gl.VertexAttrib4ubvNV.aliased(&gl.VertexAttrib4NubvARB);
-     gl.VertexAttrib4uiv.aliased(&gl.VertexAttrib4uivARB);
-     gl.VertexAttrib4uivARB.aliased(&gl.VertexAttrib4uiv);
-     gl.VertexAttrib4usv.aliased(&gl.VertexAttrib4usvARB);
-     gl.VertexAttrib4usvARB.aliased(&gl.VertexAttrib4usv);
-     gl.VertexAttribDivisor.aliased(&gl.VertexAttribDivisorARB);
-     gl.VertexAttribDivisorARB.aliased(&gl.VertexAttribDivisor);
-     gl.VertexAttribI1i.aliased(&gl.VertexAttribI1iEXT);
-     gl.VertexAttribI1iEXT.aliased(&gl.VertexAttribI1i);
-     gl.VertexAttribI1iv.aliased(&gl.VertexAttribI1ivEXT);
-     gl.VertexAttribI1ivEXT.aliased(&gl.VertexAttribI1iv);
-     gl.VertexAttribI1ui.aliased(&gl.VertexAttribI1uiEXT);
-     gl.VertexAttribI1uiEXT.aliased(&gl.VertexAttribI1ui);
-     gl.VertexAttribI1uiv.aliased(&gl.VertexAttribI1uivEXT);
-     gl.VertexAttribI1uivEXT.aliased(&gl.VertexAttribI1uiv);
-     gl.VertexAttribI2i.aliased(&gl.VertexAttribI2iEXT);
-     gl.VertexAttribI2iEXT.aliased(&gl.VertexAttribI2i);
-     gl.VertexAttribI2iv.aliased(&gl.VertexAttribI2ivEXT);
-     gl.VertexAttribI2ivEXT.aliased(&gl.VertexAttribI2iv);
-     gl.VertexAttribI2ui.aliased(&gl.VertexAttribI2uiEXT);
-     gl.VertexAttribI2uiEXT.aliased(&gl.VertexAttribI2ui);
-     gl.VertexAttribI2uiv.aliased(&gl.VertexAttribI2uivEXT);
-     gl.VertexAttribI2uivEXT.aliased(&gl.VertexAttribI2uiv);
-     gl.VertexAttribI3i.aliased(&gl.VertexAttribI3iEXT);
-     gl.VertexAttribI3iEXT.aliased(&gl.VertexAttribI3i);
-     gl.VertexAttribI3iv.aliased(&gl.VertexAttribI3ivEXT);
-     gl.VertexAttribI3ivEXT.aliased(&gl.VertexAttribI3iv);
-     gl.VertexAttribI3ui.aliased(&gl.VertexAttribI3uiEXT);
-     gl.VertexAttribI3uiEXT.aliased(&gl.VertexAttribI3ui);
-     gl.VertexAttribI3uiv.aliased(&gl.VertexAttribI3uivEXT);
-     gl.VertexAttribI3uivEXT.aliased(&gl.VertexAttribI3uiv);
-     gl.VertexAttribI4bv.aliased(&gl.VertexAttribI4bvEXT);
-     gl.VertexAttribI4bvEXT.aliased(&gl.VertexAttribI4bv);
-     gl.VertexAttribI4i.aliased(&gl.VertexAttribI4iEXT);
-     gl.VertexAttribI4iEXT.aliased(&gl.VertexAttribI4i);
-     gl.VertexAttribI4iv.aliased(&gl.VertexAttribI4ivEXT);
-     gl.VertexAttribI4ivEXT.aliased(&gl.VertexAttribI4iv);
-     gl.VertexAttribI4sv.aliased(&gl.VertexAttribI4svEXT);
-     gl.VertexAttribI4svEXT.aliased(&gl.VertexAttribI4sv);
-     gl.VertexAttribI4ubv.aliased(&gl.VertexAttribI4ubvEXT);
-     gl.VertexAttribI4ubvEXT.aliased(&gl.VertexAttribI4ubv);
-     gl.VertexAttribI4ui.aliased(&gl.VertexAttribI4uiEXT);
-     gl.VertexAttribI4uiEXT.aliased(&gl.VertexAttribI4ui);
-     gl.VertexAttribI4uiv.aliased(&gl.VertexAttribI4uivEXT);
-     gl.VertexAttribI4uivEXT.aliased(&gl.VertexAttribI4uiv);
-     gl.VertexAttribI4usv.aliased(&gl.VertexAttribI4usvEXT);
-     gl.VertexAttribI4usvEXT.aliased(&gl.VertexAttribI4usv);
-     gl.VertexAttribIPointer.aliased(&gl.VertexAttribIPointerEXT);
-     gl.VertexAttribIPointerEXT.aliased(&gl.VertexAttribIPointer);
-     gl.VertexAttribL1d.aliased(&gl.VertexAttribL1dEXT);
-     gl.VertexAttribL1dEXT.aliased(&gl.VertexAttribL1d);
-     gl.VertexAttribL1dv.aliased(&gl.VertexAttribL1dvEXT);
-     gl.VertexAttribL1dvEXT.aliased(&gl.VertexAttribL1dv);
-     gl.VertexAttribL2d.aliased(&gl.VertexAttribL2dEXT);
-     gl.VertexAttribL2dEXT.aliased(&gl.VertexAttribL2d);
-     gl.VertexAttribL2dv.aliased(&gl.VertexAttribL2dvEXT);
-     gl.VertexAttribL2dvEXT.aliased(&gl.VertexAttribL2dv);
-     gl.VertexAttribL3d.aliased(&gl.VertexAttribL3dEXT);
-     gl.VertexAttribL3dEXT.aliased(&gl.VertexAttribL3d);
-     gl.VertexAttribL3dv.aliased(&gl.VertexAttribL3dvEXT);
-     gl.VertexAttribL3dvEXT.aliased(&gl.VertexAttribL3dv);
-     gl.VertexAttribL4d.aliased(&gl.VertexAttribL4dEXT);
-     gl.VertexAttribL4dEXT.aliased(&gl.VertexAttribL4d);
-     gl.VertexAttribL4dv.aliased(&gl.VertexAttribL4dvEXT);
-     gl.VertexAttribL4dvEXT.aliased(&gl.VertexAttribL4dv);
-     gl.VertexAttribLPointer.aliased(&gl.VertexAttribLPointerEXT);
-     gl.VertexAttribLPointerEXT.aliased(&gl.VertexAttribLPointer);
-     gl.VertexAttribPointer.aliased(&gl.VertexAttribPointerARB);
-     gl.VertexAttribPointerARB.aliased(&gl.VertexAttribPointer);
-     gl.WindowPos2d.aliased(&gl.WindowPos2dARB);
-     gl.WindowPos2d.aliased(&gl.WindowPos2dMESA);
-     gl.WindowPos2dARB.aliased(&gl.WindowPos2d);
-     gl.WindowPos2dARB.aliased(&gl.WindowPos2dMESA);
-     gl.WindowPos2dMESA.aliased(&gl.WindowPos2d);
-     gl.WindowPos2dMESA.aliased(&gl.WindowPos2dARB);
-     gl.WindowPos2dv.aliased(&gl.WindowPos2dvARB);
-     gl.WindowPos2dv.aliased(&gl.WindowPos2dvMESA);
-     gl.WindowPos2dvARB.aliased(&gl.WindowPos2dv);
-     gl.WindowPos2dvARB.aliased(&gl.WindowPos2dvMESA);
-     gl.WindowPos2dvMESA.aliased(&gl.WindowPos2dv);
-     gl.WindowPos2dvMESA.aliased(&gl.WindowPos2dvARB);
-     gl.WindowPos2f.aliased(&gl.WindowPos2fARB);
-     gl.WindowPos2f.aliased(&gl.WindowPos2fMESA);
-     gl.WindowPos2fARB.aliased(&gl.WindowPos2f);
-     gl.WindowPos2fARB.aliased(&gl.WindowPos2fMESA);
-     gl.WindowPos2fMESA.aliased(&gl.WindowPos2f);
-     gl.WindowPos2fMESA.aliased(&gl.WindowPos2fARB);
-     gl.WindowPos2fv.aliased(&gl.WindowPos2fvARB);
-     gl.WindowPos2fv.aliased(&gl.WindowPos2fvMESA);
-     gl.WindowPos2fvARB.aliased(&gl.WindowPos2fv);
-     gl.WindowPos2fvARB.aliased(&gl.WindowPos2fvMESA);
-     gl.WindowPos2fvMESA.aliased(&gl.WindowPos2fv);
-     gl.WindowPos2fvMESA.aliased(&gl.WindowPos2fvARB);
-     gl.WindowPos2i.aliased(&gl.WindowPos2iARB);
-     gl.WindowPos2i.aliased(&gl.WindowPos2iMESA);
-     gl.WindowPos2iARB.aliased(&gl.WindowPos2i);
-     gl.WindowPos2iARB.aliased(&gl.WindowPos2iMESA);
-     gl.WindowPos2iMESA.aliased(&gl.WindowPos2i);
-     gl.WindowPos2iMESA.aliased(&gl.WindowPos2iARB);
-     gl.WindowPos2iv.aliased(&gl.WindowPos2ivARB);
-     gl.WindowPos2iv.aliased(&gl.WindowPos2ivMESA);
-     gl.WindowPos2ivARB.aliased(&gl.WindowPos2iv);
-     gl.WindowPos2ivARB.aliased(&gl.WindowPos2ivMESA);
-     gl.WindowPos2ivMESA.aliased(&gl.WindowPos2iv);
-     gl.WindowPos2ivMESA.aliased(&gl.WindowPos2ivARB);
-     gl.WindowPos2s.aliased(&gl.WindowPos2sARB);
-     gl.WindowPos2s.aliased(&gl.WindowPos2sMESA);
-     gl.WindowPos2sARB.aliased(&gl.WindowPos2s);
-     gl.WindowPos2sARB.aliased(&gl.WindowPos2sMESA);
-     gl.WindowPos2sMESA.aliased(&gl.WindowPos2s);
-     gl.WindowPos2sMESA.aliased(&gl.WindowPos2sARB);
-     gl.WindowPos2sv.aliased(&gl.WindowPos2svARB);
-     gl.WindowPos2sv.aliased(&gl.WindowPos2svMESA);
-     gl.WindowPos2svARB.aliased(&gl.WindowPos2sv);
-     gl.WindowPos2svARB.aliased(&gl.WindowPos2svMESA);
-     gl.WindowPos2svMESA.aliased(&gl.WindowPos2sv);
-     gl.WindowPos2svMESA.aliased(&gl.WindowPos2svARB);
-     gl.WindowPos3d.aliased(&gl.WindowPos3dARB);
-     gl.WindowPos3d.aliased(&gl.WindowPos3dMESA);
-     gl.WindowPos3dARB.aliased(&gl.WindowPos3d);
-     gl.WindowPos3dARB.aliased(&gl.WindowPos3dMESA);
-     gl.WindowPos3dMESA.aliased(&gl.WindowPos3d);
-     gl.WindowPos3dMESA.aliased(&gl.WindowPos3dARB);
-     gl.WindowPos3dv.aliased(&gl.WindowPos3dvARB);
-     gl.WindowPos3dv.aliased(&gl.WindowPos3dvMESA);
-     gl.WindowPos3dvARB.aliased(&gl.WindowPos3dv);
-     gl.WindowPos3dvARB.aliased(&gl.WindowPos3dvMESA);
-     gl.WindowPos3dvMESA.aliased(&gl.WindowPos3dv);
-     gl.WindowPos3dvMESA.aliased(&gl.WindowPos3dvARB);
-     gl.WindowPos3f.aliased(&gl.WindowPos3fARB);
-     gl.WindowPos3f.aliased(&gl.WindowPos3fMESA);
-     gl.WindowPos3fARB.aliased(&gl.WindowPos3f);
-     gl.WindowPos3fARB.aliased(&gl.WindowPos3fMESA);
-     gl.WindowPos3fMESA.aliased(&gl.WindowPos3f);
-     gl.WindowPos3fMESA.aliased(&gl.WindowPos3fARB);
-     gl.WindowPos3fv.aliased(&gl.WindowPos3fvARB);
-     gl.WindowPos3fv.aliased(&gl.WindowPos3fvMESA);
-     gl.WindowPos3fvARB.aliased(&gl.WindowPos3fv);
-     gl.WindowPos3fvARB.aliased(&gl.WindowPos3fvMESA);
-     gl.WindowPos3fvMESA.aliased(&gl.WindowPos3fv);
-     gl.WindowPos3fvMESA.aliased(&gl.WindowPos3fvARB);
-     gl.WindowPos3i.aliased(&gl.WindowPos3iARB);
-     gl.WindowPos3i.aliased(&gl.WindowPos3iMESA);
-     gl.WindowPos3iARB.aliased(&gl.WindowPos3i);
-     gl.WindowPos3iARB.aliased(&gl.WindowPos3iMESA);
-     gl.WindowPos3iMESA.aliased(&gl.WindowPos3i);
-     gl.WindowPos3iMESA.aliased(&gl.WindowPos3iARB);
-     gl.WindowPos3iv.aliased(&gl.WindowPos3ivARB);
-     gl.WindowPos3iv.aliased(&gl.WindowPos3ivMESA);
-     gl.WindowPos3ivARB.aliased(&gl.WindowPos3iv);
-     gl.WindowPos3ivARB.aliased(&gl.WindowPos3ivMESA);
-     gl.WindowPos3ivMESA.aliased(&gl.WindowPos3iv);
-     gl.WindowPos3ivMESA.aliased(&gl.WindowPos3ivARB);
-     gl.WindowPos3s.aliased(&gl.WindowPos3sARB);
-     gl.WindowPos3s.aliased(&gl.WindowPos3sMESA);
-     gl.WindowPos3sARB.aliased(&gl.WindowPos3s);
-     gl.WindowPos3sARB.aliased(&gl.WindowPos3sMESA);
-     gl.WindowPos3sMESA.aliased(&gl.WindowPos3s);
-     gl.WindowPos3sMESA.aliased(&gl.WindowPos3sARB);
-     gl.WindowPos3sv.aliased(&gl.WindowPos3svARB);
-     gl.WindowPos3sv.aliased(&gl.WindowPos3svMESA);
-     gl.WindowPos3svARB.aliased(&gl.WindowPos3sv);
-     gl.WindowPos3svARB.aliased(&gl.WindowPos3svMESA);
-     gl.WindowPos3svMESA.aliased(&gl.WindowPos3sv);
-     gl.WindowPos3svMESA.aliased(&gl.WindowPos3svARB);
+    macro_rules! store {
+        ($name:ident) => {
+            pub(super) static mut $name: FnPtr = FnPtr { ptr: FnPtr::not_initialized as *const c_void, is_loaded: false };
+        }
+    }
 
-     gl
+     store!(Accum);
+     store!(AccumxOES);
+     store!(AcquireKeyedMutexWin32EXT);
+     store!(ActiveProgramEXT);
+     store!(ActiveShaderProgram);
+     store!(ActiveStencilFaceEXT);
+     store!(ActiveTexture);
+     store!(ActiveTextureARB);
+     store!(ActiveVaryingNV);
+     store!(AlphaFragmentOp1ATI);
+     store!(AlphaFragmentOp2ATI);
+     store!(AlphaFragmentOp3ATI);
+     store!(AlphaFunc);
+     store!(AlphaFuncxOES);
+     store!(AlphaToCoverageDitherControlNV);
+     store!(ApplyFramebufferAttachmentCMAAINTEL);
+     store!(ApplyTextureEXT);
+     store!(AreProgramsResidentNV);
+     store!(AreTexturesResident);
+     store!(AreTexturesResidentEXT);
+     store!(ArrayElement);
+     store!(ArrayElementEXT);
+     store!(ArrayObjectATI);
+     store!(AsyncCopyBufferSubDataNVX);
+     store!(AsyncCopyImageSubDataNVX);
+     store!(AsyncMarkerSGIX);
+     store!(AttachObjectARB);
+     store!(AttachShader);
+     store!(Begin);
+     store!(BeginConditionalRender);
+     store!(BeginConditionalRenderNV);
+     store!(BeginConditionalRenderNVX);
+     store!(BeginFragmentShaderATI);
+     store!(BeginOcclusionQueryNV);
+     store!(BeginPerfMonitorAMD);
+     store!(BeginPerfQueryINTEL);
+     store!(BeginQuery);
+     store!(BeginQueryARB);
+     store!(BeginQueryIndexed);
+     store!(BeginTransformFeedback);
+     store!(BeginTransformFeedbackEXT);
+     store!(BeginTransformFeedbackNV);
+     store!(BeginVertexShaderEXT);
+     store!(BeginVideoCaptureNV);
+     store!(BindAttribLocation);
+     store!(BindAttribLocationARB);
+     store!(BindBuffer);
+     store!(BindBufferARB);
+     store!(BindBufferBase);
+     store!(BindBufferBaseEXT);
+     store!(BindBufferBaseNV);
+     store!(BindBufferOffsetEXT);
+     store!(BindBufferOffsetNV);
+     store!(BindBufferRange);
+     store!(BindBufferRangeEXT);
+     store!(BindBufferRangeNV);
+     store!(BindBuffersBase);
+     store!(BindBuffersRange);
+     store!(BindFragDataLocation);
+     store!(BindFragDataLocationEXT);
+     store!(BindFragDataLocationIndexed);
+     store!(BindFragmentShaderATI);
+     store!(BindFramebuffer);
+     store!(BindFramebufferEXT);
+     store!(BindImageTexture);
+     store!(BindImageTextureEXT);
+     store!(BindImageTextures);
+     store!(BindLightParameterEXT);
+     store!(BindMaterialParameterEXT);
+     store!(BindMultiTextureEXT);
+     store!(BindParameterEXT);
+     store!(BindProgramARB);
+     store!(BindProgramNV);
+     store!(BindProgramPipeline);
+     store!(BindRenderbuffer);
+     store!(BindRenderbufferEXT);
+     store!(BindSampler);
+     store!(BindSamplers);
+     store!(BindShadingRateImageNV);
+     store!(BindTexGenParameterEXT);
+     store!(BindTexture);
+     store!(BindTextureEXT);
+     store!(BindTextureUnit);
+     store!(BindTextureUnitParameterEXT);
+     store!(BindTextures);
+     store!(BindTransformFeedback);
+     store!(BindTransformFeedbackNV);
+     store!(BindVertexArray);
+     store!(BindVertexArrayAPPLE);
+     store!(BindVertexBuffer);
+     store!(BindVertexBuffers);
+     store!(BindVertexShaderEXT);
+     store!(BindVideoCaptureStreamBufferNV);
+     store!(BindVideoCaptureStreamTextureNV);
+     store!(Binormal3bEXT);
+     store!(Binormal3bvEXT);
+     store!(Binormal3dEXT);
+     store!(Binormal3dvEXT);
+     store!(Binormal3fEXT);
+     store!(Binormal3fvEXT);
+     store!(Binormal3iEXT);
+     store!(Binormal3ivEXT);
+     store!(Binormal3sEXT);
+     store!(Binormal3svEXT);
+     store!(BinormalPointerEXT);
+     store!(Bitmap);
+     store!(BitmapxOES);
+     store!(BlendBarrierKHR);
+     store!(BlendBarrierNV);
+     store!(BlendColor);
+     store!(BlendColorEXT);
+     store!(BlendColorxOES);
+     store!(BlendEquation);
+     store!(BlendEquationEXT);
+     store!(BlendEquationIndexedAMD);
+     store!(BlendEquationSeparate);
+     store!(BlendEquationSeparateEXT);
+     store!(BlendEquationSeparateIndexedAMD);
+     store!(BlendEquationSeparatei);
+     store!(BlendEquationSeparateiARB);
+     store!(BlendEquationi);
+     store!(BlendEquationiARB);
+     store!(BlendFunc);
+     store!(BlendFuncIndexedAMD);
+     store!(BlendFuncSeparate);
+     store!(BlendFuncSeparateEXT);
+     store!(BlendFuncSeparateINGR);
+     store!(BlendFuncSeparateIndexedAMD);
+     store!(BlendFuncSeparatei);
+     store!(BlendFuncSeparateiARB);
+     store!(BlendFunci);
+     store!(BlendFunciARB);
+     store!(BlendParameteriNV);
+     store!(BlitFramebuffer);
+     store!(BlitFramebufferEXT);
+     store!(BlitNamedFramebuffer);
+     store!(BufferAddressRangeNV);
+     store!(BufferAttachMemoryNV);
+     store!(BufferData);
+     store!(BufferDataARB);
+     store!(BufferPageCommitmentARB);
+     store!(BufferPageCommitmentMemNV);
+     store!(BufferParameteriAPPLE);
+     store!(BufferStorage);
+     store!(BufferStorageExternalEXT);
+     store!(BufferStorageMemEXT);
+     store!(BufferSubData);
+     store!(BufferSubDataARB);
+     store!(CallCommandListNV);
+     store!(CallList);
+     store!(CallLists);
+     store!(CheckFramebufferStatus);
+     store!(CheckFramebufferStatusEXT);
+     store!(CheckNamedFramebufferStatus);
+     store!(CheckNamedFramebufferStatusEXT);
+     store!(ClampColor);
+     store!(ClampColorARB);
+     store!(Clear);
+     store!(ClearAccum);
+     store!(ClearAccumxOES);
+     store!(ClearBufferData);
+     store!(ClearBufferSubData);
+     store!(ClearBufferfi);
+     store!(ClearBufferfv);
+     store!(ClearBufferiv);
+     store!(ClearBufferuiv);
+     store!(ClearColor);
+     store!(ClearColorIiEXT);
+     store!(ClearColorIuiEXT);
+     store!(ClearColorxOES);
+     store!(ClearDepth);
+     store!(ClearDepthdNV);
+     store!(ClearDepthf);
+     store!(ClearDepthfOES);
+     store!(ClearDepthxOES);
+     store!(ClearIndex);
+     store!(ClearNamedBufferData);
+     store!(ClearNamedBufferDataEXT);
+     store!(ClearNamedBufferSubData);
+     store!(ClearNamedBufferSubDataEXT);
+     store!(ClearNamedFramebufferfi);
+     store!(ClearNamedFramebufferfv);
+     store!(ClearNamedFramebufferiv);
+     store!(ClearNamedFramebufferuiv);
+     store!(ClearStencil);
+     store!(ClearTexImage);
+     store!(ClearTexSubImage);
+     store!(ClientActiveTexture);
+     store!(ClientActiveTextureARB);
+     store!(ClientActiveVertexStreamATI);
+     store!(ClientAttribDefaultEXT);
+     store!(ClientWaitSemaphoreui64NVX);
+     store!(ClientWaitSync);
+     store!(ClipControl);
+     store!(ClipPlane);
+     store!(ClipPlanefOES);
+     store!(ClipPlanexOES);
+     store!(Color3b);
+     store!(Color3bv);
+     store!(Color3d);
+     store!(Color3dv);
+     store!(Color3f);
+     store!(Color3fVertex3fSUN);
+     store!(Color3fVertex3fvSUN);
+     store!(Color3fv);
+     store!(Color3hNV);
+     store!(Color3hvNV);
+     store!(Color3i);
+     store!(Color3iv);
+     store!(Color3s);
+     store!(Color3sv);
+     store!(Color3ub);
+     store!(Color3ubv);
+     store!(Color3ui);
+     store!(Color3uiv);
+     store!(Color3us);
+     store!(Color3usv);
+     store!(Color3xOES);
+     store!(Color3xvOES);
+     store!(Color4b);
+     store!(Color4bv);
+     store!(Color4d);
+     store!(Color4dv);
+     store!(Color4f);
+     store!(Color4fNormal3fVertex3fSUN);
+     store!(Color4fNormal3fVertex3fvSUN);
+     store!(Color4fv);
+     store!(Color4hNV);
+     store!(Color4hvNV);
+     store!(Color4i);
+     store!(Color4iv);
+     store!(Color4s);
+     store!(Color4sv);
+     store!(Color4ub);
+     store!(Color4ubVertex2fSUN);
+     store!(Color4ubVertex2fvSUN);
+     store!(Color4ubVertex3fSUN);
+     store!(Color4ubVertex3fvSUN);
+     store!(Color4ubv);
+     store!(Color4ui);
+     store!(Color4uiv);
+     store!(Color4us);
+     store!(Color4usv);
+     store!(Color4xOES);
+     store!(Color4xvOES);
+     store!(ColorFormatNV);
+     store!(ColorFragmentOp1ATI);
+     store!(ColorFragmentOp2ATI);
+     store!(ColorFragmentOp3ATI);
+     store!(ColorMask);
+     store!(ColorMaskIndexedEXT);
+     store!(ColorMaski);
+     store!(ColorMaterial);
+     store!(ColorP3ui);
+     store!(ColorP3uiv);
+     store!(ColorP4ui);
+     store!(ColorP4uiv);
+     store!(ColorPointer);
+     store!(ColorPointerEXT);
+     store!(ColorPointerListIBM);
+     store!(ColorPointervINTEL);
+     store!(ColorSubTable);
+     store!(ColorSubTableEXT);
+     store!(ColorTable);
+     store!(ColorTableEXT);
+     store!(ColorTableParameterfv);
+     store!(ColorTableParameterfvSGI);
+     store!(ColorTableParameteriv);
+     store!(ColorTableParameterivSGI);
+     store!(ColorTableSGI);
+     store!(CombinerInputNV);
+     store!(CombinerOutputNV);
+     store!(CombinerParameterfNV);
+     store!(CombinerParameterfvNV);
+     store!(CombinerParameteriNV);
+     store!(CombinerParameterivNV);
+     store!(CombinerStageParameterfvNV);
+     store!(CommandListSegmentsNV);
+     store!(CompileCommandListNV);
+     store!(CompileShader);
+     store!(CompileShaderARB);
+     store!(CompileShaderIncludeARB);
+     store!(CompressedMultiTexImage1DEXT);
+     store!(CompressedMultiTexImage2DEXT);
+     store!(CompressedMultiTexImage3DEXT);
+     store!(CompressedMultiTexSubImage1DEXT);
+     store!(CompressedMultiTexSubImage2DEXT);
+     store!(CompressedMultiTexSubImage3DEXT);
+     store!(CompressedTexImage1D);
+     store!(CompressedTexImage1DARB);
+     store!(CompressedTexImage2D);
+     store!(CompressedTexImage2DARB);
+     store!(CompressedTexImage3D);
+     store!(CompressedTexImage3DARB);
+     store!(CompressedTexSubImage1D);
+     store!(CompressedTexSubImage1DARB);
+     store!(CompressedTexSubImage2D);
+     store!(CompressedTexSubImage2DARB);
+     store!(CompressedTexSubImage3D);
+     store!(CompressedTexSubImage3DARB);
+     store!(CompressedTextureImage1DEXT);
+     store!(CompressedTextureImage2DEXT);
+     store!(CompressedTextureImage3DEXT);
+     store!(CompressedTextureSubImage1D);
+     store!(CompressedTextureSubImage1DEXT);
+     store!(CompressedTextureSubImage2D);
+     store!(CompressedTextureSubImage2DEXT);
+     store!(CompressedTextureSubImage3D);
+     store!(CompressedTextureSubImage3DEXT);
+     store!(ConservativeRasterParameterfNV);
+     store!(ConservativeRasterParameteriNV);
+     store!(ConvolutionFilter1D);
+     store!(ConvolutionFilter1DEXT);
+     store!(ConvolutionFilter2D);
+     store!(ConvolutionFilter2DEXT);
+     store!(ConvolutionParameterf);
+     store!(ConvolutionParameterfEXT);
+     store!(ConvolutionParameterfv);
+     store!(ConvolutionParameterfvEXT);
+     store!(ConvolutionParameteri);
+     store!(ConvolutionParameteriEXT);
+     store!(ConvolutionParameteriv);
+     store!(ConvolutionParameterivEXT);
+     store!(ConvolutionParameterxOES);
+     store!(ConvolutionParameterxvOES);
+     store!(CopyBufferSubData);
+     store!(CopyColorSubTable);
+     store!(CopyColorSubTableEXT);
+     store!(CopyColorTable);
+     store!(CopyColorTableSGI);
+     store!(CopyConvolutionFilter1D);
+     store!(CopyConvolutionFilter1DEXT);
+     store!(CopyConvolutionFilter2D);
+     store!(CopyConvolutionFilter2DEXT);
+     store!(CopyImageSubData);
+     store!(CopyImageSubDataNV);
+     store!(CopyMultiTexImage1DEXT);
+     store!(CopyMultiTexImage2DEXT);
+     store!(CopyMultiTexSubImage1DEXT);
+     store!(CopyMultiTexSubImage2DEXT);
+     store!(CopyMultiTexSubImage3DEXT);
+     store!(CopyNamedBufferSubData);
+     store!(CopyPathNV);
+     store!(CopyPixels);
+     store!(CopyTexImage1D);
+     store!(CopyTexImage1DEXT);
+     store!(CopyTexImage2D);
+     store!(CopyTexImage2DEXT);
+     store!(CopyTexSubImage1D);
+     store!(CopyTexSubImage1DEXT);
+     store!(CopyTexSubImage2D);
+     store!(CopyTexSubImage2DEXT);
+     store!(CopyTexSubImage3D);
+     store!(CopyTexSubImage3DEXT);
+     store!(CopyTextureImage1DEXT);
+     store!(CopyTextureImage2DEXT);
+     store!(CopyTextureSubImage1D);
+     store!(CopyTextureSubImage1DEXT);
+     store!(CopyTextureSubImage2D);
+     store!(CopyTextureSubImage2DEXT);
+     store!(CopyTextureSubImage3D);
+     store!(CopyTextureSubImage3DEXT);
+     store!(CoverFillPathInstancedNV);
+     store!(CoverFillPathNV);
+     store!(CoverStrokePathInstancedNV);
+     store!(CoverStrokePathNV);
+     store!(CoverageModulationNV);
+     store!(CoverageModulationTableNV);
+     store!(CreateBuffers);
+     store!(CreateCommandListsNV);
+     store!(CreateFramebuffers);
+     store!(CreateMemoryObjectsEXT);
+     store!(CreatePerfQueryINTEL);
+     store!(CreateProgram);
+     store!(CreateProgramObjectARB);
+     store!(CreateProgramPipelines);
+     store!(CreateProgressFenceNVX);
+     store!(CreateQueries);
+     store!(CreateRenderbuffers);
+     store!(CreateSamplers);
+     store!(CreateSemaphoresNV);
+     store!(CreateShader);
+     store!(CreateShaderObjectARB);
+     store!(CreateShaderProgramEXT);
+     store!(CreateShaderProgramv);
+     store!(CreateStatesNV);
+     store!(CreateSyncFromCLeventARB);
+     store!(CreateTextures);
+     store!(CreateTransformFeedbacks);
+     store!(CreateVertexArrays);
+     store!(CullFace);
+     store!(CullParameterdvEXT);
+     store!(CullParameterfvEXT);
+     store!(CurrentPaletteMatrixARB);
+     store!(DebugMessageCallback);
+     store!(DebugMessageCallbackAMD);
+     store!(DebugMessageCallbackARB);
+     store!(DebugMessageControl);
+     store!(DebugMessageControlARB);
+     store!(DebugMessageEnableAMD);
+     store!(DebugMessageInsert);
+     store!(DebugMessageInsertAMD);
+     store!(DebugMessageInsertARB);
+     store!(DeformSGIX);
+     store!(DeformationMap3dSGIX);
+     store!(DeformationMap3fSGIX);
+     store!(DeleteAsyncMarkersSGIX);
+     store!(DeleteBuffers);
+     store!(DeleteBuffersARB);
+     store!(DeleteCommandListsNV);
+     store!(DeleteFencesAPPLE);
+     store!(DeleteFencesNV);
+     store!(DeleteFragmentShaderATI);
+     store!(DeleteFramebuffers);
+     store!(DeleteFramebuffersEXT);
+     store!(DeleteLists);
+     store!(DeleteMemoryObjectsEXT);
+     store!(DeleteNamedStringARB);
+     store!(DeleteNamesAMD);
+     store!(DeleteObjectARB);
+     store!(DeleteOcclusionQueriesNV);
+     store!(DeletePathsNV);
+     store!(DeletePerfMonitorsAMD);
+     store!(DeletePerfQueryINTEL);
+     store!(DeleteProgram);
+     store!(DeleteProgramPipelines);
+     store!(DeleteProgramsARB);
+     store!(DeleteProgramsNV);
+     store!(DeleteQueries);
+     store!(DeleteQueriesARB);
+     store!(DeleteQueryResourceTagNV);
+     store!(DeleteRenderbuffers);
+     store!(DeleteRenderbuffersEXT);
+     store!(DeleteSamplers);
+     store!(DeleteSemaphoresEXT);
+     store!(DeleteShader);
+     store!(DeleteStatesNV);
+     store!(DeleteSync);
+     store!(DeleteTextures);
+     store!(DeleteTexturesEXT);
+     store!(DeleteTransformFeedbacks);
+     store!(DeleteTransformFeedbacksNV);
+     store!(DeleteVertexArrays);
+     store!(DeleteVertexArraysAPPLE);
+     store!(DeleteVertexShaderEXT);
+     store!(DepthBoundsEXT);
+     store!(DepthBoundsdNV);
+     store!(DepthFunc);
+     store!(DepthMask);
+     store!(DepthRange);
+     store!(DepthRangeArraydvNV);
+     store!(DepthRangeArrayv);
+     store!(DepthRangeIndexed);
+     store!(DepthRangeIndexeddNV);
+     store!(DepthRangedNV);
+     store!(DepthRangef);
+     store!(DepthRangefOES);
+     store!(DepthRangexOES);
+     store!(DetachObjectARB);
+     store!(DetachShader);
+     store!(DetailTexFuncSGIS);
+     store!(Disable);
+     store!(DisableClientState);
+     store!(DisableClientStateIndexedEXT);
+     store!(DisableClientStateiEXT);
+     store!(DisableIndexedEXT);
+     store!(DisableVariantClientStateEXT);
+     store!(DisableVertexArrayAttrib);
+     store!(DisableVertexArrayAttribEXT);
+     store!(DisableVertexArrayEXT);
+     store!(DisableVertexAttribAPPLE);
+     store!(DisableVertexAttribArray);
+     store!(DisableVertexAttribArrayARB);
+     store!(Disablei);
+     store!(DispatchCompute);
+     store!(DispatchComputeGroupSizeARB);
+     store!(DispatchComputeIndirect);
+     store!(DrawArrays);
+     store!(DrawArraysEXT);
+     store!(DrawArraysIndirect);
+     store!(DrawArraysInstanced);
+     store!(DrawArraysInstancedARB);
+     store!(DrawArraysInstancedBaseInstance);
+     store!(DrawArraysInstancedEXT);
+     store!(DrawBuffer);
+     store!(DrawBuffers);
+     store!(DrawBuffersARB);
+     store!(DrawBuffersATI);
+     store!(DrawCommandsAddressNV);
+     store!(DrawCommandsNV);
+     store!(DrawCommandsStatesAddressNV);
+     store!(DrawCommandsStatesNV);
+     store!(DrawElementArrayAPPLE);
+     store!(DrawElementArrayATI);
+     store!(DrawElements);
+     store!(DrawElementsBaseVertex);
+     store!(DrawElementsIndirect);
+     store!(DrawElementsInstanced);
+     store!(DrawElementsInstancedARB);
+     store!(DrawElementsInstancedBaseInstance);
+     store!(DrawElementsInstancedBaseVertex);
+     store!(DrawElementsInstancedBaseVertexBaseInstance);
+     store!(DrawElementsInstancedEXT);
+     store!(DrawMeshArraysSUN);
+     store!(DrawMeshTasksIndirectNV);
+     store!(DrawMeshTasksNV);
+     store!(DrawPixels);
+     store!(DrawRangeElementArrayAPPLE);
+     store!(DrawRangeElementArrayATI);
+     store!(DrawRangeElements);
+     store!(DrawRangeElementsBaseVertex);
+     store!(DrawRangeElementsEXT);
+     store!(DrawTextureNV);
+     store!(DrawTransformFeedback);
+     store!(DrawTransformFeedbackInstanced);
+     store!(DrawTransformFeedbackNV);
+     store!(DrawTransformFeedbackStream);
+     store!(DrawTransformFeedbackStreamInstanced);
+     store!(DrawVkImageNV);
+     store!(EGLImageTargetTexStorageEXT);
+     store!(EGLImageTargetTextureStorageEXT);
+     store!(EdgeFlag);
+     store!(EdgeFlagFormatNV);
+     store!(EdgeFlagPointer);
+     store!(EdgeFlagPointerEXT);
+     store!(EdgeFlagPointerListIBM);
+     store!(EdgeFlagv);
+     store!(ElementPointerAPPLE);
+     store!(ElementPointerATI);
+     store!(Enable);
+     store!(EnableClientState);
+     store!(EnableClientStateIndexedEXT);
+     store!(EnableClientStateiEXT);
+     store!(EnableIndexedEXT);
+     store!(EnableVariantClientStateEXT);
+     store!(EnableVertexArrayAttrib);
+     store!(EnableVertexArrayAttribEXT);
+     store!(EnableVertexArrayEXT);
+     store!(EnableVertexAttribAPPLE);
+     store!(EnableVertexAttribArray);
+     store!(EnableVertexAttribArrayARB);
+     store!(Enablei);
+     store!(End);
+     store!(EndConditionalRender);
+     store!(EndConditionalRenderNV);
+     store!(EndConditionalRenderNVX);
+     store!(EndFragmentShaderATI);
+     store!(EndList);
+     store!(EndOcclusionQueryNV);
+     store!(EndPerfMonitorAMD);
+     store!(EndPerfQueryINTEL);
+     store!(EndQuery);
+     store!(EndQueryARB);
+     store!(EndQueryIndexed);
+     store!(EndTransformFeedback);
+     store!(EndTransformFeedbackEXT);
+     store!(EndTransformFeedbackNV);
+     store!(EndVertexShaderEXT);
+     store!(EndVideoCaptureNV);
+     store!(EvalCoord1d);
+     store!(EvalCoord1dv);
+     store!(EvalCoord1f);
+     store!(EvalCoord1fv);
+     store!(EvalCoord1xOES);
+     store!(EvalCoord1xvOES);
+     store!(EvalCoord2d);
+     store!(EvalCoord2dv);
+     store!(EvalCoord2f);
+     store!(EvalCoord2fv);
+     store!(EvalCoord2xOES);
+     store!(EvalCoord2xvOES);
+     store!(EvalMapsNV);
+     store!(EvalMesh1);
+     store!(EvalMesh2);
+     store!(EvalPoint1);
+     store!(EvalPoint2);
+     store!(EvaluateDepthValuesARB);
+     store!(ExecuteProgramNV);
+     store!(ExtractComponentEXT);
+     store!(FeedbackBuffer);
+     store!(FeedbackBufferxOES);
+     store!(FenceSync);
+     store!(FinalCombinerInputNV);
+     store!(Finish);
+     store!(FinishAsyncSGIX);
+     store!(FinishFenceAPPLE);
+     store!(FinishFenceNV);
+     store!(FinishObjectAPPLE);
+     store!(FinishTextureSUNX);
+     store!(Flush);
+     store!(FlushMappedBufferRange);
+     store!(FlushMappedBufferRangeAPPLE);
+     store!(FlushMappedNamedBufferRange);
+     store!(FlushMappedNamedBufferRangeEXT);
+     store!(FlushPixelDataRangeNV);
+     store!(FlushRasterSGIX);
+     store!(FlushStaticDataIBM);
+     store!(FlushVertexArrayRangeAPPLE);
+     store!(FlushVertexArrayRangeNV);
+     store!(FogCoordFormatNV);
+     store!(FogCoordPointer);
+     store!(FogCoordPointerEXT);
+     store!(FogCoordPointerListIBM);
+     store!(FogCoordd);
+     store!(FogCoorddEXT);
+     store!(FogCoorddv);
+     store!(FogCoorddvEXT);
+     store!(FogCoordf);
+     store!(FogCoordfEXT);
+     store!(FogCoordfv);
+     store!(FogCoordfvEXT);
+     store!(FogCoordhNV);
+     store!(FogCoordhvNV);
+     store!(FogFuncSGIS);
+     store!(Fogf);
+     store!(Fogfv);
+     store!(Fogi);
+     store!(Fogiv);
+     store!(FogxOES);
+     store!(FogxvOES);
+     store!(FragmentColorMaterialSGIX);
+     store!(FragmentCoverageColorNV);
+     store!(FragmentLightModelfSGIX);
+     store!(FragmentLightModelfvSGIX);
+     store!(FragmentLightModeliSGIX);
+     store!(FragmentLightModelivSGIX);
+     store!(FragmentLightfSGIX);
+     store!(FragmentLightfvSGIX);
+     store!(FragmentLightiSGIX);
+     store!(FragmentLightivSGIX);
+     store!(FragmentMaterialfSGIX);
+     store!(FragmentMaterialfvSGIX);
+     store!(FragmentMaterialiSGIX);
+     store!(FragmentMaterialivSGIX);
+     store!(FrameTerminatorGREMEDY);
+     store!(FrameZoomSGIX);
+     store!(FramebufferDrawBufferEXT);
+     store!(FramebufferDrawBuffersEXT);
+     store!(FramebufferFetchBarrierEXT);
+     store!(FramebufferParameteri);
+     store!(FramebufferParameteriMESA);
+     store!(FramebufferReadBufferEXT);
+     store!(FramebufferRenderbuffer);
+     store!(FramebufferRenderbufferEXT);
+     store!(FramebufferSampleLocationsfvARB);
+     store!(FramebufferSampleLocationsfvNV);
+     store!(FramebufferSamplePositionsfvAMD);
+     store!(FramebufferTexture);
+     store!(FramebufferTexture1D);
+     store!(FramebufferTexture1DEXT);
+     store!(FramebufferTexture2D);
+     store!(FramebufferTexture2DEXT);
+     store!(FramebufferTexture3D);
+     store!(FramebufferTexture3DEXT);
+     store!(FramebufferTextureARB);
+     store!(FramebufferTextureEXT);
+     store!(FramebufferTextureFaceARB);
+     store!(FramebufferTextureFaceEXT);
+     store!(FramebufferTextureLayer);
+     store!(FramebufferTextureLayerARB);
+     store!(FramebufferTextureLayerEXT);
+     store!(FramebufferTextureMultiviewOVR);
+     store!(FreeObjectBufferATI);
+     store!(FrontFace);
+     store!(Frustum);
+     store!(FrustumfOES);
+     store!(FrustumxOES);
+     store!(GenAsyncMarkersSGIX);
+     store!(GenBuffers);
+     store!(GenBuffersARB);
+     store!(GenFencesAPPLE);
+     store!(GenFencesNV);
+     store!(GenFragmentShadersATI);
+     store!(GenFramebuffers);
+     store!(GenFramebuffersEXT);
+     store!(GenLists);
+     store!(GenNamesAMD);
+     store!(GenOcclusionQueriesNV);
+     store!(GenPathsNV);
+     store!(GenPerfMonitorsAMD);
+     store!(GenProgramPipelines);
+     store!(GenProgramsARB);
+     store!(GenProgramsNV);
+     store!(GenQueries);
+     store!(GenQueriesARB);
+     store!(GenQueryResourceTagNV);
+     store!(GenRenderbuffers);
+     store!(GenRenderbuffersEXT);
+     store!(GenSamplers);
+     store!(GenSemaphoresEXT);
+     store!(GenSymbolsEXT);
+     store!(GenTextures);
+     store!(GenTexturesEXT);
+     store!(GenTransformFeedbacks);
+     store!(GenTransformFeedbacksNV);
+     store!(GenVertexArrays);
+     store!(GenVertexArraysAPPLE);
+     store!(GenVertexShadersEXT);
+     store!(GenerateMipmap);
+     store!(GenerateMipmapEXT);
+     store!(GenerateMultiTexMipmapEXT);
+     store!(GenerateTextureMipmap);
+     store!(GenerateTextureMipmapEXT);
+     store!(GetActiveAtomicCounterBufferiv);
+     store!(GetActiveAttrib);
+     store!(GetActiveAttribARB);
+     store!(GetActiveSubroutineName);
+     store!(GetActiveSubroutineUniformName);
+     store!(GetActiveSubroutineUniformiv);
+     store!(GetActiveUniform);
+     store!(GetActiveUniformARB);
+     store!(GetActiveUniformBlockName);
+     store!(GetActiveUniformBlockiv);
+     store!(GetActiveUniformName);
+     store!(GetActiveUniformsiv);
+     store!(GetActiveVaryingNV);
+     store!(GetArrayObjectfvATI);
+     store!(GetArrayObjectivATI);
+     store!(GetAttachedObjectsARB);
+     store!(GetAttachedShaders);
+     store!(GetAttribLocation);
+     store!(GetAttribLocationARB);
+     store!(GetBooleanIndexedvEXT);
+     store!(GetBooleani_v);
+     store!(GetBooleanv);
+     store!(GetBufferParameteri64v);
+     store!(GetBufferParameteriv);
+     store!(GetBufferParameterivARB);
+     store!(GetBufferParameterui64vNV);
+     store!(GetBufferPointerv);
+     store!(GetBufferPointervARB);
+     store!(GetBufferSubData);
+     store!(GetBufferSubDataARB);
+     store!(GetClipPlane);
+     store!(GetClipPlanefOES);
+     store!(GetClipPlanexOES);
+     store!(GetColorTable);
+     store!(GetColorTableEXT);
+     store!(GetColorTableParameterfv);
+     store!(GetColorTableParameterfvEXT);
+     store!(GetColorTableParameterfvSGI);
+     store!(GetColorTableParameteriv);
+     store!(GetColorTableParameterivEXT);
+     store!(GetColorTableParameterivSGI);
+     store!(GetColorTableSGI);
+     store!(GetCombinerInputParameterfvNV);
+     store!(GetCombinerInputParameterivNV);
+     store!(GetCombinerOutputParameterfvNV);
+     store!(GetCombinerOutputParameterivNV);
+     store!(GetCombinerStageParameterfvNV);
+     store!(GetCommandHeaderNV);
+     store!(GetCompressedMultiTexImageEXT);
+     store!(GetCompressedTexImage);
+     store!(GetCompressedTexImageARB);
+     store!(GetCompressedTextureImage);
+     store!(GetCompressedTextureImageEXT);
+     store!(GetCompressedTextureSubImage);
+     store!(GetConvolutionFilter);
+     store!(GetConvolutionFilterEXT);
+     store!(GetConvolutionParameterfv);
+     store!(GetConvolutionParameterfvEXT);
+     store!(GetConvolutionParameteriv);
+     store!(GetConvolutionParameterivEXT);
+     store!(GetConvolutionParameterxvOES);
+     store!(GetCoverageModulationTableNV);
+     store!(GetDebugMessageLog);
+     store!(GetDebugMessageLogAMD);
+     store!(GetDebugMessageLogARB);
+     store!(GetDetailTexFuncSGIS);
+     store!(GetDoubleIndexedvEXT);
+     store!(GetDoublei_v);
+     store!(GetDoublei_vEXT);
+     store!(GetDoublev);
+     store!(GetError);
+     store!(GetFenceivNV);
+     store!(GetFinalCombinerInputParameterfvNV);
+     store!(GetFinalCombinerInputParameterivNV);
+     store!(GetFirstPerfQueryIdINTEL);
+     store!(GetFixedvOES);
+     store!(GetFloatIndexedvEXT);
+     store!(GetFloati_v);
+     store!(GetFloati_vEXT);
+     store!(GetFloatv);
+     store!(GetFogFuncSGIS);
+     store!(GetFragDataIndex);
+     store!(GetFragDataLocation);
+     store!(GetFragDataLocationEXT);
+     store!(GetFragmentLightfvSGIX);
+     store!(GetFragmentLightivSGIX);
+     store!(GetFragmentMaterialfvSGIX);
+     store!(GetFragmentMaterialivSGIX);
+     store!(GetFramebufferAttachmentParameteriv);
+     store!(GetFramebufferAttachmentParameterivEXT);
+     store!(GetFramebufferParameterfvAMD);
+     store!(GetFramebufferParameteriv);
+     store!(GetFramebufferParameterivEXT);
+     store!(GetFramebufferParameterivMESA);
+     store!(GetGraphicsResetStatus);
+     store!(GetGraphicsResetStatusARB);
+     store!(GetHandleARB);
+     store!(GetHistogram);
+     store!(GetHistogramEXT);
+     store!(GetHistogramParameterfv);
+     store!(GetHistogramParameterfvEXT);
+     store!(GetHistogramParameteriv);
+     store!(GetHistogramParameterivEXT);
+     store!(GetHistogramParameterxvOES);
+     store!(GetImageHandleARB);
+     store!(GetImageHandleNV);
+     store!(GetImageTransformParameterfvHP);
+     store!(GetImageTransformParameterivHP);
+     store!(GetInfoLogARB);
+     store!(GetInstrumentsSGIX);
+     store!(GetInteger64i_v);
+     store!(GetInteger64v);
+     store!(GetIntegerIndexedvEXT);
+     store!(GetIntegeri_v);
+     store!(GetIntegerui64i_vNV);
+     store!(GetIntegerui64vNV);
+     store!(GetIntegerv);
+     store!(GetInternalformatSampleivNV);
+     store!(GetInternalformati64v);
+     store!(GetInternalformativ);
+     store!(GetInvariantBooleanvEXT);
+     store!(GetInvariantFloatvEXT);
+     store!(GetInvariantIntegervEXT);
+     store!(GetLightfv);
+     store!(GetLightiv);
+     store!(GetLightxOES);
+     store!(GetListParameterfvSGIX);
+     store!(GetListParameterivSGIX);
+     store!(GetLocalConstantBooleanvEXT);
+     store!(GetLocalConstantFloatvEXT);
+     store!(GetLocalConstantIntegervEXT);
+     store!(GetMapAttribParameterfvNV);
+     store!(GetMapAttribParameterivNV);
+     store!(GetMapControlPointsNV);
+     store!(GetMapParameterfvNV);
+     store!(GetMapParameterivNV);
+     store!(GetMapdv);
+     store!(GetMapfv);
+     store!(GetMapiv);
+     store!(GetMapxvOES);
+     store!(GetMaterialfv);
+     store!(GetMaterialiv);
+     store!(GetMaterialxOES);
+     store!(GetMemoryObjectDetachedResourcesuivNV);
+     store!(GetMemoryObjectParameterivEXT);
+     store!(GetMinmax);
+     store!(GetMinmaxEXT);
+     store!(GetMinmaxParameterfv);
+     store!(GetMinmaxParameterfvEXT);
+     store!(GetMinmaxParameteriv);
+     store!(GetMinmaxParameterivEXT);
+     store!(GetMultiTexEnvfvEXT);
+     store!(GetMultiTexEnvivEXT);
+     store!(GetMultiTexGendvEXT);
+     store!(GetMultiTexGenfvEXT);
+     store!(GetMultiTexGenivEXT);
+     store!(GetMultiTexImageEXT);
+     store!(GetMultiTexLevelParameterfvEXT);
+     store!(GetMultiTexLevelParameterivEXT);
+     store!(GetMultiTexParameterIivEXT);
+     store!(GetMultiTexParameterIuivEXT);
+     store!(GetMultiTexParameterfvEXT);
+     store!(GetMultiTexParameterivEXT);
+     store!(GetMultisamplefv);
+     store!(GetMultisamplefvNV);
+     store!(GetNamedBufferParameteri64v);
+     store!(GetNamedBufferParameteriv);
+     store!(GetNamedBufferParameterivEXT);
+     store!(GetNamedBufferParameterui64vNV);
+     store!(GetNamedBufferPointerv);
+     store!(GetNamedBufferPointervEXT);
+     store!(GetNamedBufferSubData);
+     store!(GetNamedBufferSubDataEXT);
+     store!(GetNamedFramebufferAttachmentParameteriv);
+     store!(GetNamedFramebufferAttachmentParameterivEXT);
+     store!(GetNamedFramebufferParameterfvAMD);
+     store!(GetNamedFramebufferParameteriv);
+     store!(GetNamedFramebufferParameterivEXT);
+     store!(GetNamedProgramLocalParameterIivEXT);
+     store!(GetNamedProgramLocalParameterIuivEXT);
+     store!(GetNamedProgramLocalParameterdvEXT);
+     store!(GetNamedProgramLocalParameterfvEXT);
+     store!(GetNamedProgramStringEXT);
+     store!(GetNamedProgramivEXT);
+     store!(GetNamedRenderbufferParameteriv);
+     store!(GetNamedRenderbufferParameterivEXT);
+     store!(GetNamedStringARB);
+     store!(GetNamedStringivARB);
+     store!(GetNextPerfQueryIdINTEL);
+     store!(GetObjectBufferfvATI);
+     store!(GetObjectBufferivATI);
+     store!(GetObjectLabel);
+     store!(GetObjectLabelEXT);
+     store!(GetObjectParameterfvARB);
+     store!(GetObjectParameterivAPPLE);
+     store!(GetObjectParameterivARB);
+     store!(GetObjectPtrLabel);
+     store!(GetOcclusionQueryivNV);
+     store!(GetOcclusionQueryuivNV);
+     store!(GetPathColorGenfvNV);
+     store!(GetPathColorGenivNV);
+     store!(GetPathCommandsNV);
+     store!(GetPathCoordsNV);
+     store!(GetPathDashArrayNV);
+     store!(GetPathLengthNV);
+     store!(GetPathMetricRangeNV);
+     store!(GetPathMetricsNV);
+     store!(GetPathParameterfvNV);
+     store!(GetPathParameterivNV);
+     store!(GetPathSpacingNV);
+     store!(GetPathTexGenfvNV);
+     store!(GetPathTexGenivNV);
+     store!(GetPerfCounterInfoINTEL);
+     store!(GetPerfMonitorCounterDataAMD);
+     store!(GetPerfMonitorCounterInfoAMD);
+     store!(GetPerfMonitorCounterStringAMD);
+     store!(GetPerfMonitorCountersAMD);
+     store!(GetPerfMonitorGroupStringAMD);
+     store!(GetPerfMonitorGroupsAMD);
+     store!(GetPerfQueryDataINTEL);
+     store!(GetPerfQueryIdByNameINTEL);
+     store!(GetPerfQueryInfoINTEL);
+     store!(GetPixelMapfv);
+     store!(GetPixelMapuiv);
+     store!(GetPixelMapusv);
+     store!(GetPixelMapxv);
+     store!(GetPixelTexGenParameterfvSGIS);
+     store!(GetPixelTexGenParameterivSGIS);
+     store!(GetPixelTransformParameterfvEXT);
+     store!(GetPixelTransformParameterivEXT);
+     store!(GetPointerIndexedvEXT);
+     store!(GetPointeri_vEXT);
+     store!(GetPointerv);
+     store!(GetPointervEXT);
+     store!(GetPolygonStipple);
+     store!(GetProgramBinary);
+     store!(GetProgramEnvParameterIivNV);
+     store!(GetProgramEnvParameterIuivNV);
+     store!(GetProgramEnvParameterdvARB);
+     store!(GetProgramEnvParameterfvARB);
+     store!(GetProgramInfoLog);
+     store!(GetProgramInterfaceiv);
+     store!(GetProgramLocalParameterIivNV);
+     store!(GetProgramLocalParameterIuivNV);
+     store!(GetProgramLocalParameterdvARB);
+     store!(GetProgramLocalParameterfvARB);
+     store!(GetProgramNamedParameterdvNV);
+     store!(GetProgramNamedParameterfvNV);
+     store!(GetProgramParameterdvNV);
+     store!(GetProgramParameterfvNV);
+     store!(GetProgramPipelineInfoLog);
+     store!(GetProgramPipelineiv);
+     store!(GetProgramResourceIndex);
+     store!(GetProgramResourceLocation);
+     store!(GetProgramResourceLocationIndex);
+     store!(GetProgramResourceName);
+     store!(GetProgramResourcefvNV);
+     store!(GetProgramResourceiv);
+     store!(GetProgramStageiv);
+     store!(GetProgramStringARB);
+     store!(GetProgramStringNV);
+     store!(GetProgramSubroutineParameteruivNV);
+     store!(GetProgramiv);
+     store!(GetProgramivARB);
+     store!(GetProgramivNV);
+     store!(GetQueryBufferObjecti64v);
+     store!(GetQueryBufferObjectiv);
+     store!(GetQueryBufferObjectui64v);
+     store!(GetQueryBufferObjectuiv);
+     store!(GetQueryIndexediv);
+     store!(GetQueryObjecti64v);
+     store!(GetQueryObjecti64vEXT);
+     store!(GetQueryObjectiv);
+     store!(GetQueryObjectivARB);
+     store!(GetQueryObjectui64v);
+     store!(GetQueryObjectui64vEXT);
+     store!(GetQueryObjectuiv);
+     store!(GetQueryObjectuivARB);
+     store!(GetQueryiv);
+     store!(GetQueryivARB);
+     store!(GetRenderbufferParameteriv);
+     store!(GetRenderbufferParameterivEXT);
+     store!(GetSamplerParameterIiv);
+     store!(GetSamplerParameterIuiv);
+     store!(GetSamplerParameterfv);
+     store!(GetSamplerParameteriv);
+     store!(GetSemaphoreParameterivNV);
+     store!(GetSemaphoreParameterui64vEXT);
+     store!(GetSeparableFilter);
+     store!(GetSeparableFilterEXT);
+     store!(GetShaderInfoLog);
+     store!(GetShaderPrecisionFormat);
+     store!(GetShaderSource);
+     store!(GetShaderSourceARB);
+     store!(GetShaderiv);
+     store!(GetShadingRateImagePaletteNV);
+     store!(GetShadingRateSampleLocationivNV);
+     store!(GetSharpenTexFuncSGIS);
+     store!(GetStageIndexNV);
+     store!(GetString);
+     store!(GetStringi);
+     store!(GetSubroutineIndex);
+     store!(GetSubroutineUniformLocation);
+     store!(GetSynciv);
+     store!(GetTexBumpParameterfvATI);
+     store!(GetTexBumpParameterivATI);
+     store!(GetTexEnvfv);
+     store!(GetTexEnviv);
+     store!(GetTexEnvxvOES);
+     store!(GetTexFilterFuncSGIS);
+     store!(GetTexGendv);
+     store!(GetTexGenfv);
+     store!(GetTexGeniv);
+     store!(GetTexGenxvOES);
+     store!(GetTexImage);
+     store!(GetTexLevelParameterfv);
+     store!(GetTexLevelParameteriv);
+     store!(GetTexLevelParameterxvOES);
+     store!(GetTexParameterIiv);
+     store!(GetTexParameterIivEXT);
+     store!(GetTexParameterIuiv);
+     store!(GetTexParameterIuivEXT);
+     store!(GetTexParameterPointervAPPLE);
+     store!(GetTexParameterfv);
+     store!(GetTexParameteriv);
+     store!(GetTexParameterxvOES);
+     store!(GetTextureHandleARB);
+     store!(GetTextureHandleNV);
+     store!(GetTextureImage);
+     store!(GetTextureImageEXT);
+     store!(GetTextureLevelParameterfv);
+     store!(GetTextureLevelParameterfvEXT);
+     store!(GetTextureLevelParameteriv);
+     store!(GetTextureLevelParameterivEXT);
+     store!(GetTextureParameterIiv);
+     store!(GetTextureParameterIivEXT);
+     store!(GetTextureParameterIuiv);
+     store!(GetTextureParameterIuivEXT);
+     store!(GetTextureParameterfv);
+     store!(GetTextureParameterfvEXT);
+     store!(GetTextureParameteriv);
+     store!(GetTextureParameterivEXT);
+     store!(GetTextureSamplerHandleARB);
+     store!(GetTextureSamplerHandleNV);
+     store!(GetTextureSubImage);
+     store!(GetTrackMatrixivNV);
+     store!(GetTransformFeedbackVarying);
+     store!(GetTransformFeedbackVaryingEXT);
+     store!(GetTransformFeedbackVaryingNV);
+     store!(GetTransformFeedbacki64_v);
+     store!(GetTransformFeedbacki_v);
+     store!(GetTransformFeedbackiv);
+     store!(GetUniformBlockIndex);
+     store!(GetUniformBufferSizeEXT);
+     store!(GetUniformIndices);
+     store!(GetUniformLocation);
+     store!(GetUniformLocationARB);
+     store!(GetUniformOffsetEXT);
+     store!(GetUniformSubroutineuiv);
+     store!(GetUniformdv);
+     store!(GetUniformfv);
+     store!(GetUniformfvARB);
+     store!(GetUniformi64vARB);
+     store!(GetUniformi64vNV);
+     store!(GetUniformiv);
+     store!(GetUniformivARB);
+     store!(GetUniformui64vARB);
+     store!(GetUniformui64vNV);
+     store!(GetUniformuiv);
+     store!(GetUniformuivEXT);
+     store!(GetUnsignedBytei_vEXT);
+     store!(GetUnsignedBytevEXT);
+     store!(GetVariantArrayObjectfvATI);
+     store!(GetVariantArrayObjectivATI);
+     store!(GetVariantBooleanvEXT);
+     store!(GetVariantFloatvEXT);
+     store!(GetVariantIntegervEXT);
+     store!(GetVariantPointervEXT);
+     store!(GetVaryingLocationNV);
+     store!(GetVertexArrayIndexed64iv);
+     store!(GetVertexArrayIndexediv);
+     store!(GetVertexArrayIntegeri_vEXT);
+     store!(GetVertexArrayIntegervEXT);
+     store!(GetVertexArrayPointeri_vEXT);
+     store!(GetVertexArrayPointervEXT);
+     store!(GetVertexArrayiv);
+     store!(GetVertexAttribArrayObjectfvATI);
+     store!(GetVertexAttribArrayObjectivATI);
+     store!(GetVertexAttribIiv);
+     store!(GetVertexAttribIivEXT);
+     store!(GetVertexAttribIuiv);
+     store!(GetVertexAttribIuivEXT);
+     store!(GetVertexAttribLdv);
+     store!(GetVertexAttribLdvEXT);
+     store!(GetVertexAttribLi64vNV);
+     store!(GetVertexAttribLui64vARB);
+     store!(GetVertexAttribLui64vNV);
+     store!(GetVertexAttribPointerv);
+     store!(GetVertexAttribPointervARB);
+     store!(GetVertexAttribPointervNV);
+     store!(GetVertexAttribdv);
+     store!(GetVertexAttribdvARB);
+     store!(GetVertexAttribdvNV);
+     store!(GetVertexAttribfv);
+     store!(GetVertexAttribfvARB);
+     store!(GetVertexAttribfvNV);
+     store!(GetVertexAttribiv);
+     store!(GetVertexAttribivARB);
+     store!(GetVertexAttribivNV);
+     store!(GetVideoCaptureStreamdvNV);
+     store!(GetVideoCaptureStreamfvNV);
+     store!(GetVideoCaptureStreamivNV);
+     store!(GetVideoCaptureivNV);
+     store!(GetVideoi64vNV);
+     store!(GetVideoivNV);
+     store!(GetVideoui64vNV);
+     store!(GetVideouivNV);
+     store!(GetVkProcAddrNV);
+     store!(GetnColorTable);
+     store!(GetnColorTableARB);
+     store!(GetnCompressedTexImage);
+     store!(GetnCompressedTexImageARB);
+     store!(GetnConvolutionFilter);
+     store!(GetnConvolutionFilterARB);
+     store!(GetnHistogram);
+     store!(GetnHistogramARB);
+     store!(GetnMapdv);
+     store!(GetnMapdvARB);
+     store!(GetnMapfv);
+     store!(GetnMapfvARB);
+     store!(GetnMapiv);
+     store!(GetnMapivARB);
+     store!(GetnMinmax);
+     store!(GetnMinmaxARB);
+     store!(GetnPixelMapfv);
+     store!(GetnPixelMapfvARB);
+     store!(GetnPixelMapuiv);
+     store!(GetnPixelMapuivARB);
+     store!(GetnPixelMapusv);
+     store!(GetnPixelMapusvARB);
+     store!(GetnPolygonStipple);
+     store!(GetnPolygonStippleARB);
+     store!(GetnSeparableFilter);
+     store!(GetnSeparableFilterARB);
+     store!(GetnTexImage);
+     store!(GetnTexImageARB);
+     store!(GetnUniformdv);
+     store!(GetnUniformdvARB);
+     store!(GetnUniformfv);
+     store!(GetnUniformfvARB);
+     store!(GetnUniformi64vARB);
+     store!(GetnUniformiv);
+     store!(GetnUniformivARB);
+     store!(GetnUniformui64vARB);
+     store!(GetnUniformuiv);
+     store!(GetnUniformuivARB);
+     store!(GlobalAlphaFactorbSUN);
+     store!(GlobalAlphaFactordSUN);
+     store!(GlobalAlphaFactorfSUN);
+     store!(GlobalAlphaFactoriSUN);
+     store!(GlobalAlphaFactorsSUN);
+     store!(GlobalAlphaFactorubSUN);
+     store!(GlobalAlphaFactoruiSUN);
+     store!(GlobalAlphaFactorusSUN);
+     store!(Hint);
+     store!(HintPGI);
+     store!(Histogram);
+     store!(HistogramEXT);
+     store!(IglooInterfaceSGIX);
+     store!(ImageTransformParameterfHP);
+     store!(ImageTransformParameterfvHP);
+     store!(ImageTransformParameteriHP);
+     store!(ImageTransformParameterivHP);
+     store!(ImportMemoryFdEXT);
+     store!(ImportMemoryWin32HandleEXT);
+     store!(ImportMemoryWin32NameEXT);
+     store!(ImportSemaphoreFdEXT);
+     store!(ImportSemaphoreWin32HandleEXT);
+     store!(ImportSemaphoreWin32NameEXT);
+     store!(ImportSyncEXT);
+     store!(IndexFormatNV);
+     store!(IndexFuncEXT);
+     store!(IndexMask);
+     store!(IndexMaterialEXT);
+     store!(IndexPointer);
+     store!(IndexPointerEXT);
+     store!(IndexPointerListIBM);
+     store!(Indexd);
+     store!(Indexdv);
+     store!(Indexf);
+     store!(Indexfv);
+     store!(Indexi);
+     store!(Indexiv);
+     store!(Indexs);
+     store!(Indexsv);
+     store!(Indexub);
+     store!(Indexubv);
+     store!(IndexxOES);
+     store!(IndexxvOES);
+     store!(InitNames);
+     store!(InsertComponentEXT);
+     store!(InsertEventMarkerEXT);
+     store!(InstrumentsBufferSGIX);
+     store!(InterleavedArrays);
+     store!(InterpolatePathsNV);
+     store!(InvalidateBufferData);
+     store!(InvalidateBufferSubData);
+     store!(InvalidateFramebuffer);
+     store!(InvalidateNamedFramebufferData);
+     store!(InvalidateNamedFramebufferSubData);
+     store!(InvalidateSubFramebuffer);
+     store!(InvalidateTexImage);
+     store!(InvalidateTexSubImage);
+     store!(IsAsyncMarkerSGIX);
+     store!(IsBuffer);
+     store!(IsBufferARB);
+     store!(IsBufferResidentNV);
+     store!(IsCommandListNV);
+     store!(IsEnabled);
+     store!(IsEnabledIndexedEXT);
+     store!(IsEnabledi);
+     store!(IsFenceAPPLE);
+     store!(IsFenceNV);
+     store!(IsFramebuffer);
+     store!(IsFramebufferEXT);
+     store!(IsImageHandleResidentARB);
+     store!(IsImageHandleResidentNV);
+     store!(IsList);
+     store!(IsMemoryObjectEXT);
+     store!(IsNameAMD);
+     store!(IsNamedBufferResidentNV);
+     store!(IsNamedStringARB);
+     store!(IsObjectBufferATI);
+     store!(IsOcclusionQueryNV);
+     store!(IsPathNV);
+     store!(IsPointInFillPathNV);
+     store!(IsPointInStrokePathNV);
+     store!(IsProgram);
+     store!(IsProgramARB);
+     store!(IsProgramNV);
+     store!(IsProgramPipeline);
+     store!(IsQuery);
+     store!(IsQueryARB);
+     store!(IsRenderbuffer);
+     store!(IsRenderbufferEXT);
+     store!(IsSampler);
+     store!(IsSemaphoreEXT);
+     store!(IsShader);
+     store!(IsStateNV);
+     store!(IsSync);
+     store!(IsTexture);
+     store!(IsTextureEXT);
+     store!(IsTextureHandleResidentARB);
+     store!(IsTextureHandleResidentNV);
+     store!(IsTransformFeedback);
+     store!(IsTransformFeedbackNV);
+     store!(IsVariantEnabledEXT);
+     store!(IsVertexArray);
+     store!(IsVertexArrayAPPLE);
+     store!(IsVertexAttribEnabledAPPLE);
+     store!(LGPUCopyImageSubDataNVX);
+     store!(LGPUInterlockNVX);
+     store!(LGPUNamedBufferSubDataNVX);
+     store!(LabelObjectEXT);
+     store!(LightEnviSGIX);
+     store!(LightModelf);
+     store!(LightModelfv);
+     store!(LightModeli);
+     store!(LightModeliv);
+     store!(LightModelxOES);
+     store!(LightModelxvOES);
+     store!(Lightf);
+     store!(Lightfv);
+     store!(Lighti);
+     store!(Lightiv);
+     store!(LightxOES);
+     store!(LightxvOES);
+     store!(LineStipple);
+     store!(LineWidth);
+     store!(LineWidthxOES);
+     store!(LinkProgram);
+     store!(LinkProgramARB);
+     store!(ListBase);
+     store!(ListDrawCommandsStatesClientNV);
+     store!(ListParameterfSGIX);
+     store!(ListParameterfvSGIX);
+     store!(ListParameteriSGIX);
+     store!(ListParameterivSGIX);
+     store!(LoadIdentity);
+     store!(LoadIdentityDeformationMapSGIX);
+     store!(LoadMatrixd);
+     store!(LoadMatrixf);
+     store!(LoadMatrixxOES);
+     store!(LoadName);
+     store!(LoadProgramNV);
+     store!(LoadTransposeMatrixd);
+     store!(LoadTransposeMatrixdARB);
+     store!(LoadTransposeMatrixf);
+     store!(LoadTransposeMatrixfARB);
+     store!(LoadTransposeMatrixxOES);
+     store!(LockArraysEXT);
+     store!(LogicOp);
+     store!(MakeBufferNonResidentNV);
+     store!(MakeBufferResidentNV);
+     store!(MakeImageHandleNonResidentARB);
+     store!(MakeImageHandleNonResidentNV);
+     store!(MakeImageHandleResidentARB);
+     store!(MakeImageHandleResidentNV);
+     store!(MakeNamedBufferNonResidentNV);
+     store!(MakeNamedBufferResidentNV);
+     store!(MakeTextureHandleNonResidentARB);
+     store!(MakeTextureHandleNonResidentNV);
+     store!(MakeTextureHandleResidentARB);
+     store!(MakeTextureHandleResidentNV);
+     store!(Map1d);
+     store!(Map1f);
+     store!(Map1xOES);
+     store!(Map2d);
+     store!(Map2f);
+     store!(Map2xOES);
+     store!(MapBuffer);
+     store!(MapBufferARB);
+     store!(MapBufferRange);
+     store!(MapControlPointsNV);
+     store!(MapGrid1d);
+     store!(MapGrid1f);
+     store!(MapGrid1xOES);
+     store!(MapGrid2d);
+     store!(MapGrid2f);
+     store!(MapGrid2xOES);
+     store!(MapNamedBuffer);
+     store!(MapNamedBufferEXT);
+     store!(MapNamedBufferRange);
+     store!(MapNamedBufferRangeEXT);
+     store!(MapObjectBufferATI);
+     store!(MapParameterfvNV);
+     store!(MapParameterivNV);
+     store!(MapTexture2DINTEL);
+     store!(MapVertexAttrib1dAPPLE);
+     store!(MapVertexAttrib1fAPPLE);
+     store!(MapVertexAttrib2dAPPLE);
+     store!(MapVertexAttrib2fAPPLE);
+     store!(Materialf);
+     store!(Materialfv);
+     store!(Materiali);
+     store!(Materialiv);
+     store!(MaterialxOES);
+     store!(MaterialxvOES);
+     store!(MatrixFrustumEXT);
+     store!(MatrixIndexPointerARB);
+     store!(MatrixIndexubvARB);
+     store!(MatrixIndexuivARB);
+     store!(MatrixIndexusvARB);
+     store!(MatrixLoad3x2fNV);
+     store!(MatrixLoad3x3fNV);
+     store!(MatrixLoadIdentityEXT);
+     store!(MatrixLoadTranspose3x3fNV);
+     store!(MatrixLoadTransposedEXT);
+     store!(MatrixLoadTransposefEXT);
+     store!(MatrixLoaddEXT);
+     store!(MatrixLoadfEXT);
+     store!(MatrixMode);
+     store!(MatrixMult3x2fNV);
+     store!(MatrixMult3x3fNV);
+     store!(MatrixMultTranspose3x3fNV);
+     store!(MatrixMultTransposedEXT);
+     store!(MatrixMultTransposefEXT);
+     store!(MatrixMultdEXT);
+     store!(MatrixMultfEXT);
+     store!(MatrixOrthoEXT);
+     store!(MatrixPopEXT);
+     store!(MatrixPushEXT);
+     store!(MatrixRotatedEXT);
+     store!(MatrixRotatefEXT);
+     store!(MatrixScaledEXT);
+     store!(MatrixScalefEXT);
+     store!(MatrixTranslatedEXT);
+     store!(MatrixTranslatefEXT);
+     store!(MaxShaderCompilerThreadsARB);
+     store!(MaxShaderCompilerThreadsKHR);
+     store!(MemoryBarrier);
+     store!(MemoryBarrierByRegion);
+     store!(MemoryBarrierEXT);
+     store!(MemoryObjectParameterivEXT);
+     store!(MinSampleShading);
+     store!(MinSampleShadingARB);
+     store!(Minmax);
+     store!(MinmaxEXT);
+     store!(MultMatrixd);
+     store!(MultMatrixf);
+     store!(MultMatrixxOES);
+     store!(MultTransposeMatrixd);
+     store!(MultTransposeMatrixdARB);
+     store!(MultTransposeMatrixf);
+     store!(MultTransposeMatrixfARB);
+     store!(MultTransposeMatrixxOES);
+     store!(MultiDrawArrays);
+     store!(MultiDrawArraysEXT);
+     store!(MultiDrawArraysIndirect);
+     store!(MultiDrawArraysIndirectAMD);
+     store!(MultiDrawArraysIndirectBindlessCountNV);
+     store!(MultiDrawArraysIndirectBindlessNV);
+     store!(MultiDrawArraysIndirectCount);
+     store!(MultiDrawArraysIndirectCountARB);
+     store!(MultiDrawElementArrayAPPLE);
+     store!(MultiDrawElements);
+     store!(MultiDrawElementsBaseVertex);
+     store!(MultiDrawElementsEXT);
+     store!(MultiDrawElementsIndirect);
+     store!(MultiDrawElementsIndirectAMD);
+     store!(MultiDrawElementsIndirectBindlessCountNV);
+     store!(MultiDrawElementsIndirectBindlessNV);
+     store!(MultiDrawElementsIndirectCount);
+     store!(MultiDrawElementsIndirectCountARB);
+     store!(MultiDrawMeshTasksIndirectCountNV);
+     store!(MultiDrawMeshTasksIndirectNV);
+     store!(MultiDrawRangeElementArrayAPPLE);
+     store!(MultiModeDrawArraysIBM);
+     store!(MultiModeDrawElementsIBM);
+     store!(MultiTexBufferEXT);
+     store!(MultiTexCoord1bOES);
+     store!(MultiTexCoord1bvOES);
+     store!(MultiTexCoord1d);
+     store!(MultiTexCoord1dARB);
+     store!(MultiTexCoord1dv);
+     store!(MultiTexCoord1dvARB);
+     store!(MultiTexCoord1f);
+     store!(MultiTexCoord1fARB);
+     store!(MultiTexCoord1fv);
+     store!(MultiTexCoord1fvARB);
+     store!(MultiTexCoord1hNV);
+     store!(MultiTexCoord1hvNV);
+     store!(MultiTexCoord1i);
+     store!(MultiTexCoord1iARB);
+     store!(MultiTexCoord1iv);
+     store!(MultiTexCoord1ivARB);
+     store!(MultiTexCoord1s);
+     store!(MultiTexCoord1sARB);
+     store!(MultiTexCoord1sv);
+     store!(MultiTexCoord1svARB);
+     store!(MultiTexCoord1xOES);
+     store!(MultiTexCoord1xvOES);
+     store!(MultiTexCoord2bOES);
+     store!(MultiTexCoord2bvOES);
+     store!(MultiTexCoord2d);
+     store!(MultiTexCoord2dARB);
+     store!(MultiTexCoord2dv);
+     store!(MultiTexCoord2dvARB);
+     store!(MultiTexCoord2f);
+     store!(MultiTexCoord2fARB);
+     store!(MultiTexCoord2fv);
+     store!(MultiTexCoord2fvARB);
+     store!(MultiTexCoord2hNV);
+     store!(MultiTexCoord2hvNV);
+     store!(MultiTexCoord2i);
+     store!(MultiTexCoord2iARB);
+     store!(MultiTexCoord2iv);
+     store!(MultiTexCoord2ivARB);
+     store!(MultiTexCoord2s);
+     store!(MultiTexCoord2sARB);
+     store!(MultiTexCoord2sv);
+     store!(MultiTexCoord2svARB);
+     store!(MultiTexCoord2xOES);
+     store!(MultiTexCoord2xvOES);
+     store!(MultiTexCoord3bOES);
+     store!(MultiTexCoord3bvOES);
+     store!(MultiTexCoord3d);
+     store!(MultiTexCoord3dARB);
+     store!(MultiTexCoord3dv);
+     store!(MultiTexCoord3dvARB);
+     store!(MultiTexCoord3f);
+     store!(MultiTexCoord3fARB);
+     store!(MultiTexCoord3fv);
+     store!(MultiTexCoord3fvARB);
+     store!(MultiTexCoord3hNV);
+     store!(MultiTexCoord3hvNV);
+     store!(MultiTexCoord3i);
+     store!(MultiTexCoord3iARB);
+     store!(MultiTexCoord3iv);
+     store!(MultiTexCoord3ivARB);
+     store!(MultiTexCoord3s);
+     store!(MultiTexCoord3sARB);
+     store!(MultiTexCoord3sv);
+     store!(MultiTexCoord3svARB);
+     store!(MultiTexCoord3xOES);
+     store!(MultiTexCoord3xvOES);
+     store!(MultiTexCoord4bOES);
+     store!(MultiTexCoord4bvOES);
+     store!(MultiTexCoord4d);
+     store!(MultiTexCoord4dARB);
+     store!(MultiTexCoord4dv);
+     store!(MultiTexCoord4dvARB);
+     store!(MultiTexCoord4f);
+     store!(MultiTexCoord4fARB);
+     store!(MultiTexCoord4fv);
+     store!(MultiTexCoord4fvARB);
+     store!(MultiTexCoord4hNV);
+     store!(MultiTexCoord4hvNV);
+     store!(MultiTexCoord4i);
+     store!(MultiTexCoord4iARB);
+     store!(MultiTexCoord4iv);
+     store!(MultiTexCoord4ivARB);
+     store!(MultiTexCoord4s);
+     store!(MultiTexCoord4sARB);
+     store!(MultiTexCoord4sv);
+     store!(MultiTexCoord4svARB);
+     store!(MultiTexCoord4xOES);
+     store!(MultiTexCoord4xvOES);
+     store!(MultiTexCoordP1ui);
+     store!(MultiTexCoordP1uiv);
+     store!(MultiTexCoordP2ui);
+     store!(MultiTexCoordP2uiv);
+     store!(MultiTexCoordP3ui);
+     store!(MultiTexCoordP3uiv);
+     store!(MultiTexCoordP4ui);
+     store!(MultiTexCoordP4uiv);
+     store!(MultiTexCoordPointerEXT);
+     store!(MultiTexEnvfEXT);
+     store!(MultiTexEnvfvEXT);
+     store!(MultiTexEnviEXT);
+     store!(MultiTexEnvivEXT);
+     store!(MultiTexGendEXT);
+     store!(MultiTexGendvEXT);
+     store!(MultiTexGenfEXT);
+     store!(MultiTexGenfvEXT);
+     store!(MultiTexGeniEXT);
+     store!(MultiTexGenivEXT);
+     store!(MultiTexImage1DEXT);
+     store!(MultiTexImage2DEXT);
+     store!(MultiTexImage3DEXT);
+     store!(MultiTexParameterIivEXT);
+     store!(MultiTexParameterIuivEXT);
+     store!(MultiTexParameterfEXT);
+     store!(MultiTexParameterfvEXT);
+     store!(MultiTexParameteriEXT);
+     store!(MultiTexParameterivEXT);
+     store!(MultiTexRenderbufferEXT);
+     store!(MultiTexSubImage1DEXT);
+     store!(MultiTexSubImage2DEXT);
+     store!(MultiTexSubImage3DEXT);
+     store!(MulticastBarrierNV);
+     store!(MulticastBlitFramebufferNV);
+     store!(MulticastBufferSubDataNV);
+     store!(MulticastCopyBufferSubDataNV);
+     store!(MulticastCopyImageSubDataNV);
+     store!(MulticastFramebufferSampleLocationsfvNV);
+     store!(MulticastGetQueryObjecti64vNV);
+     store!(MulticastGetQueryObjectivNV);
+     store!(MulticastGetQueryObjectui64vNV);
+     store!(MulticastGetQueryObjectuivNV);
+     store!(MulticastScissorArrayvNVX);
+     store!(MulticastViewportArrayvNVX);
+     store!(MulticastViewportPositionWScaleNVX);
+     store!(MulticastWaitSyncNV);
+     store!(NamedBufferAttachMemoryNV);
+     store!(NamedBufferData);
+     store!(NamedBufferDataEXT);
+     store!(NamedBufferPageCommitmentARB);
+     store!(NamedBufferPageCommitmentEXT);
+     store!(NamedBufferPageCommitmentMemNV);
+     store!(NamedBufferStorage);
+     store!(NamedBufferStorageEXT);
+     store!(NamedBufferStorageExternalEXT);
+     store!(NamedBufferStorageMemEXT);
+     store!(NamedBufferSubData);
+     store!(NamedBufferSubDataEXT);
+     store!(NamedCopyBufferSubDataEXT);
+     store!(NamedFramebufferDrawBuffer);
+     store!(NamedFramebufferDrawBuffers);
+     store!(NamedFramebufferParameteri);
+     store!(NamedFramebufferParameteriEXT);
+     store!(NamedFramebufferReadBuffer);
+     store!(NamedFramebufferRenderbuffer);
+     store!(NamedFramebufferRenderbufferEXT);
+     store!(NamedFramebufferSampleLocationsfvARB);
+     store!(NamedFramebufferSampleLocationsfvNV);
+     store!(NamedFramebufferSamplePositionsfvAMD);
+     store!(NamedFramebufferTexture);
+     store!(NamedFramebufferTexture1DEXT);
+     store!(NamedFramebufferTexture2DEXT);
+     store!(NamedFramebufferTexture3DEXT);
+     store!(NamedFramebufferTextureEXT);
+     store!(NamedFramebufferTextureFaceEXT);
+     store!(NamedFramebufferTextureLayer);
+     store!(NamedFramebufferTextureLayerEXT);
+     store!(NamedProgramLocalParameter4dEXT);
+     store!(NamedProgramLocalParameter4dvEXT);
+     store!(NamedProgramLocalParameter4fEXT);
+     store!(NamedProgramLocalParameter4fvEXT);
+     store!(NamedProgramLocalParameterI4iEXT);
+     store!(NamedProgramLocalParameterI4ivEXT);
+     store!(NamedProgramLocalParameterI4uiEXT);
+     store!(NamedProgramLocalParameterI4uivEXT);
+     store!(NamedProgramLocalParameters4fvEXT);
+     store!(NamedProgramLocalParametersI4ivEXT);
+     store!(NamedProgramLocalParametersI4uivEXT);
+     store!(NamedProgramStringEXT);
+     store!(NamedRenderbufferStorage);
+     store!(NamedRenderbufferStorageEXT);
+     store!(NamedRenderbufferStorageMultisample);
+     store!(NamedRenderbufferStorageMultisampleAdvancedAMD);
+     store!(NamedRenderbufferStorageMultisampleCoverageEXT);
+     store!(NamedRenderbufferStorageMultisampleEXT);
+     store!(NamedStringARB);
+     store!(NewList);
+     store!(NewObjectBufferATI);
+     store!(Normal3b);
+     store!(Normal3bv);
+     store!(Normal3d);
+     store!(Normal3dv);
+     store!(Normal3f);
+     store!(Normal3fVertex3fSUN);
+     store!(Normal3fVertex3fvSUN);
+     store!(Normal3fv);
+     store!(Normal3hNV);
+     store!(Normal3hvNV);
+     store!(Normal3i);
+     store!(Normal3iv);
+     store!(Normal3s);
+     store!(Normal3sv);
+     store!(Normal3xOES);
+     store!(Normal3xvOES);
+     store!(NormalFormatNV);
+     store!(NormalP3ui);
+     store!(NormalP3uiv);
+     store!(NormalPointer);
+     store!(NormalPointerEXT);
+     store!(NormalPointerListIBM);
+     store!(NormalPointervINTEL);
+     store!(NormalStream3bATI);
+     store!(NormalStream3bvATI);
+     store!(NormalStream3dATI);
+     store!(NormalStream3dvATI);
+     store!(NormalStream3fATI);
+     store!(NormalStream3fvATI);
+     store!(NormalStream3iATI);
+     store!(NormalStream3ivATI);
+     store!(NormalStream3sATI);
+     store!(NormalStream3svATI);
+     store!(ObjectLabel);
+     store!(ObjectPtrLabel);
+     store!(ObjectPurgeableAPPLE);
+     store!(ObjectUnpurgeableAPPLE);
+     store!(Ortho);
+     store!(OrthofOES);
+     store!(OrthoxOES);
+     store!(PNTrianglesfATI);
+     store!(PNTrianglesiATI);
+     store!(PassTexCoordATI);
+     store!(PassThrough);
+     store!(PassThroughxOES);
+     store!(PatchParameterfv);
+     store!(PatchParameteri);
+     store!(PathColorGenNV);
+     store!(PathCommandsNV);
+     store!(PathCoordsNV);
+     store!(PathCoverDepthFuncNV);
+     store!(PathDashArrayNV);
+     store!(PathFogGenNV);
+     store!(PathGlyphIndexArrayNV);
+     store!(PathGlyphIndexRangeNV);
+     store!(PathGlyphRangeNV);
+     store!(PathGlyphsNV);
+     store!(PathMemoryGlyphIndexArrayNV);
+     store!(PathParameterfNV);
+     store!(PathParameterfvNV);
+     store!(PathParameteriNV);
+     store!(PathParameterivNV);
+     store!(PathStencilDepthOffsetNV);
+     store!(PathStencilFuncNV);
+     store!(PathStringNV);
+     store!(PathSubCommandsNV);
+     store!(PathSubCoordsNV);
+     store!(PathTexGenNV);
+     store!(PauseTransformFeedback);
+     store!(PauseTransformFeedbackNV);
+     store!(PixelDataRangeNV);
+     store!(PixelMapfv);
+     store!(PixelMapuiv);
+     store!(PixelMapusv);
+     store!(PixelMapx);
+     store!(PixelStoref);
+     store!(PixelStorei);
+     store!(PixelStorex);
+     store!(PixelTexGenParameterfSGIS);
+     store!(PixelTexGenParameterfvSGIS);
+     store!(PixelTexGenParameteriSGIS);
+     store!(PixelTexGenParameterivSGIS);
+     store!(PixelTexGenSGIX);
+     store!(PixelTransferf);
+     store!(PixelTransferi);
+     store!(PixelTransferxOES);
+     store!(PixelTransformParameterfEXT);
+     store!(PixelTransformParameterfvEXT);
+     store!(PixelTransformParameteriEXT);
+     store!(PixelTransformParameterivEXT);
+     store!(PixelZoom);
+     store!(PixelZoomxOES);
+     store!(PointAlongPathNV);
+     store!(PointParameterf);
+     store!(PointParameterfARB);
+     store!(PointParameterfEXT);
+     store!(PointParameterfSGIS);
+     store!(PointParameterfv);
+     store!(PointParameterfvARB);
+     store!(PointParameterfvEXT);
+     store!(PointParameterfvSGIS);
+     store!(PointParameteri);
+     store!(PointParameteriNV);
+     store!(PointParameteriv);
+     store!(PointParameterivNV);
+     store!(PointParameterxvOES);
+     store!(PointSize);
+     store!(PointSizexOES);
+     store!(PollAsyncSGIX);
+     store!(PollInstrumentsSGIX);
+     store!(PolygonMode);
+     store!(PolygonOffset);
+     store!(PolygonOffsetClamp);
+     store!(PolygonOffsetClampEXT);
+     store!(PolygonOffsetEXT);
+     store!(PolygonOffsetxOES);
+     store!(PolygonStipple);
+     store!(PopAttrib);
+     store!(PopClientAttrib);
+     store!(PopDebugGroup);
+     store!(PopGroupMarkerEXT);
+     store!(PopMatrix);
+     store!(PopName);
+     store!(PresentFrameDualFillNV);
+     store!(PresentFrameKeyedNV);
+     store!(PrimitiveBoundingBoxARB);
+     store!(PrimitiveRestartIndex);
+     store!(PrimitiveRestartIndexNV);
+     store!(PrimitiveRestartNV);
+     store!(PrioritizeTextures);
+     store!(PrioritizeTexturesEXT);
+     store!(PrioritizeTexturesxOES);
+     store!(ProgramBinary);
+     store!(ProgramBufferParametersIivNV);
+     store!(ProgramBufferParametersIuivNV);
+     store!(ProgramBufferParametersfvNV);
+     store!(ProgramEnvParameter4dARB);
+     store!(ProgramEnvParameter4dvARB);
+     store!(ProgramEnvParameter4fARB);
+     store!(ProgramEnvParameter4fvARB);
+     store!(ProgramEnvParameterI4iNV);
+     store!(ProgramEnvParameterI4ivNV);
+     store!(ProgramEnvParameterI4uiNV);
+     store!(ProgramEnvParameterI4uivNV);
+     store!(ProgramEnvParameters4fvEXT);
+     store!(ProgramEnvParametersI4ivNV);
+     store!(ProgramEnvParametersI4uivNV);
+     store!(ProgramLocalParameter4dARB);
+     store!(ProgramLocalParameter4dvARB);
+     store!(ProgramLocalParameter4fARB);
+     store!(ProgramLocalParameter4fvARB);
+     store!(ProgramLocalParameterI4iNV);
+     store!(ProgramLocalParameterI4ivNV);
+     store!(ProgramLocalParameterI4uiNV);
+     store!(ProgramLocalParameterI4uivNV);
+     store!(ProgramLocalParameters4fvEXT);
+     store!(ProgramLocalParametersI4ivNV);
+     store!(ProgramLocalParametersI4uivNV);
+     store!(ProgramNamedParameter4dNV);
+     store!(ProgramNamedParameter4dvNV);
+     store!(ProgramNamedParameter4fNV);
+     store!(ProgramNamedParameter4fvNV);
+     store!(ProgramParameter4dNV);
+     store!(ProgramParameter4dvNV);
+     store!(ProgramParameter4fNV);
+     store!(ProgramParameter4fvNV);
+     store!(ProgramParameteri);
+     store!(ProgramParameteriARB);
+     store!(ProgramParameteriEXT);
+     store!(ProgramParameters4dvNV);
+     store!(ProgramParameters4fvNV);
+     store!(ProgramPathFragmentInputGenNV);
+     store!(ProgramStringARB);
+     store!(ProgramSubroutineParametersuivNV);
+     store!(ProgramUniform1d);
+     store!(ProgramUniform1dEXT);
+     store!(ProgramUniform1dv);
+     store!(ProgramUniform1dvEXT);
+     store!(ProgramUniform1f);
+     store!(ProgramUniform1fEXT);
+     store!(ProgramUniform1fv);
+     store!(ProgramUniform1fvEXT);
+     store!(ProgramUniform1i);
+     store!(ProgramUniform1i64ARB);
+     store!(ProgramUniform1i64NV);
+     store!(ProgramUniform1i64vARB);
+     store!(ProgramUniform1i64vNV);
+     store!(ProgramUniform1iEXT);
+     store!(ProgramUniform1iv);
+     store!(ProgramUniform1ivEXT);
+     store!(ProgramUniform1ui);
+     store!(ProgramUniform1ui64ARB);
+     store!(ProgramUniform1ui64NV);
+     store!(ProgramUniform1ui64vARB);
+     store!(ProgramUniform1ui64vNV);
+     store!(ProgramUniform1uiEXT);
+     store!(ProgramUniform1uiv);
+     store!(ProgramUniform1uivEXT);
+     store!(ProgramUniform2d);
+     store!(ProgramUniform2dEXT);
+     store!(ProgramUniform2dv);
+     store!(ProgramUniform2dvEXT);
+     store!(ProgramUniform2f);
+     store!(ProgramUniform2fEXT);
+     store!(ProgramUniform2fv);
+     store!(ProgramUniform2fvEXT);
+     store!(ProgramUniform2i);
+     store!(ProgramUniform2i64ARB);
+     store!(ProgramUniform2i64NV);
+     store!(ProgramUniform2i64vARB);
+     store!(ProgramUniform2i64vNV);
+     store!(ProgramUniform2iEXT);
+     store!(ProgramUniform2iv);
+     store!(ProgramUniform2ivEXT);
+     store!(ProgramUniform2ui);
+     store!(ProgramUniform2ui64ARB);
+     store!(ProgramUniform2ui64NV);
+     store!(ProgramUniform2ui64vARB);
+     store!(ProgramUniform2ui64vNV);
+     store!(ProgramUniform2uiEXT);
+     store!(ProgramUniform2uiv);
+     store!(ProgramUniform2uivEXT);
+     store!(ProgramUniform3d);
+     store!(ProgramUniform3dEXT);
+     store!(ProgramUniform3dv);
+     store!(ProgramUniform3dvEXT);
+     store!(ProgramUniform3f);
+     store!(ProgramUniform3fEXT);
+     store!(ProgramUniform3fv);
+     store!(ProgramUniform3fvEXT);
+     store!(ProgramUniform3i);
+     store!(ProgramUniform3i64ARB);
+     store!(ProgramUniform3i64NV);
+     store!(ProgramUniform3i64vARB);
+     store!(ProgramUniform3i64vNV);
+     store!(ProgramUniform3iEXT);
+     store!(ProgramUniform3iv);
+     store!(ProgramUniform3ivEXT);
+     store!(ProgramUniform3ui);
+     store!(ProgramUniform3ui64ARB);
+     store!(ProgramUniform3ui64NV);
+     store!(ProgramUniform3ui64vARB);
+     store!(ProgramUniform3ui64vNV);
+     store!(ProgramUniform3uiEXT);
+     store!(ProgramUniform3uiv);
+     store!(ProgramUniform3uivEXT);
+     store!(ProgramUniform4d);
+     store!(ProgramUniform4dEXT);
+     store!(ProgramUniform4dv);
+     store!(ProgramUniform4dvEXT);
+     store!(ProgramUniform4f);
+     store!(ProgramUniform4fEXT);
+     store!(ProgramUniform4fv);
+     store!(ProgramUniform4fvEXT);
+     store!(ProgramUniform4i);
+     store!(ProgramUniform4i64ARB);
+     store!(ProgramUniform4i64NV);
+     store!(ProgramUniform4i64vARB);
+     store!(ProgramUniform4i64vNV);
+     store!(ProgramUniform4iEXT);
+     store!(ProgramUniform4iv);
+     store!(ProgramUniform4ivEXT);
+     store!(ProgramUniform4ui);
+     store!(ProgramUniform4ui64ARB);
+     store!(ProgramUniform4ui64NV);
+     store!(ProgramUniform4ui64vARB);
+     store!(ProgramUniform4ui64vNV);
+     store!(ProgramUniform4uiEXT);
+     store!(ProgramUniform4uiv);
+     store!(ProgramUniform4uivEXT);
+     store!(ProgramUniformHandleui64ARB);
+     store!(ProgramUniformHandleui64NV);
+     store!(ProgramUniformHandleui64vARB);
+     store!(ProgramUniformHandleui64vNV);
+     store!(ProgramUniformMatrix2dv);
+     store!(ProgramUniformMatrix2dvEXT);
+     store!(ProgramUniformMatrix2fv);
+     store!(ProgramUniformMatrix2fvEXT);
+     store!(ProgramUniformMatrix2x3dv);
+     store!(ProgramUniformMatrix2x3dvEXT);
+     store!(ProgramUniformMatrix2x3fv);
+     store!(ProgramUniformMatrix2x3fvEXT);
+     store!(ProgramUniformMatrix2x4dv);
+     store!(ProgramUniformMatrix2x4dvEXT);
+     store!(ProgramUniformMatrix2x4fv);
+     store!(ProgramUniformMatrix2x4fvEXT);
+     store!(ProgramUniformMatrix3dv);
+     store!(ProgramUniformMatrix3dvEXT);
+     store!(ProgramUniformMatrix3fv);
+     store!(ProgramUniformMatrix3fvEXT);
+     store!(ProgramUniformMatrix3x2dv);
+     store!(ProgramUniformMatrix3x2dvEXT);
+     store!(ProgramUniformMatrix3x2fv);
+     store!(ProgramUniformMatrix3x2fvEXT);
+     store!(ProgramUniformMatrix3x4dv);
+     store!(ProgramUniformMatrix3x4dvEXT);
+     store!(ProgramUniformMatrix3x4fv);
+     store!(ProgramUniformMatrix3x4fvEXT);
+     store!(ProgramUniformMatrix4dv);
+     store!(ProgramUniformMatrix4dvEXT);
+     store!(ProgramUniformMatrix4fv);
+     store!(ProgramUniformMatrix4fvEXT);
+     store!(ProgramUniformMatrix4x2dv);
+     store!(ProgramUniformMatrix4x2dvEXT);
+     store!(ProgramUniformMatrix4x2fv);
+     store!(ProgramUniformMatrix4x2fvEXT);
+     store!(ProgramUniformMatrix4x3dv);
+     store!(ProgramUniformMatrix4x3dvEXT);
+     store!(ProgramUniformMatrix4x3fv);
+     store!(ProgramUniformMatrix4x3fvEXT);
+     store!(ProgramUniformui64NV);
+     store!(ProgramUniformui64vNV);
+     store!(ProgramVertexLimitNV);
+     store!(ProvokingVertex);
+     store!(ProvokingVertexEXT);
+     store!(PushAttrib);
+     store!(PushClientAttrib);
+     store!(PushClientAttribDefaultEXT);
+     store!(PushDebugGroup);
+     store!(PushGroupMarkerEXT);
+     store!(PushMatrix);
+     store!(PushName);
+     store!(QueryCounter);
+     store!(QueryMatrixxOES);
+     store!(QueryObjectParameteruiAMD);
+     store!(QueryResourceNV);
+     store!(QueryResourceTagNV);
+     store!(RasterPos2d);
+     store!(RasterPos2dv);
+     store!(RasterPos2f);
+     store!(RasterPos2fv);
+     store!(RasterPos2i);
+     store!(RasterPos2iv);
+     store!(RasterPos2s);
+     store!(RasterPos2sv);
+     store!(RasterPos2xOES);
+     store!(RasterPos2xvOES);
+     store!(RasterPos3d);
+     store!(RasterPos3dv);
+     store!(RasterPos3f);
+     store!(RasterPos3fv);
+     store!(RasterPos3i);
+     store!(RasterPos3iv);
+     store!(RasterPos3s);
+     store!(RasterPos3sv);
+     store!(RasterPos3xOES);
+     store!(RasterPos3xvOES);
+     store!(RasterPos4d);
+     store!(RasterPos4dv);
+     store!(RasterPos4f);
+     store!(RasterPos4fv);
+     store!(RasterPos4i);
+     store!(RasterPos4iv);
+     store!(RasterPos4s);
+     store!(RasterPos4sv);
+     store!(RasterPos4xOES);
+     store!(RasterPos4xvOES);
+     store!(RasterSamplesEXT);
+     store!(ReadBuffer);
+     store!(ReadInstrumentsSGIX);
+     store!(ReadPixels);
+     store!(ReadnPixels);
+     store!(ReadnPixelsARB);
+     store!(Rectd);
+     store!(Rectdv);
+     store!(Rectf);
+     store!(Rectfv);
+     store!(Recti);
+     store!(Rectiv);
+     store!(Rects);
+     store!(Rectsv);
+     store!(RectxOES);
+     store!(RectxvOES);
+     store!(ReferencePlaneSGIX);
+     store!(ReleaseKeyedMutexWin32EXT);
+     store!(ReleaseShaderCompiler);
+     store!(RenderGpuMaskNV);
+     store!(RenderMode);
+     store!(RenderbufferStorage);
+     store!(RenderbufferStorageEXT);
+     store!(RenderbufferStorageMultisample);
+     store!(RenderbufferStorageMultisampleAdvancedAMD);
+     store!(RenderbufferStorageMultisampleCoverageNV);
+     store!(RenderbufferStorageMultisampleEXT);
+     store!(ReplacementCodePointerSUN);
+     store!(ReplacementCodeubSUN);
+     store!(ReplacementCodeubvSUN);
+     store!(ReplacementCodeuiColor3fVertex3fSUN);
+     store!(ReplacementCodeuiColor3fVertex3fvSUN);
+     store!(ReplacementCodeuiColor4fNormal3fVertex3fSUN);
+     store!(ReplacementCodeuiColor4fNormal3fVertex3fvSUN);
+     store!(ReplacementCodeuiColor4ubVertex3fSUN);
+     store!(ReplacementCodeuiColor4ubVertex3fvSUN);
+     store!(ReplacementCodeuiNormal3fVertex3fSUN);
+     store!(ReplacementCodeuiNormal3fVertex3fvSUN);
+     store!(ReplacementCodeuiSUN);
+     store!(ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN);
+     store!(ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN);
+     store!(ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN);
+     store!(ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN);
+     store!(ReplacementCodeuiTexCoord2fVertex3fSUN);
+     store!(ReplacementCodeuiTexCoord2fVertex3fvSUN);
+     store!(ReplacementCodeuiVertex3fSUN);
+     store!(ReplacementCodeuiVertex3fvSUN);
+     store!(ReplacementCodeuivSUN);
+     store!(ReplacementCodeusSUN);
+     store!(ReplacementCodeusvSUN);
+     store!(RequestResidentProgramsNV);
+     store!(ResetHistogram);
+     store!(ResetHistogramEXT);
+     store!(ResetMemoryObjectParameterNV);
+     store!(ResetMinmax);
+     store!(ResetMinmaxEXT);
+     store!(ResizeBuffersMESA);
+     store!(ResolveDepthValuesNV);
+     store!(ResumeTransformFeedback);
+     store!(ResumeTransformFeedbackNV);
+     store!(Rotated);
+     store!(Rotatef);
+     store!(RotatexOES);
+     store!(SampleCoverage);
+     store!(SampleCoverageARB);
+     store!(SampleMapATI);
+     store!(SampleMaskEXT);
+     store!(SampleMaskIndexedNV);
+     store!(SampleMaskSGIS);
+     store!(SampleMaski);
+     store!(SamplePatternEXT);
+     store!(SamplePatternSGIS);
+     store!(SamplerParameterIiv);
+     store!(SamplerParameterIuiv);
+     store!(SamplerParameterf);
+     store!(SamplerParameterfv);
+     store!(SamplerParameteri);
+     store!(SamplerParameteriv);
+     store!(Scaled);
+     store!(Scalef);
+     store!(ScalexOES);
+     store!(Scissor);
+     store!(ScissorArrayv);
+     store!(ScissorExclusiveArrayvNV);
+     store!(ScissorExclusiveNV);
+     store!(ScissorIndexed);
+     store!(ScissorIndexedv);
+     store!(SecondaryColor3b);
+     store!(SecondaryColor3bEXT);
+     store!(SecondaryColor3bv);
+     store!(SecondaryColor3bvEXT);
+     store!(SecondaryColor3d);
+     store!(SecondaryColor3dEXT);
+     store!(SecondaryColor3dv);
+     store!(SecondaryColor3dvEXT);
+     store!(SecondaryColor3f);
+     store!(SecondaryColor3fEXT);
+     store!(SecondaryColor3fv);
+     store!(SecondaryColor3fvEXT);
+     store!(SecondaryColor3hNV);
+     store!(SecondaryColor3hvNV);
+     store!(SecondaryColor3i);
+     store!(SecondaryColor3iEXT);
+     store!(SecondaryColor3iv);
+     store!(SecondaryColor3ivEXT);
+     store!(SecondaryColor3s);
+     store!(SecondaryColor3sEXT);
+     store!(SecondaryColor3sv);
+     store!(SecondaryColor3svEXT);
+     store!(SecondaryColor3ub);
+     store!(SecondaryColor3ubEXT);
+     store!(SecondaryColor3ubv);
+     store!(SecondaryColor3ubvEXT);
+     store!(SecondaryColor3ui);
+     store!(SecondaryColor3uiEXT);
+     store!(SecondaryColor3uiv);
+     store!(SecondaryColor3uivEXT);
+     store!(SecondaryColor3us);
+     store!(SecondaryColor3usEXT);
+     store!(SecondaryColor3usv);
+     store!(SecondaryColor3usvEXT);
+     store!(SecondaryColorFormatNV);
+     store!(SecondaryColorP3ui);
+     store!(SecondaryColorP3uiv);
+     store!(SecondaryColorPointer);
+     store!(SecondaryColorPointerEXT);
+     store!(SecondaryColorPointerListIBM);
+     store!(SelectBuffer);
+     store!(SelectPerfMonitorCountersAMD);
+     store!(SemaphoreParameterivNV);
+     store!(SemaphoreParameterui64vEXT);
+     store!(SeparableFilter2D);
+     store!(SeparableFilter2DEXT);
+     store!(SetFenceAPPLE);
+     store!(SetFenceNV);
+     store!(SetFragmentShaderConstantATI);
+     store!(SetInvariantEXT);
+     store!(SetLocalConstantEXT);
+     store!(SetMultisamplefvAMD);
+     store!(ShadeModel);
+     store!(ShaderBinary);
+     store!(ShaderOp1EXT);
+     store!(ShaderOp2EXT);
+     store!(ShaderOp3EXT);
+     store!(ShaderSource);
+     store!(ShaderSourceARB);
+     store!(ShaderStorageBlockBinding);
+     store!(ShadingRateImageBarrierNV);
+     store!(ShadingRateImagePaletteNV);
+     store!(ShadingRateSampleOrderCustomNV);
+     store!(ShadingRateSampleOrderNV);
+     store!(SharpenTexFuncSGIS);
+     store!(SignalSemaphoreEXT);
+     store!(SignalSemaphoreui64NVX);
+     store!(SignalVkFenceNV);
+     store!(SignalVkSemaphoreNV);
+     store!(SpecializeShader);
+     store!(SpecializeShaderARB);
+     store!(SpriteParameterfSGIX);
+     store!(SpriteParameterfvSGIX);
+     store!(SpriteParameteriSGIX);
+     store!(SpriteParameterivSGIX);
+     store!(StartInstrumentsSGIX);
+     store!(StateCaptureNV);
+     store!(StencilClearTagEXT);
+     store!(StencilFillPathInstancedNV);
+     store!(StencilFillPathNV);
+     store!(StencilFunc);
+     store!(StencilFuncSeparate);
+     store!(StencilFuncSeparateATI);
+     store!(StencilMask);
+     store!(StencilMaskSeparate);
+     store!(StencilOp);
+     store!(StencilOpSeparate);
+     store!(StencilOpSeparateATI);
+     store!(StencilOpValueAMD);
+     store!(StencilStrokePathInstancedNV);
+     store!(StencilStrokePathNV);
+     store!(StencilThenCoverFillPathInstancedNV);
+     store!(StencilThenCoverFillPathNV);
+     store!(StencilThenCoverStrokePathInstancedNV);
+     store!(StencilThenCoverStrokePathNV);
+     store!(StopInstrumentsSGIX);
+     store!(StringMarkerGREMEDY);
+     store!(SubpixelPrecisionBiasNV);
+     store!(SwizzleEXT);
+     store!(SyncTextureINTEL);
+     store!(TagSampleBufferSGIX);
+     store!(Tangent3bEXT);
+     store!(Tangent3bvEXT);
+     store!(Tangent3dEXT);
+     store!(Tangent3dvEXT);
+     store!(Tangent3fEXT);
+     store!(Tangent3fvEXT);
+     store!(Tangent3iEXT);
+     store!(Tangent3ivEXT);
+     store!(Tangent3sEXT);
+     store!(Tangent3svEXT);
+     store!(TangentPointerEXT);
+     store!(TbufferMask3DFX);
+     store!(TessellationFactorAMD);
+     store!(TessellationModeAMD);
+     store!(TestFenceAPPLE);
+     store!(TestFenceNV);
+     store!(TestObjectAPPLE);
+     store!(TexAttachMemoryNV);
+     store!(TexBuffer);
+     store!(TexBufferARB);
+     store!(TexBufferEXT);
+     store!(TexBufferRange);
+     store!(TexBumpParameterfvATI);
+     store!(TexBumpParameterivATI);
+     store!(TexCoord1bOES);
+     store!(TexCoord1bvOES);
+     store!(TexCoord1d);
+     store!(TexCoord1dv);
+     store!(TexCoord1f);
+     store!(TexCoord1fv);
+     store!(TexCoord1hNV);
+     store!(TexCoord1hvNV);
+     store!(TexCoord1i);
+     store!(TexCoord1iv);
+     store!(TexCoord1s);
+     store!(TexCoord1sv);
+     store!(TexCoord1xOES);
+     store!(TexCoord1xvOES);
+     store!(TexCoord2bOES);
+     store!(TexCoord2bvOES);
+     store!(TexCoord2d);
+     store!(TexCoord2dv);
+     store!(TexCoord2f);
+     store!(TexCoord2fColor3fVertex3fSUN);
+     store!(TexCoord2fColor3fVertex3fvSUN);
+     store!(TexCoord2fColor4fNormal3fVertex3fSUN);
+     store!(TexCoord2fColor4fNormal3fVertex3fvSUN);
+     store!(TexCoord2fColor4ubVertex3fSUN);
+     store!(TexCoord2fColor4ubVertex3fvSUN);
+     store!(TexCoord2fNormal3fVertex3fSUN);
+     store!(TexCoord2fNormal3fVertex3fvSUN);
+     store!(TexCoord2fVertex3fSUN);
+     store!(TexCoord2fVertex3fvSUN);
+     store!(TexCoord2fv);
+     store!(TexCoord2hNV);
+     store!(TexCoord2hvNV);
+     store!(TexCoord2i);
+     store!(TexCoord2iv);
+     store!(TexCoord2s);
+     store!(TexCoord2sv);
+     store!(TexCoord2xOES);
+     store!(TexCoord2xvOES);
+     store!(TexCoord3bOES);
+     store!(TexCoord3bvOES);
+     store!(TexCoord3d);
+     store!(TexCoord3dv);
+     store!(TexCoord3f);
+     store!(TexCoord3fv);
+     store!(TexCoord3hNV);
+     store!(TexCoord3hvNV);
+     store!(TexCoord3i);
+     store!(TexCoord3iv);
+     store!(TexCoord3s);
+     store!(TexCoord3sv);
+     store!(TexCoord3xOES);
+     store!(TexCoord3xvOES);
+     store!(TexCoord4bOES);
+     store!(TexCoord4bvOES);
+     store!(TexCoord4d);
+     store!(TexCoord4dv);
+     store!(TexCoord4f);
+     store!(TexCoord4fColor4fNormal3fVertex4fSUN);
+     store!(TexCoord4fColor4fNormal3fVertex4fvSUN);
+     store!(TexCoord4fVertex4fSUN);
+     store!(TexCoord4fVertex4fvSUN);
+     store!(TexCoord4fv);
+     store!(TexCoord4hNV);
+     store!(TexCoord4hvNV);
+     store!(TexCoord4i);
+     store!(TexCoord4iv);
+     store!(TexCoord4s);
+     store!(TexCoord4sv);
+     store!(TexCoord4xOES);
+     store!(TexCoord4xvOES);
+     store!(TexCoordFormatNV);
+     store!(TexCoordP1ui);
+     store!(TexCoordP1uiv);
+     store!(TexCoordP2ui);
+     store!(TexCoordP2uiv);
+     store!(TexCoordP3ui);
+     store!(TexCoordP3uiv);
+     store!(TexCoordP4ui);
+     store!(TexCoordP4uiv);
+     store!(TexCoordPointer);
+     store!(TexCoordPointerEXT);
+     store!(TexCoordPointerListIBM);
+     store!(TexCoordPointervINTEL);
+     store!(TexEnvf);
+     store!(TexEnvfv);
+     store!(TexEnvi);
+     store!(TexEnviv);
+     store!(TexEnvxOES);
+     store!(TexEnvxvOES);
+     store!(TexFilterFuncSGIS);
+     store!(TexGend);
+     store!(TexGendv);
+     store!(TexGenf);
+     store!(TexGenfv);
+     store!(TexGeni);
+     store!(TexGeniv);
+     store!(TexGenxOES);
+     store!(TexGenxvOES);
+     store!(TexImage1D);
+     store!(TexImage2D);
+     store!(TexImage2DMultisample);
+     store!(TexImage2DMultisampleCoverageNV);
+     store!(TexImage3D);
+     store!(TexImage3DEXT);
+     store!(TexImage3DMultisample);
+     store!(TexImage3DMultisampleCoverageNV);
+     store!(TexImage4DSGIS);
+     store!(TexPageCommitmentARB);
+     store!(TexPageCommitmentMemNV);
+     store!(TexParameterIiv);
+     store!(TexParameterIivEXT);
+     store!(TexParameterIuiv);
+     store!(TexParameterIuivEXT);
+     store!(TexParameterf);
+     store!(TexParameterfv);
+     store!(TexParameteri);
+     store!(TexParameteriv);
+     store!(TexParameterxOES);
+     store!(TexParameterxvOES);
+     store!(TexRenderbufferNV);
+     store!(TexStorage1D);
+     store!(TexStorage2D);
+     store!(TexStorage2DMultisample);
+     store!(TexStorage3D);
+     store!(TexStorage3DMultisample);
+     store!(TexStorageMem1DEXT);
+     store!(TexStorageMem2DEXT);
+     store!(TexStorageMem2DMultisampleEXT);
+     store!(TexStorageMem3DEXT);
+     store!(TexStorageMem3DMultisampleEXT);
+     store!(TexStorageSparseAMD);
+     store!(TexSubImage1D);
+     store!(TexSubImage1DEXT);
+     store!(TexSubImage2D);
+     store!(TexSubImage2DEXT);
+     store!(TexSubImage3D);
+     store!(TexSubImage3DEXT);
+     store!(TexSubImage4DSGIS);
+     store!(TextureAttachMemoryNV);
+     store!(TextureBarrier);
+     store!(TextureBarrierNV);
+     store!(TextureBuffer);
+     store!(TextureBufferEXT);
+     store!(TextureBufferRange);
+     store!(TextureBufferRangeEXT);
+     store!(TextureColorMaskSGIS);
+     store!(TextureImage1DEXT);
+     store!(TextureImage2DEXT);
+     store!(TextureImage2DMultisampleCoverageNV);
+     store!(TextureImage2DMultisampleNV);
+     store!(TextureImage3DEXT);
+     store!(TextureImage3DMultisampleCoverageNV);
+     store!(TextureImage3DMultisampleNV);
+     store!(TextureLightEXT);
+     store!(TextureMaterialEXT);
+     store!(TextureNormalEXT);
+     store!(TexturePageCommitmentEXT);
+     store!(TexturePageCommitmentMemNV);
+     store!(TextureParameterIiv);
+     store!(TextureParameterIivEXT);
+     store!(TextureParameterIuiv);
+     store!(TextureParameterIuivEXT);
+     store!(TextureParameterf);
+     store!(TextureParameterfEXT);
+     store!(TextureParameterfv);
+     store!(TextureParameterfvEXT);
+     store!(TextureParameteri);
+     store!(TextureParameteriEXT);
+     store!(TextureParameteriv);
+     store!(TextureParameterivEXT);
+     store!(TextureRangeAPPLE);
+     store!(TextureRenderbufferEXT);
+     store!(TextureStorage1D);
+     store!(TextureStorage1DEXT);
+     store!(TextureStorage2D);
+     store!(TextureStorage2DEXT);
+     store!(TextureStorage2DMultisample);
+     store!(TextureStorage2DMultisampleEXT);
+     store!(TextureStorage3D);
+     store!(TextureStorage3DEXT);
+     store!(TextureStorage3DMultisample);
+     store!(TextureStorage3DMultisampleEXT);
+     store!(TextureStorageMem1DEXT);
+     store!(TextureStorageMem2DEXT);
+     store!(TextureStorageMem2DMultisampleEXT);
+     store!(TextureStorageMem3DEXT);
+     store!(TextureStorageMem3DMultisampleEXT);
+     store!(TextureStorageSparseAMD);
+     store!(TextureSubImage1D);
+     store!(TextureSubImage1DEXT);
+     store!(TextureSubImage2D);
+     store!(TextureSubImage2DEXT);
+     store!(TextureSubImage3D);
+     store!(TextureSubImage3DEXT);
+     store!(TextureView);
+     store!(TrackMatrixNV);
+     store!(TransformFeedbackAttribsNV);
+     store!(TransformFeedbackBufferBase);
+     store!(TransformFeedbackBufferRange);
+     store!(TransformFeedbackStreamAttribsNV);
+     store!(TransformFeedbackVaryings);
+     store!(TransformFeedbackVaryingsEXT);
+     store!(TransformFeedbackVaryingsNV);
+     store!(TransformPathNV);
+     store!(Translated);
+     store!(Translatef);
+     store!(TranslatexOES);
+     store!(Uniform1d);
+     store!(Uniform1dv);
+     store!(Uniform1f);
+     store!(Uniform1fARB);
+     store!(Uniform1fv);
+     store!(Uniform1fvARB);
+     store!(Uniform1i);
+     store!(Uniform1i64ARB);
+     store!(Uniform1i64NV);
+     store!(Uniform1i64vARB);
+     store!(Uniform1i64vNV);
+     store!(Uniform1iARB);
+     store!(Uniform1iv);
+     store!(Uniform1ivARB);
+     store!(Uniform1ui);
+     store!(Uniform1ui64ARB);
+     store!(Uniform1ui64NV);
+     store!(Uniform1ui64vARB);
+     store!(Uniform1ui64vNV);
+     store!(Uniform1uiEXT);
+     store!(Uniform1uiv);
+     store!(Uniform1uivEXT);
+     store!(Uniform2d);
+     store!(Uniform2dv);
+     store!(Uniform2f);
+     store!(Uniform2fARB);
+     store!(Uniform2fv);
+     store!(Uniform2fvARB);
+     store!(Uniform2i);
+     store!(Uniform2i64ARB);
+     store!(Uniform2i64NV);
+     store!(Uniform2i64vARB);
+     store!(Uniform2i64vNV);
+     store!(Uniform2iARB);
+     store!(Uniform2iv);
+     store!(Uniform2ivARB);
+     store!(Uniform2ui);
+     store!(Uniform2ui64ARB);
+     store!(Uniform2ui64NV);
+     store!(Uniform2ui64vARB);
+     store!(Uniform2ui64vNV);
+     store!(Uniform2uiEXT);
+     store!(Uniform2uiv);
+     store!(Uniform2uivEXT);
+     store!(Uniform3d);
+     store!(Uniform3dv);
+     store!(Uniform3f);
+     store!(Uniform3fARB);
+     store!(Uniform3fv);
+     store!(Uniform3fvARB);
+     store!(Uniform3i);
+     store!(Uniform3i64ARB);
+     store!(Uniform3i64NV);
+     store!(Uniform3i64vARB);
+     store!(Uniform3i64vNV);
+     store!(Uniform3iARB);
+     store!(Uniform3iv);
+     store!(Uniform3ivARB);
+     store!(Uniform3ui);
+     store!(Uniform3ui64ARB);
+     store!(Uniform3ui64NV);
+     store!(Uniform3ui64vARB);
+     store!(Uniform3ui64vNV);
+     store!(Uniform3uiEXT);
+     store!(Uniform3uiv);
+     store!(Uniform3uivEXT);
+     store!(Uniform4d);
+     store!(Uniform4dv);
+     store!(Uniform4f);
+     store!(Uniform4fARB);
+     store!(Uniform4fv);
+     store!(Uniform4fvARB);
+     store!(Uniform4i);
+     store!(Uniform4i64ARB);
+     store!(Uniform4i64NV);
+     store!(Uniform4i64vARB);
+     store!(Uniform4i64vNV);
+     store!(Uniform4iARB);
+     store!(Uniform4iv);
+     store!(Uniform4ivARB);
+     store!(Uniform4ui);
+     store!(Uniform4ui64ARB);
+     store!(Uniform4ui64NV);
+     store!(Uniform4ui64vARB);
+     store!(Uniform4ui64vNV);
+     store!(Uniform4uiEXT);
+     store!(Uniform4uiv);
+     store!(Uniform4uivEXT);
+     store!(UniformBlockBinding);
+     store!(UniformBufferEXT);
+     store!(UniformHandleui64ARB);
+     store!(UniformHandleui64NV);
+     store!(UniformHandleui64vARB);
+     store!(UniformHandleui64vNV);
+     store!(UniformMatrix2dv);
+     store!(UniformMatrix2fv);
+     store!(UniformMatrix2fvARB);
+     store!(UniformMatrix2x3dv);
+     store!(UniformMatrix2x3fv);
+     store!(UniformMatrix2x4dv);
+     store!(UniformMatrix2x4fv);
+     store!(UniformMatrix3dv);
+     store!(UniformMatrix3fv);
+     store!(UniformMatrix3fvARB);
+     store!(UniformMatrix3x2dv);
+     store!(UniformMatrix3x2fv);
+     store!(UniformMatrix3x4dv);
+     store!(UniformMatrix3x4fv);
+     store!(UniformMatrix4dv);
+     store!(UniformMatrix4fv);
+     store!(UniformMatrix4fvARB);
+     store!(UniformMatrix4x2dv);
+     store!(UniformMatrix4x2fv);
+     store!(UniformMatrix4x3dv);
+     store!(UniformMatrix4x3fv);
+     store!(UniformSubroutinesuiv);
+     store!(Uniformui64NV);
+     store!(Uniformui64vNV);
+     store!(UnlockArraysEXT);
+     store!(UnmapBuffer);
+     store!(UnmapBufferARB);
+     store!(UnmapNamedBuffer);
+     store!(UnmapNamedBufferEXT);
+     store!(UnmapObjectBufferATI);
+     store!(UnmapTexture2DINTEL);
+     store!(UpdateObjectBufferATI);
+     store!(UploadGpuMaskNVX);
+     store!(UseProgram);
+     store!(UseProgramObjectARB);
+     store!(UseProgramStages);
+     store!(UseShaderProgramEXT);
+     store!(VDPAUFiniNV);
+     store!(VDPAUGetSurfaceivNV);
+     store!(VDPAUInitNV);
+     store!(VDPAUIsSurfaceNV);
+     store!(VDPAUMapSurfacesNV);
+     store!(VDPAURegisterOutputSurfaceNV);
+     store!(VDPAURegisterVideoSurfaceNV);
+     store!(VDPAURegisterVideoSurfaceWithPictureStructureNV);
+     store!(VDPAUSurfaceAccessNV);
+     store!(VDPAUUnmapSurfacesNV);
+     store!(VDPAUUnregisterSurfaceNV);
+     store!(ValidateProgram);
+     store!(ValidateProgramARB);
+     store!(ValidateProgramPipeline);
+     store!(VariantArrayObjectATI);
+     store!(VariantPointerEXT);
+     store!(VariantbvEXT);
+     store!(VariantdvEXT);
+     store!(VariantfvEXT);
+     store!(VariantivEXT);
+     store!(VariantsvEXT);
+     store!(VariantubvEXT);
+     store!(VariantuivEXT);
+     store!(VariantusvEXT);
+     store!(Vertex2bOES);
+     store!(Vertex2bvOES);
+     store!(Vertex2d);
+     store!(Vertex2dv);
+     store!(Vertex2f);
+     store!(Vertex2fv);
+     store!(Vertex2hNV);
+     store!(Vertex2hvNV);
+     store!(Vertex2i);
+     store!(Vertex2iv);
+     store!(Vertex2s);
+     store!(Vertex2sv);
+     store!(Vertex2xOES);
+     store!(Vertex2xvOES);
+     store!(Vertex3bOES);
+     store!(Vertex3bvOES);
+     store!(Vertex3d);
+     store!(Vertex3dv);
+     store!(Vertex3f);
+     store!(Vertex3fv);
+     store!(Vertex3hNV);
+     store!(Vertex3hvNV);
+     store!(Vertex3i);
+     store!(Vertex3iv);
+     store!(Vertex3s);
+     store!(Vertex3sv);
+     store!(Vertex3xOES);
+     store!(Vertex3xvOES);
+     store!(Vertex4bOES);
+     store!(Vertex4bvOES);
+     store!(Vertex4d);
+     store!(Vertex4dv);
+     store!(Vertex4f);
+     store!(Vertex4fv);
+     store!(Vertex4hNV);
+     store!(Vertex4hvNV);
+     store!(Vertex4i);
+     store!(Vertex4iv);
+     store!(Vertex4s);
+     store!(Vertex4sv);
+     store!(Vertex4xOES);
+     store!(Vertex4xvOES);
+     store!(VertexArrayAttribBinding);
+     store!(VertexArrayAttribFormat);
+     store!(VertexArrayAttribIFormat);
+     store!(VertexArrayAttribLFormat);
+     store!(VertexArrayBindVertexBufferEXT);
+     store!(VertexArrayBindingDivisor);
+     store!(VertexArrayColorOffsetEXT);
+     store!(VertexArrayEdgeFlagOffsetEXT);
+     store!(VertexArrayElementBuffer);
+     store!(VertexArrayFogCoordOffsetEXT);
+     store!(VertexArrayIndexOffsetEXT);
+     store!(VertexArrayMultiTexCoordOffsetEXT);
+     store!(VertexArrayNormalOffsetEXT);
+     store!(VertexArrayParameteriAPPLE);
+     store!(VertexArrayRangeAPPLE);
+     store!(VertexArrayRangeNV);
+     store!(VertexArraySecondaryColorOffsetEXT);
+     store!(VertexArrayTexCoordOffsetEXT);
+     store!(VertexArrayVertexAttribBindingEXT);
+     store!(VertexArrayVertexAttribDivisorEXT);
+     store!(VertexArrayVertexAttribFormatEXT);
+     store!(VertexArrayVertexAttribIFormatEXT);
+     store!(VertexArrayVertexAttribIOffsetEXT);
+     store!(VertexArrayVertexAttribLFormatEXT);
+     store!(VertexArrayVertexAttribLOffsetEXT);
+     store!(VertexArrayVertexAttribOffsetEXT);
+     store!(VertexArrayVertexBindingDivisorEXT);
+     store!(VertexArrayVertexBuffer);
+     store!(VertexArrayVertexBuffers);
+     store!(VertexArrayVertexOffsetEXT);
+     store!(VertexAttrib1d);
+     store!(VertexAttrib1dARB);
+     store!(VertexAttrib1dNV);
+     store!(VertexAttrib1dv);
+     store!(VertexAttrib1dvARB);
+     store!(VertexAttrib1dvNV);
+     store!(VertexAttrib1f);
+     store!(VertexAttrib1fARB);
+     store!(VertexAttrib1fNV);
+     store!(VertexAttrib1fv);
+     store!(VertexAttrib1fvARB);
+     store!(VertexAttrib1fvNV);
+     store!(VertexAttrib1hNV);
+     store!(VertexAttrib1hvNV);
+     store!(VertexAttrib1s);
+     store!(VertexAttrib1sARB);
+     store!(VertexAttrib1sNV);
+     store!(VertexAttrib1sv);
+     store!(VertexAttrib1svARB);
+     store!(VertexAttrib1svNV);
+     store!(VertexAttrib2d);
+     store!(VertexAttrib2dARB);
+     store!(VertexAttrib2dNV);
+     store!(VertexAttrib2dv);
+     store!(VertexAttrib2dvARB);
+     store!(VertexAttrib2dvNV);
+     store!(VertexAttrib2f);
+     store!(VertexAttrib2fARB);
+     store!(VertexAttrib2fNV);
+     store!(VertexAttrib2fv);
+     store!(VertexAttrib2fvARB);
+     store!(VertexAttrib2fvNV);
+     store!(VertexAttrib2hNV);
+     store!(VertexAttrib2hvNV);
+     store!(VertexAttrib2s);
+     store!(VertexAttrib2sARB);
+     store!(VertexAttrib2sNV);
+     store!(VertexAttrib2sv);
+     store!(VertexAttrib2svARB);
+     store!(VertexAttrib2svNV);
+     store!(VertexAttrib3d);
+     store!(VertexAttrib3dARB);
+     store!(VertexAttrib3dNV);
+     store!(VertexAttrib3dv);
+     store!(VertexAttrib3dvARB);
+     store!(VertexAttrib3dvNV);
+     store!(VertexAttrib3f);
+     store!(VertexAttrib3fARB);
+     store!(VertexAttrib3fNV);
+     store!(VertexAttrib3fv);
+     store!(VertexAttrib3fvARB);
+     store!(VertexAttrib3fvNV);
+     store!(VertexAttrib3hNV);
+     store!(VertexAttrib3hvNV);
+     store!(VertexAttrib3s);
+     store!(VertexAttrib3sARB);
+     store!(VertexAttrib3sNV);
+     store!(VertexAttrib3sv);
+     store!(VertexAttrib3svARB);
+     store!(VertexAttrib3svNV);
+     store!(VertexAttrib4Nbv);
+     store!(VertexAttrib4NbvARB);
+     store!(VertexAttrib4Niv);
+     store!(VertexAttrib4NivARB);
+     store!(VertexAttrib4Nsv);
+     store!(VertexAttrib4NsvARB);
+     store!(VertexAttrib4Nub);
+     store!(VertexAttrib4NubARB);
+     store!(VertexAttrib4Nubv);
+     store!(VertexAttrib4NubvARB);
+     store!(VertexAttrib4Nuiv);
+     store!(VertexAttrib4NuivARB);
+     store!(VertexAttrib4Nusv);
+     store!(VertexAttrib4NusvARB);
+     store!(VertexAttrib4bv);
+     store!(VertexAttrib4bvARB);
+     store!(VertexAttrib4d);
+     store!(VertexAttrib4dARB);
+     store!(VertexAttrib4dNV);
+     store!(VertexAttrib4dv);
+     store!(VertexAttrib4dvARB);
+     store!(VertexAttrib4dvNV);
+     store!(VertexAttrib4f);
+     store!(VertexAttrib4fARB);
+     store!(VertexAttrib4fNV);
+     store!(VertexAttrib4fv);
+     store!(VertexAttrib4fvARB);
+     store!(VertexAttrib4fvNV);
+     store!(VertexAttrib4hNV);
+     store!(VertexAttrib4hvNV);
+     store!(VertexAttrib4iv);
+     store!(VertexAttrib4ivARB);
+     store!(VertexAttrib4s);
+     store!(VertexAttrib4sARB);
+     store!(VertexAttrib4sNV);
+     store!(VertexAttrib4sv);
+     store!(VertexAttrib4svARB);
+     store!(VertexAttrib4svNV);
+     store!(VertexAttrib4ubNV);
+     store!(VertexAttrib4ubv);
+     store!(VertexAttrib4ubvARB);
+     store!(VertexAttrib4ubvNV);
+     store!(VertexAttrib4uiv);
+     store!(VertexAttrib4uivARB);
+     store!(VertexAttrib4usv);
+     store!(VertexAttrib4usvARB);
+     store!(VertexAttribArrayObjectATI);
+     store!(VertexAttribBinding);
+     store!(VertexAttribDivisor);
+     store!(VertexAttribDivisorARB);
+     store!(VertexAttribFormat);
+     store!(VertexAttribFormatNV);
+     store!(VertexAttribI1i);
+     store!(VertexAttribI1iEXT);
+     store!(VertexAttribI1iv);
+     store!(VertexAttribI1ivEXT);
+     store!(VertexAttribI1ui);
+     store!(VertexAttribI1uiEXT);
+     store!(VertexAttribI1uiv);
+     store!(VertexAttribI1uivEXT);
+     store!(VertexAttribI2i);
+     store!(VertexAttribI2iEXT);
+     store!(VertexAttribI2iv);
+     store!(VertexAttribI2ivEXT);
+     store!(VertexAttribI2ui);
+     store!(VertexAttribI2uiEXT);
+     store!(VertexAttribI2uiv);
+     store!(VertexAttribI2uivEXT);
+     store!(VertexAttribI3i);
+     store!(VertexAttribI3iEXT);
+     store!(VertexAttribI3iv);
+     store!(VertexAttribI3ivEXT);
+     store!(VertexAttribI3ui);
+     store!(VertexAttribI3uiEXT);
+     store!(VertexAttribI3uiv);
+     store!(VertexAttribI3uivEXT);
+     store!(VertexAttribI4bv);
+     store!(VertexAttribI4bvEXT);
+     store!(VertexAttribI4i);
+     store!(VertexAttribI4iEXT);
+     store!(VertexAttribI4iv);
+     store!(VertexAttribI4ivEXT);
+     store!(VertexAttribI4sv);
+     store!(VertexAttribI4svEXT);
+     store!(VertexAttribI4ubv);
+     store!(VertexAttribI4ubvEXT);
+     store!(VertexAttribI4ui);
+     store!(VertexAttribI4uiEXT);
+     store!(VertexAttribI4uiv);
+     store!(VertexAttribI4uivEXT);
+     store!(VertexAttribI4usv);
+     store!(VertexAttribI4usvEXT);
+     store!(VertexAttribIFormat);
+     store!(VertexAttribIFormatNV);
+     store!(VertexAttribIPointer);
+     store!(VertexAttribIPointerEXT);
+     store!(VertexAttribL1d);
+     store!(VertexAttribL1dEXT);
+     store!(VertexAttribL1dv);
+     store!(VertexAttribL1dvEXT);
+     store!(VertexAttribL1i64NV);
+     store!(VertexAttribL1i64vNV);
+     store!(VertexAttribL1ui64ARB);
+     store!(VertexAttribL1ui64NV);
+     store!(VertexAttribL1ui64vARB);
+     store!(VertexAttribL1ui64vNV);
+     store!(VertexAttribL2d);
+     store!(VertexAttribL2dEXT);
+     store!(VertexAttribL2dv);
+     store!(VertexAttribL2dvEXT);
+     store!(VertexAttribL2i64NV);
+     store!(VertexAttribL2i64vNV);
+     store!(VertexAttribL2ui64NV);
+     store!(VertexAttribL2ui64vNV);
+     store!(VertexAttribL3d);
+     store!(VertexAttribL3dEXT);
+     store!(VertexAttribL3dv);
+     store!(VertexAttribL3dvEXT);
+     store!(VertexAttribL3i64NV);
+     store!(VertexAttribL3i64vNV);
+     store!(VertexAttribL3ui64NV);
+     store!(VertexAttribL3ui64vNV);
+     store!(VertexAttribL4d);
+     store!(VertexAttribL4dEXT);
+     store!(VertexAttribL4dv);
+     store!(VertexAttribL4dvEXT);
+     store!(VertexAttribL4i64NV);
+     store!(VertexAttribL4i64vNV);
+     store!(VertexAttribL4ui64NV);
+     store!(VertexAttribL4ui64vNV);
+     store!(VertexAttribLFormat);
+     store!(VertexAttribLFormatNV);
+     store!(VertexAttribLPointer);
+     store!(VertexAttribLPointerEXT);
+     store!(VertexAttribP1ui);
+     store!(VertexAttribP1uiv);
+     store!(VertexAttribP2ui);
+     store!(VertexAttribP2uiv);
+     store!(VertexAttribP3ui);
+     store!(VertexAttribP3uiv);
+     store!(VertexAttribP4ui);
+     store!(VertexAttribP4uiv);
+     store!(VertexAttribParameteriAMD);
+     store!(VertexAttribPointer);
+     store!(VertexAttribPointerARB);
+     store!(VertexAttribPointerNV);
+     store!(VertexAttribs1dvNV);
+     store!(VertexAttribs1fvNV);
+     store!(VertexAttribs1hvNV);
+     store!(VertexAttribs1svNV);
+     store!(VertexAttribs2dvNV);
+     store!(VertexAttribs2fvNV);
+     store!(VertexAttribs2hvNV);
+     store!(VertexAttribs2svNV);
+     store!(VertexAttribs3dvNV);
+     store!(VertexAttribs3fvNV);
+     store!(VertexAttribs3hvNV);
+     store!(VertexAttribs3svNV);
+     store!(VertexAttribs4dvNV);
+     store!(VertexAttribs4fvNV);
+     store!(VertexAttribs4hvNV);
+     store!(VertexAttribs4svNV);
+     store!(VertexAttribs4ubvNV);
+     store!(VertexBindingDivisor);
+     store!(VertexBlendARB);
+     store!(VertexBlendEnvfATI);
+     store!(VertexBlendEnviATI);
+     store!(VertexFormatNV);
+     store!(VertexP2ui);
+     store!(VertexP2uiv);
+     store!(VertexP3ui);
+     store!(VertexP3uiv);
+     store!(VertexP4ui);
+     store!(VertexP4uiv);
+     store!(VertexPointer);
+     store!(VertexPointerEXT);
+     store!(VertexPointerListIBM);
+     store!(VertexPointervINTEL);
+     store!(VertexStream1dATI);
+     store!(VertexStream1dvATI);
+     store!(VertexStream1fATI);
+     store!(VertexStream1fvATI);
+     store!(VertexStream1iATI);
+     store!(VertexStream1ivATI);
+     store!(VertexStream1sATI);
+     store!(VertexStream1svATI);
+     store!(VertexStream2dATI);
+     store!(VertexStream2dvATI);
+     store!(VertexStream2fATI);
+     store!(VertexStream2fvATI);
+     store!(VertexStream2iATI);
+     store!(VertexStream2ivATI);
+     store!(VertexStream2sATI);
+     store!(VertexStream2svATI);
+     store!(VertexStream3dATI);
+     store!(VertexStream3dvATI);
+     store!(VertexStream3fATI);
+     store!(VertexStream3fvATI);
+     store!(VertexStream3iATI);
+     store!(VertexStream3ivATI);
+     store!(VertexStream3sATI);
+     store!(VertexStream3svATI);
+     store!(VertexStream4dATI);
+     store!(VertexStream4dvATI);
+     store!(VertexStream4fATI);
+     store!(VertexStream4fvATI);
+     store!(VertexStream4iATI);
+     store!(VertexStream4ivATI);
+     store!(VertexStream4sATI);
+     store!(VertexStream4svATI);
+     store!(VertexWeightPointerEXT);
+     store!(VertexWeightfEXT);
+     store!(VertexWeightfvEXT);
+     store!(VertexWeighthNV);
+     store!(VertexWeighthvNV);
+     store!(VideoCaptureNV);
+     store!(VideoCaptureStreamParameterdvNV);
+     store!(VideoCaptureStreamParameterfvNV);
+     store!(VideoCaptureStreamParameterivNV);
+     store!(Viewport);
+     store!(ViewportArrayv);
+     store!(ViewportIndexedf);
+     store!(ViewportIndexedfv);
+     store!(ViewportPositionWScaleNV);
+     store!(ViewportSwizzleNV);
+     store!(WaitSemaphoreEXT);
+     store!(WaitSemaphoreui64NVX);
+     store!(WaitSync);
+     store!(WaitVkSemaphoreNV);
+     store!(WeightPathsNV);
+     store!(WeightPointerARB);
+     store!(WeightbvARB);
+     store!(WeightdvARB);
+     store!(WeightfvARB);
+     store!(WeightivARB);
+     store!(WeightsvARB);
+     store!(WeightubvARB);
+     store!(WeightuivARB);
+     store!(WeightusvARB);
+     store!(WindowPos2d);
+     store!(WindowPos2dARB);
+     store!(WindowPos2dMESA);
+     store!(WindowPos2dv);
+     store!(WindowPos2dvARB);
+     store!(WindowPos2dvMESA);
+     store!(WindowPos2f);
+     store!(WindowPos2fARB);
+     store!(WindowPos2fMESA);
+     store!(WindowPos2fv);
+     store!(WindowPos2fvARB);
+     store!(WindowPos2fvMESA);
+     store!(WindowPos2i);
+     store!(WindowPos2iARB);
+     store!(WindowPos2iMESA);
+     store!(WindowPos2iv);
+     store!(WindowPos2ivARB);
+     store!(WindowPos2ivMESA);
+     store!(WindowPos2s);
+     store!(WindowPos2sARB);
+     store!(WindowPos2sMESA);
+     store!(WindowPos2sv);
+     store!(WindowPos2svARB);
+     store!(WindowPos2svMESA);
+     store!(WindowPos3d);
+     store!(WindowPos3dARB);
+     store!(WindowPos3dMESA);
+     store!(WindowPos3dv);
+     store!(WindowPos3dvARB);
+     store!(WindowPos3dvMESA);
+     store!(WindowPos3f);
+     store!(WindowPos3fARB);
+     store!(WindowPos3fMESA);
+     store!(WindowPos3fv);
+     store!(WindowPos3fvARB);
+     store!(WindowPos3fvMESA);
+     store!(WindowPos3i);
+     store!(WindowPos3iARB);
+     store!(WindowPos3iMESA);
+     store!(WindowPos3iv);
+     store!(WindowPos3ivARB);
+     store!(WindowPos3ivMESA);
+     store!(WindowPos3s);
+     store!(WindowPos3sARB);
+     store!(WindowPos3sMESA);
+     store!(WindowPos3sv);
+     store!(WindowPos3svARB);
+     store!(WindowPos3svMESA);
+     store!(WindowPos4dMESA);
+     store!(WindowPos4dvMESA);
+     store!(WindowPos4fMESA);
+     store!(WindowPos4fvMESA);
+     store!(WindowPos4iMESA);
+     store!(WindowPos4ivMESA);
+     store!(WindowPos4sMESA);
+     store!(WindowPos4svMESA);
+     store!(WindowRectanglesEXT);
+     store!(WriteMaskEXT);
+}
+
+pub fn load<F>(mut loadfn: F) where F: FnMut(&'static str) -> *const c_void {
+    unsafe {
+         storage::Accum.load(&mut loadfn, "glAccum");
+         storage::AccumxOES.load(&mut loadfn, "glAccumxOES");
+         storage::AcquireKeyedMutexWin32EXT.load(&mut loadfn, "glAcquireKeyedMutexWin32EXT");
+         storage::ActiveProgramEXT.load(&mut loadfn, "glActiveProgramEXT");
+         storage::ActiveShaderProgram.load(&mut loadfn, "glActiveShaderProgram");
+         storage::ActiveStencilFaceEXT.load(&mut loadfn, "glActiveStencilFaceEXT");
+         storage::ActiveTexture.load(&mut loadfn, "glActiveTexture");
+         storage::ActiveTextureARB.load(&mut loadfn, "glActiveTextureARB");
+         storage::ActiveVaryingNV.load(&mut loadfn, "glActiveVaryingNV");
+         storage::AlphaFragmentOp1ATI.load(&mut loadfn, "glAlphaFragmentOp1ATI");
+         storage::AlphaFragmentOp2ATI.load(&mut loadfn, "glAlphaFragmentOp2ATI");
+         storage::AlphaFragmentOp3ATI.load(&mut loadfn, "glAlphaFragmentOp3ATI");
+         storage::AlphaFunc.load(&mut loadfn, "glAlphaFunc");
+         storage::AlphaFuncxOES.load(&mut loadfn, "glAlphaFuncxOES");
+         storage::AlphaToCoverageDitherControlNV.load(&mut loadfn, "glAlphaToCoverageDitherControlNV");
+         storage::ApplyFramebufferAttachmentCMAAINTEL.load(&mut loadfn, "glApplyFramebufferAttachmentCMAAINTEL");
+         storage::ApplyTextureEXT.load(&mut loadfn, "glApplyTextureEXT");
+         storage::AreProgramsResidentNV.load(&mut loadfn, "glAreProgramsResidentNV");
+         storage::AreTexturesResident.load(&mut loadfn, "glAreTexturesResident");
+         storage::AreTexturesResidentEXT.load(&mut loadfn, "glAreTexturesResidentEXT");
+         storage::ArrayElement.load(&mut loadfn, "glArrayElement");
+         storage::ArrayElementEXT.load(&mut loadfn, "glArrayElementEXT");
+         storage::ArrayObjectATI.load(&mut loadfn, "glArrayObjectATI");
+         storage::AsyncCopyBufferSubDataNVX.load(&mut loadfn, "glAsyncCopyBufferSubDataNVX");
+         storage::AsyncCopyImageSubDataNVX.load(&mut loadfn, "glAsyncCopyImageSubDataNVX");
+         storage::AsyncMarkerSGIX.load(&mut loadfn, "glAsyncMarkerSGIX");
+         storage::AttachObjectARB.load(&mut loadfn, "glAttachObjectARB");
+         storage::AttachShader.load(&mut loadfn, "glAttachShader");
+         storage::Begin.load(&mut loadfn, "glBegin");
+         storage::BeginConditionalRender.load(&mut loadfn, "glBeginConditionalRender");
+         storage::BeginConditionalRenderNV.load(&mut loadfn, "glBeginConditionalRenderNV");
+         storage::BeginConditionalRenderNVX.load(&mut loadfn, "glBeginConditionalRenderNVX");
+         storage::BeginFragmentShaderATI.load(&mut loadfn, "glBeginFragmentShaderATI");
+         storage::BeginOcclusionQueryNV.load(&mut loadfn, "glBeginOcclusionQueryNV");
+         storage::BeginPerfMonitorAMD.load(&mut loadfn, "glBeginPerfMonitorAMD");
+         storage::BeginPerfQueryINTEL.load(&mut loadfn, "glBeginPerfQueryINTEL");
+         storage::BeginQuery.load(&mut loadfn, "glBeginQuery");
+         storage::BeginQueryARB.load(&mut loadfn, "glBeginQueryARB");
+         storage::BeginQueryIndexed.load(&mut loadfn, "glBeginQueryIndexed");
+         storage::BeginTransformFeedback.load(&mut loadfn, "glBeginTransformFeedback");
+         storage::BeginTransformFeedbackEXT.load(&mut loadfn, "glBeginTransformFeedbackEXT");
+         storage::BeginTransformFeedbackNV.load(&mut loadfn, "glBeginTransformFeedbackNV");
+         storage::BeginVertexShaderEXT.load(&mut loadfn, "glBeginVertexShaderEXT");
+         storage::BeginVideoCaptureNV.load(&mut loadfn, "glBeginVideoCaptureNV");
+         storage::BindAttribLocation.load(&mut loadfn, "glBindAttribLocation");
+         storage::BindAttribLocationARB.load(&mut loadfn, "glBindAttribLocationARB");
+         storage::BindBuffer.load(&mut loadfn, "glBindBuffer");
+         storage::BindBufferARB.load(&mut loadfn, "glBindBufferARB");
+         storage::BindBufferBase.load(&mut loadfn, "glBindBufferBase");
+         storage::BindBufferBaseEXT.load(&mut loadfn, "glBindBufferBaseEXT");
+         storage::BindBufferBaseNV.load(&mut loadfn, "glBindBufferBaseNV");
+         storage::BindBufferOffsetEXT.load(&mut loadfn, "glBindBufferOffsetEXT");
+         storage::BindBufferOffsetNV.load(&mut loadfn, "glBindBufferOffsetNV");
+         storage::BindBufferRange.load(&mut loadfn, "glBindBufferRange");
+         storage::BindBufferRangeEXT.load(&mut loadfn, "glBindBufferRangeEXT");
+         storage::BindBufferRangeNV.load(&mut loadfn, "glBindBufferRangeNV");
+         storage::BindBuffersBase.load(&mut loadfn, "glBindBuffersBase");
+         storage::BindBuffersRange.load(&mut loadfn, "glBindBuffersRange");
+         storage::BindFragDataLocation.load(&mut loadfn, "glBindFragDataLocation");
+         storage::BindFragDataLocationEXT.load(&mut loadfn, "glBindFragDataLocationEXT");
+         storage::BindFragDataLocationIndexed.load(&mut loadfn, "glBindFragDataLocationIndexed");
+         storage::BindFragmentShaderATI.load(&mut loadfn, "glBindFragmentShaderATI");
+         storage::BindFramebuffer.load(&mut loadfn, "glBindFramebuffer");
+         storage::BindFramebufferEXT.load(&mut loadfn, "glBindFramebufferEXT");
+         storage::BindImageTexture.load(&mut loadfn, "glBindImageTexture");
+         storage::BindImageTextureEXT.load(&mut loadfn, "glBindImageTextureEXT");
+         storage::BindImageTextures.load(&mut loadfn, "glBindImageTextures");
+         storage::BindLightParameterEXT.load(&mut loadfn, "glBindLightParameterEXT");
+         storage::BindMaterialParameterEXT.load(&mut loadfn, "glBindMaterialParameterEXT");
+         storage::BindMultiTextureEXT.load(&mut loadfn, "glBindMultiTextureEXT");
+         storage::BindParameterEXT.load(&mut loadfn, "glBindParameterEXT");
+         storage::BindProgramARB.load(&mut loadfn, "glBindProgramARB");
+         storage::BindProgramNV.load(&mut loadfn, "glBindProgramNV");
+         storage::BindProgramPipeline.load(&mut loadfn, "glBindProgramPipeline");
+         storage::BindRenderbuffer.load(&mut loadfn, "glBindRenderbuffer");
+         storage::BindRenderbufferEXT.load(&mut loadfn, "glBindRenderbufferEXT");
+         storage::BindSampler.load(&mut loadfn, "glBindSampler");
+         storage::BindSamplers.load(&mut loadfn, "glBindSamplers");
+         storage::BindShadingRateImageNV.load(&mut loadfn, "glBindShadingRateImageNV");
+         storage::BindTexGenParameterEXT.load(&mut loadfn, "glBindTexGenParameterEXT");
+         storage::BindTexture.load(&mut loadfn, "glBindTexture");
+         storage::BindTextureEXT.load(&mut loadfn, "glBindTextureEXT");
+         storage::BindTextureUnit.load(&mut loadfn, "glBindTextureUnit");
+         storage::BindTextureUnitParameterEXT.load(&mut loadfn, "glBindTextureUnitParameterEXT");
+         storage::BindTextures.load(&mut loadfn, "glBindTextures");
+         storage::BindTransformFeedback.load(&mut loadfn, "glBindTransformFeedback");
+         storage::BindTransformFeedbackNV.load(&mut loadfn, "glBindTransformFeedbackNV");
+         storage::BindVertexArray.load(&mut loadfn, "glBindVertexArray");
+         storage::BindVertexArrayAPPLE.load(&mut loadfn, "glBindVertexArrayAPPLE");
+         storage::BindVertexBuffer.load(&mut loadfn, "glBindVertexBuffer");
+         storage::BindVertexBuffers.load(&mut loadfn, "glBindVertexBuffers");
+         storage::BindVertexShaderEXT.load(&mut loadfn, "glBindVertexShaderEXT");
+         storage::BindVideoCaptureStreamBufferNV.load(&mut loadfn, "glBindVideoCaptureStreamBufferNV");
+         storage::BindVideoCaptureStreamTextureNV.load(&mut loadfn, "glBindVideoCaptureStreamTextureNV");
+         storage::Binormal3bEXT.load(&mut loadfn, "glBinormal3bEXT");
+         storage::Binormal3bvEXT.load(&mut loadfn, "glBinormal3bvEXT");
+         storage::Binormal3dEXT.load(&mut loadfn, "glBinormal3dEXT");
+         storage::Binormal3dvEXT.load(&mut loadfn, "glBinormal3dvEXT");
+         storage::Binormal3fEXT.load(&mut loadfn, "glBinormal3fEXT");
+         storage::Binormal3fvEXT.load(&mut loadfn, "glBinormal3fvEXT");
+         storage::Binormal3iEXT.load(&mut loadfn, "glBinormal3iEXT");
+         storage::Binormal3ivEXT.load(&mut loadfn, "glBinormal3ivEXT");
+         storage::Binormal3sEXT.load(&mut loadfn, "glBinormal3sEXT");
+         storage::Binormal3svEXT.load(&mut loadfn, "glBinormal3svEXT");
+         storage::BinormalPointerEXT.load(&mut loadfn, "glBinormalPointerEXT");
+         storage::Bitmap.load(&mut loadfn, "glBitmap");
+         storage::BitmapxOES.load(&mut loadfn, "glBitmapxOES");
+         storage::BlendBarrierKHR.load(&mut loadfn, "glBlendBarrierKHR");
+         storage::BlendBarrierNV.load(&mut loadfn, "glBlendBarrierNV");
+         storage::BlendColor.load(&mut loadfn, "glBlendColor");
+         storage::BlendColorEXT.load(&mut loadfn, "glBlendColorEXT");
+         storage::BlendColorxOES.load(&mut loadfn, "glBlendColorxOES");
+         storage::BlendEquation.load(&mut loadfn, "glBlendEquation");
+         storage::BlendEquationEXT.load(&mut loadfn, "glBlendEquationEXT");
+         storage::BlendEquationIndexedAMD.load(&mut loadfn, "glBlendEquationIndexedAMD");
+         storage::BlendEquationSeparate.load(&mut loadfn, "glBlendEquationSeparate");
+         storage::BlendEquationSeparateEXT.load(&mut loadfn, "glBlendEquationSeparateEXT");
+         storage::BlendEquationSeparateIndexedAMD.load(&mut loadfn, "glBlendEquationSeparateIndexedAMD");
+         storage::BlendEquationSeparatei.load(&mut loadfn, "glBlendEquationSeparatei");
+         storage::BlendEquationSeparateiARB.load(&mut loadfn, "glBlendEquationSeparateiARB");
+         storage::BlendEquationi.load(&mut loadfn, "glBlendEquationi");
+         storage::BlendEquationiARB.load(&mut loadfn, "glBlendEquationiARB");
+         storage::BlendFunc.load(&mut loadfn, "glBlendFunc");
+         storage::BlendFuncIndexedAMD.load(&mut loadfn, "glBlendFuncIndexedAMD");
+         storage::BlendFuncSeparate.load(&mut loadfn, "glBlendFuncSeparate");
+         storage::BlendFuncSeparateEXT.load(&mut loadfn, "glBlendFuncSeparateEXT");
+         storage::BlendFuncSeparateINGR.load(&mut loadfn, "glBlendFuncSeparateINGR");
+         storage::BlendFuncSeparateIndexedAMD.load(&mut loadfn, "glBlendFuncSeparateIndexedAMD");
+         storage::BlendFuncSeparatei.load(&mut loadfn, "glBlendFuncSeparatei");
+         storage::BlendFuncSeparateiARB.load(&mut loadfn, "glBlendFuncSeparateiARB");
+         storage::BlendFunci.load(&mut loadfn, "glBlendFunci");
+         storage::BlendFunciARB.load(&mut loadfn, "glBlendFunciARB");
+         storage::BlendParameteriNV.load(&mut loadfn, "glBlendParameteriNV");
+         storage::BlitFramebuffer.load(&mut loadfn, "glBlitFramebuffer");
+         storage::BlitFramebufferEXT.load(&mut loadfn, "glBlitFramebufferEXT");
+         storage::BlitNamedFramebuffer.load(&mut loadfn, "glBlitNamedFramebuffer");
+         storage::BufferAddressRangeNV.load(&mut loadfn, "glBufferAddressRangeNV");
+         storage::BufferAttachMemoryNV.load(&mut loadfn, "glBufferAttachMemoryNV");
+         storage::BufferData.load(&mut loadfn, "glBufferData");
+         storage::BufferDataARB.load(&mut loadfn, "glBufferDataARB");
+         storage::BufferPageCommitmentARB.load(&mut loadfn, "glBufferPageCommitmentARB");
+         storage::BufferPageCommitmentMemNV.load(&mut loadfn, "glBufferPageCommitmentMemNV");
+         storage::BufferParameteriAPPLE.load(&mut loadfn, "glBufferParameteriAPPLE");
+         storage::BufferStorage.load(&mut loadfn, "glBufferStorage");
+         storage::BufferStorageExternalEXT.load(&mut loadfn, "glBufferStorageExternalEXT");
+         storage::BufferStorageMemEXT.load(&mut loadfn, "glBufferStorageMemEXT");
+         storage::BufferSubData.load(&mut loadfn, "glBufferSubData");
+         storage::BufferSubDataARB.load(&mut loadfn, "glBufferSubDataARB");
+         storage::CallCommandListNV.load(&mut loadfn, "glCallCommandListNV");
+         storage::CallList.load(&mut loadfn, "glCallList");
+         storage::CallLists.load(&mut loadfn, "glCallLists");
+         storage::CheckFramebufferStatus.load(&mut loadfn, "glCheckFramebufferStatus");
+         storage::CheckFramebufferStatusEXT.load(&mut loadfn, "glCheckFramebufferStatusEXT");
+         storage::CheckNamedFramebufferStatus.load(&mut loadfn, "glCheckNamedFramebufferStatus");
+         storage::CheckNamedFramebufferStatusEXT.load(&mut loadfn, "glCheckNamedFramebufferStatusEXT");
+         storage::ClampColor.load(&mut loadfn, "glClampColor");
+         storage::ClampColorARB.load(&mut loadfn, "glClampColorARB");
+         storage::Clear.load(&mut loadfn, "glClear");
+         storage::ClearAccum.load(&mut loadfn, "glClearAccum");
+         storage::ClearAccumxOES.load(&mut loadfn, "glClearAccumxOES");
+         storage::ClearBufferData.load(&mut loadfn, "glClearBufferData");
+         storage::ClearBufferSubData.load(&mut loadfn, "glClearBufferSubData");
+         storage::ClearBufferfi.load(&mut loadfn, "glClearBufferfi");
+         storage::ClearBufferfv.load(&mut loadfn, "glClearBufferfv");
+         storage::ClearBufferiv.load(&mut loadfn, "glClearBufferiv");
+         storage::ClearBufferuiv.load(&mut loadfn, "glClearBufferuiv");
+         storage::ClearColor.load(&mut loadfn, "glClearColor");
+         storage::ClearColorIiEXT.load(&mut loadfn, "glClearColorIiEXT");
+         storage::ClearColorIuiEXT.load(&mut loadfn, "glClearColorIuiEXT");
+         storage::ClearColorxOES.load(&mut loadfn, "glClearColorxOES");
+         storage::ClearDepth.load(&mut loadfn, "glClearDepth");
+         storage::ClearDepthdNV.load(&mut loadfn, "glClearDepthdNV");
+         storage::ClearDepthf.load(&mut loadfn, "glClearDepthf");
+         storage::ClearDepthfOES.load(&mut loadfn, "glClearDepthfOES");
+         storage::ClearDepthxOES.load(&mut loadfn, "glClearDepthxOES");
+         storage::ClearIndex.load(&mut loadfn, "glClearIndex");
+         storage::ClearNamedBufferData.load(&mut loadfn, "glClearNamedBufferData");
+         storage::ClearNamedBufferDataEXT.load(&mut loadfn, "glClearNamedBufferDataEXT");
+         storage::ClearNamedBufferSubData.load(&mut loadfn, "glClearNamedBufferSubData");
+         storage::ClearNamedBufferSubDataEXT.load(&mut loadfn, "glClearNamedBufferSubDataEXT");
+         storage::ClearNamedFramebufferfi.load(&mut loadfn, "glClearNamedFramebufferfi");
+         storage::ClearNamedFramebufferfv.load(&mut loadfn, "glClearNamedFramebufferfv");
+         storage::ClearNamedFramebufferiv.load(&mut loadfn, "glClearNamedFramebufferiv");
+         storage::ClearNamedFramebufferuiv.load(&mut loadfn, "glClearNamedFramebufferuiv");
+         storage::ClearStencil.load(&mut loadfn, "glClearStencil");
+         storage::ClearTexImage.load(&mut loadfn, "glClearTexImage");
+         storage::ClearTexSubImage.load(&mut loadfn, "glClearTexSubImage");
+         storage::ClientActiveTexture.load(&mut loadfn, "glClientActiveTexture");
+         storage::ClientActiveTextureARB.load(&mut loadfn, "glClientActiveTextureARB");
+         storage::ClientActiveVertexStreamATI.load(&mut loadfn, "glClientActiveVertexStreamATI");
+         storage::ClientAttribDefaultEXT.load(&mut loadfn, "glClientAttribDefaultEXT");
+         storage::ClientWaitSemaphoreui64NVX.load(&mut loadfn, "glClientWaitSemaphoreui64NVX");
+         storage::ClientWaitSync.load(&mut loadfn, "glClientWaitSync");
+         storage::ClipControl.load(&mut loadfn, "glClipControl");
+         storage::ClipPlane.load(&mut loadfn, "glClipPlane");
+         storage::ClipPlanefOES.load(&mut loadfn, "glClipPlanefOES");
+         storage::ClipPlanexOES.load(&mut loadfn, "glClipPlanexOES");
+         storage::Color3b.load(&mut loadfn, "glColor3b");
+         storage::Color3bv.load(&mut loadfn, "glColor3bv");
+         storage::Color3d.load(&mut loadfn, "glColor3d");
+         storage::Color3dv.load(&mut loadfn, "glColor3dv");
+         storage::Color3f.load(&mut loadfn, "glColor3f");
+         storage::Color3fVertex3fSUN.load(&mut loadfn, "glColor3fVertex3fSUN");
+         storage::Color3fVertex3fvSUN.load(&mut loadfn, "glColor3fVertex3fvSUN");
+         storage::Color3fv.load(&mut loadfn, "glColor3fv");
+         storage::Color3hNV.load(&mut loadfn, "glColor3hNV");
+         storage::Color3hvNV.load(&mut loadfn, "glColor3hvNV");
+         storage::Color3i.load(&mut loadfn, "glColor3i");
+         storage::Color3iv.load(&mut loadfn, "glColor3iv");
+         storage::Color3s.load(&mut loadfn, "glColor3s");
+         storage::Color3sv.load(&mut loadfn, "glColor3sv");
+         storage::Color3ub.load(&mut loadfn, "glColor3ub");
+         storage::Color3ubv.load(&mut loadfn, "glColor3ubv");
+         storage::Color3ui.load(&mut loadfn, "glColor3ui");
+         storage::Color3uiv.load(&mut loadfn, "glColor3uiv");
+         storage::Color3us.load(&mut loadfn, "glColor3us");
+         storage::Color3usv.load(&mut loadfn, "glColor3usv");
+         storage::Color3xOES.load(&mut loadfn, "glColor3xOES");
+         storage::Color3xvOES.load(&mut loadfn, "glColor3xvOES");
+         storage::Color4b.load(&mut loadfn, "glColor4b");
+         storage::Color4bv.load(&mut loadfn, "glColor4bv");
+         storage::Color4d.load(&mut loadfn, "glColor4d");
+         storage::Color4dv.load(&mut loadfn, "glColor4dv");
+         storage::Color4f.load(&mut loadfn, "glColor4f");
+         storage::Color4fNormal3fVertex3fSUN.load(&mut loadfn, "glColor4fNormal3fVertex3fSUN");
+         storage::Color4fNormal3fVertex3fvSUN.load(&mut loadfn, "glColor4fNormal3fVertex3fvSUN");
+         storage::Color4fv.load(&mut loadfn, "glColor4fv");
+         storage::Color4hNV.load(&mut loadfn, "glColor4hNV");
+         storage::Color4hvNV.load(&mut loadfn, "glColor4hvNV");
+         storage::Color4i.load(&mut loadfn, "glColor4i");
+         storage::Color4iv.load(&mut loadfn, "glColor4iv");
+         storage::Color4s.load(&mut loadfn, "glColor4s");
+         storage::Color4sv.load(&mut loadfn, "glColor4sv");
+         storage::Color4ub.load(&mut loadfn, "glColor4ub");
+         storage::Color4ubVertex2fSUN.load(&mut loadfn, "glColor4ubVertex2fSUN");
+         storage::Color4ubVertex2fvSUN.load(&mut loadfn, "glColor4ubVertex2fvSUN");
+         storage::Color4ubVertex3fSUN.load(&mut loadfn, "glColor4ubVertex3fSUN");
+         storage::Color4ubVertex3fvSUN.load(&mut loadfn, "glColor4ubVertex3fvSUN");
+         storage::Color4ubv.load(&mut loadfn, "glColor4ubv");
+         storage::Color4ui.load(&mut loadfn, "glColor4ui");
+         storage::Color4uiv.load(&mut loadfn, "glColor4uiv");
+         storage::Color4us.load(&mut loadfn, "glColor4us");
+         storage::Color4usv.load(&mut loadfn, "glColor4usv");
+         storage::Color4xOES.load(&mut loadfn, "glColor4xOES");
+         storage::Color4xvOES.load(&mut loadfn, "glColor4xvOES");
+         storage::ColorFormatNV.load(&mut loadfn, "glColorFormatNV");
+         storage::ColorFragmentOp1ATI.load(&mut loadfn, "glColorFragmentOp1ATI");
+         storage::ColorFragmentOp2ATI.load(&mut loadfn, "glColorFragmentOp2ATI");
+         storage::ColorFragmentOp3ATI.load(&mut loadfn, "glColorFragmentOp3ATI");
+         storage::ColorMask.load(&mut loadfn, "glColorMask");
+         storage::ColorMaskIndexedEXT.load(&mut loadfn, "glColorMaskIndexedEXT");
+         storage::ColorMaski.load(&mut loadfn, "glColorMaski");
+         storage::ColorMaterial.load(&mut loadfn, "glColorMaterial");
+         storage::ColorP3ui.load(&mut loadfn, "glColorP3ui");
+         storage::ColorP3uiv.load(&mut loadfn, "glColorP3uiv");
+         storage::ColorP4ui.load(&mut loadfn, "glColorP4ui");
+         storage::ColorP4uiv.load(&mut loadfn, "glColorP4uiv");
+         storage::ColorPointer.load(&mut loadfn, "glColorPointer");
+         storage::ColorPointerEXT.load(&mut loadfn, "glColorPointerEXT");
+         storage::ColorPointerListIBM.load(&mut loadfn, "glColorPointerListIBM");
+         storage::ColorPointervINTEL.load(&mut loadfn, "glColorPointervINTEL");
+         storage::ColorSubTable.load(&mut loadfn, "glColorSubTable");
+         storage::ColorSubTableEXT.load(&mut loadfn, "glColorSubTableEXT");
+         storage::ColorTable.load(&mut loadfn, "glColorTable");
+         storage::ColorTableEXT.load(&mut loadfn, "glColorTableEXT");
+         storage::ColorTableParameterfv.load(&mut loadfn, "glColorTableParameterfv");
+         storage::ColorTableParameterfvSGI.load(&mut loadfn, "glColorTableParameterfvSGI");
+         storage::ColorTableParameteriv.load(&mut loadfn, "glColorTableParameteriv");
+         storage::ColorTableParameterivSGI.load(&mut loadfn, "glColorTableParameterivSGI");
+         storage::ColorTableSGI.load(&mut loadfn, "glColorTableSGI");
+         storage::CombinerInputNV.load(&mut loadfn, "glCombinerInputNV");
+         storage::CombinerOutputNV.load(&mut loadfn, "glCombinerOutputNV");
+         storage::CombinerParameterfNV.load(&mut loadfn, "glCombinerParameterfNV");
+         storage::CombinerParameterfvNV.load(&mut loadfn, "glCombinerParameterfvNV");
+         storage::CombinerParameteriNV.load(&mut loadfn, "glCombinerParameteriNV");
+         storage::CombinerParameterivNV.load(&mut loadfn, "glCombinerParameterivNV");
+         storage::CombinerStageParameterfvNV.load(&mut loadfn, "glCombinerStageParameterfvNV");
+         storage::CommandListSegmentsNV.load(&mut loadfn, "glCommandListSegmentsNV");
+         storage::CompileCommandListNV.load(&mut loadfn, "glCompileCommandListNV");
+         storage::CompileShader.load(&mut loadfn, "glCompileShader");
+         storage::CompileShaderARB.load(&mut loadfn, "glCompileShaderARB");
+         storage::CompileShaderIncludeARB.load(&mut loadfn, "glCompileShaderIncludeARB");
+         storage::CompressedMultiTexImage1DEXT.load(&mut loadfn, "glCompressedMultiTexImage1DEXT");
+         storage::CompressedMultiTexImage2DEXT.load(&mut loadfn, "glCompressedMultiTexImage2DEXT");
+         storage::CompressedMultiTexImage3DEXT.load(&mut loadfn, "glCompressedMultiTexImage3DEXT");
+         storage::CompressedMultiTexSubImage1DEXT.load(&mut loadfn, "glCompressedMultiTexSubImage1DEXT");
+         storage::CompressedMultiTexSubImage2DEXT.load(&mut loadfn, "glCompressedMultiTexSubImage2DEXT");
+         storage::CompressedMultiTexSubImage3DEXT.load(&mut loadfn, "glCompressedMultiTexSubImage3DEXT");
+         storage::CompressedTexImage1D.load(&mut loadfn, "glCompressedTexImage1D");
+         storage::CompressedTexImage1DARB.load(&mut loadfn, "glCompressedTexImage1DARB");
+         storage::CompressedTexImage2D.load(&mut loadfn, "glCompressedTexImage2D");
+         storage::CompressedTexImage2DARB.load(&mut loadfn, "glCompressedTexImage2DARB");
+         storage::CompressedTexImage3D.load(&mut loadfn, "glCompressedTexImage3D");
+         storage::CompressedTexImage3DARB.load(&mut loadfn, "glCompressedTexImage3DARB");
+         storage::CompressedTexSubImage1D.load(&mut loadfn, "glCompressedTexSubImage1D");
+         storage::CompressedTexSubImage1DARB.load(&mut loadfn, "glCompressedTexSubImage1DARB");
+         storage::CompressedTexSubImage2D.load(&mut loadfn, "glCompressedTexSubImage2D");
+         storage::CompressedTexSubImage2DARB.load(&mut loadfn, "glCompressedTexSubImage2DARB");
+         storage::CompressedTexSubImage3D.load(&mut loadfn, "glCompressedTexSubImage3D");
+         storage::CompressedTexSubImage3DARB.load(&mut loadfn, "glCompressedTexSubImage3DARB");
+         storage::CompressedTextureImage1DEXT.load(&mut loadfn, "glCompressedTextureImage1DEXT");
+         storage::CompressedTextureImage2DEXT.load(&mut loadfn, "glCompressedTextureImage2DEXT");
+         storage::CompressedTextureImage3DEXT.load(&mut loadfn, "glCompressedTextureImage3DEXT");
+         storage::CompressedTextureSubImage1D.load(&mut loadfn, "glCompressedTextureSubImage1D");
+         storage::CompressedTextureSubImage1DEXT.load(&mut loadfn, "glCompressedTextureSubImage1DEXT");
+         storage::CompressedTextureSubImage2D.load(&mut loadfn, "glCompressedTextureSubImage2D");
+         storage::CompressedTextureSubImage2DEXT.load(&mut loadfn, "glCompressedTextureSubImage2DEXT");
+         storage::CompressedTextureSubImage3D.load(&mut loadfn, "glCompressedTextureSubImage3D");
+         storage::CompressedTextureSubImage3DEXT.load(&mut loadfn, "glCompressedTextureSubImage3DEXT");
+         storage::ConservativeRasterParameterfNV.load(&mut loadfn, "glConservativeRasterParameterfNV");
+         storage::ConservativeRasterParameteriNV.load(&mut loadfn, "glConservativeRasterParameteriNV");
+         storage::ConvolutionFilter1D.load(&mut loadfn, "glConvolutionFilter1D");
+         storage::ConvolutionFilter1DEXT.load(&mut loadfn, "glConvolutionFilter1DEXT");
+         storage::ConvolutionFilter2D.load(&mut loadfn, "glConvolutionFilter2D");
+         storage::ConvolutionFilter2DEXT.load(&mut loadfn, "glConvolutionFilter2DEXT");
+         storage::ConvolutionParameterf.load(&mut loadfn, "glConvolutionParameterf");
+         storage::ConvolutionParameterfEXT.load(&mut loadfn, "glConvolutionParameterfEXT");
+         storage::ConvolutionParameterfv.load(&mut loadfn, "glConvolutionParameterfv");
+         storage::ConvolutionParameterfvEXT.load(&mut loadfn, "glConvolutionParameterfvEXT");
+         storage::ConvolutionParameteri.load(&mut loadfn, "glConvolutionParameteri");
+         storage::ConvolutionParameteriEXT.load(&mut loadfn, "glConvolutionParameteriEXT");
+         storage::ConvolutionParameteriv.load(&mut loadfn, "glConvolutionParameteriv");
+         storage::ConvolutionParameterivEXT.load(&mut loadfn, "glConvolutionParameterivEXT");
+         storage::ConvolutionParameterxOES.load(&mut loadfn, "glConvolutionParameterxOES");
+         storage::ConvolutionParameterxvOES.load(&mut loadfn, "glConvolutionParameterxvOES");
+         storage::CopyBufferSubData.load(&mut loadfn, "glCopyBufferSubData");
+         storage::CopyColorSubTable.load(&mut loadfn, "glCopyColorSubTable");
+         storage::CopyColorSubTableEXT.load(&mut loadfn, "glCopyColorSubTableEXT");
+         storage::CopyColorTable.load(&mut loadfn, "glCopyColorTable");
+         storage::CopyColorTableSGI.load(&mut loadfn, "glCopyColorTableSGI");
+         storage::CopyConvolutionFilter1D.load(&mut loadfn, "glCopyConvolutionFilter1D");
+         storage::CopyConvolutionFilter1DEXT.load(&mut loadfn, "glCopyConvolutionFilter1DEXT");
+         storage::CopyConvolutionFilter2D.load(&mut loadfn, "glCopyConvolutionFilter2D");
+         storage::CopyConvolutionFilter2DEXT.load(&mut loadfn, "glCopyConvolutionFilter2DEXT");
+         storage::CopyImageSubData.load(&mut loadfn, "glCopyImageSubData");
+         storage::CopyImageSubDataNV.load(&mut loadfn, "glCopyImageSubDataNV");
+         storage::CopyMultiTexImage1DEXT.load(&mut loadfn, "glCopyMultiTexImage1DEXT");
+         storage::CopyMultiTexImage2DEXT.load(&mut loadfn, "glCopyMultiTexImage2DEXT");
+         storage::CopyMultiTexSubImage1DEXT.load(&mut loadfn, "glCopyMultiTexSubImage1DEXT");
+         storage::CopyMultiTexSubImage2DEXT.load(&mut loadfn, "glCopyMultiTexSubImage2DEXT");
+         storage::CopyMultiTexSubImage3DEXT.load(&mut loadfn, "glCopyMultiTexSubImage3DEXT");
+         storage::CopyNamedBufferSubData.load(&mut loadfn, "glCopyNamedBufferSubData");
+         storage::CopyPathNV.load(&mut loadfn, "glCopyPathNV");
+         storage::CopyPixels.load(&mut loadfn, "glCopyPixels");
+         storage::CopyTexImage1D.load(&mut loadfn, "glCopyTexImage1D");
+         storage::CopyTexImage1DEXT.load(&mut loadfn, "glCopyTexImage1DEXT");
+         storage::CopyTexImage2D.load(&mut loadfn, "glCopyTexImage2D");
+         storage::CopyTexImage2DEXT.load(&mut loadfn, "glCopyTexImage2DEXT");
+         storage::CopyTexSubImage1D.load(&mut loadfn, "glCopyTexSubImage1D");
+         storage::CopyTexSubImage1DEXT.load(&mut loadfn, "glCopyTexSubImage1DEXT");
+         storage::CopyTexSubImage2D.load(&mut loadfn, "glCopyTexSubImage2D");
+         storage::CopyTexSubImage2DEXT.load(&mut loadfn, "glCopyTexSubImage2DEXT");
+         storage::CopyTexSubImage3D.load(&mut loadfn, "glCopyTexSubImage3D");
+         storage::CopyTexSubImage3DEXT.load(&mut loadfn, "glCopyTexSubImage3DEXT");
+         storage::CopyTextureImage1DEXT.load(&mut loadfn, "glCopyTextureImage1DEXT");
+         storage::CopyTextureImage2DEXT.load(&mut loadfn, "glCopyTextureImage2DEXT");
+         storage::CopyTextureSubImage1D.load(&mut loadfn, "glCopyTextureSubImage1D");
+         storage::CopyTextureSubImage1DEXT.load(&mut loadfn, "glCopyTextureSubImage1DEXT");
+         storage::CopyTextureSubImage2D.load(&mut loadfn, "glCopyTextureSubImage2D");
+         storage::CopyTextureSubImage2DEXT.load(&mut loadfn, "glCopyTextureSubImage2DEXT");
+         storage::CopyTextureSubImage3D.load(&mut loadfn, "glCopyTextureSubImage3D");
+         storage::CopyTextureSubImage3DEXT.load(&mut loadfn, "glCopyTextureSubImage3DEXT");
+         storage::CoverFillPathInstancedNV.load(&mut loadfn, "glCoverFillPathInstancedNV");
+         storage::CoverFillPathNV.load(&mut loadfn, "glCoverFillPathNV");
+         storage::CoverStrokePathInstancedNV.load(&mut loadfn, "glCoverStrokePathInstancedNV");
+         storage::CoverStrokePathNV.load(&mut loadfn, "glCoverStrokePathNV");
+         storage::CoverageModulationNV.load(&mut loadfn, "glCoverageModulationNV");
+         storage::CoverageModulationTableNV.load(&mut loadfn, "glCoverageModulationTableNV");
+         storage::CreateBuffers.load(&mut loadfn, "glCreateBuffers");
+         storage::CreateCommandListsNV.load(&mut loadfn, "glCreateCommandListsNV");
+         storage::CreateFramebuffers.load(&mut loadfn, "glCreateFramebuffers");
+         storage::CreateMemoryObjectsEXT.load(&mut loadfn, "glCreateMemoryObjectsEXT");
+         storage::CreatePerfQueryINTEL.load(&mut loadfn, "glCreatePerfQueryINTEL");
+         storage::CreateProgram.load(&mut loadfn, "glCreateProgram");
+         storage::CreateProgramObjectARB.load(&mut loadfn, "glCreateProgramObjectARB");
+         storage::CreateProgramPipelines.load(&mut loadfn, "glCreateProgramPipelines");
+         storage::CreateProgressFenceNVX.load(&mut loadfn, "glCreateProgressFenceNVX");
+         storage::CreateQueries.load(&mut loadfn, "glCreateQueries");
+         storage::CreateRenderbuffers.load(&mut loadfn, "glCreateRenderbuffers");
+         storage::CreateSamplers.load(&mut loadfn, "glCreateSamplers");
+         storage::CreateSemaphoresNV.load(&mut loadfn, "glCreateSemaphoresNV");
+         storage::CreateShader.load(&mut loadfn, "glCreateShader");
+         storage::CreateShaderObjectARB.load(&mut loadfn, "glCreateShaderObjectARB");
+         storage::CreateShaderProgramEXT.load(&mut loadfn, "glCreateShaderProgramEXT");
+         storage::CreateShaderProgramv.load(&mut loadfn, "glCreateShaderProgramv");
+         storage::CreateStatesNV.load(&mut loadfn, "glCreateStatesNV");
+         storage::CreateSyncFromCLeventARB.load(&mut loadfn, "glCreateSyncFromCLeventARB");
+         storage::CreateTextures.load(&mut loadfn, "glCreateTextures");
+         storage::CreateTransformFeedbacks.load(&mut loadfn, "glCreateTransformFeedbacks");
+         storage::CreateVertexArrays.load(&mut loadfn, "glCreateVertexArrays");
+         storage::CullFace.load(&mut loadfn, "glCullFace");
+         storage::CullParameterdvEXT.load(&mut loadfn, "glCullParameterdvEXT");
+         storage::CullParameterfvEXT.load(&mut loadfn, "glCullParameterfvEXT");
+         storage::CurrentPaletteMatrixARB.load(&mut loadfn, "glCurrentPaletteMatrixARB");
+         storage::DebugMessageCallback.load(&mut loadfn, "glDebugMessageCallback");
+         storage::DebugMessageCallbackAMD.load(&mut loadfn, "glDebugMessageCallbackAMD");
+         storage::DebugMessageCallbackARB.load(&mut loadfn, "glDebugMessageCallbackARB");
+         storage::DebugMessageControl.load(&mut loadfn, "glDebugMessageControl");
+         storage::DebugMessageControlARB.load(&mut loadfn, "glDebugMessageControlARB");
+         storage::DebugMessageEnableAMD.load(&mut loadfn, "glDebugMessageEnableAMD");
+         storage::DebugMessageInsert.load(&mut loadfn, "glDebugMessageInsert");
+         storage::DebugMessageInsertAMD.load(&mut loadfn, "glDebugMessageInsertAMD");
+         storage::DebugMessageInsertARB.load(&mut loadfn, "glDebugMessageInsertARB");
+         storage::DeformSGIX.load(&mut loadfn, "glDeformSGIX");
+         storage::DeformationMap3dSGIX.load(&mut loadfn, "glDeformationMap3dSGIX");
+         storage::DeformationMap3fSGIX.load(&mut loadfn, "glDeformationMap3fSGIX");
+         storage::DeleteAsyncMarkersSGIX.load(&mut loadfn, "glDeleteAsyncMarkersSGIX");
+         storage::DeleteBuffers.load(&mut loadfn, "glDeleteBuffers");
+         storage::DeleteBuffersARB.load(&mut loadfn, "glDeleteBuffersARB");
+         storage::DeleteCommandListsNV.load(&mut loadfn, "glDeleteCommandListsNV");
+         storage::DeleteFencesAPPLE.load(&mut loadfn, "glDeleteFencesAPPLE");
+         storage::DeleteFencesNV.load(&mut loadfn, "glDeleteFencesNV");
+         storage::DeleteFragmentShaderATI.load(&mut loadfn, "glDeleteFragmentShaderATI");
+         storage::DeleteFramebuffers.load(&mut loadfn, "glDeleteFramebuffers");
+         storage::DeleteFramebuffersEXT.load(&mut loadfn, "glDeleteFramebuffersEXT");
+         storage::DeleteLists.load(&mut loadfn, "glDeleteLists");
+         storage::DeleteMemoryObjectsEXT.load(&mut loadfn, "glDeleteMemoryObjectsEXT");
+         storage::DeleteNamedStringARB.load(&mut loadfn, "glDeleteNamedStringARB");
+         storage::DeleteNamesAMD.load(&mut loadfn, "glDeleteNamesAMD");
+         storage::DeleteObjectARB.load(&mut loadfn, "glDeleteObjectARB");
+         storage::DeleteOcclusionQueriesNV.load(&mut loadfn, "glDeleteOcclusionQueriesNV");
+         storage::DeletePathsNV.load(&mut loadfn, "glDeletePathsNV");
+         storage::DeletePerfMonitorsAMD.load(&mut loadfn, "glDeletePerfMonitorsAMD");
+         storage::DeletePerfQueryINTEL.load(&mut loadfn, "glDeletePerfQueryINTEL");
+         storage::DeleteProgram.load(&mut loadfn, "glDeleteProgram");
+         storage::DeleteProgramPipelines.load(&mut loadfn, "glDeleteProgramPipelines");
+         storage::DeleteProgramsARB.load(&mut loadfn, "glDeleteProgramsARB");
+         storage::DeleteProgramsNV.load(&mut loadfn, "glDeleteProgramsNV");
+         storage::DeleteQueries.load(&mut loadfn, "glDeleteQueries");
+         storage::DeleteQueriesARB.load(&mut loadfn, "glDeleteQueriesARB");
+         storage::DeleteQueryResourceTagNV.load(&mut loadfn, "glDeleteQueryResourceTagNV");
+         storage::DeleteRenderbuffers.load(&mut loadfn, "glDeleteRenderbuffers");
+         storage::DeleteRenderbuffersEXT.load(&mut loadfn, "glDeleteRenderbuffersEXT");
+         storage::DeleteSamplers.load(&mut loadfn, "glDeleteSamplers");
+         storage::DeleteSemaphoresEXT.load(&mut loadfn, "glDeleteSemaphoresEXT");
+         storage::DeleteShader.load(&mut loadfn, "glDeleteShader");
+         storage::DeleteStatesNV.load(&mut loadfn, "glDeleteStatesNV");
+         storage::DeleteSync.load(&mut loadfn, "glDeleteSync");
+         storage::DeleteTextures.load(&mut loadfn, "glDeleteTextures");
+         storage::DeleteTexturesEXT.load(&mut loadfn, "glDeleteTexturesEXT");
+         storage::DeleteTransformFeedbacks.load(&mut loadfn, "glDeleteTransformFeedbacks");
+         storage::DeleteTransformFeedbacksNV.load(&mut loadfn, "glDeleteTransformFeedbacksNV");
+         storage::DeleteVertexArrays.load(&mut loadfn, "glDeleteVertexArrays");
+         storage::DeleteVertexArraysAPPLE.load(&mut loadfn, "glDeleteVertexArraysAPPLE");
+         storage::DeleteVertexShaderEXT.load(&mut loadfn, "glDeleteVertexShaderEXT");
+         storage::DepthBoundsEXT.load(&mut loadfn, "glDepthBoundsEXT");
+         storage::DepthBoundsdNV.load(&mut loadfn, "glDepthBoundsdNV");
+         storage::DepthFunc.load(&mut loadfn, "glDepthFunc");
+         storage::DepthMask.load(&mut loadfn, "glDepthMask");
+         storage::DepthRange.load(&mut loadfn, "glDepthRange");
+         storage::DepthRangeArraydvNV.load(&mut loadfn, "glDepthRangeArraydvNV");
+         storage::DepthRangeArrayv.load(&mut loadfn, "glDepthRangeArrayv");
+         storage::DepthRangeIndexed.load(&mut loadfn, "glDepthRangeIndexed");
+         storage::DepthRangeIndexeddNV.load(&mut loadfn, "glDepthRangeIndexeddNV");
+         storage::DepthRangedNV.load(&mut loadfn, "glDepthRangedNV");
+         storage::DepthRangef.load(&mut loadfn, "glDepthRangef");
+         storage::DepthRangefOES.load(&mut loadfn, "glDepthRangefOES");
+         storage::DepthRangexOES.load(&mut loadfn, "glDepthRangexOES");
+         storage::DetachObjectARB.load(&mut loadfn, "glDetachObjectARB");
+         storage::DetachShader.load(&mut loadfn, "glDetachShader");
+         storage::DetailTexFuncSGIS.load(&mut loadfn, "glDetailTexFuncSGIS");
+         storage::Disable.load(&mut loadfn, "glDisable");
+         storage::DisableClientState.load(&mut loadfn, "glDisableClientState");
+         storage::DisableClientStateIndexedEXT.load(&mut loadfn, "glDisableClientStateIndexedEXT");
+         storage::DisableClientStateiEXT.load(&mut loadfn, "glDisableClientStateiEXT");
+         storage::DisableIndexedEXT.load(&mut loadfn, "glDisableIndexedEXT");
+         storage::DisableVariantClientStateEXT.load(&mut loadfn, "glDisableVariantClientStateEXT");
+         storage::DisableVertexArrayAttrib.load(&mut loadfn, "glDisableVertexArrayAttrib");
+         storage::DisableVertexArrayAttribEXT.load(&mut loadfn, "glDisableVertexArrayAttribEXT");
+         storage::DisableVertexArrayEXT.load(&mut loadfn, "glDisableVertexArrayEXT");
+         storage::DisableVertexAttribAPPLE.load(&mut loadfn, "glDisableVertexAttribAPPLE");
+         storage::DisableVertexAttribArray.load(&mut loadfn, "glDisableVertexAttribArray");
+         storage::DisableVertexAttribArrayARB.load(&mut loadfn, "glDisableVertexAttribArrayARB");
+         storage::Disablei.load(&mut loadfn, "glDisablei");
+         storage::DispatchCompute.load(&mut loadfn, "glDispatchCompute");
+         storage::DispatchComputeGroupSizeARB.load(&mut loadfn, "glDispatchComputeGroupSizeARB");
+         storage::DispatchComputeIndirect.load(&mut loadfn, "glDispatchComputeIndirect");
+         storage::DrawArrays.load(&mut loadfn, "glDrawArrays");
+         storage::DrawArraysEXT.load(&mut loadfn, "glDrawArraysEXT");
+         storage::DrawArraysIndirect.load(&mut loadfn, "glDrawArraysIndirect");
+         storage::DrawArraysInstanced.load(&mut loadfn, "glDrawArraysInstanced");
+         storage::DrawArraysInstancedARB.load(&mut loadfn, "glDrawArraysInstancedARB");
+         storage::DrawArraysInstancedBaseInstance.load(&mut loadfn, "glDrawArraysInstancedBaseInstance");
+         storage::DrawArraysInstancedEXT.load(&mut loadfn, "glDrawArraysInstancedEXT");
+         storage::DrawBuffer.load(&mut loadfn, "glDrawBuffer");
+         storage::DrawBuffers.load(&mut loadfn, "glDrawBuffers");
+         storage::DrawBuffersARB.load(&mut loadfn, "glDrawBuffersARB");
+         storage::DrawBuffersATI.load(&mut loadfn, "glDrawBuffersATI");
+         storage::DrawCommandsAddressNV.load(&mut loadfn, "glDrawCommandsAddressNV");
+         storage::DrawCommandsNV.load(&mut loadfn, "glDrawCommandsNV");
+         storage::DrawCommandsStatesAddressNV.load(&mut loadfn, "glDrawCommandsStatesAddressNV");
+         storage::DrawCommandsStatesNV.load(&mut loadfn, "glDrawCommandsStatesNV");
+         storage::DrawElementArrayAPPLE.load(&mut loadfn, "glDrawElementArrayAPPLE");
+         storage::DrawElementArrayATI.load(&mut loadfn, "glDrawElementArrayATI");
+         storage::DrawElements.load(&mut loadfn, "glDrawElements");
+         storage::DrawElementsBaseVertex.load(&mut loadfn, "glDrawElementsBaseVertex");
+         storage::DrawElementsIndirect.load(&mut loadfn, "glDrawElementsIndirect");
+         storage::DrawElementsInstanced.load(&mut loadfn, "glDrawElementsInstanced");
+         storage::DrawElementsInstancedARB.load(&mut loadfn, "glDrawElementsInstancedARB");
+         storage::DrawElementsInstancedBaseInstance.load(&mut loadfn, "glDrawElementsInstancedBaseInstance");
+         storage::DrawElementsInstancedBaseVertex.load(&mut loadfn, "glDrawElementsInstancedBaseVertex");
+         storage::DrawElementsInstancedBaseVertexBaseInstance.load(&mut loadfn, "glDrawElementsInstancedBaseVertexBaseInstance");
+         storage::DrawElementsInstancedEXT.load(&mut loadfn, "glDrawElementsInstancedEXT");
+         storage::DrawMeshArraysSUN.load(&mut loadfn, "glDrawMeshArraysSUN");
+         storage::DrawMeshTasksIndirectNV.load(&mut loadfn, "glDrawMeshTasksIndirectNV");
+         storage::DrawMeshTasksNV.load(&mut loadfn, "glDrawMeshTasksNV");
+         storage::DrawPixels.load(&mut loadfn, "glDrawPixels");
+         storage::DrawRangeElementArrayAPPLE.load(&mut loadfn, "glDrawRangeElementArrayAPPLE");
+         storage::DrawRangeElementArrayATI.load(&mut loadfn, "glDrawRangeElementArrayATI");
+         storage::DrawRangeElements.load(&mut loadfn, "glDrawRangeElements");
+         storage::DrawRangeElementsBaseVertex.load(&mut loadfn, "glDrawRangeElementsBaseVertex");
+         storage::DrawRangeElementsEXT.load(&mut loadfn, "glDrawRangeElementsEXT");
+         storage::DrawTextureNV.load(&mut loadfn, "glDrawTextureNV");
+         storage::DrawTransformFeedback.load(&mut loadfn, "glDrawTransformFeedback");
+         storage::DrawTransformFeedbackInstanced.load(&mut loadfn, "glDrawTransformFeedbackInstanced");
+         storage::DrawTransformFeedbackNV.load(&mut loadfn, "glDrawTransformFeedbackNV");
+         storage::DrawTransformFeedbackStream.load(&mut loadfn, "glDrawTransformFeedbackStream");
+         storage::DrawTransformFeedbackStreamInstanced.load(&mut loadfn, "glDrawTransformFeedbackStreamInstanced");
+         storage::DrawVkImageNV.load(&mut loadfn, "glDrawVkImageNV");
+         storage::EGLImageTargetTexStorageEXT.load(&mut loadfn, "glEGLImageTargetTexStorageEXT");
+         storage::EGLImageTargetTextureStorageEXT.load(&mut loadfn, "glEGLImageTargetTextureStorageEXT");
+         storage::EdgeFlag.load(&mut loadfn, "glEdgeFlag");
+         storage::EdgeFlagFormatNV.load(&mut loadfn, "glEdgeFlagFormatNV");
+         storage::EdgeFlagPointer.load(&mut loadfn, "glEdgeFlagPointer");
+         storage::EdgeFlagPointerEXT.load(&mut loadfn, "glEdgeFlagPointerEXT");
+         storage::EdgeFlagPointerListIBM.load(&mut loadfn, "glEdgeFlagPointerListIBM");
+         storage::EdgeFlagv.load(&mut loadfn, "glEdgeFlagv");
+         storage::ElementPointerAPPLE.load(&mut loadfn, "glElementPointerAPPLE");
+         storage::ElementPointerATI.load(&mut loadfn, "glElementPointerATI");
+         storage::Enable.load(&mut loadfn, "glEnable");
+         storage::EnableClientState.load(&mut loadfn, "glEnableClientState");
+         storage::EnableClientStateIndexedEXT.load(&mut loadfn, "glEnableClientStateIndexedEXT");
+         storage::EnableClientStateiEXT.load(&mut loadfn, "glEnableClientStateiEXT");
+         storage::EnableIndexedEXT.load(&mut loadfn, "glEnableIndexedEXT");
+         storage::EnableVariantClientStateEXT.load(&mut loadfn, "glEnableVariantClientStateEXT");
+         storage::EnableVertexArrayAttrib.load(&mut loadfn, "glEnableVertexArrayAttrib");
+         storage::EnableVertexArrayAttribEXT.load(&mut loadfn, "glEnableVertexArrayAttribEXT");
+         storage::EnableVertexArrayEXT.load(&mut loadfn, "glEnableVertexArrayEXT");
+         storage::EnableVertexAttribAPPLE.load(&mut loadfn, "glEnableVertexAttribAPPLE");
+         storage::EnableVertexAttribArray.load(&mut loadfn, "glEnableVertexAttribArray");
+         storage::EnableVertexAttribArrayARB.load(&mut loadfn, "glEnableVertexAttribArrayARB");
+         storage::Enablei.load(&mut loadfn, "glEnablei");
+         storage::End.load(&mut loadfn, "glEnd");
+         storage::EndConditionalRender.load(&mut loadfn, "glEndConditionalRender");
+         storage::EndConditionalRenderNV.load(&mut loadfn, "glEndConditionalRenderNV");
+         storage::EndConditionalRenderNVX.load(&mut loadfn, "glEndConditionalRenderNVX");
+         storage::EndFragmentShaderATI.load(&mut loadfn, "glEndFragmentShaderATI");
+         storage::EndList.load(&mut loadfn, "glEndList");
+         storage::EndOcclusionQueryNV.load(&mut loadfn, "glEndOcclusionQueryNV");
+         storage::EndPerfMonitorAMD.load(&mut loadfn, "glEndPerfMonitorAMD");
+         storage::EndPerfQueryINTEL.load(&mut loadfn, "glEndPerfQueryINTEL");
+         storage::EndQuery.load(&mut loadfn, "glEndQuery");
+         storage::EndQueryARB.load(&mut loadfn, "glEndQueryARB");
+         storage::EndQueryIndexed.load(&mut loadfn, "glEndQueryIndexed");
+         storage::EndTransformFeedback.load(&mut loadfn, "glEndTransformFeedback");
+         storage::EndTransformFeedbackEXT.load(&mut loadfn, "glEndTransformFeedbackEXT");
+         storage::EndTransformFeedbackNV.load(&mut loadfn, "glEndTransformFeedbackNV");
+         storage::EndVertexShaderEXT.load(&mut loadfn, "glEndVertexShaderEXT");
+         storage::EndVideoCaptureNV.load(&mut loadfn, "glEndVideoCaptureNV");
+         storage::EvalCoord1d.load(&mut loadfn, "glEvalCoord1d");
+         storage::EvalCoord1dv.load(&mut loadfn, "glEvalCoord1dv");
+         storage::EvalCoord1f.load(&mut loadfn, "glEvalCoord1f");
+         storage::EvalCoord1fv.load(&mut loadfn, "glEvalCoord1fv");
+         storage::EvalCoord1xOES.load(&mut loadfn, "glEvalCoord1xOES");
+         storage::EvalCoord1xvOES.load(&mut loadfn, "glEvalCoord1xvOES");
+         storage::EvalCoord2d.load(&mut loadfn, "glEvalCoord2d");
+         storage::EvalCoord2dv.load(&mut loadfn, "glEvalCoord2dv");
+         storage::EvalCoord2f.load(&mut loadfn, "glEvalCoord2f");
+         storage::EvalCoord2fv.load(&mut loadfn, "glEvalCoord2fv");
+         storage::EvalCoord2xOES.load(&mut loadfn, "glEvalCoord2xOES");
+         storage::EvalCoord2xvOES.load(&mut loadfn, "glEvalCoord2xvOES");
+         storage::EvalMapsNV.load(&mut loadfn, "glEvalMapsNV");
+         storage::EvalMesh1.load(&mut loadfn, "glEvalMesh1");
+         storage::EvalMesh2.load(&mut loadfn, "glEvalMesh2");
+         storage::EvalPoint1.load(&mut loadfn, "glEvalPoint1");
+         storage::EvalPoint2.load(&mut loadfn, "glEvalPoint2");
+         storage::EvaluateDepthValuesARB.load(&mut loadfn, "glEvaluateDepthValuesARB");
+         storage::ExecuteProgramNV.load(&mut loadfn, "glExecuteProgramNV");
+         storage::ExtractComponentEXT.load(&mut loadfn, "glExtractComponentEXT");
+         storage::FeedbackBuffer.load(&mut loadfn, "glFeedbackBuffer");
+         storage::FeedbackBufferxOES.load(&mut loadfn, "glFeedbackBufferxOES");
+         storage::FenceSync.load(&mut loadfn, "glFenceSync");
+         storage::FinalCombinerInputNV.load(&mut loadfn, "glFinalCombinerInputNV");
+         storage::Finish.load(&mut loadfn, "glFinish");
+         storage::FinishAsyncSGIX.load(&mut loadfn, "glFinishAsyncSGIX");
+         storage::FinishFenceAPPLE.load(&mut loadfn, "glFinishFenceAPPLE");
+         storage::FinishFenceNV.load(&mut loadfn, "glFinishFenceNV");
+         storage::FinishObjectAPPLE.load(&mut loadfn, "glFinishObjectAPPLE");
+         storage::FinishTextureSUNX.load(&mut loadfn, "glFinishTextureSUNX");
+         storage::Flush.load(&mut loadfn, "glFlush");
+         storage::FlushMappedBufferRange.load(&mut loadfn, "glFlushMappedBufferRange");
+         storage::FlushMappedBufferRangeAPPLE.load(&mut loadfn, "glFlushMappedBufferRangeAPPLE");
+         storage::FlushMappedNamedBufferRange.load(&mut loadfn, "glFlushMappedNamedBufferRange");
+         storage::FlushMappedNamedBufferRangeEXT.load(&mut loadfn, "glFlushMappedNamedBufferRangeEXT");
+         storage::FlushPixelDataRangeNV.load(&mut loadfn, "glFlushPixelDataRangeNV");
+         storage::FlushRasterSGIX.load(&mut loadfn, "glFlushRasterSGIX");
+         storage::FlushStaticDataIBM.load(&mut loadfn, "glFlushStaticDataIBM");
+         storage::FlushVertexArrayRangeAPPLE.load(&mut loadfn, "glFlushVertexArrayRangeAPPLE");
+         storage::FlushVertexArrayRangeNV.load(&mut loadfn, "glFlushVertexArrayRangeNV");
+         storage::FogCoordFormatNV.load(&mut loadfn, "glFogCoordFormatNV");
+         storage::FogCoordPointer.load(&mut loadfn, "glFogCoordPointer");
+         storage::FogCoordPointerEXT.load(&mut loadfn, "glFogCoordPointerEXT");
+         storage::FogCoordPointerListIBM.load(&mut loadfn, "glFogCoordPointerListIBM");
+         storage::FogCoordd.load(&mut loadfn, "glFogCoordd");
+         storage::FogCoorddEXT.load(&mut loadfn, "glFogCoorddEXT");
+         storage::FogCoorddv.load(&mut loadfn, "glFogCoorddv");
+         storage::FogCoorddvEXT.load(&mut loadfn, "glFogCoorddvEXT");
+         storage::FogCoordf.load(&mut loadfn, "glFogCoordf");
+         storage::FogCoordfEXT.load(&mut loadfn, "glFogCoordfEXT");
+         storage::FogCoordfv.load(&mut loadfn, "glFogCoordfv");
+         storage::FogCoordfvEXT.load(&mut loadfn, "glFogCoordfvEXT");
+         storage::FogCoordhNV.load(&mut loadfn, "glFogCoordhNV");
+         storage::FogCoordhvNV.load(&mut loadfn, "glFogCoordhvNV");
+         storage::FogFuncSGIS.load(&mut loadfn, "glFogFuncSGIS");
+         storage::Fogf.load(&mut loadfn, "glFogf");
+         storage::Fogfv.load(&mut loadfn, "glFogfv");
+         storage::Fogi.load(&mut loadfn, "glFogi");
+         storage::Fogiv.load(&mut loadfn, "glFogiv");
+         storage::FogxOES.load(&mut loadfn, "glFogxOES");
+         storage::FogxvOES.load(&mut loadfn, "glFogxvOES");
+         storage::FragmentColorMaterialSGIX.load(&mut loadfn, "glFragmentColorMaterialSGIX");
+         storage::FragmentCoverageColorNV.load(&mut loadfn, "glFragmentCoverageColorNV");
+         storage::FragmentLightModelfSGIX.load(&mut loadfn, "glFragmentLightModelfSGIX");
+         storage::FragmentLightModelfvSGIX.load(&mut loadfn, "glFragmentLightModelfvSGIX");
+         storage::FragmentLightModeliSGIX.load(&mut loadfn, "glFragmentLightModeliSGIX");
+         storage::FragmentLightModelivSGIX.load(&mut loadfn, "glFragmentLightModelivSGIX");
+         storage::FragmentLightfSGIX.load(&mut loadfn, "glFragmentLightfSGIX");
+         storage::FragmentLightfvSGIX.load(&mut loadfn, "glFragmentLightfvSGIX");
+         storage::FragmentLightiSGIX.load(&mut loadfn, "glFragmentLightiSGIX");
+         storage::FragmentLightivSGIX.load(&mut loadfn, "glFragmentLightivSGIX");
+         storage::FragmentMaterialfSGIX.load(&mut loadfn, "glFragmentMaterialfSGIX");
+         storage::FragmentMaterialfvSGIX.load(&mut loadfn, "glFragmentMaterialfvSGIX");
+         storage::FragmentMaterialiSGIX.load(&mut loadfn, "glFragmentMaterialiSGIX");
+         storage::FragmentMaterialivSGIX.load(&mut loadfn, "glFragmentMaterialivSGIX");
+         storage::FrameTerminatorGREMEDY.load(&mut loadfn, "glFrameTerminatorGREMEDY");
+         storage::FrameZoomSGIX.load(&mut loadfn, "glFrameZoomSGIX");
+         storage::FramebufferDrawBufferEXT.load(&mut loadfn, "glFramebufferDrawBufferEXT");
+         storage::FramebufferDrawBuffersEXT.load(&mut loadfn, "glFramebufferDrawBuffersEXT");
+         storage::FramebufferFetchBarrierEXT.load(&mut loadfn, "glFramebufferFetchBarrierEXT");
+         storage::FramebufferParameteri.load(&mut loadfn, "glFramebufferParameteri");
+         storage::FramebufferParameteriMESA.load(&mut loadfn, "glFramebufferParameteriMESA");
+         storage::FramebufferReadBufferEXT.load(&mut loadfn, "glFramebufferReadBufferEXT");
+         storage::FramebufferRenderbuffer.load(&mut loadfn, "glFramebufferRenderbuffer");
+         storage::FramebufferRenderbufferEXT.load(&mut loadfn, "glFramebufferRenderbufferEXT");
+         storage::FramebufferSampleLocationsfvARB.load(&mut loadfn, "glFramebufferSampleLocationsfvARB");
+         storage::FramebufferSampleLocationsfvNV.load(&mut loadfn, "glFramebufferSampleLocationsfvNV");
+         storage::FramebufferSamplePositionsfvAMD.load(&mut loadfn, "glFramebufferSamplePositionsfvAMD");
+         storage::FramebufferTexture.load(&mut loadfn, "glFramebufferTexture");
+         storage::FramebufferTexture1D.load(&mut loadfn, "glFramebufferTexture1D");
+         storage::FramebufferTexture1DEXT.load(&mut loadfn, "glFramebufferTexture1DEXT");
+         storage::FramebufferTexture2D.load(&mut loadfn, "glFramebufferTexture2D");
+         storage::FramebufferTexture2DEXT.load(&mut loadfn, "glFramebufferTexture2DEXT");
+         storage::FramebufferTexture3D.load(&mut loadfn, "glFramebufferTexture3D");
+         storage::FramebufferTexture3DEXT.load(&mut loadfn, "glFramebufferTexture3DEXT");
+         storage::FramebufferTextureARB.load(&mut loadfn, "glFramebufferTextureARB");
+         storage::FramebufferTextureEXT.load(&mut loadfn, "glFramebufferTextureEXT");
+         storage::FramebufferTextureFaceARB.load(&mut loadfn, "glFramebufferTextureFaceARB");
+         storage::FramebufferTextureFaceEXT.load(&mut loadfn, "glFramebufferTextureFaceEXT");
+         storage::FramebufferTextureLayer.load(&mut loadfn, "glFramebufferTextureLayer");
+         storage::FramebufferTextureLayerARB.load(&mut loadfn, "glFramebufferTextureLayerARB");
+         storage::FramebufferTextureLayerEXT.load(&mut loadfn, "glFramebufferTextureLayerEXT");
+         storage::FramebufferTextureMultiviewOVR.load(&mut loadfn, "glFramebufferTextureMultiviewOVR");
+         storage::FreeObjectBufferATI.load(&mut loadfn, "glFreeObjectBufferATI");
+         storage::FrontFace.load(&mut loadfn, "glFrontFace");
+         storage::Frustum.load(&mut loadfn, "glFrustum");
+         storage::FrustumfOES.load(&mut loadfn, "glFrustumfOES");
+         storage::FrustumxOES.load(&mut loadfn, "glFrustumxOES");
+         storage::GenAsyncMarkersSGIX.load(&mut loadfn, "glGenAsyncMarkersSGIX");
+         storage::GenBuffers.load(&mut loadfn, "glGenBuffers");
+         storage::GenBuffersARB.load(&mut loadfn, "glGenBuffersARB");
+         storage::GenFencesAPPLE.load(&mut loadfn, "glGenFencesAPPLE");
+         storage::GenFencesNV.load(&mut loadfn, "glGenFencesNV");
+         storage::GenFragmentShadersATI.load(&mut loadfn, "glGenFragmentShadersATI");
+         storage::GenFramebuffers.load(&mut loadfn, "glGenFramebuffers");
+         storage::GenFramebuffersEXT.load(&mut loadfn, "glGenFramebuffersEXT");
+         storage::GenLists.load(&mut loadfn, "glGenLists");
+         storage::GenNamesAMD.load(&mut loadfn, "glGenNamesAMD");
+         storage::GenOcclusionQueriesNV.load(&mut loadfn, "glGenOcclusionQueriesNV");
+         storage::GenPathsNV.load(&mut loadfn, "glGenPathsNV");
+         storage::GenPerfMonitorsAMD.load(&mut loadfn, "glGenPerfMonitorsAMD");
+         storage::GenProgramPipelines.load(&mut loadfn, "glGenProgramPipelines");
+         storage::GenProgramsARB.load(&mut loadfn, "glGenProgramsARB");
+         storage::GenProgramsNV.load(&mut loadfn, "glGenProgramsNV");
+         storage::GenQueries.load(&mut loadfn, "glGenQueries");
+         storage::GenQueriesARB.load(&mut loadfn, "glGenQueriesARB");
+         storage::GenQueryResourceTagNV.load(&mut loadfn, "glGenQueryResourceTagNV");
+         storage::GenRenderbuffers.load(&mut loadfn, "glGenRenderbuffers");
+         storage::GenRenderbuffersEXT.load(&mut loadfn, "glGenRenderbuffersEXT");
+         storage::GenSamplers.load(&mut loadfn, "glGenSamplers");
+         storage::GenSemaphoresEXT.load(&mut loadfn, "glGenSemaphoresEXT");
+         storage::GenSymbolsEXT.load(&mut loadfn, "glGenSymbolsEXT");
+         storage::GenTextures.load(&mut loadfn, "glGenTextures");
+         storage::GenTexturesEXT.load(&mut loadfn, "glGenTexturesEXT");
+         storage::GenTransformFeedbacks.load(&mut loadfn, "glGenTransformFeedbacks");
+         storage::GenTransformFeedbacksNV.load(&mut loadfn, "glGenTransformFeedbacksNV");
+         storage::GenVertexArrays.load(&mut loadfn, "glGenVertexArrays");
+         storage::GenVertexArraysAPPLE.load(&mut loadfn, "glGenVertexArraysAPPLE");
+         storage::GenVertexShadersEXT.load(&mut loadfn, "glGenVertexShadersEXT");
+         storage::GenerateMipmap.load(&mut loadfn, "glGenerateMipmap");
+         storage::GenerateMipmapEXT.load(&mut loadfn, "glGenerateMipmapEXT");
+         storage::GenerateMultiTexMipmapEXT.load(&mut loadfn, "glGenerateMultiTexMipmapEXT");
+         storage::GenerateTextureMipmap.load(&mut loadfn, "glGenerateTextureMipmap");
+         storage::GenerateTextureMipmapEXT.load(&mut loadfn, "glGenerateTextureMipmapEXT");
+         storage::GetActiveAtomicCounterBufferiv.load(&mut loadfn, "glGetActiveAtomicCounterBufferiv");
+         storage::GetActiveAttrib.load(&mut loadfn, "glGetActiveAttrib");
+         storage::GetActiveAttribARB.load(&mut loadfn, "glGetActiveAttribARB");
+         storage::GetActiveSubroutineName.load(&mut loadfn, "glGetActiveSubroutineName");
+         storage::GetActiveSubroutineUniformName.load(&mut loadfn, "glGetActiveSubroutineUniformName");
+         storage::GetActiveSubroutineUniformiv.load(&mut loadfn, "glGetActiveSubroutineUniformiv");
+         storage::GetActiveUniform.load(&mut loadfn, "glGetActiveUniform");
+         storage::GetActiveUniformARB.load(&mut loadfn, "glGetActiveUniformARB");
+         storage::GetActiveUniformBlockName.load(&mut loadfn, "glGetActiveUniformBlockName");
+         storage::GetActiveUniformBlockiv.load(&mut loadfn, "glGetActiveUniformBlockiv");
+         storage::GetActiveUniformName.load(&mut loadfn, "glGetActiveUniformName");
+         storage::GetActiveUniformsiv.load(&mut loadfn, "glGetActiveUniformsiv");
+         storage::GetActiveVaryingNV.load(&mut loadfn, "glGetActiveVaryingNV");
+         storage::GetArrayObjectfvATI.load(&mut loadfn, "glGetArrayObjectfvATI");
+         storage::GetArrayObjectivATI.load(&mut loadfn, "glGetArrayObjectivATI");
+         storage::GetAttachedObjectsARB.load(&mut loadfn, "glGetAttachedObjectsARB");
+         storage::GetAttachedShaders.load(&mut loadfn, "glGetAttachedShaders");
+         storage::GetAttribLocation.load(&mut loadfn, "glGetAttribLocation");
+         storage::GetAttribLocationARB.load(&mut loadfn, "glGetAttribLocationARB");
+         storage::GetBooleanIndexedvEXT.load(&mut loadfn, "glGetBooleanIndexedvEXT");
+         storage::GetBooleani_v.load(&mut loadfn, "glGetBooleani_v");
+         storage::GetBooleanv.load(&mut loadfn, "glGetBooleanv");
+         storage::GetBufferParameteri64v.load(&mut loadfn, "glGetBufferParameteri64v");
+         storage::GetBufferParameteriv.load(&mut loadfn, "glGetBufferParameteriv");
+         storage::GetBufferParameterivARB.load(&mut loadfn, "glGetBufferParameterivARB");
+         storage::GetBufferParameterui64vNV.load(&mut loadfn, "glGetBufferParameterui64vNV");
+         storage::GetBufferPointerv.load(&mut loadfn, "glGetBufferPointerv");
+         storage::GetBufferPointervARB.load(&mut loadfn, "glGetBufferPointervARB");
+         storage::GetBufferSubData.load(&mut loadfn, "glGetBufferSubData");
+         storage::GetBufferSubDataARB.load(&mut loadfn, "glGetBufferSubDataARB");
+         storage::GetClipPlane.load(&mut loadfn, "glGetClipPlane");
+         storage::GetClipPlanefOES.load(&mut loadfn, "glGetClipPlanefOES");
+         storage::GetClipPlanexOES.load(&mut loadfn, "glGetClipPlanexOES");
+         storage::GetColorTable.load(&mut loadfn, "glGetColorTable");
+         storage::GetColorTableEXT.load(&mut loadfn, "glGetColorTableEXT");
+         storage::GetColorTableParameterfv.load(&mut loadfn, "glGetColorTableParameterfv");
+         storage::GetColorTableParameterfvEXT.load(&mut loadfn, "glGetColorTableParameterfvEXT");
+         storage::GetColorTableParameterfvSGI.load(&mut loadfn, "glGetColorTableParameterfvSGI");
+         storage::GetColorTableParameteriv.load(&mut loadfn, "glGetColorTableParameteriv");
+         storage::GetColorTableParameterivEXT.load(&mut loadfn, "glGetColorTableParameterivEXT");
+         storage::GetColorTableParameterivSGI.load(&mut loadfn, "glGetColorTableParameterivSGI");
+         storage::GetColorTableSGI.load(&mut loadfn, "glGetColorTableSGI");
+         storage::GetCombinerInputParameterfvNV.load(&mut loadfn, "glGetCombinerInputParameterfvNV");
+         storage::GetCombinerInputParameterivNV.load(&mut loadfn, "glGetCombinerInputParameterivNV");
+         storage::GetCombinerOutputParameterfvNV.load(&mut loadfn, "glGetCombinerOutputParameterfvNV");
+         storage::GetCombinerOutputParameterivNV.load(&mut loadfn, "glGetCombinerOutputParameterivNV");
+         storage::GetCombinerStageParameterfvNV.load(&mut loadfn, "glGetCombinerStageParameterfvNV");
+         storage::GetCommandHeaderNV.load(&mut loadfn, "glGetCommandHeaderNV");
+         storage::GetCompressedMultiTexImageEXT.load(&mut loadfn, "glGetCompressedMultiTexImageEXT");
+         storage::GetCompressedTexImage.load(&mut loadfn, "glGetCompressedTexImage");
+         storage::GetCompressedTexImageARB.load(&mut loadfn, "glGetCompressedTexImageARB");
+         storage::GetCompressedTextureImage.load(&mut loadfn, "glGetCompressedTextureImage");
+         storage::GetCompressedTextureImageEXT.load(&mut loadfn, "glGetCompressedTextureImageEXT");
+         storage::GetCompressedTextureSubImage.load(&mut loadfn, "glGetCompressedTextureSubImage");
+         storage::GetConvolutionFilter.load(&mut loadfn, "glGetConvolutionFilter");
+         storage::GetConvolutionFilterEXT.load(&mut loadfn, "glGetConvolutionFilterEXT");
+         storage::GetConvolutionParameterfv.load(&mut loadfn, "glGetConvolutionParameterfv");
+         storage::GetConvolutionParameterfvEXT.load(&mut loadfn, "glGetConvolutionParameterfvEXT");
+         storage::GetConvolutionParameteriv.load(&mut loadfn, "glGetConvolutionParameteriv");
+         storage::GetConvolutionParameterivEXT.load(&mut loadfn, "glGetConvolutionParameterivEXT");
+         storage::GetConvolutionParameterxvOES.load(&mut loadfn, "glGetConvolutionParameterxvOES");
+         storage::GetCoverageModulationTableNV.load(&mut loadfn, "glGetCoverageModulationTableNV");
+         storage::GetDebugMessageLog.load(&mut loadfn, "glGetDebugMessageLog");
+         storage::GetDebugMessageLogAMD.load(&mut loadfn, "glGetDebugMessageLogAMD");
+         storage::GetDebugMessageLogARB.load(&mut loadfn, "glGetDebugMessageLogARB");
+         storage::GetDetailTexFuncSGIS.load(&mut loadfn, "glGetDetailTexFuncSGIS");
+         storage::GetDoubleIndexedvEXT.load(&mut loadfn, "glGetDoubleIndexedvEXT");
+         storage::GetDoublei_v.load(&mut loadfn, "glGetDoublei_v");
+         storage::GetDoublei_vEXT.load(&mut loadfn, "glGetDoublei_vEXT");
+         storage::GetDoublev.load(&mut loadfn, "glGetDoublev");
+         storage::GetError.load(&mut loadfn, "glGetError");
+         storage::GetFenceivNV.load(&mut loadfn, "glGetFenceivNV");
+         storage::GetFinalCombinerInputParameterfvNV.load(&mut loadfn, "glGetFinalCombinerInputParameterfvNV");
+         storage::GetFinalCombinerInputParameterivNV.load(&mut loadfn, "glGetFinalCombinerInputParameterivNV");
+         storage::GetFirstPerfQueryIdINTEL.load(&mut loadfn, "glGetFirstPerfQueryIdINTEL");
+         storage::GetFixedvOES.load(&mut loadfn, "glGetFixedvOES");
+         storage::GetFloatIndexedvEXT.load(&mut loadfn, "glGetFloatIndexedvEXT");
+         storage::GetFloati_v.load(&mut loadfn, "glGetFloati_v");
+         storage::GetFloati_vEXT.load(&mut loadfn, "glGetFloati_vEXT");
+         storage::GetFloatv.load(&mut loadfn, "glGetFloatv");
+         storage::GetFogFuncSGIS.load(&mut loadfn, "glGetFogFuncSGIS");
+         storage::GetFragDataIndex.load(&mut loadfn, "glGetFragDataIndex");
+         storage::GetFragDataLocation.load(&mut loadfn, "glGetFragDataLocation");
+         storage::GetFragDataLocationEXT.load(&mut loadfn, "glGetFragDataLocationEXT");
+         storage::GetFragmentLightfvSGIX.load(&mut loadfn, "glGetFragmentLightfvSGIX");
+         storage::GetFragmentLightivSGIX.load(&mut loadfn, "glGetFragmentLightivSGIX");
+         storage::GetFragmentMaterialfvSGIX.load(&mut loadfn, "glGetFragmentMaterialfvSGIX");
+         storage::GetFragmentMaterialivSGIX.load(&mut loadfn, "glGetFragmentMaterialivSGIX");
+         storage::GetFramebufferAttachmentParameteriv.load(&mut loadfn, "glGetFramebufferAttachmentParameteriv");
+         storage::GetFramebufferAttachmentParameterivEXT.load(&mut loadfn, "glGetFramebufferAttachmentParameterivEXT");
+         storage::GetFramebufferParameterfvAMD.load(&mut loadfn, "glGetFramebufferParameterfvAMD");
+         storage::GetFramebufferParameteriv.load(&mut loadfn, "glGetFramebufferParameteriv");
+         storage::GetFramebufferParameterivEXT.load(&mut loadfn, "glGetFramebufferParameterivEXT");
+         storage::GetFramebufferParameterivMESA.load(&mut loadfn, "glGetFramebufferParameterivMESA");
+         storage::GetGraphicsResetStatus.load(&mut loadfn, "glGetGraphicsResetStatus");
+         storage::GetGraphicsResetStatusARB.load(&mut loadfn, "glGetGraphicsResetStatusARB");
+         storage::GetHandleARB.load(&mut loadfn, "glGetHandleARB");
+         storage::GetHistogram.load(&mut loadfn, "glGetHistogram");
+         storage::GetHistogramEXT.load(&mut loadfn, "glGetHistogramEXT");
+         storage::GetHistogramParameterfv.load(&mut loadfn, "glGetHistogramParameterfv");
+         storage::GetHistogramParameterfvEXT.load(&mut loadfn, "glGetHistogramParameterfvEXT");
+         storage::GetHistogramParameteriv.load(&mut loadfn, "glGetHistogramParameteriv");
+         storage::GetHistogramParameterivEXT.load(&mut loadfn, "glGetHistogramParameterivEXT");
+         storage::GetHistogramParameterxvOES.load(&mut loadfn, "glGetHistogramParameterxvOES");
+         storage::GetImageHandleARB.load(&mut loadfn, "glGetImageHandleARB");
+         storage::GetImageHandleNV.load(&mut loadfn, "glGetImageHandleNV");
+         storage::GetImageTransformParameterfvHP.load(&mut loadfn, "glGetImageTransformParameterfvHP");
+         storage::GetImageTransformParameterivHP.load(&mut loadfn, "glGetImageTransformParameterivHP");
+         storage::GetInfoLogARB.load(&mut loadfn, "glGetInfoLogARB");
+         storage::GetInstrumentsSGIX.load(&mut loadfn, "glGetInstrumentsSGIX");
+         storage::GetInteger64i_v.load(&mut loadfn, "glGetInteger64i_v");
+         storage::GetInteger64v.load(&mut loadfn, "glGetInteger64v");
+         storage::GetIntegerIndexedvEXT.load(&mut loadfn, "glGetIntegerIndexedvEXT");
+         storage::GetIntegeri_v.load(&mut loadfn, "glGetIntegeri_v");
+         storage::GetIntegerui64i_vNV.load(&mut loadfn, "glGetIntegerui64i_vNV");
+         storage::GetIntegerui64vNV.load(&mut loadfn, "glGetIntegerui64vNV");
+         storage::GetIntegerv.load(&mut loadfn, "glGetIntegerv");
+         storage::GetInternalformatSampleivNV.load(&mut loadfn, "glGetInternalformatSampleivNV");
+         storage::GetInternalformati64v.load(&mut loadfn, "glGetInternalformati64v");
+         storage::GetInternalformativ.load(&mut loadfn, "glGetInternalformativ");
+         storage::GetInvariantBooleanvEXT.load(&mut loadfn, "glGetInvariantBooleanvEXT");
+         storage::GetInvariantFloatvEXT.load(&mut loadfn, "glGetInvariantFloatvEXT");
+         storage::GetInvariantIntegervEXT.load(&mut loadfn, "glGetInvariantIntegervEXT");
+         storage::GetLightfv.load(&mut loadfn, "glGetLightfv");
+         storage::GetLightiv.load(&mut loadfn, "glGetLightiv");
+         storage::GetLightxOES.load(&mut loadfn, "glGetLightxOES");
+         storage::GetListParameterfvSGIX.load(&mut loadfn, "glGetListParameterfvSGIX");
+         storage::GetListParameterivSGIX.load(&mut loadfn, "glGetListParameterivSGIX");
+         storage::GetLocalConstantBooleanvEXT.load(&mut loadfn, "glGetLocalConstantBooleanvEXT");
+         storage::GetLocalConstantFloatvEXT.load(&mut loadfn, "glGetLocalConstantFloatvEXT");
+         storage::GetLocalConstantIntegervEXT.load(&mut loadfn, "glGetLocalConstantIntegervEXT");
+         storage::GetMapAttribParameterfvNV.load(&mut loadfn, "glGetMapAttribParameterfvNV");
+         storage::GetMapAttribParameterivNV.load(&mut loadfn, "glGetMapAttribParameterivNV");
+         storage::GetMapControlPointsNV.load(&mut loadfn, "glGetMapControlPointsNV");
+         storage::GetMapParameterfvNV.load(&mut loadfn, "glGetMapParameterfvNV");
+         storage::GetMapParameterivNV.load(&mut loadfn, "glGetMapParameterivNV");
+         storage::GetMapdv.load(&mut loadfn, "glGetMapdv");
+         storage::GetMapfv.load(&mut loadfn, "glGetMapfv");
+         storage::GetMapiv.load(&mut loadfn, "glGetMapiv");
+         storage::GetMapxvOES.load(&mut loadfn, "glGetMapxvOES");
+         storage::GetMaterialfv.load(&mut loadfn, "glGetMaterialfv");
+         storage::GetMaterialiv.load(&mut loadfn, "glGetMaterialiv");
+         storage::GetMaterialxOES.load(&mut loadfn, "glGetMaterialxOES");
+         storage::GetMemoryObjectDetachedResourcesuivNV.load(&mut loadfn, "glGetMemoryObjectDetachedResourcesuivNV");
+         storage::GetMemoryObjectParameterivEXT.load(&mut loadfn, "glGetMemoryObjectParameterivEXT");
+         storage::GetMinmax.load(&mut loadfn, "glGetMinmax");
+         storage::GetMinmaxEXT.load(&mut loadfn, "glGetMinmaxEXT");
+         storage::GetMinmaxParameterfv.load(&mut loadfn, "glGetMinmaxParameterfv");
+         storage::GetMinmaxParameterfvEXT.load(&mut loadfn, "glGetMinmaxParameterfvEXT");
+         storage::GetMinmaxParameteriv.load(&mut loadfn, "glGetMinmaxParameteriv");
+         storage::GetMinmaxParameterivEXT.load(&mut loadfn, "glGetMinmaxParameterivEXT");
+         storage::GetMultiTexEnvfvEXT.load(&mut loadfn, "glGetMultiTexEnvfvEXT");
+         storage::GetMultiTexEnvivEXT.load(&mut loadfn, "glGetMultiTexEnvivEXT");
+         storage::GetMultiTexGendvEXT.load(&mut loadfn, "glGetMultiTexGendvEXT");
+         storage::GetMultiTexGenfvEXT.load(&mut loadfn, "glGetMultiTexGenfvEXT");
+         storage::GetMultiTexGenivEXT.load(&mut loadfn, "glGetMultiTexGenivEXT");
+         storage::GetMultiTexImageEXT.load(&mut loadfn, "glGetMultiTexImageEXT");
+         storage::GetMultiTexLevelParameterfvEXT.load(&mut loadfn, "glGetMultiTexLevelParameterfvEXT");
+         storage::GetMultiTexLevelParameterivEXT.load(&mut loadfn, "glGetMultiTexLevelParameterivEXT");
+         storage::GetMultiTexParameterIivEXT.load(&mut loadfn, "glGetMultiTexParameterIivEXT");
+         storage::GetMultiTexParameterIuivEXT.load(&mut loadfn, "glGetMultiTexParameterIuivEXT");
+         storage::GetMultiTexParameterfvEXT.load(&mut loadfn, "glGetMultiTexParameterfvEXT");
+         storage::GetMultiTexParameterivEXT.load(&mut loadfn, "glGetMultiTexParameterivEXT");
+         storage::GetMultisamplefv.load(&mut loadfn, "glGetMultisamplefv");
+         storage::GetMultisamplefvNV.load(&mut loadfn, "glGetMultisamplefvNV");
+         storage::GetNamedBufferParameteri64v.load(&mut loadfn, "glGetNamedBufferParameteri64v");
+         storage::GetNamedBufferParameteriv.load(&mut loadfn, "glGetNamedBufferParameteriv");
+         storage::GetNamedBufferParameterivEXT.load(&mut loadfn, "glGetNamedBufferParameterivEXT");
+         storage::GetNamedBufferParameterui64vNV.load(&mut loadfn, "glGetNamedBufferParameterui64vNV");
+         storage::GetNamedBufferPointerv.load(&mut loadfn, "glGetNamedBufferPointerv");
+         storage::GetNamedBufferPointervEXT.load(&mut loadfn, "glGetNamedBufferPointervEXT");
+         storage::GetNamedBufferSubData.load(&mut loadfn, "glGetNamedBufferSubData");
+         storage::GetNamedBufferSubDataEXT.load(&mut loadfn, "glGetNamedBufferSubDataEXT");
+         storage::GetNamedFramebufferAttachmentParameteriv.load(&mut loadfn, "glGetNamedFramebufferAttachmentParameteriv");
+         storage::GetNamedFramebufferAttachmentParameterivEXT.load(&mut loadfn, "glGetNamedFramebufferAttachmentParameterivEXT");
+         storage::GetNamedFramebufferParameterfvAMD.load(&mut loadfn, "glGetNamedFramebufferParameterfvAMD");
+         storage::GetNamedFramebufferParameteriv.load(&mut loadfn, "glGetNamedFramebufferParameteriv");
+         storage::GetNamedFramebufferParameterivEXT.load(&mut loadfn, "glGetNamedFramebufferParameterivEXT");
+         storage::GetNamedProgramLocalParameterIivEXT.load(&mut loadfn, "glGetNamedProgramLocalParameterIivEXT");
+         storage::GetNamedProgramLocalParameterIuivEXT.load(&mut loadfn, "glGetNamedProgramLocalParameterIuivEXT");
+         storage::GetNamedProgramLocalParameterdvEXT.load(&mut loadfn, "glGetNamedProgramLocalParameterdvEXT");
+         storage::GetNamedProgramLocalParameterfvEXT.load(&mut loadfn, "glGetNamedProgramLocalParameterfvEXT");
+         storage::GetNamedProgramStringEXT.load(&mut loadfn, "glGetNamedProgramStringEXT");
+         storage::GetNamedProgramivEXT.load(&mut loadfn, "glGetNamedProgramivEXT");
+         storage::GetNamedRenderbufferParameteriv.load(&mut loadfn, "glGetNamedRenderbufferParameteriv");
+         storage::GetNamedRenderbufferParameterivEXT.load(&mut loadfn, "glGetNamedRenderbufferParameterivEXT");
+         storage::GetNamedStringARB.load(&mut loadfn, "glGetNamedStringARB");
+         storage::GetNamedStringivARB.load(&mut loadfn, "glGetNamedStringivARB");
+         storage::GetNextPerfQueryIdINTEL.load(&mut loadfn, "glGetNextPerfQueryIdINTEL");
+         storage::GetObjectBufferfvATI.load(&mut loadfn, "glGetObjectBufferfvATI");
+         storage::GetObjectBufferivATI.load(&mut loadfn, "glGetObjectBufferivATI");
+         storage::GetObjectLabel.load(&mut loadfn, "glGetObjectLabel");
+         storage::GetObjectLabelEXT.load(&mut loadfn, "glGetObjectLabelEXT");
+         storage::GetObjectParameterfvARB.load(&mut loadfn, "glGetObjectParameterfvARB");
+         storage::GetObjectParameterivAPPLE.load(&mut loadfn, "glGetObjectParameterivAPPLE");
+         storage::GetObjectParameterivARB.load(&mut loadfn, "glGetObjectParameterivARB");
+         storage::GetObjectPtrLabel.load(&mut loadfn, "glGetObjectPtrLabel");
+         storage::GetOcclusionQueryivNV.load(&mut loadfn, "glGetOcclusionQueryivNV");
+         storage::GetOcclusionQueryuivNV.load(&mut loadfn, "glGetOcclusionQueryuivNV");
+         storage::GetPathColorGenfvNV.load(&mut loadfn, "glGetPathColorGenfvNV");
+         storage::GetPathColorGenivNV.load(&mut loadfn, "glGetPathColorGenivNV");
+         storage::GetPathCommandsNV.load(&mut loadfn, "glGetPathCommandsNV");
+         storage::GetPathCoordsNV.load(&mut loadfn, "glGetPathCoordsNV");
+         storage::GetPathDashArrayNV.load(&mut loadfn, "glGetPathDashArrayNV");
+         storage::GetPathLengthNV.load(&mut loadfn, "glGetPathLengthNV");
+         storage::GetPathMetricRangeNV.load(&mut loadfn, "glGetPathMetricRangeNV");
+         storage::GetPathMetricsNV.load(&mut loadfn, "glGetPathMetricsNV");
+         storage::GetPathParameterfvNV.load(&mut loadfn, "glGetPathParameterfvNV");
+         storage::GetPathParameterivNV.load(&mut loadfn, "glGetPathParameterivNV");
+         storage::GetPathSpacingNV.load(&mut loadfn, "glGetPathSpacingNV");
+         storage::GetPathTexGenfvNV.load(&mut loadfn, "glGetPathTexGenfvNV");
+         storage::GetPathTexGenivNV.load(&mut loadfn, "glGetPathTexGenivNV");
+         storage::GetPerfCounterInfoINTEL.load(&mut loadfn, "glGetPerfCounterInfoINTEL");
+         storage::GetPerfMonitorCounterDataAMD.load(&mut loadfn, "glGetPerfMonitorCounterDataAMD");
+         storage::GetPerfMonitorCounterInfoAMD.load(&mut loadfn, "glGetPerfMonitorCounterInfoAMD");
+         storage::GetPerfMonitorCounterStringAMD.load(&mut loadfn, "glGetPerfMonitorCounterStringAMD");
+         storage::GetPerfMonitorCountersAMD.load(&mut loadfn, "glGetPerfMonitorCountersAMD");
+         storage::GetPerfMonitorGroupStringAMD.load(&mut loadfn, "glGetPerfMonitorGroupStringAMD");
+         storage::GetPerfMonitorGroupsAMD.load(&mut loadfn, "glGetPerfMonitorGroupsAMD");
+         storage::GetPerfQueryDataINTEL.load(&mut loadfn, "glGetPerfQueryDataINTEL");
+         storage::GetPerfQueryIdByNameINTEL.load(&mut loadfn, "glGetPerfQueryIdByNameINTEL");
+         storage::GetPerfQueryInfoINTEL.load(&mut loadfn, "glGetPerfQueryInfoINTEL");
+         storage::GetPixelMapfv.load(&mut loadfn, "glGetPixelMapfv");
+         storage::GetPixelMapuiv.load(&mut loadfn, "glGetPixelMapuiv");
+         storage::GetPixelMapusv.load(&mut loadfn, "glGetPixelMapusv");
+         storage::GetPixelMapxv.load(&mut loadfn, "glGetPixelMapxv");
+         storage::GetPixelTexGenParameterfvSGIS.load(&mut loadfn, "glGetPixelTexGenParameterfvSGIS");
+         storage::GetPixelTexGenParameterivSGIS.load(&mut loadfn, "glGetPixelTexGenParameterivSGIS");
+         storage::GetPixelTransformParameterfvEXT.load(&mut loadfn, "glGetPixelTransformParameterfvEXT");
+         storage::GetPixelTransformParameterivEXT.load(&mut loadfn, "glGetPixelTransformParameterivEXT");
+         storage::GetPointerIndexedvEXT.load(&mut loadfn, "glGetPointerIndexedvEXT");
+         storage::GetPointeri_vEXT.load(&mut loadfn, "glGetPointeri_vEXT");
+         storage::GetPointerv.load(&mut loadfn, "glGetPointerv");
+         storage::GetPointervEXT.load(&mut loadfn, "glGetPointervEXT");
+         storage::GetPolygonStipple.load(&mut loadfn, "glGetPolygonStipple");
+         storage::GetProgramBinary.load(&mut loadfn, "glGetProgramBinary");
+         storage::GetProgramEnvParameterIivNV.load(&mut loadfn, "glGetProgramEnvParameterIivNV");
+         storage::GetProgramEnvParameterIuivNV.load(&mut loadfn, "glGetProgramEnvParameterIuivNV");
+         storage::GetProgramEnvParameterdvARB.load(&mut loadfn, "glGetProgramEnvParameterdvARB");
+         storage::GetProgramEnvParameterfvARB.load(&mut loadfn, "glGetProgramEnvParameterfvARB");
+         storage::GetProgramInfoLog.load(&mut loadfn, "glGetProgramInfoLog");
+         storage::GetProgramInterfaceiv.load(&mut loadfn, "glGetProgramInterfaceiv");
+         storage::GetProgramLocalParameterIivNV.load(&mut loadfn, "glGetProgramLocalParameterIivNV");
+         storage::GetProgramLocalParameterIuivNV.load(&mut loadfn, "glGetProgramLocalParameterIuivNV");
+         storage::GetProgramLocalParameterdvARB.load(&mut loadfn, "glGetProgramLocalParameterdvARB");
+         storage::GetProgramLocalParameterfvARB.load(&mut loadfn, "glGetProgramLocalParameterfvARB");
+         storage::GetProgramNamedParameterdvNV.load(&mut loadfn, "glGetProgramNamedParameterdvNV");
+         storage::GetProgramNamedParameterfvNV.load(&mut loadfn, "glGetProgramNamedParameterfvNV");
+         storage::GetProgramParameterdvNV.load(&mut loadfn, "glGetProgramParameterdvNV");
+         storage::GetProgramParameterfvNV.load(&mut loadfn, "glGetProgramParameterfvNV");
+         storage::GetProgramPipelineInfoLog.load(&mut loadfn, "glGetProgramPipelineInfoLog");
+         storage::GetProgramPipelineiv.load(&mut loadfn, "glGetProgramPipelineiv");
+         storage::GetProgramResourceIndex.load(&mut loadfn, "glGetProgramResourceIndex");
+         storage::GetProgramResourceLocation.load(&mut loadfn, "glGetProgramResourceLocation");
+         storage::GetProgramResourceLocationIndex.load(&mut loadfn, "glGetProgramResourceLocationIndex");
+         storage::GetProgramResourceName.load(&mut loadfn, "glGetProgramResourceName");
+         storage::GetProgramResourcefvNV.load(&mut loadfn, "glGetProgramResourcefvNV");
+         storage::GetProgramResourceiv.load(&mut loadfn, "glGetProgramResourceiv");
+         storage::GetProgramStageiv.load(&mut loadfn, "glGetProgramStageiv");
+         storage::GetProgramStringARB.load(&mut loadfn, "glGetProgramStringARB");
+         storage::GetProgramStringNV.load(&mut loadfn, "glGetProgramStringNV");
+         storage::GetProgramSubroutineParameteruivNV.load(&mut loadfn, "glGetProgramSubroutineParameteruivNV");
+         storage::GetProgramiv.load(&mut loadfn, "glGetProgramiv");
+         storage::GetProgramivARB.load(&mut loadfn, "glGetProgramivARB");
+         storage::GetProgramivNV.load(&mut loadfn, "glGetProgramivNV");
+         storage::GetQueryBufferObjecti64v.load(&mut loadfn, "glGetQueryBufferObjecti64v");
+         storage::GetQueryBufferObjectiv.load(&mut loadfn, "glGetQueryBufferObjectiv");
+         storage::GetQueryBufferObjectui64v.load(&mut loadfn, "glGetQueryBufferObjectui64v");
+         storage::GetQueryBufferObjectuiv.load(&mut loadfn, "glGetQueryBufferObjectuiv");
+         storage::GetQueryIndexediv.load(&mut loadfn, "glGetQueryIndexediv");
+         storage::GetQueryObjecti64v.load(&mut loadfn, "glGetQueryObjecti64v");
+         storage::GetQueryObjecti64vEXT.load(&mut loadfn, "glGetQueryObjecti64vEXT");
+         storage::GetQueryObjectiv.load(&mut loadfn, "glGetQueryObjectiv");
+         storage::GetQueryObjectivARB.load(&mut loadfn, "glGetQueryObjectivARB");
+         storage::GetQueryObjectui64v.load(&mut loadfn, "glGetQueryObjectui64v");
+         storage::GetQueryObjectui64vEXT.load(&mut loadfn, "glGetQueryObjectui64vEXT");
+         storage::GetQueryObjectuiv.load(&mut loadfn, "glGetQueryObjectuiv");
+         storage::GetQueryObjectuivARB.load(&mut loadfn, "glGetQueryObjectuivARB");
+         storage::GetQueryiv.load(&mut loadfn, "glGetQueryiv");
+         storage::GetQueryivARB.load(&mut loadfn, "glGetQueryivARB");
+         storage::GetRenderbufferParameteriv.load(&mut loadfn, "glGetRenderbufferParameteriv");
+         storage::GetRenderbufferParameterivEXT.load(&mut loadfn, "glGetRenderbufferParameterivEXT");
+         storage::GetSamplerParameterIiv.load(&mut loadfn, "glGetSamplerParameterIiv");
+         storage::GetSamplerParameterIuiv.load(&mut loadfn, "glGetSamplerParameterIuiv");
+         storage::GetSamplerParameterfv.load(&mut loadfn, "glGetSamplerParameterfv");
+         storage::GetSamplerParameteriv.load(&mut loadfn, "glGetSamplerParameteriv");
+         storage::GetSemaphoreParameterivNV.load(&mut loadfn, "glGetSemaphoreParameterivNV");
+         storage::GetSemaphoreParameterui64vEXT.load(&mut loadfn, "glGetSemaphoreParameterui64vEXT");
+         storage::GetSeparableFilter.load(&mut loadfn, "glGetSeparableFilter");
+         storage::GetSeparableFilterEXT.load(&mut loadfn, "glGetSeparableFilterEXT");
+         storage::GetShaderInfoLog.load(&mut loadfn, "glGetShaderInfoLog");
+         storage::GetShaderPrecisionFormat.load(&mut loadfn, "glGetShaderPrecisionFormat");
+         storage::GetShaderSource.load(&mut loadfn, "glGetShaderSource");
+         storage::GetShaderSourceARB.load(&mut loadfn, "glGetShaderSourceARB");
+         storage::GetShaderiv.load(&mut loadfn, "glGetShaderiv");
+         storage::GetShadingRateImagePaletteNV.load(&mut loadfn, "glGetShadingRateImagePaletteNV");
+         storage::GetShadingRateSampleLocationivNV.load(&mut loadfn, "glGetShadingRateSampleLocationivNV");
+         storage::GetSharpenTexFuncSGIS.load(&mut loadfn, "glGetSharpenTexFuncSGIS");
+         storage::GetStageIndexNV.load(&mut loadfn, "glGetStageIndexNV");
+         storage::GetString.load(&mut loadfn, "glGetString");
+         storage::GetStringi.load(&mut loadfn, "glGetStringi");
+         storage::GetSubroutineIndex.load(&mut loadfn, "glGetSubroutineIndex");
+         storage::GetSubroutineUniformLocation.load(&mut loadfn, "glGetSubroutineUniformLocation");
+         storage::GetSynciv.load(&mut loadfn, "glGetSynciv");
+         storage::GetTexBumpParameterfvATI.load(&mut loadfn, "glGetTexBumpParameterfvATI");
+         storage::GetTexBumpParameterivATI.load(&mut loadfn, "glGetTexBumpParameterivATI");
+         storage::GetTexEnvfv.load(&mut loadfn, "glGetTexEnvfv");
+         storage::GetTexEnviv.load(&mut loadfn, "glGetTexEnviv");
+         storage::GetTexEnvxvOES.load(&mut loadfn, "glGetTexEnvxvOES");
+         storage::GetTexFilterFuncSGIS.load(&mut loadfn, "glGetTexFilterFuncSGIS");
+         storage::GetTexGendv.load(&mut loadfn, "glGetTexGendv");
+         storage::GetTexGenfv.load(&mut loadfn, "glGetTexGenfv");
+         storage::GetTexGeniv.load(&mut loadfn, "glGetTexGeniv");
+         storage::GetTexGenxvOES.load(&mut loadfn, "glGetTexGenxvOES");
+         storage::GetTexImage.load(&mut loadfn, "glGetTexImage");
+         storage::GetTexLevelParameterfv.load(&mut loadfn, "glGetTexLevelParameterfv");
+         storage::GetTexLevelParameteriv.load(&mut loadfn, "glGetTexLevelParameteriv");
+         storage::GetTexLevelParameterxvOES.load(&mut loadfn, "glGetTexLevelParameterxvOES");
+         storage::GetTexParameterIiv.load(&mut loadfn, "glGetTexParameterIiv");
+         storage::GetTexParameterIivEXT.load(&mut loadfn, "glGetTexParameterIivEXT");
+         storage::GetTexParameterIuiv.load(&mut loadfn, "glGetTexParameterIuiv");
+         storage::GetTexParameterIuivEXT.load(&mut loadfn, "glGetTexParameterIuivEXT");
+         storage::GetTexParameterPointervAPPLE.load(&mut loadfn, "glGetTexParameterPointervAPPLE");
+         storage::GetTexParameterfv.load(&mut loadfn, "glGetTexParameterfv");
+         storage::GetTexParameteriv.load(&mut loadfn, "glGetTexParameteriv");
+         storage::GetTexParameterxvOES.load(&mut loadfn, "glGetTexParameterxvOES");
+         storage::GetTextureHandleARB.load(&mut loadfn, "glGetTextureHandleARB");
+         storage::GetTextureHandleNV.load(&mut loadfn, "glGetTextureHandleNV");
+         storage::GetTextureImage.load(&mut loadfn, "glGetTextureImage");
+         storage::GetTextureImageEXT.load(&mut loadfn, "glGetTextureImageEXT");
+         storage::GetTextureLevelParameterfv.load(&mut loadfn, "glGetTextureLevelParameterfv");
+         storage::GetTextureLevelParameterfvEXT.load(&mut loadfn, "glGetTextureLevelParameterfvEXT");
+         storage::GetTextureLevelParameteriv.load(&mut loadfn, "glGetTextureLevelParameteriv");
+         storage::GetTextureLevelParameterivEXT.load(&mut loadfn, "glGetTextureLevelParameterivEXT");
+         storage::GetTextureParameterIiv.load(&mut loadfn, "glGetTextureParameterIiv");
+         storage::GetTextureParameterIivEXT.load(&mut loadfn, "glGetTextureParameterIivEXT");
+         storage::GetTextureParameterIuiv.load(&mut loadfn, "glGetTextureParameterIuiv");
+         storage::GetTextureParameterIuivEXT.load(&mut loadfn, "glGetTextureParameterIuivEXT");
+         storage::GetTextureParameterfv.load(&mut loadfn, "glGetTextureParameterfv");
+         storage::GetTextureParameterfvEXT.load(&mut loadfn, "glGetTextureParameterfvEXT");
+         storage::GetTextureParameteriv.load(&mut loadfn, "glGetTextureParameteriv");
+         storage::GetTextureParameterivEXT.load(&mut loadfn, "glGetTextureParameterivEXT");
+         storage::GetTextureSamplerHandleARB.load(&mut loadfn, "glGetTextureSamplerHandleARB");
+         storage::GetTextureSamplerHandleNV.load(&mut loadfn, "glGetTextureSamplerHandleNV");
+         storage::GetTextureSubImage.load(&mut loadfn, "glGetTextureSubImage");
+         storage::GetTrackMatrixivNV.load(&mut loadfn, "glGetTrackMatrixivNV");
+         storage::GetTransformFeedbackVarying.load(&mut loadfn, "glGetTransformFeedbackVarying");
+         storage::GetTransformFeedbackVaryingEXT.load(&mut loadfn, "glGetTransformFeedbackVaryingEXT");
+         storage::GetTransformFeedbackVaryingNV.load(&mut loadfn, "glGetTransformFeedbackVaryingNV");
+         storage::GetTransformFeedbacki64_v.load(&mut loadfn, "glGetTransformFeedbacki64_v");
+         storage::GetTransformFeedbacki_v.load(&mut loadfn, "glGetTransformFeedbacki_v");
+         storage::GetTransformFeedbackiv.load(&mut loadfn, "glGetTransformFeedbackiv");
+         storage::GetUniformBlockIndex.load(&mut loadfn, "glGetUniformBlockIndex");
+         storage::GetUniformBufferSizeEXT.load(&mut loadfn, "glGetUniformBufferSizeEXT");
+         storage::GetUniformIndices.load(&mut loadfn, "glGetUniformIndices");
+         storage::GetUniformLocation.load(&mut loadfn, "glGetUniformLocation");
+         storage::GetUniformLocationARB.load(&mut loadfn, "glGetUniformLocationARB");
+         storage::GetUniformOffsetEXT.load(&mut loadfn, "glGetUniformOffsetEXT");
+         storage::GetUniformSubroutineuiv.load(&mut loadfn, "glGetUniformSubroutineuiv");
+         storage::GetUniformdv.load(&mut loadfn, "glGetUniformdv");
+         storage::GetUniformfv.load(&mut loadfn, "glGetUniformfv");
+         storage::GetUniformfvARB.load(&mut loadfn, "glGetUniformfvARB");
+         storage::GetUniformi64vARB.load(&mut loadfn, "glGetUniformi64vARB");
+         storage::GetUniformi64vNV.load(&mut loadfn, "glGetUniformi64vNV");
+         storage::GetUniformiv.load(&mut loadfn, "glGetUniformiv");
+         storage::GetUniformivARB.load(&mut loadfn, "glGetUniformivARB");
+         storage::GetUniformui64vARB.load(&mut loadfn, "glGetUniformui64vARB");
+         storage::GetUniformui64vNV.load(&mut loadfn, "glGetUniformui64vNV");
+         storage::GetUniformuiv.load(&mut loadfn, "glGetUniformuiv");
+         storage::GetUniformuivEXT.load(&mut loadfn, "glGetUniformuivEXT");
+         storage::GetUnsignedBytei_vEXT.load(&mut loadfn, "glGetUnsignedBytei_vEXT");
+         storage::GetUnsignedBytevEXT.load(&mut loadfn, "glGetUnsignedBytevEXT");
+         storage::GetVariantArrayObjectfvATI.load(&mut loadfn, "glGetVariantArrayObjectfvATI");
+         storage::GetVariantArrayObjectivATI.load(&mut loadfn, "glGetVariantArrayObjectivATI");
+         storage::GetVariantBooleanvEXT.load(&mut loadfn, "glGetVariantBooleanvEXT");
+         storage::GetVariantFloatvEXT.load(&mut loadfn, "glGetVariantFloatvEXT");
+         storage::GetVariantIntegervEXT.load(&mut loadfn, "glGetVariantIntegervEXT");
+         storage::GetVariantPointervEXT.load(&mut loadfn, "glGetVariantPointervEXT");
+         storage::GetVaryingLocationNV.load(&mut loadfn, "glGetVaryingLocationNV");
+         storage::GetVertexArrayIndexed64iv.load(&mut loadfn, "glGetVertexArrayIndexed64iv");
+         storage::GetVertexArrayIndexediv.load(&mut loadfn, "glGetVertexArrayIndexediv");
+         storage::GetVertexArrayIntegeri_vEXT.load(&mut loadfn, "glGetVertexArrayIntegeri_vEXT");
+         storage::GetVertexArrayIntegervEXT.load(&mut loadfn, "glGetVertexArrayIntegervEXT");
+         storage::GetVertexArrayPointeri_vEXT.load(&mut loadfn, "glGetVertexArrayPointeri_vEXT");
+         storage::GetVertexArrayPointervEXT.load(&mut loadfn, "glGetVertexArrayPointervEXT");
+         storage::GetVertexArrayiv.load(&mut loadfn, "glGetVertexArrayiv");
+         storage::GetVertexAttribArrayObjectfvATI.load(&mut loadfn, "glGetVertexAttribArrayObjectfvATI");
+         storage::GetVertexAttribArrayObjectivATI.load(&mut loadfn, "glGetVertexAttribArrayObjectivATI");
+         storage::GetVertexAttribIiv.load(&mut loadfn, "glGetVertexAttribIiv");
+         storage::GetVertexAttribIivEXT.load(&mut loadfn, "glGetVertexAttribIivEXT");
+         storage::GetVertexAttribIuiv.load(&mut loadfn, "glGetVertexAttribIuiv");
+         storage::GetVertexAttribIuivEXT.load(&mut loadfn, "glGetVertexAttribIuivEXT");
+         storage::GetVertexAttribLdv.load(&mut loadfn, "glGetVertexAttribLdv");
+         storage::GetVertexAttribLdvEXT.load(&mut loadfn, "glGetVertexAttribLdvEXT");
+         storage::GetVertexAttribLi64vNV.load(&mut loadfn, "glGetVertexAttribLi64vNV");
+         storage::GetVertexAttribLui64vARB.load(&mut loadfn, "glGetVertexAttribLui64vARB");
+         storage::GetVertexAttribLui64vNV.load(&mut loadfn, "glGetVertexAttribLui64vNV");
+         storage::GetVertexAttribPointerv.load(&mut loadfn, "glGetVertexAttribPointerv");
+         storage::GetVertexAttribPointervARB.load(&mut loadfn, "glGetVertexAttribPointervARB");
+         storage::GetVertexAttribPointervNV.load(&mut loadfn, "glGetVertexAttribPointervNV");
+         storage::GetVertexAttribdv.load(&mut loadfn, "glGetVertexAttribdv");
+         storage::GetVertexAttribdvARB.load(&mut loadfn, "glGetVertexAttribdvARB");
+         storage::GetVertexAttribdvNV.load(&mut loadfn, "glGetVertexAttribdvNV");
+         storage::GetVertexAttribfv.load(&mut loadfn, "glGetVertexAttribfv");
+         storage::GetVertexAttribfvARB.load(&mut loadfn, "glGetVertexAttribfvARB");
+         storage::GetVertexAttribfvNV.load(&mut loadfn, "glGetVertexAttribfvNV");
+         storage::GetVertexAttribiv.load(&mut loadfn, "glGetVertexAttribiv");
+         storage::GetVertexAttribivARB.load(&mut loadfn, "glGetVertexAttribivARB");
+         storage::GetVertexAttribivNV.load(&mut loadfn, "glGetVertexAttribivNV");
+         storage::GetVideoCaptureStreamdvNV.load(&mut loadfn, "glGetVideoCaptureStreamdvNV");
+         storage::GetVideoCaptureStreamfvNV.load(&mut loadfn, "glGetVideoCaptureStreamfvNV");
+         storage::GetVideoCaptureStreamivNV.load(&mut loadfn, "glGetVideoCaptureStreamivNV");
+         storage::GetVideoCaptureivNV.load(&mut loadfn, "glGetVideoCaptureivNV");
+         storage::GetVideoi64vNV.load(&mut loadfn, "glGetVideoi64vNV");
+         storage::GetVideoivNV.load(&mut loadfn, "glGetVideoivNV");
+         storage::GetVideoui64vNV.load(&mut loadfn, "glGetVideoui64vNV");
+         storage::GetVideouivNV.load(&mut loadfn, "glGetVideouivNV");
+         storage::GetVkProcAddrNV.load(&mut loadfn, "glGetVkProcAddrNV");
+         storage::GetnColorTable.load(&mut loadfn, "glGetnColorTable");
+         storage::GetnColorTableARB.load(&mut loadfn, "glGetnColorTableARB");
+         storage::GetnCompressedTexImage.load(&mut loadfn, "glGetnCompressedTexImage");
+         storage::GetnCompressedTexImageARB.load(&mut loadfn, "glGetnCompressedTexImageARB");
+         storage::GetnConvolutionFilter.load(&mut loadfn, "glGetnConvolutionFilter");
+         storage::GetnConvolutionFilterARB.load(&mut loadfn, "glGetnConvolutionFilterARB");
+         storage::GetnHistogram.load(&mut loadfn, "glGetnHistogram");
+         storage::GetnHistogramARB.load(&mut loadfn, "glGetnHistogramARB");
+         storage::GetnMapdv.load(&mut loadfn, "glGetnMapdv");
+         storage::GetnMapdvARB.load(&mut loadfn, "glGetnMapdvARB");
+         storage::GetnMapfv.load(&mut loadfn, "glGetnMapfv");
+         storage::GetnMapfvARB.load(&mut loadfn, "glGetnMapfvARB");
+         storage::GetnMapiv.load(&mut loadfn, "glGetnMapiv");
+         storage::GetnMapivARB.load(&mut loadfn, "glGetnMapivARB");
+         storage::GetnMinmax.load(&mut loadfn, "glGetnMinmax");
+         storage::GetnMinmaxARB.load(&mut loadfn, "glGetnMinmaxARB");
+         storage::GetnPixelMapfv.load(&mut loadfn, "glGetnPixelMapfv");
+         storage::GetnPixelMapfvARB.load(&mut loadfn, "glGetnPixelMapfvARB");
+         storage::GetnPixelMapuiv.load(&mut loadfn, "glGetnPixelMapuiv");
+         storage::GetnPixelMapuivARB.load(&mut loadfn, "glGetnPixelMapuivARB");
+         storage::GetnPixelMapusv.load(&mut loadfn, "glGetnPixelMapusv");
+         storage::GetnPixelMapusvARB.load(&mut loadfn, "glGetnPixelMapusvARB");
+         storage::GetnPolygonStipple.load(&mut loadfn, "glGetnPolygonStipple");
+         storage::GetnPolygonStippleARB.load(&mut loadfn, "glGetnPolygonStippleARB");
+         storage::GetnSeparableFilter.load(&mut loadfn, "glGetnSeparableFilter");
+         storage::GetnSeparableFilterARB.load(&mut loadfn, "glGetnSeparableFilterARB");
+         storage::GetnTexImage.load(&mut loadfn, "glGetnTexImage");
+         storage::GetnTexImageARB.load(&mut loadfn, "glGetnTexImageARB");
+         storage::GetnUniformdv.load(&mut loadfn, "glGetnUniformdv");
+         storage::GetnUniformdvARB.load(&mut loadfn, "glGetnUniformdvARB");
+         storage::GetnUniformfv.load(&mut loadfn, "glGetnUniformfv");
+         storage::GetnUniformfvARB.load(&mut loadfn, "glGetnUniformfvARB");
+         storage::GetnUniformi64vARB.load(&mut loadfn, "glGetnUniformi64vARB");
+         storage::GetnUniformiv.load(&mut loadfn, "glGetnUniformiv");
+         storage::GetnUniformivARB.load(&mut loadfn, "glGetnUniformivARB");
+         storage::GetnUniformui64vARB.load(&mut loadfn, "glGetnUniformui64vARB");
+         storage::GetnUniformuiv.load(&mut loadfn, "glGetnUniformuiv");
+         storage::GetnUniformuivARB.load(&mut loadfn, "glGetnUniformuivARB");
+         storage::GlobalAlphaFactorbSUN.load(&mut loadfn, "glGlobalAlphaFactorbSUN");
+         storage::GlobalAlphaFactordSUN.load(&mut loadfn, "glGlobalAlphaFactordSUN");
+         storage::GlobalAlphaFactorfSUN.load(&mut loadfn, "glGlobalAlphaFactorfSUN");
+         storage::GlobalAlphaFactoriSUN.load(&mut loadfn, "glGlobalAlphaFactoriSUN");
+         storage::GlobalAlphaFactorsSUN.load(&mut loadfn, "glGlobalAlphaFactorsSUN");
+         storage::GlobalAlphaFactorubSUN.load(&mut loadfn, "glGlobalAlphaFactorubSUN");
+         storage::GlobalAlphaFactoruiSUN.load(&mut loadfn, "glGlobalAlphaFactoruiSUN");
+         storage::GlobalAlphaFactorusSUN.load(&mut loadfn, "glGlobalAlphaFactorusSUN");
+         storage::Hint.load(&mut loadfn, "glHint");
+         storage::HintPGI.load(&mut loadfn, "glHintPGI");
+         storage::Histogram.load(&mut loadfn, "glHistogram");
+         storage::HistogramEXT.load(&mut loadfn, "glHistogramEXT");
+         storage::IglooInterfaceSGIX.load(&mut loadfn, "glIglooInterfaceSGIX");
+         storage::ImageTransformParameterfHP.load(&mut loadfn, "glImageTransformParameterfHP");
+         storage::ImageTransformParameterfvHP.load(&mut loadfn, "glImageTransformParameterfvHP");
+         storage::ImageTransformParameteriHP.load(&mut loadfn, "glImageTransformParameteriHP");
+         storage::ImageTransformParameterivHP.load(&mut loadfn, "glImageTransformParameterivHP");
+         storage::ImportMemoryFdEXT.load(&mut loadfn, "glImportMemoryFdEXT");
+         storage::ImportMemoryWin32HandleEXT.load(&mut loadfn, "glImportMemoryWin32HandleEXT");
+         storage::ImportMemoryWin32NameEXT.load(&mut loadfn, "glImportMemoryWin32NameEXT");
+         storage::ImportSemaphoreFdEXT.load(&mut loadfn, "glImportSemaphoreFdEXT");
+         storage::ImportSemaphoreWin32HandleEXT.load(&mut loadfn, "glImportSemaphoreWin32HandleEXT");
+         storage::ImportSemaphoreWin32NameEXT.load(&mut loadfn, "glImportSemaphoreWin32NameEXT");
+         storage::ImportSyncEXT.load(&mut loadfn, "glImportSyncEXT");
+         storage::IndexFormatNV.load(&mut loadfn, "glIndexFormatNV");
+         storage::IndexFuncEXT.load(&mut loadfn, "glIndexFuncEXT");
+         storage::IndexMask.load(&mut loadfn, "glIndexMask");
+         storage::IndexMaterialEXT.load(&mut loadfn, "glIndexMaterialEXT");
+         storage::IndexPointer.load(&mut loadfn, "glIndexPointer");
+         storage::IndexPointerEXT.load(&mut loadfn, "glIndexPointerEXT");
+         storage::IndexPointerListIBM.load(&mut loadfn, "glIndexPointerListIBM");
+         storage::Indexd.load(&mut loadfn, "glIndexd");
+         storage::Indexdv.load(&mut loadfn, "glIndexdv");
+         storage::Indexf.load(&mut loadfn, "glIndexf");
+         storage::Indexfv.load(&mut loadfn, "glIndexfv");
+         storage::Indexi.load(&mut loadfn, "glIndexi");
+         storage::Indexiv.load(&mut loadfn, "glIndexiv");
+         storage::Indexs.load(&mut loadfn, "glIndexs");
+         storage::Indexsv.load(&mut loadfn, "glIndexsv");
+         storage::Indexub.load(&mut loadfn, "glIndexub");
+         storage::Indexubv.load(&mut loadfn, "glIndexubv");
+         storage::IndexxOES.load(&mut loadfn, "glIndexxOES");
+         storage::IndexxvOES.load(&mut loadfn, "glIndexxvOES");
+         storage::InitNames.load(&mut loadfn, "glInitNames");
+         storage::InsertComponentEXT.load(&mut loadfn, "glInsertComponentEXT");
+         storage::InsertEventMarkerEXT.load(&mut loadfn, "glInsertEventMarkerEXT");
+         storage::InstrumentsBufferSGIX.load(&mut loadfn, "glInstrumentsBufferSGIX");
+         storage::InterleavedArrays.load(&mut loadfn, "glInterleavedArrays");
+         storage::InterpolatePathsNV.load(&mut loadfn, "glInterpolatePathsNV");
+         storage::InvalidateBufferData.load(&mut loadfn, "glInvalidateBufferData");
+         storage::InvalidateBufferSubData.load(&mut loadfn, "glInvalidateBufferSubData");
+         storage::InvalidateFramebuffer.load(&mut loadfn, "glInvalidateFramebuffer");
+         storage::InvalidateNamedFramebufferData.load(&mut loadfn, "glInvalidateNamedFramebufferData");
+         storage::InvalidateNamedFramebufferSubData.load(&mut loadfn, "glInvalidateNamedFramebufferSubData");
+         storage::InvalidateSubFramebuffer.load(&mut loadfn, "glInvalidateSubFramebuffer");
+         storage::InvalidateTexImage.load(&mut loadfn, "glInvalidateTexImage");
+         storage::InvalidateTexSubImage.load(&mut loadfn, "glInvalidateTexSubImage");
+         storage::IsAsyncMarkerSGIX.load(&mut loadfn, "glIsAsyncMarkerSGIX");
+         storage::IsBuffer.load(&mut loadfn, "glIsBuffer");
+         storage::IsBufferARB.load(&mut loadfn, "glIsBufferARB");
+         storage::IsBufferResidentNV.load(&mut loadfn, "glIsBufferResidentNV");
+         storage::IsCommandListNV.load(&mut loadfn, "glIsCommandListNV");
+         storage::IsEnabled.load(&mut loadfn, "glIsEnabled");
+         storage::IsEnabledIndexedEXT.load(&mut loadfn, "glIsEnabledIndexedEXT");
+         storage::IsEnabledi.load(&mut loadfn, "glIsEnabledi");
+         storage::IsFenceAPPLE.load(&mut loadfn, "glIsFenceAPPLE");
+         storage::IsFenceNV.load(&mut loadfn, "glIsFenceNV");
+         storage::IsFramebuffer.load(&mut loadfn, "glIsFramebuffer");
+         storage::IsFramebufferEXT.load(&mut loadfn, "glIsFramebufferEXT");
+         storage::IsImageHandleResidentARB.load(&mut loadfn, "glIsImageHandleResidentARB");
+         storage::IsImageHandleResidentNV.load(&mut loadfn, "glIsImageHandleResidentNV");
+         storage::IsList.load(&mut loadfn, "glIsList");
+         storage::IsMemoryObjectEXT.load(&mut loadfn, "glIsMemoryObjectEXT");
+         storage::IsNameAMD.load(&mut loadfn, "glIsNameAMD");
+         storage::IsNamedBufferResidentNV.load(&mut loadfn, "glIsNamedBufferResidentNV");
+         storage::IsNamedStringARB.load(&mut loadfn, "glIsNamedStringARB");
+         storage::IsObjectBufferATI.load(&mut loadfn, "glIsObjectBufferATI");
+         storage::IsOcclusionQueryNV.load(&mut loadfn, "glIsOcclusionQueryNV");
+         storage::IsPathNV.load(&mut loadfn, "glIsPathNV");
+         storage::IsPointInFillPathNV.load(&mut loadfn, "glIsPointInFillPathNV");
+         storage::IsPointInStrokePathNV.load(&mut loadfn, "glIsPointInStrokePathNV");
+         storage::IsProgram.load(&mut loadfn, "glIsProgram");
+         storage::IsProgramARB.load(&mut loadfn, "glIsProgramARB");
+         storage::IsProgramNV.load(&mut loadfn, "glIsProgramNV");
+         storage::IsProgramPipeline.load(&mut loadfn, "glIsProgramPipeline");
+         storage::IsQuery.load(&mut loadfn, "glIsQuery");
+         storage::IsQueryARB.load(&mut loadfn, "glIsQueryARB");
+         storage::IsRenderbuffer.load(&mut loadfn, "glIsRenderbuffer");
+         storage::IsRenderbufferEXT.load(&mut loadfn, "glIsRenderbufferEXT");
+         storage::IsSampler.load(&mut loadfn, "glIsSampler");
+         storage::IsSemaphoreEXT.load(&mut loadfn, "glIsSemaphoreEXT");
+         storage::IsShader.load(&mut loadfn, "glIsShader");
+         storage::IsStateNV.load(&mut loadfn, "glIsStateNV");
+         storage::IsSync.load(&mut loadfn, "glIsSync");
+         storage::IsTexture.load(&mut loadfn, "glIsTexture");
+         storage::IsTextureEXT.load(&mut loadfn, "glIsTextureEXT");
+         storage::IsTextureHandleResidentARB.load(&mut loadfn, "glIsTextureHandleResidentARB");
+         storage::IsTextureHandleResidentNV.load(&mut loadfn, "glIsTextureHandleResidentNV");
+         storage::IsTransformFeedback.load(&mut loadfn, "glIsTransformFeedback");
+         storage::IsTransformFeedbackNV.load(&mut loadfn, "glIsTransformFeedbackNV");
+         storage::IsVariantEnabledEXT.load(&mut loadfn, "glIsVariantEnabledEXT");
+         storage::IsVertexArray.load(&mut loadfn, "glIsVertexArray");
+         storage::IsVertexArrayAPPLE.load(&mut loadfn, "glIsVertexArrayAPPLE");
+         storage::IsVertexAttribEnabledAPPLE.load(&mut loadfn, "glIsVertexAttribEnabledAPPLE");
+         storage::LGPUCopyImageSubDataNVX.load(&mut loadfn, "glLGPUCopyImageSubDataNVX");
+         storage::LGPUInterlockNVX.load(&mut loadfn, "glLGPUInterlockNVX");
+         storage::LGPUNamedBufferSubDataNVX.load(&mut loadfn, "glLGPUNamedBufferSubDataNVX");
+         storage::LabelObjectEXT.load(&mut loadfn, "glLabelObjectEXT");
+         storage::LightEnviSGIX.load(&mut loadfn, "glLightEnviSGIX");
+         storage::LightModelf.load(&mut loadfn, "glLightModelf");
+         storage::LightModelfv.load(&mut loadfn, "glLightModelfv");
+         storage::LightModeli.load(&mut loadfn, "glLightModeli");
+         storage::LightModeliv.load(&mut loadfn, "glLightModeliv");
+         storage::LightModelxOES.load(&mut loadfn, "glLightModelxOES");
+         storage::LightModelxvOES.load(&mut loadfn, "glLightModelxvOES");
+         storage::Lightf.load(&mut loadfn, "glLightf");
+         storage::Lightfv.load(&mut loadfn, "glLightfv");
+         storage::Lighti.load(&mut loadfn, "glLighti");
+         storage::Lightiv.load(&mut loadfn, "glLightiv");
+         storage::LightxOES.load(&mut loadfn, "glLightxOES");
+         storage::LightxvOES.load(&mut loadfn, "glLightxvOES");
+         storage::LineStipple.load(&mut loadfn, "glLineStipple");
+         storage::LineWidth.load(&mut loadfn, "glLineWidth");
+         storage::LineWidthxOES.load(&mut loadfn, "glLineWidthxOES");
+         storage::LinkProgram.load(&mut loadfn, "glLinkProgram");
+         storage::LinkProgramARB.load(&mut loadfn, "glLinkProgramARB");
+         storage::ListBase.load(&mut loadfn, "glListBase");
+         storage::ListDrawCommandsStatesClientNV.load(&mut loadfn, "glListDrawCommandsStatesClientNV");
+         storage::ListParameterfSGIX.load(&mut loadfn, "glListParameterfSGIX");
+         storage::ListParameterfvSGIX.load(&mut loadfn, "glListParameterfvSGIX");
+         storage::ListParameteriSGIX.load(&mut loadfn, "glListParameteriSGIX");
+         storage::ListParameterivSGIX.load(&mut loadfn, "glListParameterivSGIX");
+         storage::LoadIdentity.load(&mut loadfn, "glLoadIdentity");
+         storage::LoadIdentityDeformationMapSGIX.load(&mut loadfn, "glLoadIdentityDeformationMapSGIX");
+         storage::LoadMatrixd.load(&mut loadfn, "glLoadMatrixd");
+         storage::LoadMatrixf.load(&mut loadfn, "glLoadMatrixf");
+         storage::LoadMatrixxOES.load(&mut loadfn, "glLoadMatrixxOES");
+         storage::LoadName.load(&mut loadfn, "glLoadName");
+         storage::LoadProgramNV.load(&mut loadfn, "glLoadProgramNV");
+         storage::LoadTransposeMatrixd.load(&mut loadfn, "glLoadTransposeMatrixd");
+         storage::LoadTransposeMatrixdARB.load(&mut loadfn, "glLoadTransposeMatrixdARB");
+         storage::LoadTransposeMatrixf.load(&mut loadfn, "glLoadTransposeMatrixf");
+         storage::LoadTransposeMatrixfARB.load(&mut loadfn, "glLoadTransposeMatrixfARB");
+         storage::LoadTransposeMatrixxOES.load(&mut loadfn, "glLoadTransposeMatrixxOES");
+         storage::LockArraysEXT.load(&mut loadfn, "glLockArraysEXT");
+         storage::LogicOp.load(&mut loadfn, "glLogicOp");
+         storage::MakeBufferNonResidentNV.load(&mut loadfn, "glMakeBufferNonResidentNV");
+         storage::MakeBufferResidentNV.load(&mut loadfn, "glMakeBufferResidentNV");
+         storage::MakeImageHandleNonResidentARB.load(&mut loadfn, "glMakeImageHandleNonResidentARB");
+         storage::MakeImageHandleNonResidentNV.load(&mut loadfn, "glMakeImageHandleNonResidentNV");
+         storage::MakeImageHandleResidentARB.load(&mut loadfn, "glMakeImageHandleResidentARB");
+         storage::MakeImageHandleResidentNV.load(&mut loadfn, "glMakeImageHandleResidentNV");
+         storage::MakeNamedBufferNonResidentNV.load(&mut loadfn, "glMakeNamedBufferNonResidentNV");
+         storage::MakeNamedBufferResidentNV.load(&mut loadfn, "glMakeNamedBufferResidentNV");
+         storage::MakeTextureHandleNonResidentARB.load(&mut loadfn, "glMakeTextureHandleNonResidentARB");
+         storage::MakeTextureHandleNonResidentNV.load(&mut loadfn, "glMakeTextureHandleNonResidentNV");
+         storage::MakeTextureHandleResidentARB.load(&mut loadfn, "glMakeTextureHandleResidentARB");
+         storage::MakeTextureHandleResidentNV.load(&mut loadfn, "glMakeTextureHandleResidentNV");
+         storage::Map1d.load(&mut loadfn, "glMap1d");
+         storage::Map1f.load(&mut loadfn, "glMap1f");
+         storage::Map1xOES.load(&mut loadfn, "glMap1xOES");
+         storage::Map2d.load(&mut loadfn, "glMap2d");
+         storage::Map2f.load(&mut loadfn, "glMap2f");
+         storage::Map2xOES.load(&mut loadfn, "glMap2xOES");
+         storage::MapBuffer.load(&mut loadfn, "glMapBuffer");
+         storage::MapBufferARB.load(&mut loadfn, "glMapBufferARB");
+         storage::MapBufferRange.load(&mut loadfn, "glMapBufferRange");
+         storage::MapControlPointsNV.load(&mut loadfn, "glMapControlPointsNV");
+         storage::MapGrid1d.load(&mut loadfn, "glMapGrid1d");
+         storage::MapGrid1f.load(&mut loadfn, "glMapGrid1f");
+         storage::MapGrid1xOES.load(&mut loadfn, "glMapGrid1xOES");
+         storage::MapGrid2d.load(&mut loadfn, "glMapGrid2d");
+         storage::MapGrid2f.load(&mut loadfn, "glMapGrid2f");
+         storage::MapGrid2xOES.load(&mut loadfn, "glMapGrid2xOES");
+         storage::MapNamedBuffer.load(&mut loadfn, "glMapNamedBuffer");
+         storage::MapNamedBufferEXT.load(&mut loadfn, "glMapNamedBufferEXT");
+         storage::MapNamedBufferRange.load(&mut loadfn, "glMapNamedBufferRange");
+         storage::MapNamedBufferRangeEXT.load(&mut loadfn, "glMapNamedBufferRangeEXT");
+         storage::MapObjectBufferATI.load(&mut loadfn, "glMapObjectBufferATI");
+         storage::MapParameterfvNV.load(&mut loadfn, "glMapParameterfvNV");
+         storage::MapParameterivNV.load(&mut loadfn, "glMapParameterivNV");
+         storage::MapTexture2DINTEL.load(&mut loadfn, "glMapTexture2DINTEL");
+         storage::MapVertexAttrib1dAPPLE.load(&mut loadfn, "glMapVertexAttrib1dAPPLE");
+         storage::MapVertexAttrib1fAPPLE.load(&mut loadfn, "glMapVertexAttrib1fAPPLE");
+         storage::MapVertexAttrib2dAPPLE.load(&mut loadfn, "glMapVertexAttrib2dAPPLE");
+         storage::MapVertexAttrib2fAPPLE.load(&mut loadfn, "glMapVertexAttrib2fAPPLE");
+         storage::Materialf.load(&mut loadfn, "glMaterialf");
+         storage::Materialfv.load(&mut loadfn, "glMaterialfv");
+         storage::Materiali.load(&mut loadfn, "glMateriali");
+         storage::Materialiv.load(&mut loadfn, "glMaterialiv");
+         storage::MaterialxOES.load(&mut loadfn, "glMaterialxOES");
+         storage::MaterialxvOES.load(&mut loadfn, "glMaterialxvOES");
+         storage::MatrixFrustumEXT.load(&mut loadfn, "glMatrixFrustumEXT");
+         storage::MatrixIndexPointerARB.load(&mut loadfn, "glMatrixIndexPointerARB");
+         storage::MatrixIndexubvARB.load(&mut loadfn, "glMatrixIndexubvARB");
+         storage::MatrixIndexuivARB.load(&mut loadfn, "glMatrixIndexuivARB");
+         storage::MatrixIndexusvARB.load(&mut loadfn, "glMatrixIndexusvARB");
+         storage::MatrixLoad3x2fNV.load(&mut loadfn, "glMatrixLoad3x2fNV");
+         storage::MatrixLoad3x3fNV.load(&mut loadfn, "glMatrixLoad3x3fNV");
+         storage::MatrixLoadIdentityEXT.load(&mut loadfn, "glMatrixLoadIdentityEXT");
+         storage::MatrixLoadTranspose3x3fNV.load(&mut loadfn, "glMatrixLoadTranspose3x3fNV");
+         storage::MatrixLoadTransposedEXT.load(&mut loadfn, "glMatrixLoadTransposedEXT");
+         storage::MatrixLoadTransposefEXT.load(&mut loadfn, "glMatrixLoadTransposefEXT");
+         storage::MatrixLoaddEXT.load(&mut loadfn, "glMatrixLoaddEXT");
+         storage::MatrixLoadfEXT.load(&mut loadfn, "glMatrixLoadfEXT");
+         storage::MatrixMode.load(&mut loadfn, "glMatrixMode");
+         storage::MatrixMult3x2fNV.load(&mut loadfn, "glMatrixMult3x2fNV");
+         storage::MatrixMult3x3fNV.load(&mut loadfn, "glMatrixMult3x3fNV");
+         storage::MatrixMultTranspose3x3fNV.load(&mut loadfn, "glMatrixMultTranspose3x3fNV");
+         storage::MatrixMultTransposedEXT.load(&mut loadfn, "glMatrixMultTransposedEXT");
+         storage::MatrixMultTransposefEXT.load(&mut loadfn, "glMatrixMultTransposefEXT");
+         storage::MatrixMultdEXT.load(&mut loadfn, "glMatrixMultdEXT");
+         storage::MatrixMultfEXT.load(&mut loadfn, "glMatrixMultfEXT");
+         storage::MatrixOrthoEXT.load(&mut loadfn, "glMatrixOrthoEXT");
+         storage::MatrixPopEXT.load(&mut loadfn, "glMatrixPopEXT");
+         storage::MatrixPushEXT.load(&mut loadfn, "glMatrixPushEXT");
+         storage::MatrixRotatedEXT.load(&mut loadfn, "glMatrixRotatedEXT");
+         storage::MatrixRotatefEXT.load(&mut loadfn, "glMatrixRotatefEXT");
+         storage::MatrixScaledEXT.load(&mut loadfn, "glMatrixScaledEXT");
+         storage::MatrixScalefEXT.load(&mut loadfn, "glMatrixScalefEXT");
+         storage::MatrixTranslatedEXT.load(&mut loadfn, "glMatrixTranslatedEXT");
+         storage::MatrixTranslatefEXT.load(&mut loadfn, "glMatrixTranslatefEXT");
+         storage::MaxShaderCompilerThreadsARB.load(&mut loadfn, "glMaxShaderCompilerThreadsARB");
+         storage::MaxShaderCompilerThreadsKHR.load(&mut loadfn, "glMaxShaderCompilerThreadsKHR");
+         storage::MemoryBarrier.load(&mut loadfn, "glMemoryBarrier");
+         storage::MemoryBarrierByRegion.load(&mut loadfn, "glMemoryBarrierByRegion");
+         storage::MemoryBarrierEXT.load(&mut loadfn, "glMemoryBarrierEXT");
+         storage::MemoryObjectParameterivEXT.load(&mut loadfn, "glMemoryObjectParameterivEXT");
+         storage::MinSampleShading.load(&mut loadfn, "glMinSampleShading");
+         storage::MinSampleShadingARB.load(&mut loadfn, "glMinSampleShadingARB");
+         storage::Minmax.load(&mut loadfn, "glMinmax");
+         storage::MinmaxEXT.load(&mut loadfn, "glMinmaxEXT");
+         storage::MultMatrixd.load(&mut loadfn, "glMultMatrixd");
+         storage::MultMatrixf.load(&mut loadfn, "glMultMatrixf");
+         storage::MultMatrixxOES.load(&mut loadfn, "glMultMatrixxOES");
+         storage::MultTransposeMatrixd.load(&mut loadfn, "glMultTransposeMatrixd");
+         storage::MultTransposeMatrixdARB.load(&mut loadfn, "glMultTransposeMatrixdARB");
+         storage::MultTransposeMatrixf.load(&mut loadfn, "glMultTransposeMatrixf");
+         storage::MultTransposeMatrixfARB.load(&mut loadfn, "glMultTransposeMatrixfARB");
+         storage::MultTransposeMatrixxOES.load(&mut loadfn, "glMultTransposeMatrixxOES");
+         storage::MultiDrawArrays.load(&mut loadfn, "glMultiDrawArrays");
+         storage::MultiDrawArraysEXT.load(&mut loadfn, "glMultiDrawArraysEXT");
+         storage::MultiDrawArraysIndirect.load(&mut loadfn, "glMultiDrawArraysIndirect");
+         storage::MultiDrawArraysIndirectAMD.load(&mut loadfn, "glMultiDrawArraysIndirectAMD");
+         storage::MultiDrawArraysIndirectBindlessCountNV.load(&mut loadfn, "glMultiDrawArraysIndirectBindlessCountNV");
+         storage::MultiDrawArraysIndirectBindlessNV.load(&mut loadfn, "glMultiDrawArraysIndirectBindlessNV");
+         storage::MultiDrawArraysIndirectCount.load(&mut loadfn, "glMultiDrawArraysIndirectCount");
+         storage::MultiDrawArraysIndirectCountARB.load(&mut loadfn, "glMultiDrawArraysIndirectCountARB");
+         storage::MultiDrawElementArrayAPPLE.load(&mut loadfn, "glMultiDrawElementArrayAPPLE");
+         storage::MultiDrawElements.load(&mut loadfn, "glMultiDrawElements");
+         storage::MultiDrawElementsBaseVertex.load(&mut loadfn, "glMultiDrawElementsBaseVertex");
+         storage::MultiDrawElementsEXT.load(&mut loadfn, "glMultiDrawElementsEXT");
+         storage::MultiDrawElementsIndirect.load(&mut loadfn, "glMultiDrawElementsIndirect");
+         storage::MultiDrawElementsIndirectAMD.load(&mut loadfn, "glMultiDrawElementsIndirectAMD");
+         storage::MultiDrawElementsIndirectBindlessCountNV.load(&mut loadfn, "glMultiDrawElementsIndirectBindlessCountNV");
+         storage::MultiDrawElementsIndirectBindlessNV.load(&mut loadfn, "glMultiDrawElementsIndirectBindlessNV");
+         storage::MultiDrawElementsIndirectCount.load(&mut loadfn, "glMultiDrawElementsIndirectCount");
+         storage::MultiDrawElementsIndirectCountARB.load(&mut loadfn, "glMultiDrawElementsIndirectCountARB");
+         storage::MultiDrawMeshTasksIndirectCountNV.load(&mut loadfn, "glMultiDrawMeshTasksIndirectCountNV");
+         storage::MultiDrawMeshTasksIndirectNV.load(&mut loadfn, "glMultiDrawMeshTasksIndirectNV");
+         storage::MultiDrawRangeElementArrayAPPLE.load(&mut loadfn, "glMultiDrawRangeElementArrayAPPLE");
+         storage::MultiModeDrawArraysIBM.load(&mut loadfn, "glMultiModeDrawArraysIBM");
+         storage::MultiModeDrawElementsIBM.load(&mut loadfn, "glMultiModeDrawElementsIBM");
+         storage::MultiTexBufferEXT.load(&mut loadfn, "glMultiTexBufferEXT");
+         storage::MultiTexCoord1bOES.load(&mut loadfn, "glMultiTexCoord1bOES");
+         storage::MultiTexCoord1bvOES.load(&mut loadfn, "glMultiTexCoord1bvOES");
+         storage::MultiTexCoord1d.load(&mut loadfn, "glMultiTexCoord1d");
+         storage::MultiTexCoord1dARB.load(&mut loadfn, "glMultiTexCoord1dARB");
+         storage::MultiTexCoord1dv.load(&mut loadfn, "glMultiTexCoord1dv");
+         storage::MultiTexCoord1dvARB.load(&mut loadfn, "glMultiTexCoord1dvARB");
+         storage::MultiTexCoord1f.load(&mut loadfn, "glMultiTexCoord1f");
+         storage::MultiTexCoord1fARB.load(&mut loadfn, "glMultiTexCoord1fARB");
+         storage::MultiTexCoord1fv.load(&mut loadfn, "glMultiTexCoord1fv");
+         storage::MultiTexCoord1fvARB.load(&mut loadfn, "glMultiTexCoord1fvARB");
+         storage::MultiTexCoord1hNV.load(&mut loadfn, "glMultiTexCoord1hNV");
+         storage::MultiTexCoord1hvNV.load(&mut loadfn, "glMultiTexCoord1hvNV");
+         storage::MultiTexCoord1i.load(&mut loadfn, "glMultiTexCoord1i");
+         storage::MultiTexCoord1iARB.load(&mut loadfn, "glMultiTexCoord1iARB");
+         storage::MultiTexCoord1iv.load(&mut loadfn, "glMultiTexCoord1iv");
+         storage::MultiTexCoord1ivARB.load(&mut loadfn, "glMultiTexCoord1ivARB");
+         storage::MultiTexCoord1s.load(&mut loadfn, "glMultiTexCoord1s");
+         storage::MultiTexCoord1sARB.load(&mut loadfn, "glMultiTexCoord1sARB");
+         storage::MultiTexCoord1sv.load(&mut loadfn, "glMultiTexCoord1sv");
+         storage::MultiTexCoord1svARB.load(&mut loadfn, "glMultiTexCoord1svARB");
+         storage::MultiTexCoord1xOES.load(&mut loadfn, "glMultiTexCoord1xOES");
+         storage::MultiTexCoord1xvOES.load(&mut loadfn, "glMultiTexCoord1xvOES");
+         storage::MultiTexCoord2bOES.load(&mut loadfn, "glMultiTexCoord2bOES");
+         storage::MultiTexCoord2bvOES.load(&mut loadfn, "glMultiTexCoord2bvOES");
+         storage::MultiTexCoord2d.load(&mut loadfn, "glMultiTexCoord2d");
+         storage::MultiTexCoord2dARB.load(&mut loadfn, "glMultiTexCoord2dARB");
+         storage::MultiTexCoord2dv.load(&mut loadfn, "glMultiTexCoord2dv");
+         storage::MultiTexCoord2dvARB.load(&mut loadfn, "glMultiTexCoord2dvARB");
+         storage::MultiTexCoord2f.load(&mut loadfn, "glMultiTexCoord2f");
+         storage::MultiTexCoord2fARB.load(&mut loadfn, "glMultiTexCoord2fARB");
+         storage::MultiTexCoord2fv.load(&mut loadfn, "glMultiTexCoord2fv");
+         storage::MultiTexCoord2fvARB.load(&mut loadfn, "glMultiTexCoord2fvARB");
+         storage::MultiTexCoord2hNV.load(&mut loadfn, "glMultiTexCoord2hNV");
+         storage::MultiTexCoord2hvNV.load(&mut loadfn, "glMultiTexCoord2hvNV");
+         storage::MultiTexCoord2i.load(&mut loadfn, "glMultiTexCoord2i");
+         storage::MultiTexCoord2iARB.load(&mut loadfn, "glMultiTexCoord2iARB");
+         storage::MultiTexCoord2iv.load(&mut loadfn, "glMultiTexCoord2iv");
+         storage::MultiTexCoord2ivARB.load(&mut loadfn, "glMultiTexCoord2ivARB");
+         storage::MultiTexCoord2s.load(&mut loadfn, "glMultiTexCoord2s");
+         storage::MultiTexCoord2sARB.load(&mut loadfn, "glMultiTexCoord2sARB");
+         storage::MultiTexCoord2sv.load(&mut loadfn, "glMultiTexCoord2sv");
+         storage::MultiTexCoord2svARB.load(&mut loadfn, "glMultiTexCoord2svARB");
+         storage::MultiTexCoord2xOES.load(&mut loadfn, "glMultiTexCoord2xOES");
+         storage::MultiTexCoord2xvOES.load(&mut loadfn, "glMultiTexCoord2xvOES");
+         storage::MultiTexCoord3bOES.load(&mut loadfn, "glMultiTexCoord3bOES");
+         storage::MultiTexCoord3bvOES.load(&mut loadfn, "glMultiTexCoord3bvOES");
+         storage::MultiTexCoord3d.load(&mut loadfn, "glMultiTexCoord3d");
+         storage::MultiTexCoord3dARB.load(&mut loadfn, "glMultiTexCoord3dARB");
+         storage::MultiTexCoord3dv.load(&mut loadfn, "glMultiTexCoord3dv");
+         storage::MultiTexCoord3dvARB.load(&mut loadfn, "glMultiTexCoord3dvARB");
+         storage::MultiTexCoord3f.load(&mut loadfn, "glMultiTexCoord3f");
+         storage::MultiTexCoord3fARB.load(&mut loadfn, "glMultiTexCoord3fARB");
+         storage::MultiTexCoord3fv.load(&mut loadfn, "glMultiTexCoord3fv");
+         storage::MultiTexCoord3fvARB.load(&mut loadfn, "glMultiTexCoord3fvARB");
+         storage::MultiTexCoord3hNV.load(&mut loadfn, "glMultiTexCoord3hNV");
+         storage::MultiTexCoord3hvNV.load(&mut loadfn, "glMultiTexCoord3hvNV");
+         storage::MultiTexCoord3i.load(&mut loadfn, "glMultiTexCoord3i");
+         storage::MultiTexCoord3iARB.load(&mut loadfn, "glMultiTexCoord3iARB");
+         storage::MultiTexCoord3iv.load(&mut loadfn, "glMultiTexCoord3iv");
+         storage::MultiTexCoord3ivARB.load(&mut loadfn, "glMultiTexCoord3ivARB");
+         storage::MultiTexCoord3s.load(&mut loadfn, "glMultiTexCoord3s");
+         storage::MultiTexCoord3sARB.load(&mut loadfn, "glMultiTexCoord3sARB");
+         storage::MultiTexCoord3sv.load(&mut loadfn, "glMultiTexCoord3sv");
+         storage::MultiTexCoord3svARB.load(&mut loadfn, "glMultiTexCoord3svARB");
+         storage::MultiTexCoord3xOES.load(&mut loadfn, "glMultiTexCoord3xOES");
+         storage::MultiTexCoord3xvOES.load(&mut loadfn, "glMultiTexCoord3xvOES");
+         storage::MultiTexCoord4bOES.load(&mut loadfn, "glMultiTexCoord4bOES");
+         storage::MultiTexCoord4bvOES.load(&mut loadfn, "glMultiTexCoord4bvOES");
+         storage::MultiTexCoord4d.load(&mut loadfn, "glMultiTexCoord4d");
+         storage::MultiTexCoord4dARB.load(&mut loadfn, "glMultiTexCoord4dARB");
+         storage::MultiTexCoord4dv.load(&mut loadfn, "glMultiTexCoord4dv");
+         storage::MultiTexCoord4dvARB.load(&mut loadfn, "glMultiTexCoord4dvARB");
+         storage::MultiTexCoord4f.load(&mut loadfn, "glMultiTexCoord4f");
+         storage::MultiTexCoord4fARB.load(&mut loadfn, "glMultiTexCoord4fARB");
+         storage::MultiTexCoord4fv.load(&mut loadfn, "glMultiTexCoord4fv");
+         storage::MultiTexCoord4fvARB.load(&mut loadfn, "glMultiTexCoord4fvARB");
+         storage::MultiTexCoord4hNV.load(&mut loadfn, "glMultiTexCoord4hNV");
+         storage::MultiTexCoord4hvNV.load(&mut loadfn, "glMultiTexCoord4hvNV");
+         storage::MultiTexCoord4i.load(&mut loadfn, "glMultiTexCoord4i");
+         storage::MultiTexCoord4iARB.load(&mut loadfn, "glMultiTexCoord4iARB");
+         storage::MultiTexCoord4iv.load(&mut loadfn, "glMultiTexCoord4iv");
+         storage::MultiTexCoord4ivARB.load(&mut loadfn, "glMultiTexCoord4ivARB");
+         storage::MultiTexCoord4s.load(&mut loadfn, "glMultiTexCoord4s");
+         storage::MultiTexCoord4sARB.load(&mut loadfn, "glMultiTexCoord4sARB");
+         storage::MultiTexCoord4sv.load(&mut loadfn, "glMultiTexCoord4sv");
+         storage::MultiTexCoord4svARB.load(&mut loadfn, "glMultiTexCoord4svARB");
+         storage::MultiTexCoord4xOES.load(&mut loadfn, "glMultiTexCoord4xOES");
+         storage::MultiTexCoord4xvOES.load(&mut loadfn, "glMultiTexCoord4xvOES");
+         storage::MultiTexCoordP1ui.load(&mut loadfn, "glMultiTexCoordP1ui");
+         storage::MultiTexCoordP1uiv.load(&mut loadfn, "glMultiTexCoordP1uiv");
+         storage::MultiTexCoordP2ui.load(&mut loadfn, "glMultiTexCoordP2ui");
+         storage::MultiTexCoordP2uiv.load(&mut loadfn, "glMultiTexCoordP2uiv");
+         storage::MultiTexCoordP3ui.load(&mut loadfn, "glMultiTexCoordP3ui");
+         storage::MultiTexCoordP3uiv.load(&mut loadfn, "glMultiTexCoordP3uiv");
+         storage::MultiTexCoordP4ui.load(&mut loadfn, "glMultiTexCoordP4ui");
+         storage::MultiTexCoordP4uiv.load(&mut loadfn, "glMultiTexCoordP4uiv");
+         storage::MultiTexCoordPointerEXT.load(&mut loadfn, "glMultiTexCoordPointerEXT");
+         storage::MultiTexEnvfEXT.load(&mut loadfn, "glMultiTexEnvfEXT");
+         storage::MultiTexEnvfvEXT.load(&mut loadfn, "glMultiTexEnvfvEXT");
+         storage::MultiTexEnviEXT.load(&mut loadfn, "glMultiTexEnviEXT");
+         storage::MultiTexEnvivEXT.load(&mut loadfn, "glMultiTexEnvivEXT");
+         storage::MultiTexGendEXT.load(&mut loadfn, "glMultiTexGendEXT");
+         storage::MultiTexGendvEXT.load(&mut loadfn, "glMultiTexGendvEXT");
+         storage::MultiTexGenfEXT.load(&mut loadfn, "glMultiTexGenfEXT");
+         storage::MultiTexGenfvEXT.load(&mut loadfn, "glMultiTexGenfvEXT");
+         storage::MultiTexGeniEXT.load(&mut loadfn, "glMultiTexGeniEXT");
+         storage::MultiTexGenivEXT.load(&mut loadfn, "glMultiTexGenivEXT");
+         storage::MultiTexImage1DEXT.load(&mut loadfn, "glMultiTexImage1DEXT");
+         storage::MultiTexImage2DEXT.load(&mut loadfn, "glMultiTexImage2DEXT");
+         storage::MultiTexImage3DEXT.load(&mut loadfn, "glMultiTexImage3DEXT");
+         storage::MultiTexParameterIivEXT.load(&mut loadfn, "glMultiTexParameterIivEXT");
+         storage::MultiTexParameterIuivEXT.load(&mut loadfn, "glMultiTexParameterIuivEXT");
+         storage::MultiTexParameterfEXT.load(&mut loadfn, "glMultiTexParameterfEXT");
+         storage::MultiTexParameterfvEXT.load(&mut loadfn, "glMultiTexParameterfvEXT");
+         storage::MultiTexParameteriEXT.load(&mut loadfn, "glMultiTexParameteriEXT");
+         storage::MultiTexParameterivEXT.load(&mut loadfn, "glMultiTexParameterivEXT");
+         storage::MultiTexRenderbufferEXT.load(&mut loadfn, "glMultiTexRenderbufferEXT");
+         storage::MultiTexSubImage1DEXT.load(&mut loadfn, "glMultiTexSubImage1DEXT");
+         storage::MultiTexSubImage2DEXT.load(&mut loadfn, "glMultiTexSubImage2DEXT");
+         storage::MultiTexSubImage3DEXT.load(&mut loadfn, "glMultiTexSubImage3DEXT");
+         storage::MulticastBarrierNV.load(&mut loadfn, "glMulticastBarrierNV");
+         storage::MulticastBlitFramebufferNV.load(&mut loadfn, "glMulticastBlitFramebufferNV");
+         storage::MulticastBufferSubDataNV.load(&mut loadfn, "glMulticastBufferSubDataNV");
+         storage::MulticastCopyBufferSubDataNV.load(&mut loadfn, "glMulticastCopyBufferSubDataNV");
+         storage::MulticastCopyImageSubDataNV.load(&mut loadfn, "glMulticastCopyImageSubDataNV");
+         storage::MulticastFramebufferSampleLocationsfvNV.load(&mut loadfn, "glMulticastFramebufferSampleLocationsfvNV");
+         storage::MulticastGetQueryObjecti64vNV.load(&mut loadfn, "glMulticastGetQueryObjecti64vNV");
+         storage::MulticastGetQueryObjectivNV.load(&mut loadfn, "glMulticastGetQueryObjectivNV");
+         storage::MulticastGetQueryObjectui64vNV.load(&mut loadfn, "glMulticastGetQueryObjectui64vNV");
+         storage::MulticastGetQueryObjectuivNV.load(&mut loadfn, "glMulticastGetQueryObjectuivNV");
+         storage::MulticastScissorArrayvNVX.load(&mut loadfn, "glMulticastScissorArrayvNVX");
+         storage::MulticastViewportArrayvNVX.load(&mut loadfn, "glMulticastViewportArrayvNVX");
+         storage::MulticastViewportPositionWScaleNVX.load(&mut loadfn, "glMulticastViewportPositionWScaleNVX");
+         storage::MulticastWaitSyncNV.load(&mut loadfn, "glMulticastWaitSyncNV");
+         storage::NamedBufferAttachMemoryNV.load(&mut loadfn, "glNamedBufferAttachMemoryNV");
+         storage::NamedBufferData.load(&mut loadfn, "glNamedBufferData");
+         storage::NamedBufferDataEXT.load(&mut loadfn, "glNamedBufferDataEXT");
+         storage::NamedBufferPageCommitmentARB.load(&mut loadfn, "glNamedBufferPageCommitmentARB");
+         storage::NamedBufferPageCommitmentEXT.load(&mut loadfn, "glNamedBufferPageCommitmentEXT");
+         storage::NamedBufferPageCommitmentMemNV.load(&mut loadfn, "glNamedBufferPageCommitmentMemNV");
+         storage::NamedBufferStorage.load(&mut loadfn, "glNamedBufferStorage");
+         storage::NamedBufferStorageEXT.load(&mut loadfn, "glNamedBufferStorageEXT");
+         storage::NamedBufferStorageExternalEXT.load(&mut loadfn, "glNamedBufferStorageExternalEXT");
+         storage::NamedBufferStorageMemEXT.load(&mut loadfn, "glNamedBufferStorageMemEXT");
+         storage::NamedBufferSubData.load(&mut loadfn, "glNamedBufferSubData");
+         storage::NamedBufferSubDataEXT.load(&mut loadfn, "glNamedBufferSubDataEXT");
+         storage::NamedCopyBufferSubDataEXT.load(&mut loadfn, "glNamedCopyBufferSubDataEXT");
+         storage::NamedFramebufferDrawBuffer.load(&mut loadfn, "glNamedFramebufferDrawBuffer");
+         storage::NamedFramebufferDrawBuffers.load(&mut loadfn, "glNamedFramebufferDrawBuffers");
+         storage::NamedFramebufferParameteri.load(&mut loadfn, "glNamedFramebufferParameteri");
+         storage::NamedFramebufferParameteriEXT.load(&mut loadfn, "glNamedFramebufferParameteriEXT");
+         storage::NamedFramebufferReadBuffer.load(&mut loadfn, "glNamedFramebufferReadBuffer");
+         storage::NamedFramebufferRenderbuffer.load(&mut loadfn, "glNamedFramebufferRenderbuffer");
+         storage::NamedFramebufferRenderbufferEXT.load(&mut loadfn, "glNamedFramebufferRenderbufferEXT");
+         storage::NamedFramebufferSampleLocationsfvARB.load(&mut loadfn, "glNamedFramebufferSampleLocationsfvARB");
+         storage::NamedFramebufferSampleLocationsfvNV.load(&mut loadfn, "glNamedFramebufferSampleLocationsfvNV");
+         storage::NamedFramebufferSamplePositionsfvAMD.load(&mut loadfn, "glNamedFramebufferSamplePositionsfvAMD");
+         storage::NamedFramebufferTexture.load(&mut loadfn, "glNamedFramebufferTexture");
+         storage::NamedFramebufferTexture1DEXT.load(&mut loadfn, "glNamedFramebufferTexture1DEXT");
+         storage::NamedFramebufferTexture2DEXT.load(&mut loadfn, "glNamedFramebufferTexture2DEXT");
+         storage::NamedFramebufferTexture3DEXT.load(&mut loadfn, "glNamedFramebufferTexture3DEXT");
+         storage::NamedFramebufferTextureEXT.load(&mut loadfn, "glNamedFramebufferTextureEXT");
+         storage::NamedFramebufferTextureFaceEXT.load(&mut loadfn, "glNamedFramebufferTextureFaceEXT");
+         storage::NamedFramebufferTextureLayer.load(&mut loadfn, "glNamedFramebufferTextureLayer");
+         storage::NamedFramebufferTextureLayerEXT.load(&mut loadfn, "glNamedFramebufferTextureLayerEXT");
+         storage::NamedProgramLocalParameter4dEXT.load(&mut loadfn, "glNamedProgramLocalParameter4dEXT");
+         storage::NamedProgramLocalParameter4dvEXT.load(&mut loadfn, "glNamedProgramLocalParameter4dvEXT");
+         storage::NamedProgramLocalParameter4fEXT.load(&mut loadfn, "glNamedProgramLocalParameter4fEXT");
+         storage::NamedProgramLocalParameter4fvEXT.load(&mut loadfn, "glNamedProgramLocalParameter4fvEXT");
+         storage::NamedProgramLocalParameterI4iEXT.load(&mut loadfn, "glNamedProgramLocalParameterI4iEXT");
+         storage::NamedProgramLocalParameterI4ivEXT.load(&mut loadfn, "glNamedProgramLocalParameterI4ivEXT");
+         storage::NamedProgramLocalParameterI4uiEXT.load(&mut loadfn, "glNamedProgramLocalParameterI4uiEXT");
+         storage::NamedProgramLocalParameterI4uivEXT.load(&mut loadfn, "glNamedProgramLocalParameterI4uivEXT");
+         storage::NamedProgramLocalParameters4fvEXT.load(&mut loadfn, "glNamedProgramLocalParameters4fvEXT");
+         storage::NamedProgramLocalParametersI4ivEXT.load(&mut loadfn, "glNamedProgramLocalParametersI4ivEXT");
+         storage::NamedProgramLocalParametersI4uivEXT.load(&mut loadfn, "glNamedProgramLocalParametersI4uivEXT");
+         storage::NamedProgramStringEXT.load(&mut loadfn, "glNamedProgramStringEXT");
+         storage::NamedRenderbufferStorage.load(&mut loadfn, "glNamedRenderbufferStorage");
+         storage::NamedRenderbufferStorageEXT.load(&mut loadfn, "glNamedRenderbufferStorageEXT");
+         storage::NamedRenderbufferStorageMultisample.load(&mut loadfn, "glNamedRenderbufferStorageMultisample");
+         storage::NamedRenderbufferStorageMultisampleAdvancedAMD.load(&mut loadfn, "glNamedRenderbufferStorageMultisampleAdvancedAMD");
+         storage::NamedRenderbufferStorageMultisampleCoverageEXT.load(&mut loadfn, "glNamedRenderbufferStorageMultisampleCoverageEXT");
+         storage::NamedRenderbufferStorageMultisampleEXT.load(&mut loadfn, "glNamedRenderbufferStorageMultisampleEXT");
+         storage::NamedStringARB.load(&mut loadfn, "glNamedStringARB");
+         storage::NewList.load(&mut loadfn, "glNewList");
+         storage::NewObjectBufferATI.load(&mut loadfn, "glNewObjectBufferATI");
+         storage::Normal3b.load(&mut loadfn, "glNormal3b");
+         storage::Normal3bv.load(&mut loadfn, "glNormal3bv");
+         storage::Normal3d.load(&mut loadfn, "glNormal3d");
+         storage::Normal3dv.load(&mut loadfn, "glNormal3dv");
+         storage::Normal3f.load(&mut loadfn, "glNormal3f");
+         storage::Normal3fVertex3fSUN.load(&mut loadfn, "glNormal3fVertex3fSUN");
+         storage::Normal3fVertex3fvSUN.load(&mut loadfn, "glNormal3fVertex3fvSUN");
+         storage::Normal3fv.load(&mut loadfn, "glNormal3fv");
+         storage::Normal3hNV.load(&mut loadfn, "glNormal3hNV");
+         storage::Normal3hvNV.load(&mut loadfn, "glNormal3hvNV");
+         storage::Normal3i.load(&mut loadfn, "glNormal3i");
+         storage::Normal3iv.load(&mut loadfn, "glNormal3iv");
+         storage::Normal3s.load(&mut loadfn, "glNormal3s");
+         storage::Normal3sv.load(&mut loadfn, "glNormal3sv");
+         storage::Normal3xOES.load(&mut loadfn, "glNormal3xOES");
+         storage::Normal3xvOES.load(&mut loadfn, "glNormal3xvOES");
+         storage::NormalFormatNV.load(&mut loadfn, "glNormalFormatNV");
+         storage::NormalP3ui.load(&mut loadfn, "glNormalP3ui");
+         storage::NormalP3uiv.load(&mut loadfn, "glNormalP3uiv");
+         storage::NormalPointer.load(&mut loadfn, "glNormalPointer");
+         storage::NormalPointerEXT.load(&mut loadfn, "glNormalPointerEXT");
+         storage::NormalPointerListIBM.load(&mut loadfn, "glNormalPointerListIBM");
+         storage::NormalPointervINTEL.load(&mut loadfn, "glNormalPointervINTEL");
+         storage::NormalStream3bATI.load(&mut loadfn, "glNormalStream3bATI");
+         storage::NormalStream3bvATI.load(&mut loadfn, "glNormalStream3bvATI");
+         storage::NormalStream3dATI.load(&mut loadfn, "glNormalStream3dATI");
+         storage::NormalStream3dvATI.load(&mut loadfn, "glNormalStream3dvATI");
+         storage::NormalStream3fATI.load(&mut loadfn, "glNormalStream3fATI");
+         storage::NormalStream3fvATI.load(&mut loadfn, "glNormalStream3fvATI");
+         storage::NormalStream3iATI.load(&mut loadfn, "glNormalStream3iATI");
+         storage::NormalStream3ivATI.load(&mut loadfn, "glNormalStream3ivATI");
+         storage::NormalStream3sATI.load(&mut loadfn, "glNormalStream3sATI");
+         storage::NormalStream3svATI.load(&mut loadfn, "glNormalStream3svATI");
+         storage::ObjectLabel.load(&mut loadfn, "glObjectLabel");
+         storage::ObjectPtrLabel.load(&mut loadfn, "glObjectPtrLabel");
+         storage::ObjectPurgeableAPPLE.load(&mut loadfn, "glObjectPurgeableAPPLE");
+         storage::ObjectUnpurgeableAPPLE.load(&mut loadfn, "glObjectUnpurgeableAPPLE");
+         storage::Ortho.load(&mut loadfn, "glOrtho");
+         storage::OrthofOES.load(&mut loadfn, "glOrthofOES");
+         storage::OrthoxOES.load(&mut loadfn, "glOrthoxOES");
+         storage::PNTrianglesfATI.load(&mut loadfn, "glPNTrianglesfATI");
+         storage::PNTrianglesiATI.load(&mut loadfn, "glPNTrianglesiATI");
+         storage::PassTexCoordATI.load(&mut loadfn, "glPassTexCoordATI");
+         storage::PassThrough.load(&mut loadfn, "glPassThrough");
+         storage::PassThroughxOES.load(&mut loadfn, "glPassThroughxOES");
+         storage::PatchParameterfv.load(&mut loadfn, "glPatchParameterfv");
+         storage::PatchParameteri.load(&mut loadfn, "glPatchParameteri");
+         storage::PathColorGenNV.load(&mut loadfn, "glPathColorGenNV");
+         storage::PathCommandsNV.load(&mut loadfn, "glPathCommandsNV");
+         storage::PathCoordsNV.load(&mut loadfn, "glPathCoordsNV");
+         storage::PathCoverDepthFuncNV.load(&mut loadfn, "glPathCoverDepthFuncNV");
+         storage::PathDashArrayNV.load(&mut loadfn, "glPathDashArrayNV");
+         storage::PathFogGenNV.load(&mut loadfn, "glPathFogGenNV");
+         storage::PathGlyphIndexArrayNV.load(&mut loadfn, "glPathGlyphIndexArrayNV");
+         storage::PathGlyphIndexRangeNV.load(&mut loadfn, "glPathGlyphIndexRangeNV");
+         storage::PathGlyphRangeNV.load(&mut loadfn, "glPathGlyphRangeNV");
+         storage::PathGlyphsNV.load(&mut loadfn, "glPathGlyphsNV");
+         storage::PathMemoryGlyphIndexArrayNV.load(&mut loadfn, "glPathMemoryGlyphIndexArrayNV");
+         storage::PathParameterfNV.load(&mut loadfn, "glPathParameterfNV");
+         storage::PathParameterfvNV.load(&mut loadfn, "glPathParameterfvNV");
+         storage::PathParameteriNV.load(&mut loadfn, "glPathParameteriNV");
+         storage::PathParameterivNV.load(&mut loadfn, "glPathParameterivNV");
+         storage::PathStencilDepthOffsetNV.load(&mut loadfn, "glPathStencilDepthOffsetNV");
+         storage::PathStencilFuncNV.load(&mut loadfn, "glPathStencilFuncNV");
+         storage::PathStringNV.load(&mut loadfn, "glPathStringNV");
+         storage::PathSubCommandsNV.load(&mut loadfn, "glPathSubCommandsNV");
+         storage::PathSubCoordsNV.load(&mut loadfn, "glPathSubCoordsNV");
+         storage::PathTexGenNV.load(&mut loadfn, "glPathTexGenNV");
+         storage::PauseTransformFeedback.load(&mut loadfn, "glPauseTransformFeedback");
+         storage::PauseTransformFeedbackNV.load(&mut loadfn, "glPauseTransformFeedbackNV");
+         storage::PixelDataRangeNV.load(&mut loadfn, "glPixelDataRangeNV");
+         storage::PixelMapfv.load(&mut loadfn, "glPixelMapfv");
+         storage::PixelMapuiv.load(&mut loadfn, "glPixelMapuiv");
+         storage::PixelMapusv.load(&mut loadfn, "glPixelMapusv");
+         storage::PixelMapx.load(&mut loadfn, "glPixelMapx");
+         storage::PixelStoref.load(&mut loadfn, "glPixelStoref");
+         storage::PixelStorei.load(&mut loadfn, "glPixelStorei");
+         storage::PixelStorex.load(&mut loadfn, "glPixelStorex");
+         storage::PixelTexGenParameterfSGIS.load(&mut loadfn, "glPixelTexGenParameterfSGIS");
+         storage::PixelTexGenParameterfvSGIS.load(&mut loadfn, "glPixelTexGenParameterfvSGIS");
+         storage::PixelTexGenParameteriSGIS.load(&mut loadfn, "glPixelTexGenParameteriSGIS");
+         storage::PixelTexGenParameterivSGIS.load(&mut loadfn, "glPixelTexGenParameterivSGIS");
+         storage::PixelTexGenSGIX.load(&mut loadfn, "glPixelTexGenSGIX");
+         storage::PixelTransferf.load(&mut loadfn, "glPixelTransferf");
+         storage::PixelTransferi.load(&mut loadfn, "glPixelTransferi");
+         storage::PixelTransferxOES.load(&mut loadfn, "glPixelTransferxOES");
+         storage::PixelTransformParameterfEXT.load(&mut loadfn, "glPixelTransformParameterfEXT");
+         storage::PixelTransformParameterfvEXT.load(&mut loadfn, "glPixelTransformParameterfvEXT");
+         storage::PixelTransformParameteriEXT.load(&mut loadfn, "glPixelTransformParameteriEXT");
+         storage::PixelTransformParameterivEXT.load(&mut loadfn, "glPixelTransformParameterivEXT");
+         storage::PixelZoom.load(&mut loadfn, "glPixelZoom");
+         storage::PixelZoomxOES.load(&mut loadfn, "glPixelZoomxOES");
+         storage::PointAlongPathNV.load(&mut loadfn, "glPointAlongPathNV");
+         storage::PointParameterf.load(&mut loadfn, "glPointParameterf");
+         storage::PointParameterfARB.load(&mut loadfn, "glPointParameterfARB");
+         storage::PointParameterfEXT.load(&mut loadfn, "glPointParameterfEXT");
+         storage::PointParameterfSGIS.load(&mut loadfn, "glPointParameterfSGIS");
+         storage::PointParameterfv.load(&mut loadfn, "glPointParameterfv");
+         storage::PointParameterfvARB.load(&mut loadfn, "glPointParameterfvARB");
+         storage::PointParameterfvEXT.load(&mut loadfn, "glPointParameterfvEXT");
+         storage::PointParameterfvSGIS.load(&mut loadfn, "glPointParameterfvSGIS");
+         storage::PointParameteri.load(&mut loadfn, "glPointParameteri");
+         storage::PointParameteriNV.load(&mut loadfn, "glPointParameteriNV");
+         storage::PointParameteriv.load(&mut loadfn, "glPointParameteriv");
+         storage::PointParameterivNV.load(&mut loadfn, "glPointParameterivNV");
+         storage::PointParameterxvOES.load(&mut loadfn, "glPointParameterxvOES");
+         storage::PointSize.load(&mut loadfn, "glPointSize");
+         storage::PointSizexOES.load(&mut loadfn, "glPointSizexOES");
+         storage::PollAsyncSGIX.load(&mut loadfn, "glPollAsyncSGIX");
+         storage::PollInstrumentsSGIX.load(&mut loadfn, "glPollInstrumentsSGIX");
+         storage::PolygonMode.load(&mut loadfn, "glPolygonMode");
+         storage::PolygonOffset.load(&mut loadfn, "glPolygonOffset");
+         storage::PolygonOffsetClamp.load(&mut loadfn, "glPolygonOffsetClamp");
+         storage::PolygonOffsetClampEXT.load(&mut loadfn, "glPolygonOffsetClampEXT");
+         storage::PolygonOffsetEXT.load(&mut loadfn, "glPolygonOffsetEXT");
+         storage::PolygonOffsetxOES.load(&mut loadfn, "glPolygonOffsetxOES");
+         storage::PolygonStipple.load(&mut loadfn, "glPolygonStipple");
+         storage::PopAttrib.load(&mut loadfn, "glPopAttrib");
+         storage::PopClientAttrib.load(&mut loadfn, "glPopClientAttrib");
+         storage::PopDebugGroup.load(&mut loadfn, "glPopDebugGroup");
+         storage::PopGroupMarkerEXT.load(&mut loadfn, "glPopGroupMarkerEXT");
+         storage::PopMatrix.load(&mut loadfn, "glPopMatrix");
+         storage::PopName.load(&mut loadfn, "glPopName");
+         storage::PresentFrameDualFillNV.load(&mut loadfn, "glPresentFrameDualFillNV");
+         storage::PresentFrameKeyedNV.load(&mut loadfn, "glPresentFrameKeyedNV");
+         storage::PrimitiveBoundingBoxARB.load(&mut loadfn, "glPrimitiveBoundingBoxARB");
+         storage::PrimitiveRestartIndex.load(&mut loadfn, "glPrimitiveRestartIndex");
+         storage::PrimitiveRestartIndexNV.load(&mut loadfn, "glPrimitiveRestartIndexNV");
+         storage::PrimitiveRestartNV.load(&mut loadfn, "glPrimitiveRestartNV");
+         storage::PrioritizeTextures.load(&mut loadfn, "glPrioritizeTextures");
+         storage::PrioritizeTexturesEXT.load(&mut loadfn, "glPrioritizeTexturesEXT");
+         storage::PrioritizeTexturesxOES.load(&mut loadfn, "glPrioritizeTexturesxOES");
+         storage::ProgramBinary.load(&mut loadfn, "glProgramBinary");
+         storage::ProgramBufferParametersIivNV.load(&mut loadfn, "glProgramBufferParametersIivNV");
+         storage::ProgramBufferParametersIuivNV.load(&mut loadfn, "glProgramBufferParametersIuivNV");
+         storage::ProgramBufferParametersfvNV.load(&mut loadfn, "glProgramBufferParametersfvNV");
+         storage::ProgramEnvParameter4dARB.load(&mut loadfn, "glProgramEnvParameter4dARB");
+         storage::ProgramEnvParameter4dvARB.load(&mut loadfn, "glProgramEnvParameter4dvARB");
+         storage::ProgramEnvParameter4fARB.load(&mut loadfn, "glProgramEnvParameter4fARB");
+         storage::ProgramEnvParameter4fvARB.load(&mut loadfn, "glProgramEnvParameter4fvARB");
+         storage::ProgramEnvParameterI4iNV.load(&mut loadfn, "glProgramEnvParameterI4iNV");
+         storage::ProgramEnvParameterI4ivNV.load(&mut loadfn, "glProgramEnvParameterI4ivNV");
+         storage::ProgramEnvParameterI4uiNV.load(&mut loadfn, "glProgramEnvParameterI4uiNV");
+         storage::ProgramEnvParameterI4uivNV.load(&mut loadfn, "glProgramEnvParameterI4uivNV");
+         storage::ProgramEnvParameters4fvEXT.load(&mut loadfn, "glProgramEnvParameters4fvEXT");
+         storage::ProgramEnvParametersI4ivNV.load(&mut loadfn, "glProgramEnvParametersI4ivNV");
+         storage::ProgramEnvParametersI4uivNV.load(&mut loadfn, "glProgramEnvParametersI4uivNV");
+         storage::ProgramLocalParameter4dARB.load(&mut loadfn, "glProgramLocalParameter4dARB");
+         storage::ProgramLocalParameter4dvARB.load(&mut loadfn, "glProgramLocalParameter4dvARB");
+         storage::ProgramLocalParameter4fARB.load(&mut loadfn, "glProgramLocalParameter4fARB");
+         storage::ProgramLocalParameter4fvARB.load(&mut loadfn, "glProgramLocalParameter4fvARB");
+         storage::ProgramLocalParameterI4iNV.load(&mut loadfn, "glProgramLocalParameterI4iNV");
+         storage::ProgramLocalParameterI4ivNV.load(&mut loadfn, "glProgramLocalParameterI4ivNV");
+         storage::ProgramLocalParameterI4uiNV.load(&mut loadfn, "glProgramLocalParameterI4uiNV");
+         storage::ProgramLocalParameterI4uivNV.load(&mut loadfn, "glProgramLocalParameterI4uivNV");
+         storage::ProgramLocalParameters4fvEXT.load(&mut loadfn, "glProgramLocalParameters4fvEXT");
+         storage::ProgramLocalParametersI4ivNV.load(&mut loadfn, "glProgramLocalParametersI4ivNV");
+         storage::ProgramLocalParametersI4uivNV.load(&mut loadfn, "glProgramLocalParametersI4uivNV");
+         storage::ProgramNamedParameter4dNV.load(&mut loadfn, "glProgramNamedParameter4dNV");
+         storage::ProgramNamedParameter4dvNV.load(&mut loadfn, "glProgramNamedParameter4dvNV");
+         storage::ProgramNamedParameter4fNV.load(&mut loadfn, "glProgramNamedParameter4fNV");
+         storage::ProgramNamedParameter4fvNV.load(&mut loadfn, "glProgramNamedParameter4fvNV");
+         storage::ProgramParameter4dNV.load(&mut loadfn, "glProgramParameter4dNV");
+         storage::ProgramParameter4dvNV.load(&mut loadfn, "glProgramParameter4dvNV");
+         storage::ProgramParameter4fNV.load(&mut loadfn, "glProgramParameter4fNV");
+         storage::ProgramParameter4fvNV.load(&mut loadfn, "glProgramParameter4fvNV");
+         storage::ProgramParameteri.load(&mut loadfn, "glProgramParameteri");
+         storage::ProgramParameteriARB.load(&mut loadfn, "glProgramParameteriARB");
+         storage::ProgramParameteriEXT.load(&mut loadfn, "glProgramParameteriEXT");
+         storage::ProgramParameters4dvNV.load(&mut loadfn, "glProgramParameters4dvNV");
+         storage::ProgramParameters4fvNV.load(&mut loadfn, "glProgramParameters4fvNV");
+         storage::ProgramPathFragmentInputGenNV.load(&mut loadfn, "glProgramPathFragmentInputGenNV");
+         storage::ProgramStringARB.load(&mut loadfn, "glProgramStringARB");
+         storage::ProgramSubroutineParametersuivNV.load(&mut loadfn, "glProgramSubroutineParametersuivNV");
+         storage::ProgramUniform1d.load(&mut loadfn, "glProgramUniform1d");
+         storage::ProgramUniform1dEXT.load(&mut loadfn, "glProgramUniform1dEXT");
+         storage::ProgramUniform1dv.load(&mut loadfn, "glProgramUniform1dv");
+         storage::ProgramUniform1dvEXT.load(&mut loadfn, "glProgramUniform1dvEXT");
+         storage::ProgramUniform1f.load(&mut loadfn, "glProgramUniform1f");
+         storage::ProgramUniform1fEXT.load(&mut loadfn, "glProgramUniform1fEXT");
+         storage::ProgramUniform1fv.load(&mut loadfn, "glProgramUniform1fv");
+         storage::ProgramUniform1fvEXT.load(&mut loadfn, "glProgramUniform1fvEXT");
+         storage::ProgramUniform1i.load(&mut loadfn, "glProgramUniform1i");
+         storage::ProgramUniform1i64ARB.load(&mut loadfn, "glProgramUniform1i64ARB");
+         storage::ProgramUniform1i64NV.load(&mut loadfn, "glProgramUniform1i64NV");
+         storage::ProgramUniform1i64vARB.load(&mut loadfn, "glProgramUniform1i64vARB");
+         storage::ProgramUniform1i64vNV.load(&mut loadfn, "glProgramUniform1i64vNV");
+         storage::ProgramUniform1iEXT.load(&mut loadfn, "glProgramUniform1iEXT");
+         storage::ProgramUniform1iv.load(&mut loadfn, "glProgramUniform1iv");
+         storage::ProgramUniform1ivEXT.load(&mut loadfn, "glProgramUniform1ivEXT");
+         storage::ProgramUniform1ui.load(&mut loadfn, "glProgramUniform1ui");
+         storage::ProgramUniform1ui64ARB.load(&mut loadfn, "glProgramUniform1ui64ARB");
+         storage::ProgramUniform1ui64NV.load(&mut loadfn, "glProgramUniform1ui64NV");
+         storage::ProgramUniform1ui64vARB.load(&mut loadfn, "glProgramUniform1ui64vARB");
+         storage::ProgramUniform1ui64vNV.load(&mut loadfn, "glProgramUniform1ui64vNV");
+         storage::ProgramUniform1uiEXT.load(&mut loadfn, "glProgramUniform1uiEXT");
+         storage::ProgramUniform1uiv.load(&mut loadfn, "glProgramUniform1uiv");
+         storage::ProgramUniform1uivEXT.load(&mut loadfn, "glProgramUniform1uivEXT");
+         storage::ProgramUniform2d.load(&mut loadfn, "glProgramUniform2d");
+         storage::ProgramUniform2dEXT.load(&mut loadfn, "glProgramUniform2dEXT");
+         storage::ProgramUniform2dv.load(&mut loadfn, "glProgramUniform2dv");
+         storage::ProgramUniform2dvEXT.load(&mut loadfn, "glProgramUniform2dvEXT");
+         storage::ProgramUniform2f.load(&mut loadfn, "glProgramUniform2f");
+         storage::ProgramUniform2fEXT.load(&mut loadfn, "glProgramUniform2fEXT");
+         storage::ProgramUniform2fv.load(&mut loadfn, "glProgramUniform2fv");
+         storage::ProgramUniform2fvEXT.load(&mut loadfn, "glProgramUniform2fvEXT");
+         storage::ProgramUniform2i.load(&mut loadfn, "glProgramUniform2i");
+         storage::ProgramUniform2i64ARB.load(&mut loadfn, "glProgramUniform2i64ARB");
+         storage::ProgramUniform2i64NV.load(&mut loadfn, "glProgramUniform2i64NV");
+         storage::ProgramUniform2i64vARB.load(&mut loadfn, "glProgramUniform2i64vARB");
+         storage::ProgramUniform2i64vNV.load(&mut loadfn, "glProgramUniform2i64vNV");
+         storage::ProgramUniform2iEXT.load(&mut loadfn, "glProgramUniform2iEXT");
+         storage::ProgramUniform2iv.load(&mut loadfn, "glProgramUniform2iv");
+         storage::ProgramUniform2ivEXT.load(&mut loadfn, "glProgramUniform2ivEXT");
+         storage::ProgramUniform2ui.load(&mut loadfn, "glProgramUniform2ui");
+         storage::ProgramUniform2ui64ARB.load(&mut loadfn, "glProgramUniform2ui64ARB");
+         storage::ProgramUniform2ui64NV.load(&mut loadfn, "glProgramUniform2ui64NV");
+         storage::ProgramUniform2ui64vARB.load(&mut loadfn, "glProgramUniform2ui64vARB");
+         storage::ProgramUniform2ui64vNV.load(&mut loadfn, "glProgramUniform2ui64vNV");
+         storage::ProgramUniform2uiEXT.load(&mut loadfn, "glProgramUniform2uiEXT");
+         storage::ProgramUniform2uiv.load(&mut loadfn, "glProgramUniform2uiv");
+         storage::ProgramUniform2uivEXT.load(&mut loadfn, "glProgramUniform2uivEXT");
+         storage::ProgramUniform3d.load(&mut loadfn, "glProgramUniform3d");
+         storage::ProgramUniform3dEXT.load(&mut loadfn, "glProgramUniform3dEXT");
+         storage::ProgramUniform3dv.load(&mut loadfn, "glProgramUniform3dv");
+         storage::ProgramUniform3dvEXT.load(&mut loadfn, "glProgramUniform3dvEXT");
+         storage::ProgramUniform3f.load(&mut loadfn, "glProgramUniform3f");
+         storage::ProgramUniform3fEXT.load(&mut loadfn, "glProgramUniform3fEXT");
+         storage::ProgramUniform3fv.load(&mut loadfn, "glProgramUniform3fv");
+         storage::ProgramUniform3fvEXT.load(&mut loadfn, "glProgramUniform3fvEXT");
+         storage::ProgramUniform3i.load(&mut loadfn, "glProgramUniform3i");
+         storage::ProgramUniform3i64ARB.load(&mut loadfn, "glProgramUniform3i64ARB");
+         storage::ProgramUniform3i64NV.load(&mut loadfn, "glProgramUniform3i64NV");
+         storage::ProgramUniform3i64vARB.load(&mut loadfn, "glProgramUniform3i64vARB");
+         storage::ProgramUniform3i64vNV.load(&mut loadfn, "glProgramUniform3i64vNV");
+         storage::ProgramUniform3iEXT.load(&mut loadfn, "glProgramUniform3iEXT");
+         storage::ProgramUniform3iv.load(&mut loadfn, "glProgramUniform3iv");
+         storage::ProgramUniform3ivEXT.load(&mut loadfn, "glProgramUniform3ivEXT");
+         storage::ProgramUniform3ui.load(&mut loadfn, "glProgramUniform3ui");
+         storage::ProgramUniform3ui64ARB.load(&mut loadfn, "glProgramUniform3ui64ARB");
+         storage::ProgramUniform3ui64NV.load(&mut loadfn, "glProgramUniform3ui64NV");
+         storage::ProgramUniform3ui64vARB.load(&mut loadfn, "glProgramUniform3ui64vARB");
+         storage::ProgramUniform3ui64vNV.load(&mut loadfn, "glProgramUniform3ui64vNV");
+         storage::ProgramUniform3uiEXT.load(&mut loadfn, "glProgramUniform3uiEXT");
+         storage::ProgramUniform3uiv.load(&mut loadfn, "glProgramUniform3uiv");
+         storage::ProgramUniform3uivEXT.load(&mut loadfn, "glProgramUniform3uivEXT");
+         storage::ProgramUniform4d.load(&mut loadfn, "glProgramUniform4d");
+         storage::ProgramUniform4dEXT.load(&mut loadfn, "glProgramUniform4dEXT");
+         storage::ProgramUniform4dv.load(&mut loadfn, "glProgramUniform4dv");
+         storage::ProgramUniform4dvEXT.load(&mut loadfn, "glProgramUniform4dvEXT");
+         storage::ProgramUniform4f.load(&mut loadfn, "glProgramUniform4f");
+         storage::ProgramUniform4fEXT.load(&mut loadfn, "glProgramUniform4fEXT");
+         storage::ProgramUniform4fv.load(&mut loadfn, "glProgramUniform4fv");
+         storage::ProgramUniform4fvEXT.load(&mut loadfn, "glProgramUniform4fvEXT");
+         storage::ProgramUniform4i.load(&mut loadfn, "glProgramUniform4i");
+         storage::ProgramUniform4i64ARB.load(&mut loadfn, "glProgramUniform4i64ARB");
+         storage::ProgramUniform4i64NV.load(&mut loadfn, "glProgramUniform4i64NV");
+         storage::ProgramUniform4i64vARB.load(&mut loadfn, "glProgramUniform4i64vARB");
+         storage::ProgramUniform4i64vNV.load(&mut loadfn, "glProgramUniform4i64vNV");
+         storage::ProgramUniform4iEXT.load(&mut loadfn, "glProgramUniform4iEXT");
+         storage::ProgramUniform4iv.load(&mut loadfn, "glProgramUniform4iv");
+         storage::ProgramUniform4ivEXT.load(&mut loadfn, "glProgramUniform4ivEXT");
+         storage::ProgramUniform4ui.load(&mut loadfn, "glProgramUniform4ui");
+         storage::ProgramUniform4ui64ARB.load(&mut loadfn, "glProgramUniform4ui64ARB");
+         storage::ProgramUniform4ui64NV.load(&mut loadfn, "glProgramUniform4ui64NV");
+         storage::ProgramUniform4ui64vARB.load(&mut loadfn, "glProgramUniform4ui64vARB");
+         storage::ProgramUniform4ui64vNV.load(&mut loadfn, "glProgramUniform4ui64vNV");
+         storage::ProgramUniform4uiEXT.load(&mut loadfn, "glProgramUniform4uiEXT");
+         storage::ProgramUniform4uiv.load(&mut loadfn, "glProgramUniform4uiv");
+         storage::ProgramUniform4uivEXT.load(&mut loadfn, "glProgramUniform4uivEXT");
+         storage::ProgramUniformHandleui64ARB.load(&mut loadfn, "glProgramUniformHandleui64ARB");
+         storage::ProgramUniformHandleui64NV.load(&mut loadfn, "glProgramUniformHandleui64NV");
+         storage::ProgramUniformHandleui64vARB.load(&mut loadfn, "glProgramUniformHandleui64vARB");
+         storage::ProgramUniformHandleui64vNV.load(&mut loadfn, "glProgramUniformHandleui64vNV");
+         storage::ProgramUniformMatrix2dv.load(&mut loadfn, "glProgramUniformMatrix2dv");
+         storage::ProgramUniformMatrix2dvEXT.load(&mut loadfn, "glProgramUniformMatrix2dvEXT");
+         storage::ProgramUniformMatrix2fv.load(&mut loadfn, "glProgramUniformMatrix2fv");
+         storage::ProgramUniformMatrix2fvEXT.load(&mut loadfn, "glProgramUniformMatrix2fvEXT");
+         storage::ProgramUniformMatrix2x3dv.load(&mut loadfn, "glProgramUniformMatrix2x3dv");
+         storage::ProgramUniformMatrix2x3dvEXT.load(&mut loadfn, "glProgramUniformMatrix2x3dvEXT");
+         storage::ProgramUniformMatrix2x3fv.load(&mut loadfn, "glProgramUniformMatrix2x3fv");
+         storage::ProgramUniformMatrix2x3fvEXT.load(&mut loadfn, "glProgramUniformMatrix2x3fvEXT");
+         storage::ProgramUniformMatrix2x4dv.load(&mut loadfn, "glProgramUniformMatrix2x4dv");
+         storage::ProgramUniformMatrix2x4dvEXT.load(&mut loadfn, "glProgramUniformMatrix2x4dvEXT");
+         storage::ProgramUniformMatrix2x4fv.load(&mut loadfn, "glProgramUniformMatrix2x4fv");
+         storage::ProgramUniformMatrix2x4fvEXT.load(&mut loadfn, "glProgramUniformMatrix2x4fvEXT");
+         storage::ProgramUniformMatrix3dv.load(&mut loadfn, "glProgramUniformMatrix3dv");
+         storage::ProgramUniformMatrix3dvEXT.load(&mut loadfn, "glProgramUniformMatrix3dvEXT");
+         storage::ProgramUniformMatrix3fv.load(&mut loadfn, "glProgramUniformMatrix3fv");
+         storage::ProgramUniformMatrix3fvEXT.load(&mut loadfn, "glProgramUniformMatrix3fvEXT");
+         storage::ProgramUniformMatrix3x2dv.load(&mut loadfn, "glProgramUniformMatrix3x2dv");
+         storage::ProgramUniformMatrix3x2dvEXT.load(&mut loadfn, "glProgramUniformMatrix3x2dvEXT");
+         storage::ProgramUniformMatrix3x2fv.load(&mut loadfn, "glProgramUniformMatrix3x2fv");
+         storage::ProgramUniformMatrix3x2fvEXT.load(&mut loadfn, "glProgramUniformMatrix3x2fvEXT");
+         storage::ProgramUniformMatrix3x4dv.load(&mut loadfn, "glProgramUniformMatrix3x4dv");
+         storage::ProgramUniformMatrix3x4dvEXT.load(&mut loadfn, "glProgramUniformMatrix3x4dvEXT");
+         storage::ProgramUniformMatrix3x4fv.load(&mut loadfn, "glProgramUniformMatrix3x4fv");
+         storage::ProgramUniformMatrix3x4fvEXT.load(&mut loadfn, "glProgramUniformMatrix3x4fvEXT");
+         storage::ProgramUniformMatrix4dv.load(&mut loadfn, "glProgramUniformMatrix4dv");
+         storage::ProgramUniformMatrix4dvEXT.load(&mut loadfn, "glProgramUniformMatrix4dvEXT");
+         storage::ProgramUniformMatrix4fv.load(&mut loadfn, "glProgramUniformMatrix4fv");
+         storage::ProgramUniformMatrix4fvEXT.load(&mut loadfn, "glProgramUniformMatrix4fvEXT");
+         storage::ProgramUniformMatrix4x2dv.load(&mut loadfn, "glProgramUniformMatrix4x2dv");
+         storage::ProgramUniformMatrix4x2dvEXT.load(&mut loadfn, "glProgramUniformMatrix4x2dvEXT");
+         storage::ProgramUniformMatrix4x2fv.load(&mut loadfn, "glProgramUniformMatrix4x2fv");
+         storage::ProgramUniformMatrix4x2fvEXT.load(&mut loadfn, "glProgramUniformMatrix4x2fvEXT");
+         storage::ProgramUniformMatrix4x3dv.load(&mut loadfn, "glProgramUniformMatrix4x3dv");
+         storage::ProgramUniformMatrix4x3dvEXT.load(&mut loadfn, "glProgramUniformMatrix4x3dvEXT");
+         storage::ProgramUniformMatrix4x3fv.load(&mut loadfn, "glProgramUniformMatrix4x3fv");
+         storage::ProgramUniformMatrix4x3fvEXT.load(&mut loadfn, "glProgramUniformMatrix4x3fvEXT");
+         storage::ProgramUniformui64NV.load(&mut loadfn, "glProgramUniformui64NV");
+         storage::ProgramUniformui64vNV.load(&mut loadfn, "glProgramUniformui64vNV");
+         storage::ProgramVertexLimitNV.load(&mut loadfn, "glProgramVertexLimitNV");
+         storage::ProvokingVertex.load(&mut loadfn, "glProvokingVertex");
+         storage::ProvokingVertexEXT.load(&mut loadfn, "glProvokingVertexEXT");
+         storage::PushAttrib.load(&mut loadfn, "glPushAttrib");
+         storage::PushClientAttrib.load(&mut loadfn, "glPushClientAttrib");
+         storage::PushClientAttribDefaultEXT.load(&mut loadfn, "glPushClientAttribDefaultEXT");
+         storage::PushDebugGroup.load(&mut loadfn, "glPushDebugGroup");
+         storage::PushGroupMarkerEXT.load(&mut loadfn, "glPushGroupMarkerEXT");
+         storage::PushMatrix.load(&mut loadfn, "glPushMatrix");
+         storage::PushName.load(&mut loadfn, "glPushName");
+         storage::QueryCounter.load(&mut loadfn, "glQueryCounter");
+         storage::QueryMatrixxOES.load(&mut loadfn, "glQueryMatrixxOES");
+         storage::QueryObjectParameteruiAMD.load(&mut loadfn, "glQueryObjectParameteruiAMD");
+         storage::QueryResourceNV.load(&mut loadfn, "glQueryResourceNV");
+         storage::QueryResourceTagNV.load(&mut loadfn, "glQueryResourceTagNV");
+         storage::RasterPos2d.load(&mut loadfn, "glRasterPos2d");
+         storage::RasterPos2dv.load(&mut loadfn, "glRasterPos2dv");
+         storage::RasterPos2f.load(&mut loadfn, "glRasterPos2f");
+         storage::RasterPos2fv.load(&mut loadfn, "glRasterPos2fv");
+         storage::RasterPos2i.load(&mut loadfn, "glRasterPos2i");
+         storage::RasterPos2iv.load(&mut loadfn, "glRasterPos2iv");
+         storage::RasterPos2s.load(&mut loadfn, "glRasterPos2s");
+         storage::RasterPos2sv.load(&mut loadfn, "glRasterPos2sv");
+         storage::RasterPos2xOES.load(&mut loadfn, "glRasterPos2xOES");
+         storage::RasterPos2xvOES.load(&mut loadfn, "glRasterPos2xvOES");
+         storage::RasterPos3d.load(&mut loadfn, "glRasterPos3d");
+         storage::RasterPos3dv.load(&mut loadfn, "glRasterPos3dv");
+         storage::RasterPos3f.load(&mut loadfn, "glRasterPos3f");
+         storage::RasterPos3fv.load(&mut loadfn, "glRasterPos3fv");
+         storage::RasterPos3i.load(&mut loadfn, "glRasterPos3i");
+         storage::RasterPos3iv.load(&mut loadfn, "glRasterPos3iv");
+         storage::RasterPos3s.load(&mut loadfn, "glRasterPos3s");
+         storage::RasterPos3sv.load(&mut loadfn, "glRasterPos3sv");
+         storage::RasterPos3xOES.load(&mut loadfn, "glRasterPos3xOES");
+         storage::RasterPos3xvOES.load(&mut loadfn, "glRasterPos3xvOES");
+         storage::RasterPos4d.load(&mut loadfn, "glRasterPos4d");
+         storage::RasterPos4dv.load(&mut loadfn, "glRasterPos4dv");
+         storage::RasterPos4f.load(&mut loadfn, "glRasterPos4f");
+         storage::RasterPos4fv.load(&mut loadfn, "glRasterPos4fv");
+         storage::RasterPos4i.load(&mut loadfn, "glRasterPos4i");
+         storage::RasterPos4iv.load(&mut loadfn, "glRasterPos4iv");
+         storage::RasterPos4s.load(&mut loadfn, "glRasterPos4s");
+         storage::RasterPos4sv.load(&mut loadfn, "glRasterPos4sv");
+         storage::RasterPos4xOES.load(&mut loadfn, "glRasterPos4xOES");
+         storage::RasterPos4xvOES.load(&mut loadfn, "glRasterPos4xvOES");
+         storage::RasterSamplesEXT.load(&mut loadfn, "glRasterSamplesEXT");
+         storage::ReadBuffer.load(&mut loadfn, "glReadBuffer");
+         storage::ReadInstrumentsSGIX.load(&mut loadfn, "glReadInstrumentsSGIX");
+         storage::ReadPixels.load(&mut loadfn, "glReadPixels");
+         storage::ReadnPixels.load(&mut loadfn, "glReadnPixels");
+         storage::ReadnPixelsARB.load(&mut loadfn, "glReadnPixelsARB");
+         storage::Rectd.load(&mut loadfn, "glRectd");
+         storage::Rectdv.load(&mut loadfn, "glRectdv");
+         storage::Rectf.load(&mut loadfn, "glRectf");
+         storage::Rectfv.load(&mut loadfn, "glRectfv");
+         storage::Recti.load(&mut loadfn, "glRecti");
+         storage::Rectiv.load(&mut loadfn, "glRectiv");
+         storage::Rects.load(&mut loadfn, "glRects");
+         storage::Rectsv.load(&mut loadfn, "glRectsv");
+         storage::RectxOES.load(&mut loadfn, "glRectxOES");
+         storage::RectxvOES.load(&mut loadfn, "glRectxvOES");
+         storage::ReferencePlaneSGIX.load(&mut loadfn, "glReferencePlaneSGIX");
+         storage::ReleaseKeyedMutexWin32EXT.load(&mut loadfn, "glReleaseKeyedMutexWin32EXT");
+         storage::ReleaseShaderCompiler.load(&mut loadfn, "glReleaseShaderCompiler");
+         storage::RenderGpuMaskNV.load(&mut loadfn, "glRenderGpuMaskNV");
+         storage::RenderMode.load(&mut loadfn, "glRenderMode");
+         storage::RenderbufferStorage.load(&mut loadfn, "glRenderbufferStorage");
+         storage::RenderbufferStorageEXT.load(&mut loadfn, "glRenderbufferStorageEXT");
+         storage::RenderbufferStorageMultisample.load(&mut loadfn, "glRenderbufferStorageMultisample");
+         storage::RenderbufferStorageMultisampleAdvancedAMD.load(&mut loadfn, "glRenderbufferStorageMultisampleAdvancedAMD");
+         storage::RenderbufferStorageMultisampleCoverageNV.load(&mut loadfn, "glRenderbufferStorageMultisampleCoverageNV");
+         storage::RenderbufferStorageMultisampleEXT.load(&mut loadfn, "glRenderbufferStorageMultisampleEXT");
+         storage::ReplacementCodePointerSUN.load(&mut loadfn, "glReplacementCodePointerSUN");
+         storage::ReplacementCodeubSUN.load(&mut loadfn, "glReplacementCodeubSUN");
+         storage::ReplacementCodeubvSUN.load(&mut loadfn, "glReplacementCodeubvSUN");
+         storage::ReplacementCodeuiColor3fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiColor3fVertex3fSUN");
+         storage::ReplacementCodeuiColor3fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiColor3fVertex3fvSUN");
+         storage::ReplacementCodeuiColor4fNormal3fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiColor4fNormal3fVertex3fSUN");
+         storage::ReplacementCodeuiColor4fNormal3fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiColor4fNormal3fVertex3fvSUN");
+         storage::ReplacementCodeuiColor4ubVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiColor4ubVertex3fSUN");
+         storage::ReplacementCodeuiColor4ubVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiColor4ubVertex3fvSUN");
+         storage::ReplacementCodeuiNormal3fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiNormal3fVertex3fSUN");
+         storage::ReplacementCodeuiNormal3fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiNormal3fVertex3fvSUN");
+         storage::ReplacementCodeuiSUN.load(&mut loadfn, "glReplacementCodeuiSUN");
+         storage::ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN");
+         storage::ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN");
+         storage::ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN");
+         storage::ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN");
+         storage::ReplacementCodeuiTexCoord2fVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fVertex3fSUN");
+         storage::ReplacementCodeuiTexCoord2fVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiTexCoord2fVertex3fvSUN");
+         storage::ReplacementCodeuiVertex3fSUN.load(&mut loadfn, "glReplacementCodeuiVertex3fSUN");
+         storage::ReplacementCodeuiVertex3fvSUN.load(&mut loadfn, "glReplacementCodeuiVertex3fvSUN");
+         storage::ReplacementCodeuivSUN.load(&mut loadfn, "glReplacementCodeuivSUN");
+         storage::ReplacementCodeusSUN.load(&mut loadfn, "glReplacementCodeusSUN");
+         storage::ReplacementCodeusvSUN.load(&mut loadfn, "glReplacementCodeusvSUN");
+         storage::RequestResidentProgramsNV.load(&mut loadfn, "glRequestResidentProgramsNV");
+         storage::ResetHistogram.load(&mut loadfn, "glResetHistogram");
+         storage::ResetHistogramEXT.load(&mut loadfn, "glResetHistogramEXT");
+         storage::ResetMemoryObjectParameterNV.load(&mut loadfn, "glResetMemoryObjectParameterNV");
+         storage::ResetMinmax.load(&mut loadfn, "glResetMinmax");
+         storage::ResetMinmaxEXT.load(&mut loadfn, "glResetMinmaxEXT");
+         storage::ResizeBuffersMESA.load(&mut loadfn, "glResizeBuffersMESA");
+         storage::ResolveDepthValuesNV.load(&mut loadfn, "glResolveDepthValuesNV");
+         storage::ResumeTransformFeedback.load(&mut loadfn, "glResumeTransformFeedback");
+         storage::ResumeTransformFeedbackNV.load(&mut loadfn, "glResumeTransformFeedbackNV");
+         storage::Rotated.load(&mut loadfn, "glRotated");
+         storage::Rotatef.load(&mut loadfn, "glRotatef");
+         storage::RotatexOES.load(&mut loadfn, "glRotatexOES");
+         storage::SampleCoverage.load(&mut loadfn, "glSampleCoverage");
+         storage::SampleCoverageARB.load(&mut loadfn, "glSampleCoverageARB");
+         storage::SampleMapATI.load(&mut loadfn, "glSampleMapATI");
+         storage::SampleMaskEXT.load(&mut loadfn, "glSampleMaskEXT");
+         storage::SampleMaskIndexedNV.load(&mut loadfn, "glSampleMaskIndexedNV");
+         storage::SampleMaskSGIS.load(&mut loadfn, "glSampleMaskSGIS");
+         storage::SampleMaski.load(&mut loadfn, "glSampleMaski");
+         storage::SamplePatternEXT.load(&mut loadfn, "glSamplePatternEXT");
+         storage::SamplePatternSGIS.load(&mut loadfn, "glSamplePatternSGIS");
+         storage::SamplerParameterIiv.load(&mut loadfn, "glSamplerParameterIiv");
+         storage::SamplerParameterIuiv.load(&mut loadfn, "glSamplerParameterIuiv");
+         storage::SamplerParameterf.load(&mut loadfn, "glSamplerParameterf");
+         storage::SamplerParameterfv.load(&mut loadfn, "glSamplerParameterfv");
+         storage::SamplerParameteri.load(&mut loadfn, "glSamplerParameteri");
+         storage::SamplerParameteriv.load(&mut loadfn, "glSamplerParameteriv");
+         storage::Scaled.load(&mut loadfn, "glScaled");
+         storage::Scalef.load(&mut loadfn, "glScalef");
+         storage::ScalexOES.load(&mut loadfn, "glScalexOES");
+         storage::Scissor.load(&mut loadfn, "glScissor");
+         storage::ScissorArrayv.load(&mut loadfn, "glScissorArrayv");
+         storage::ScissorExclusiveArrayvNV.load(&mut loadfn, "glScissorExclusiveArrayvNV");
+         storage::ScissorExclusiveNV.load(&mut loadfn, "glScissorExclusiveNV");
+         storage::ScissorIndexed.load(&mut loadfn, "glScissorIndexed");
+         storage::ScissorIndexedv.load(&mut loadfn, "glScissorIndexedv");
+         storage::SecondaryColor3b.load(&mut loadfn, "glSecondaryColor3b");
+         storage::SecondaryColor3bEXT.load(&mut loadfn, "glSecondaryColor3bEXT");
+         storage::SecondaryColor3bv.load(&mut loadfn, "glSecondaryColor3bv");
+         storage::SecondaryColor3bvEXT.load(&mut loadfn, "glSecondaryColor3bvEXT");
+         storage::SecondaryColor3d.load(&mut loadfn, "glSecondaryColor3d");
+         storage::SecondaryColor3dEXT.load(&mut loadfn, "glSecondaryColor3dEXT");
+         storage::SecondaryColor3dv.load(&mut loadfn, "glSecondaryColor3dv");
+         storage::SecondaryColor3dvEXT.load(&mut loadfn, "glSecondaryColor3dvEXT");
+         storage::SecondaryColor3f.load(&mut loadfn, "glSecondaryColor3f");
+         storage::SecondaryColor3fEXT.load(&mut loadfn, "glSecondaryColor3fEXT");
+         storage::SecondaryColor3fv.load(&mut loadfn, "glSecondaryColor3fv");
+         storage::SecondaryColor3fvEXT.load(&mut loadfn, "glSecondaryColor3fvEXT");
+         storage::SecondaryColor3hNV.load(&mut loadfn, "glSecondaryColor3hNV");
+         storage::SecondaryColor3hvNV.load(&mut loadfn, "glSecondaryColor3hvNV");
+         storage::SecondaryColor3i.load(&mut loadfn, "glSecondaryColor3i");
+         storage::SecondaryColor3iEXT.load(&mut loadfn, "glSecondaryColor3iEXT");
+         storage::SecondaryColor3iv.load(&mut loadfn, "glSecondaryColor3iv");
+         storage::SecondaryColor3ivEXT.load(&mut loadfn, "glSecondaryColor3ivEXT");
+         storage::SecondaryColor3s.load(&mut loadfn, "glSecondaryColor3s");
+         storage::SecondaryColor3sEXT.load(&mut loadfn, "glSecondaryColor3sEXT");
+         storage::SecondaryColor3sv.load(&mut loadfn, "glSecondaryColor3sv");
+         storage::SecondaryColor3svEXT.load(&mut loadfn, "glSecondaryColor3svEXT");
+         storage::SecondaryColor3ub.load(&mut loadfn, "glSecondaryColor3ub");
+         storage::SecondaryColor3ubEXT.load(&mut loadfn, "glSecondaryColor3ubEXT");
+         storage::SecondaryColor3ubv.load(&mut loadfn, "glSecondaryColor3ubv");
+         storage::SecondaryColor3ubvEXT.load(&mut loadfn, "glSecondaryColor3ubvEXT");
+         storage::SecondaryColor3ui.load(&mut loadfn, "glSecondaryColor3ui");
+         storage::SecondaryColor3uiEXT.load(&mut loadfn, "glSecondaryColor3uiEXT");
+         storage::SecondaryColor3uiv.load(&mut loadfn, "glSecondaryColor3uiv");
+         storage::SecondaryColor3uivEXT.load(&mut loadfn, "glSecondaryColor3uivEXT");
+         storage::SecondaryColor3us.load(&mut loadfn, "glSecondaryColor3us");
+         storage::SecondaryColor3usEXT.load(&mut loadfn, "glSecondaryColor3usEXT");
+         storage::SecondaryColor3usv.load(&mut loadfn, "glSecondaryColor3usv");
+         storage::SecondaryColor3usvEXT.load(&mut loadfn, "glSecondaryColor3usvEXT");
+         storage::SecondaryColorFormatNV.load(&mut loadfn, "glSecondaryColorFormatNV");
+         storage::SecondaryColorP3ui.load(&mut loadfn, "glSecondaryColorP3ui");
+         storage::SecondaryColorP3uiv.load(&mut loadfn, "glSecondaryColorP3uiv");
+         storage::SecondaryColorPointer.load(&mut loadfn, "glSecondaryColorPointer");
+         storage::SecondaryColorPointerEXT.load(&mut loadfn, "glSecondaryColorPointerEXT");
+         storage::SecondaryColorPointerListIBM.load(&mut loadfn, "glSecondaryColorPointerListIBM");
+         storage::SelectBuffer.load(&mut loadfn, "glSelectBuffer");
+         storage::SelectPerfMonitorCountersAMD.load(&mut loadfn, "glSelectPerfMonitorCountersAMD");
+         storage::SemaphoreParameterivNV.load(&mut loadfn, "glSemaphoreParameterivNV");
+         storage::SemaphoreParameterui64vEXT.load(&mut loadfn, "glSemaphoreParameterui64vEXT");
+         storage::SeparableFilter2D.load(&mut loadfn, "glSeparableFilter2D");
+         storage::SeparableFilter2DEXT.load(&mut loadfn, "glSeparableFilter2DEXT");
+         storage::SetFenceAPPLE.load(&mut loadfn, "glSetFenceAPPLE");
+         storage::SetFenceNV.load(&mut loadfn, "glSetFenceNV");
+         storage::SetFragmentShaderConstantATI.load(&mut loadfn, "glSetFragmentShaderConstantATI");
+         storage::SetInvariantEXT.load(&mut loadfn, "glSetInvariantEXT");
+         storage::SetLocalConstantEXT.load(&mut loadfn, "glSetLocalConstantEXT");
+         storage::SetMultisamplefvAMD.load(&mut loadfn, "glSetMultisamplefvAMD");
+         storage::ShadeModel.load(&mut loadfn, "glShadeModel");
+         storage::ShaderBinary.load(&mut loadfn, "glShaderBinary");
+         storage::ShaderOp1EXT.load(&mut loadfn, "glShaderOp1EXT");
+         storage::ShaderOp2EXT.load(&mut loadfn, "glShaderOp2EXT");
+         storage::ShaderOp3EXT.load(&mut loadfn, "glShaderOp3EXT");
+         storage::ShaderSource.load(&mut loadfn, "glShaderSource");
+         storage::ShaderSourceARB.load(&mut loadfn, "glShaderSourceARB");
+         storage::ShaderStorageBlockBinding.load(&mut loadfn, "glShaderStorageBlockBinding");
+         storage::ShadingRateImageBarrierNV.load(&mut loadfn, "glShadingRateImageBarrierNV");
+         storage::ShadingRateImagePaletteNV.load(&mut loadfn, "glShadingRateImagePaletteNV");
+         storage::ShadingRateSampleOrderCustomNV.load(&mut loadfn, "glShadingRateSampleOrderCustomNV");
+         storage::ShadingRateSampleOrderNV.load(&mut loadfn, "glShadingRateSampleOrderNV");
+         storage::SharpenTexFuncSGIS.load(&mut loadfn, "glSharpenTexFuncSGIS");
+         storage::SignalSemaphoreEXT.load(&mut loadfn, "glSignalSemaphoreEXT");
+         storage::SignalSemaphoreui64NVX.load(&mut loadfn, "glSignalSemaphoreui64NVX");
+         storage::SignalVkFenceNV.load(&mut loadfn, "glSignalVkFenceNV");
+         storage::SignalVkSemaphoreNV.load(&mut loadfn, "glSignalVkSemaphoreNV");
+         storage::SpecializeShader.load(&mut loadfn, "glSpecializeShader");
+         storage::SpecializeShaderARB.load(&mut loadfn, "glSpecializeShaderARB");
+         storage::SpriteParameterfSGIX.load(&mut loadfn, "glSpriteParameterfSGIX");
+         storage::SpriteParameterfvSGIX.load(&mut loadfn, "glSpriteParameterfvSGIX");
+         storage::SpriteParameteriSGIX.load(&mut loadfn, "glSpriteParameteriSGIX");
+         storage::SpriteParameterivSGIX.load(&mut loadfn, "glSpriteParameterivSGIX");
+         storage::StartInstrumentsSGIX.load(&mut loadfn, "glStartInstrumentsSGIX");
+         storage::StateCaptureNV.load(&mut loadfn, "glStateCaptureNV");
+         storage::StencilClearTagEXT.load(&mut loadfn, "glStencilClearTagEXT");
+         storage::StencilFillPathInstancedNV.load(&mut loadfn, "glStencilFillPathInstancedNV");
+         storage::StencilFillPathNV.load(&mut loadfn, "glStencilFillPathNV");
+         storage::StencilFunc.load(&mut loadfn, "glStencilFunc");
+         storage::StencilFuncSeparate.load(&mut loadfn, "glStencilFuncSeparate");
+         storage::StencilFuncSeparateATI.load(&mut loadfn, "glStencilFuncSeparateATI");
+         storage::StencilMask.load(&mut loadfn, "glStencilMask");
+         storage::StencilMaskSeparate.load(&mut loadfn, "glStencilMaskSeparate");
+         storage::StencilOp.load(&mut loadfn, "glStencilOp");
+         storage::StencilOpSeparate.load(&mut loadfn, "glStencilOpSeparate");
+         storage::StencilOpSeparateATI.load(&mut loadfn, "glStencilOpSeparateATI");
+         storage::StencilOpValueAMD.load(&mut loadfn, "glStencilOpValueAMD");
+         storage::StencilStrokePathInstancedNV.load(&mut loadfn, "glStencilStrokePathInstancedNV");
+         storage::StencilStrokePathNV.load(&mut loadfn, "glStencilStrokePathNV");
+         storage::StencilThenCoverFillPathInstancedNV.load(&mut loadfn, "glStencilThenCoverFillPathInstancedNV");
+         storage::StencilThenCoverFillPathNV.load(&mut loadfn, "glStencilThenCoverFillPathNV");
+         storage::StencilThenCoverStrokePathInstancedNV.load(&mut loadfn, "glStencilThenCoverStrokePathInstancedNV");
+         storage::StencilThenCoverStrokePathNV.load(&mut loadfn, "glStencilThenCoverStrokePathNV");
+         storage::StopInstrumentsSGIX.load(&mut loadfn, "glStopInstrumentsSGIX");
+         storage::StringMarkerGREMEDY.load(&mut loadfn, "glStringMarkerGREMEDY");
+         storage::SubpixelPrecisionBiasNV.load(&mut loadfn, "glSubpixelPrecisionBiasNV");
+         storage::SwizzleEXT.load(&mut loadfn, "glSwizzleEXT");
+         storage::SyncTextureINTEL.load(&mut loadfn, "glSyncTextureINTEL");
+         storage::TagSampleBufferSGIX.load(&mut loadfn, "glTagSampleBufferSGIX");
+         storage::Tangent3bEXT.load(&mut loadfn, "glTangent3bEXT");
+         storage::Tangent3bvEXT.load(&mut loadfn, "glTangent3bvEXT");
+         storage::Tangent3dEXT.load(&mut loadfn, "glTangent3dEXT");
+         storage::Tangent3dvEXT.load(&mut loadfn, "glTangent3dvEXT");
+         storage::Tangent3fEXT.load(&mut loadfn, "glTangent3fEXT");
+         storage::Tangent3fvEXT.load(&mut loadfn, "glTangent3fvEXT");
+         storage::Tangent3iEXT.load(&mut loadfn, "glTangent3iEXT");
+         storage::Tangent3ivEXT.load(&mut loadfn, "glTangent3ivEXT");
+         storage::Tangent3sEXT.load(&mut loadfn, "glTangent3sEXT");
+         storage::Tangent3svEXT.load(&mut loadfn, "glTangent3svEXT");
+         storage::TangentPointerEXT.load(&mut loadfn, "glTangentPointerEXT");
+         storage::TbufferMask3DFX.load(&mut loadfn, "glTbufferMask3DFX");
+         storage::TessellationFactorAMD.load(&mut loadfn, "glTessellationFactorAMD");
+         storage::TessellationModeAMD.load(&mut loadfn, "glTessellationModeAMD");
+         storage::TestFenceAPPLE.load(&mut loadfn, "glTestFenceAPPLE");
+         storage::TestFenceNV.load(&mut loadfn, "glTestFenceNV");
+         storage::TestObjectAPPLE.load(&mut loadfn, "glTestObjectAPPLE");
+         storage::TexAttachMemoryNV.load(&mut loadfn, "glTexAttachMemoryNV");
+         storage::TexBuffer.load(&mut loadfn, "glTexBuffer");
+         storage::TexBufferARB.load(&mut loadfn, "glTexBufferARB");
+         storage::TexBufferEXT.load(&mut loadfn, "glTexBufferEXT");
+         storage::TexBufferRange.load(&mut loadfn, "glTexBufferRange");
+         storage::TexBumpParameterfvATI.load(&mut loadfn, "glTexBumpParameterfvATI");
+         storage::TexBumpParameterivATI.load(&mut loadfn, "glTexBumpParameterivATI");
+         storage::TexCoord1bOES.load(&mut loadfn, "glTexCoord1bOES");
+         storage::TexCoord1bvOES.load(&mut loadfn, "glTexCoord1bvOES");
+         storage::TexCoord1d.load(&mut loadfn, "glTexCoord1d");
+         storage::TexCoord1dv.load(&mut loadfn, "glTexCoord1dv");
+         storage::TexCoord1f.load(&mut loadfn, "glTexCoord1f");
+         storage::TexCoord1fv.load(&mut loadfn, "glTexCoord1fv");
+         storage::TexCoord1hNV.load(&mut loadfn, "glTexCoord1hNV");
+         storage::TexCoord1hvNV.load(&mut loadfn, "glTexCoord1hvNV");
+         storage::TexCoord1i.load(&mut loadfn, "glTexCoord1i");
+         storage::TexCoord1iv.load(&mut loadfn, "glTexCoord1iv");
+         storage::TexCoord1s.load(&mut loadfn, "glTexCoord1s");
+         storage::TexCoord1sv.load(&mut loadfn, "glTexCoord1sv");
+         storage::TexCoord1xOES.load(&mut loadfn, "glTexCoord1xOES");
+         storage::TexCoord1xvOES.load(&mut loadfn, "glTexCoord1xvOES");
+         storage::TexCoord2bOES.load(&mut loadfn, "glTexCoord2bOES");
+         storage::TexCoord2bvOES.load(&mut loadfn, "glTexCoord2bvOES");
+         storage::TexCoord2d.load(&mut loadfn, "glTexCoord2d");
+         storage::TexCoord2dv.load(&mut loadfn, "glTexCoord2dv");
+         storage::TexCoord2f.load(&mut loadfn, "glTexCoord2f");
+         storage::TexCoord2fColor3fVertex3fSUN.load(&mut loadfn, "glTexCoord2fColor3fVertex3fSUN");
+         storage::TexCoord2fColor3fVertex3fvSUN.load(&mut loadfn, "glTexCoord2fColor3fVertex3fvSUN");
+         storage::TexCoord2fColor4fNormal3fVertex3fSUN.load(&mut loadfn, "glTexCoord2fColor4fNormal3fVertex3fSUN");
+         storage::TexCoord2fColor4fNormal3fVertex3fvSUN.load(&mut loadfn, "glTexCoord2fColor4fNormal3fVertex3fvSUN");
+         storage::TexCoord2fColor4ubVertex3fSUN.load(&mut loadfn, "glTexCoord2fColor4ubVertex3fSUN");
+         storage::TexCoord2fColor4ubVertex3fvSUN.load(&mut loadfn, "glTexCoord2fColor4ubVertex3fvSUN");
+         storage::TexCoord2fNormal3fVertex3fSUN.load(&mut loadfn, "glTexCoord2fNormal3fVertex3fSUN");
+         storage::TexCoord2fNormal3fVertex3fvSUN.load(&mut loadfn, "glTexCoord2fNormal3fVertex3fvSUN");
+         storage::TexCoord2fVertex3fSUN.load(&mut loadfn, "glTexCoord2fVertex3fSUN");
+         storage::TexCoord2fVertex3fvSUN.load(&mut loadfn, "glTexCoord2fVertex3fvSUN");
+         storage::TexCoord2fv.load(&mut loadfn, "glTexCoord2fv");
+         storage::TexCoord2hNV.load(&mut loadfn, "glTexCoord2hNV");
+         storage::TexCoord2hvNV.load(&mut loadfn, "glTexCoord2hvNV");
+         storage::TexCoord2i.load(&mut loadfn, "glTexCoord2i");
+         storage::TexCoord2iv.load(&mut loadfn, "glTexCoord2iv");
+         storage::TexCoord2s.load(&mut loadfn, "glTexCoord2s");
+         storage::TexCoord2sv.load(&mut loadfn, "glTexCoord2sv");
+         storage::TexCoord2xOES.load(&mut loadfn, "glTexCoord2xOES");
+         storage::TexCoord2xvOES.load(&mut loadfn, "glTexCoord2xvOES");
+         storage::TexCoord3bOES.load(&mut loadfn, "glTexCoord3bOES");
+         storage::TexCoord3bvOES.load(&mut loadfn, "glTexCoord3bvOES");
+         storage::TexCoord3d.load(&mut loadfn, "glTexCoord3d");
+         storage::TexCoord3dv.load(&mut loadfn, "glTexCoord3dv");
+         storage::TexCoord3f.load(&mut loadfn, "glTexCoord3f");
+         storage::TexCoord3fv.load(&mut loadfn, "glTexCoord3fv");
+         storage::TexCoord3hNV.load(&mut loadfn, "glTexCoord3hNV");
+         storage::TexCoord3hvNV.load(&mut loadfn, "glTexCoord3hvNV");
+         storage::TexCoord3i.load(&mut loadfn, "glTexCoord3i");
+         storage::TexCoord3iv.load(&mut loadfn, "glTexCoord3iv");
+         storage::TexCoord3s.load(&mut loadfn, "glTexCoord3s");
+         storage::TexCoord3sv.load(&mut loadfn, "glTexCoord3sv");
+         storage::TexCoord3xOES.load(&mut loadfn, "glTexCoord3xOES");
+         storage::TexCoord3xvOES.load(&mut loadfn, "glTexCoord3xvOES");
+         storage::TexCoord4bOES.load(&mut loadfn, "glTexCoord4bOES");
+         storage::TexCoord4bvOES.load(&mut loadfn, "glTexCoord4bvOES");
+         storage::TexCoord4d.load(&mut loadfn, "glTexCoord4d");
+         storage::TexCoord4dv.load(&mut loadfn, "glTexCoord4dv");
+         storage::TexCoord4f.load(&mut loadfn, "glTexCoord4f");
+         storage::TexCoord4fColor4fNormal3fVertex4fSUN.load(&mut loadfn, "glTexCoord4fColor4fNormal3fVertex4fSUN");
+         storage::TexCoord4fColor4fNormal3fVertex4fvSUN.load(&mut loadfn, "glTexCoord4fColor4fNormal3fVertex4fvSUN");
+         storage::TexCoord4fVertex4fSUN.load(&mut loadfn, "glTexCoord4fVertex4fSUN");
+         storage::TexCoord4fVertex4fvSUN.load(&mut loadfn, "glTexCoord4fVertex4fvSUN");
+         storage::TexCoord4fv.load(&mut loadfn, "glTexCoord4fv");
+         storage::TexCoord4hNV.load(&mut loadfn, "glTexCoord4hNV");
+         storage::TexCoord4hvNV.load(&mut loadfn, "glTexCoord4hvNV");
+         storage::TexCoord4i.load(&mut loadfn, "glTexCoord4i");
+         storage::TexCoord4iv.load(&mut loadfn, "glTexCoord4iv");
+         storage::TexCoord4s.load(&mut loadfn, "glTexCoord4s");
+         storage::TexCoord4sv.load(&mut loadfn, "glTexCoord4sv");
+         storage::TexCoord4xOES.load(&mut loadfn, "glTexCoord4xOES");
+         storage::TexCoord4xvOES.load(&mut loadfn, "glTexCoord4xvOES");
+         storage::TexCoordFormatNV.load(&mut loadfn, "glTexCoordFormatNV");
+         storage::TexCoordP1ui.load(&mut loadfn, "glTexCoordP1ui");
+         storage::TexCoordP1uiv.load(&mut loadfn, "glTexCoordP1uiv");
+         storage::TexCoordP2ui.load(&mut loadfn, "glTexCoordP2ui");
+         storage::TexCoordP2uiv.load(&mut loadfn, "glTexCoordP2uiv");
+         storage::TexCoordP3ui.load(&mut loadfn, "glTexCoordP3ui");
+         storage::TexCoordP3uiv.load(&mut loadfn, "glTexCoordP3uiv");
+         storage::TexCoordP4ui.load(&mut loadfn, "glTexCoordP4ui");
+         storage::TexCoordP4uiv.load(&mut loadfn, "glTexCoordP4uiv");
+         storage::TexCoordPointer.load(&mut loadfn, "glTexCoordPointer");
+         storage::TexCoordPointerEXT.load(&mut loadfn, "glTexCoordPointerEXT");
+         storage::TexCoordPointerListIBM.load(&mut loadfn, "glTexCoordPointerListIBM");
+         storage::TexCoordPointervINTEL.load(&mut loadfn, "glTexCoordPointervINTEL");
+         storage::TexEnvf.load(&mut loadfn, "glTexEnvf");
+         storage::TexEnvfv.load(&mut loadfn, "glTexEnvfv");
+         storage::TexEnvi.load(&mut loadfn, "glTexEnvi");
+         storage::TexEnviv.load(&mut loadfn, "glTexEnviv");
+         storage::TexEnvxOES.load(&mut loadfn, "glTexEnvxOES");
+         storage::TexEnvxvOES.load(&mut loadfn, "glTexEnvxvOES");
+         storage::TexFilterFuncSGIS.load(&mut loadfn, "glTexFilterFuncSGIS");
+         storage::TexGend.load(&mut loadfn, "glTexGend");
+         storage::TexGendv.load(&mut loadfn, "glTexGendv");
+         storage::TexGenf.load(&mut loadfn, "glTexGenf");
+         storage::TexGenfv.load(&mut loadfn, "glTexGenfv");
+         storage::TexGeni.load(&mut loadfn, "glTexGeni");
+         storage::TexGeniv.load(&mut loadfn, "glTexGeniv");
+         storage::TexGenxOES.load(&mut loadfn, "glTexGenxOES");
+         storage::TexGenxvOES.load(&mut loadfn, "glTexGenxvOES");
+         storage::TexImage1D.load(&mut loadfn, "glTexImage1D");
+         storage::TexImage2D.load(&mut loadfn, "glTexImage2D");
+         storage::TexImage2DMultisample.load(&mut loadfn, "glTexImage2DMultisample");
+         storage::TexImage2DMultisampleCoverageNV.load(&mut loadfn, "glTexImage2DMultisampleCoverageNV");
+         storage::TexImage3D.load(&mut loadfn, "glTexImage3D");
+         storage::TexImage3DEXT.load(&mut loadfn, "glTexImage3DEXT");
+         storage::TexImage3DMultisample.load(&mut loadfn, "glTexImage3DMultisample");
+         storage::TexImage3DMultisampleCoverageNV.load(&mut loadfn, "glTexImage3DMultisampleCoverageNV");
+         storage::TexImage4DSGIS.load(&mut loadfn, "glTexImage4DSGIS");
+         storage::TexPageCommitmentARB.load(&mut loadfn, "glTexPageCommitmentARB");
+         storage::TexPageCommitmentMemNV.load(&mut loadfn, "glTexPageCommitmentMemNV");
+         storage::TexParameterIiv.load(&mut loadfn, "glTexParameterIiv");
+         storage::TexParameterIivEXT.load(&mut loadfn, "glTexParameterIivEXT");
+         storage::TexParameterIuiv.load(&mut loadfn, "glTexParameterIuiv");
+         storage::TexParameterIuivEXT.load(&mut loadfn, "glTexParameterIuivEXT");
+         storage::TexParameterf.load(&mut loadfn, "glTexParameterf");
+         storage::TexParameterfv.load(&mut loadfn, "glTexParameterfv");
+         storage::TexParameteri.load(&mut loadfn, "glTexParameteri");
+         storage::TexParameteriv.load(&mut loadfn, "glTexParameteriv");
+         storage::TexParameterxOES.load(&mut loadfn, "glTexParameterxOES");
+         storage::TexParameterxvOES.load(&mut loadfn, "glTexParameterxvOES");
+         storage::TexRenderbufferNV.load(&mut loadfn, "glTexRenderbufferNV");
+         storage::TexStorage1D.load(&mut loadfn, "glTexStorage1D");
+         storage::TexStorage2D.load(&mut loadfn, "glTexStorage2D");
+         storage::TexStorage2DMultisample.load(&mut loadfn, "glTexStorage2DMultisample");
+         storage::TexStorage3D.load(&mut loadfn, "glTexStorage3D");
+         storage::TexStorage3DMultisample.load(&mut loadfn, "glTexStorage3DMultisample");
+         storage::TexStorageMem1DEXT.load(&mut loadfn, "glTexStorageMem1DEXT");
+         storage::TexStorageMem2DEXT.load(&mut loadfn, "glTexStorageMem2DEXT");
+         storage::TexStorageMem2DMultisampleEXT.load(&mut loadfn, "glTexStorageMem2DMultisampleEXT");
+         storage::TexStorageMem3DEXT.load(&mut loadfn, "glTexStorageMem3DEXT");
+         storage::TexStorageMem3DMultisampleEXT.load(&mut loadfn, "glTexStorageMem3DMultisampleEXT");
+         storage::TexStorageSparseAMD.load(&mut loadfn, "glTexStorageSparseAMD");
+         storage::TexSubImage1D.load(&mut loadfn, "glTexSubImage1D");
+         storage::TexSubImage1DEXT.load(&mut loadfn, "glTexSubImage1DEXT");
+         storage::TexSubImage2D.load(&mut loadfn, "glTexSubImage2D");
+         storage::TexSubImage2DEXT.load(&mut loadfn, "glTexSubImage2DEXT");
+         storage::TexSubImage3D.load(&mut loadfn, "glTexSubImage3D");
+         storage::TexSubImage3DEXT.load(&mut loadfn, "glTexSubImage3DEXT");
+         storage::TexSubImage4DSGIS.load(&mut loadfn, "glTexSubImage4DSGIS");
+         storage::TextureAttachMemoryNV.load(&mut loadfn, "glTextureAttachMemoryNV");
+         storage::TextureBarrier.load(&mut loadfn, "glTextureBarrier");
+         storage::TextureBarrierNV.load(&mut loadfn, "glTextureBarrierNV");
+         storage::TextureBuffer.load(&mut loadfn, "glTextureBuffer");
+         storage::TextureBufferEXT.load(&mut loadfn, "glTextureBufferEXT");
+         storage::TextureBufferRange.load(&mut loadfn, "glTextureBufferRange");
+         storage::TextureBufferRangeEXT.load(&mut loadfn, "glTextureBufferRangeEXT");
+         storage::TextureColorMaskSGIS.load(&mut loadfn, "glTextureColorMaskSGIS");
+         storage::TextureImage1DEXT.load(&mut loadfn, "glTextureImage1DEXT");
+         storage::TextureImage2DEXT.load(&mut loadfn, "glTextureImage2DEXT");
+         storage::TextureImage2DMultisampleCoverageNV.load(&mut loadfn, "glTextureImage2DMultisampleCoverageNV");
+         storage::TextureImage2DMultisampleNV.load(&mut loadfn, "glTextureImage2DMultisampleNV");
+         storage::TextureImage3DEXT.load(&mut loadfn, "glTextureImage3DEXT");
+         storage::TextureImage3DMultisampleCoverageNV.load(&mut loadfn, "glTextureImage3DMultisampleCoverageNV");
+         storage::TextureImage3DMultisampleNV.load(&mut loadfn, "glTextureImage3DMultisampleNV");
+         storage::TextureLightEXT.load(&mut loadfn, "glTextureLightEXT");
+         storage::TextureMaterialEXT.load(&mut loadfn, "glTextureMaterialEXT");
+         storage::TextureNormalEXT.load(&mut loadfn, "glTextureNormalEXT");
+         storage::TexturePageCommitmentEXT.load(&mut loadfn, "glTexturePageCommitmentEXT");
+         storage::TexturePageCommitmentMemNV.load(&mut loadfn, "glTexturePageCommitmentMemNV");
+         storage::TextureParameterIiv.load(&mut loadfn, "glTextureParameterIiv");
+         storage::TextureParameterIivEXT.load(&mut loadfn, "glTextureParameterIivEXT");
+         storage::TextureParameterIuiv.load(&mut loadfn, "glTextureParameterIuiv");
+         storage::TextureParameterIuivEXT.load(&mut loadfn, "glTextureParameterIuivEXT");
+         storage::TextureParameterf.load(&mut loadfn, "glTextureParameterf");
+         storage::TextureParameterfEXT.load(&mut loadfn, "glTextureParameterfEXT");
+         storage::TextureParameterfv.load(&mut loadfn, "glTextureParameterfv");
+         storage::TextureParameterfvEXT.load(&mut loadfn, "glTextureParameterfvEXT");
+         storage::TextureParameteri.load(&mut loadfn, "glTextureParameteri");
+         storage::TextureParameteriEXT.load(&mut loadfn, "glTextureParameteriEXT");
+         storage::TextureParameteriv.load(&mut loadfn, "glTextureParameteriv");
+         storage::TextureParameterivEXT.load(&mut loadfn, "glTextureParameterivEXT");
+         storage::TextureRangeAPPLE.load(&mut loadfn, "glTextureRangeAPPLE");
+         storage::TextureRenderbufferEXT.load(&mut loadfn, "glTextureRenderbufferEXT");
+         storage::TextureStorage1D.load(&mut loadfn, "glTextureStorage1D");
+         storage::TextureStorage1DEXT.load(&mut loadfn, "glTextureStorage1DEXT");
+         storage::TextureStorage2D.load(&mut loadfn, "glTextureStorage2D");
+         storage::TextureStorage2DEXT.load(&mut loadfn, "glTextureStorage2DEXT");
+         storage::TextureStorage2DMultisample.load(&mut loadfn, "glTextureStorage2DMultisample");
+         storage::TextureStorage2DMultisampleEXT.load(&mut loadfn, "glTextureStorage2DMultisampleEXT");
+         storage::TextureStorage3D.load(&mut loadfn, "glTextureStorage3D");
+         storage::TextureStorage3DEXT.load(&mut loadfn, "glTextureStorage3DEXT");
+         storage::TextureStorage3DMultisample.load(&mut loadfn, "glTextureStorage3DMultisample");
+         storage::TextureStorage3DMultisampleEXT.load(&mut loadfn, "glTextureStorage3DMultisampleEXT");
+         storage::TextureStorageMem1DEXT.load(&mut loadfn, "glTextureStorageMem1DEXT");
+         storage::TextureStorageMem2DEXT.load(&mut loadfn, "glTextureStorageMem2DEXT");
+         storage::TextureStorageMem2DMultisampleEXT.load(&mut loadfn, "glTextureStorageMem2DMultisampleEXT");
+         storage::TextureStorageMem3DEXT.load(&mut loadfn, "glTextureStorageMem3DEXT");
+         storage::TextureStorageMem3DMultisampleEXT.load(&mut loadfn, "glTextureStorageMem3DMultisampleEXT");
+         storage::TextureStorageSparseAMD.load(&mut loadfn, "glTextureStorageSparseAMD");
+         storage::TextureSubImage1D.load(&mut loadfn, "glTextureSubImage1D");
+         storage::TextureSubImage1DEXT.load(&mut loadfn, "glTextureSubImage1DEXT");
+         storage::TextureSubImage2D.load(&mut loadfn, "glTextureSubImage2D");
+         storage::TextureSubImage2DEXT.load(&mut loadfn, "glTextureSubImage2DEXT");
+         storage::TextureSubImage3D.load(&mut loadfn, "glTextureSubImage3D");
+         storage::TextureSubImage3DEXT.load(&mut loadfn, "glTextureSubImage3DEXT");
+         storage::TextureView.load(&mut loadfn, "glTextureView");
+         storage::TrackMatrixNV.load(&mut loadfn, "glTrackMatrixNV");
+         storage::TransformFeedbackAttribsNV.load(&mut loadfn, "glTransformFeedbackAttribsNV");
+         storage::TransformFeedbackBufferBase.load(&mut loadfn, "glTransformFeedbackBufferBase");
+         storage::TransformFeedbackBufferRange.load(&mut loadfn, "glTransformFeedbackBufferRange");
+         storage::TransformFeedbackStreamAttribsNV.load(&mut loadfn, "glTransformFeedbackStreamAttribsNV");
+         storage::TransformFeedbackVaryings.load(&mut loadfn, "glTransformFeedbackVaryings");
+         storage::TransformFeedbackVaryingsEXT.load(&mut loadfn, "glTransformFeedbackVaryingsEXT");
+         storage::TransformFeedbackVaryingsNV.load(&mut loadfn, "glTransformFeedbackVaryingsNV");
+         storage::TransformPathNV.load(&mut loadfn, "glTransformPathNV");
+         storage::Translated.load(&mut loadfn, "glTranslated");
+         storage::Translatef.load(&mut loadfn, "glTranslatef");
+         storage::TranslatexOES.load(&mut loadfn, "glTranslatexOES");
+         storage::Uniform1d.load(&mut loadfn, "glUniform1d");
+         storage::Uniform1dv.load(&mut loadfn, "glUniform1dv");
+         storage::Uniform1f.load(&mut loadfn, "glUniform1f");
+         storage::Uniform1fARB.load(&mut loadfn, "glUniform1fARB");
+         storage::Uniform1fv.load(&mut loadfn, "glUniform1fv");
+         storage::Uniform1fvARB.load(&mut loadfn, "glUniform1fvARB");
+         storage::Uniform1i.load(&mut loadfn, "glUniform1i");
+         storage::Uniform1i64ARB.load(&mut loadfn, "glUniform1i64ARB");
+         storage::Uniform1i64NV.load(&mut loadfn, "glUniform1i64NV");
+         storage::Uniform1i64vARB.load(&mut loadfn, "glUniform1i64vARB");
+         storage::Uniform1i64vNV.load(&mut loadfn, "glUniform1i64vNV");
+         storage::Uniform1iARB.load(&mut loadfn, "glUniform1iARB");
+         storage::Uniform1iv.load(&mut loadfn, "glUniform1iv");
+         storage::Uniform1ivARB.load(&mut loadfn, "glUniform1ivARB");
+         storage::Uniform1ui.load(&mut loadfn, "glUniform1ui");
+         storage::Uniform1ui64ARB.load(&mut loadfn, "glUniform1ui64ARB");
+         storage::Uniform1ui64NV.load(&mut loadfn, "glUniform1ui64NV");
+         storage::Uniform1ui64vARB.load(&mut loadfn, "glUniform1ui64vARB");
+         storage::Uniform1ui64vNV.load(&mut loadfn, "glUniform1ui64vNV");
+         storage::Uniform1uiEXT.load(&mut loadfn, "glUniform1uiEXT");
+         storage::Uniform1uiv.load(&mut loadfn, "glUniform1uiv");
+         storage::Uniform1uivEXT.load(&mut loadfn, "glUniform1uivEXT");
+         storage::Uniform2d.load(&mut loadfn, "glUniform2d");
+         storage::Uniform2dv.load(&mut loadfn, "glUniform2dv");
+         storage::Uniform2f.load(&mut loadfn, "glUniform2f");
+         storage::Uniform2fARB.load(&mut loadfn, "glUniform2fARB");
+         storage::Uniform2fv.load(&mut loadfn, "glUniform2fv");
+         storage::Uniform2fvARB.load(&mut loadfn, "glUniform2fvARB");
+         storage::Uniform2i.load(&mut loadfn, "glUniform2i");
+         storage::Uniform2i64ARB.load(&mut loadfn, "glUniform2i64ARB");
+         storage::Uniform2i64NV.load(&mut loadfn, "glUniform2i64NV");
+         storage::Uniform2i64vARB.load(&mut loadfn, "glUniform2i64vARB");
+         storage::Uniform2i64vNV.load(&mut loadfn, "glUniform2i64vNV");
+         storage::Uniform2iARB.load(&mut loadfn, "glUniform2iARB");
+         storage::Uniform2iv.load(&mut loadfn, "glUniform2iv");
+         storage::Uniform2ivARB.load(&mut loadfn, "glUniform2ivARB");
+         storage::Uniform2ui.load(&mut loadfn, "glUniform2ui");
+         storage::Uniform2ui64ARB.load(&mut loadfn, "glUniform2ui64ARB");
+         storage::Uniform2ui64NV.load(&mut loadfn, "glUniform2ui64NV");
+         storage::Uniform2ui64vARB.load(&mut loadfn, "glUniform2ui64vARB");
+         storage::Uniform2ui64vNV.load(&mut loadfn, "glUniform2ui64vNV");
+         storage::Uniform2uiEXT.load(&mut loadfn, "glUniform2uiEXT");
+         storage::Uniform2uiv.load(&mut loadfn, "glUniform2uiv");
+         storage::Uniform2uivEXT.load(&mut loadfn, "glUniform2uivEXT");
+         storage::Uniform3d.load(&mut loadfn, "glUniform3d");
+         storage::Uniform3dv.load(&mut loadfn, "glUniform3dv");
+         storage::Uniform3f.load(&mut loadfn, "glUniform3f");
+         storage::Uniform3fARB.load(&mut loadfn, "glUniform3fARB");
+         storage::Uniform3fv.load(&mut loadfn, "glUniform3fv");
+         storage::Uniform3fvARB.load(&mut loadfn, "glUniform3fvARB");
+         storage::Uniform3i.load(&mut loadfn, "glUniform3i");
+         storage::Uniform3i64ARB.load(&mut loadfn, "glUniform3i64ARB");
+         storage::Uniform3i64NV.load(&mut loadfn, "glUniform3i64NV");
+         storage::Uniform3i64vARB.load(&mut loadfn, "glUniform3i64vARB");
+         storage::Uniform3i64vNV.load(&mut loadfn, "glUniform3i64vNV");
+         storage::Uniform3iARB.load(&mut loadfn, "glUniform3iARB");
+         storage::Uniform3iv.load(&mut loadfn, "glUniform3iv");
+         storage::Uniform3ivARB.load(&mut loadfn, "glUniform3ivARB");
+         storage::Uniform3ui.load(&mut loadfn, "glUniform3ui");
+         storage::Uniform3ui64ARB.load(&mut loadfn, "glUniform3ui64ARB");
+         storage::Uniform3ui64NV.load(&mut loadfn, "glUniform3ui64NV");
+         storage::Uniform3ui64vARB.load(&mut loadfn, "glUniform3ui64vARB");
+         storage::Uniform3ui64vNV.load(&mut loadfn, "glUniform3ui64vNV");
+         storage::Uniform3uiEXT.load(&mut loadfn, "glUniform3uiEXT");
+         storage::Uniform3uiv.load(&mut loadfn, "glUniform3uiv");
+         storage::Uniform3uivEXT.load(&mut loadfn, "glUniform3uivEXT");
+         storage::Uniform4d.load(&mut loadfn, "glUniform4d");
+         storage::Uniform4dv.load(&mut loadfn, "glUniform4dv");
+         storage::Uniform4f.load(&mut loadfn, "glUniform4f");
+         storage::Uniform4fARB.load(&mut loadfn, "glUniform4fARB");
+         storage::Uniform4fv.load(&mut loadfn, "glUniform4fv");
+         storage::Uniform4fvARB.load(&mut loadfn, "glUniform4fvARB");
+         storage::Uniform4i.load(&mut loadfn, "glUniform4i");
+         storage::Uniform4i64ARB.load(&mut loadfn, "glUniform4i64ARB");
+         storage::Uniform4i64NV.load(&mut loadfn, "glUniform4i64NV");
+         storage::Uniform4i64vARB.load(&mut loadfn, "glUniform4i64vARB");
+         storage::Uniform4i64vNV.load(&mut loadfn, "glUniform4i64vNV");
+         storage::Uniform4iARB.load(&mut loadfn, "glUniform4iARB");
+         storage::Uniform4iv.load(&mut loadfn, "glUniform4iv");
+         storage::Uniform4ivARB.load(&mut loadfn, "glUniform4ivARB");
+         storage::Uniform4ui.load(&mut loadfn, "glUniform4ui");
+         storage::Uniform4ui64ARB.load(&mut loadfn, "glUniform4ui64ARB");
+         storage::Uniform4ui64NV.load(&mut loadfn, "glUniform4ui64NV");
+         storage::Uniform4ui64vARB.load(&mut loadfn, "glUniform4ui64vARB");
+         storage::Uniform4ui64vNV.load(&mut loadfn, "glUniform4ui64vNV");
+         storage::Uniform4uiEXT.load(&mut loadfn, "glUniform4uiEXT");
+         storage::Uniform4uiv.load(&mut loadfn, "glUniform4uiv");
+         storage::Uniform4uivEXT.load(&mut loadfn, "glUniform4uivEXT");
+         storage::UniformBlockBinding.load(&mut loadfn, "glUniformBlockBinding");
+         storage::UniformBufferEXT.load(&mut loadfn, "glUniformBufferEXT");
+         storage::UniformHandleui64ARB.load(&mut loadfn, "glUniformHandleui64ARB");
+         storage::UniformHandleui64NV.load(&mut loadfn, "glUniformHandleui64NV");
+         storage::UniformHandleui64vARB.load(&mut loadfn, "glUniformHandleui64vARB");
+         storage::UniformHandleui64vNV.load(&mut loadfn, "glUniformHandleui64vNV");
+         storage::UniformMatrix2dv.load(&mut loadfn, "glUniformMatrix2dv");
+         storage::UniformMatrix2fv.load(&mut loadfn, "glUniformMatrix2fv");
+         storage::UniformMatrix2fvARB.load(&mut loadfn, "glUniformMatrix2fvARB");
+         storage::UniformMatrix2x3dv.load(&mut loadfn, "glUniformMatrix2x3dv");
+         storage::UniformMatrix2x3fv.load(&mut loadfn, "glUniformMatrix2x3fv");
+         storage::UniformMatrix2x4dv.load(&mut loadfn, "glUniformMatrix2x4dv");
+         storage::UniformMatrix2x4fv.load(&mut loadfn, "glUniformMatrix2x4fv");
+         storage::UniformMatrix3dv.load(&mut loadfn, "glUniformMatrix3dv");
+         storage::UniformMatrix3fv.load(&mut loadfn, "glUniformMatrix3fv");
+         storage::UniformMatrix3fvARB.load(&mut loadfn, "glUniformMatrix3fvARB");
+         storage::UniformMatrix3x2dv.load(&mut loadfn, "glUniformMatrix3x2dv");
+         storage::UniformMatrix3x2fv.load(&mut loadfn, "glUniformMatrix3x2fv");
+         storage::UniformMatrix3x4dv.load(&mut loadfn, "glUniformMatrix3x4dv");
+         storage::UniformMatrix3x4fv.load(&mut loadfn, "glUniformMatrix3x4fv");
+         storage::UniformMatrix4dv.load(&mut loadfn, "glUniformMatrix4dv");
+         storage::UniformMatrix4fv.load(&mut loadfn, "glUniformMatrix4fv");
+         storage::UniformMatrix4fvARB.load(&mut loadfn, "glUniformMatrix4fvARB");
+         storage::UniformMatrix4x2dv.load(&mut loadfn, "glUniformMatrix4x2dv");
+         storage::UniformMatrix4x2fv.load(&mut loadfn, "glUniformMatrix4x2fv");
+         storage::UniformMatrix4x3dv.load(&mut loadfn, "glUniformMatrix4x3dv");
+         storage::UniformMatrix4x3fv.load(&mut loadfn, "glUniformMatrix4x3fv");
+         storage::UniformSubroutinesuiv.load(&mut loadfn, "glUniformSubroutinesuiv");
+         storage::Uniformui64NV.load(&mut loadfn, "glUniformui64NV");
+         storage::Uniformui64vNV.load(&mut loadfn, "glUniformui64vNV");
+         storage::UnlockArraysEXT.load(&mut loadfn, "glUnlockArraysEXT");
+         storage::UnmapBuffer.load(&mut loadfn, "glUnmapBuffer");
+         storage::UnmapBufferARB.load(&mut loadfn, "glUnmapBufferARB");
+         storage::UnmapNamedBuffer.load(&mut loadfn, "glUnmapNamedBuffer");
+         storage::UnmapNamedBufferEXT.load(&mut loadfn, "glUnmapNamedBufferEXT");
+         storage::UnmapObjectBufferATI.load(&mut loadfn, "glUnmapObjectBufferATI");
+         storage::UnmapTexture2DINTEL.load(&mut loadfn, "glUnmapTexture2DINTEL");
+         storage::UpdateObjectBufferATI.load(&mut loadfn, "glUpdateObjectBufferATI");
+         storage::UploadGpuMaskNVX.load(&mut loadfn, "glUploadGpuMaskNVX");
+         storage::UseProgram.load(&mut loadfn, "glUseProgram");
+         storage::UseProgramObjectARB.load(&mut loadfn, "glUseProgramObjectARB");
+         storage::UseProgramStages.load(&mut loadfn, "glUseProgramStages");
+         storage::UseShaderProgramEXT.load(&mut loadfn, "glUseShaderProgramEXT");
+         storage::VDPAUFiniNV.load(&mut loadfn, "glVDPAUFiniNV");
+         storage::VDPAUGetSurfaceivNV.load(&mut loadfn, "glVDPAUGetSurfaceivNV");
+         storage::VDPAUInitNV.load(&mut loadfn, "glVDPAUInitNV");
+         storage::VDPAUIsSurfaceNV.load(&mut loadfn, "glVDPAUIsSurfaceNV");
+         storage::VDPAUMapSurfacesNV.load(&mut loadfn, "glVDPAUMapSurfacesNV");
+         storage::VDPAURegisterOutputSurfaceNV.load(&mut loadfn, "glVDPAURegisterOutputSurfaceNV");
+         storage::VDPAURegisterVideoSurfaceNV.load(&mut loadfn, "glVDPAURegisterVideoSurfaceNV");
+         storage::VDPAURegisterVideoSurfaceWithPictureStructureNV.load(&mut loadfn, "glVDPAURegisterVideoSurfaceWithPictureStructureNV");
+         storage::VDPAUSurfaceAccessNV.load(&mut loadfn, "glVDPAUSurfaceAccessNV");
+         storage::VDPAUUnmapSurfacesNV.load(&mut loadfn, "glVDPAUUnmapSurfacesNV");
+         storage::VDPAUUnregisterSurfaceNV.load(&mut loadfn, "glVDPAUUnregisterSurfaceNV");
+         storage::ValidateProgram.load(&mut loadfn, "glValidateProgram");
+         storage::ValidateProgramARB.load(&mut loadfn, "glValidateProgramARB");
+         storage::ValidateProgramPipeline.load(&mut loadfn, "glValidateProgramPipeline");
+         storage::VariantArrayObjectATI.load(&mut loadfn, "glVariantArrayObjectATI");
+         storage::VariantPointerEXT.load(&mut loadfn, "glVariantPointerEXT");
+         storage::VariantbvEXT.load(&mut loadfn, "glVariantbvEXT");
+         storage::VariantdvEXT.load(&mut loadfn, "glVariantdvEXT");
+         storage::VariantfvEXT.load(&mut loadfn, "glVariantfvEXT");
+         storage::VariantivEXT.load(&mut loadfn, "glVariantivEXT");
+         storage::VariantsvEXT.load(&mut loadfn, "glVariantsvEXT");
+         storage::VariantubvEXT.load(&mut loadfn, "glVariantubvEXT");
+         storage::VariantuivEXT.load(&mut loadfn, "glVariantuivEXT");
+         storage::VariantusvEXT.load(&mut loadfn, "glVariantusvEXT");
+         storage::Vertex2bOES.load(&mut loadfn, "glVertex2bOES");
+         storage::Vertex2bvOES.load(&mut loadfn, "glVertex2bvOES");
+         storage::Vertex2d.load(&mut loadfn, "glVertex2d");
+         storage::Vertex2dv.load(&mut loadfn, "glVertex2dv");
+         storage::Vertex2f.load(&mut loadfn, "glVertex2f");
+         storage::Vertex2fv.load(&mut loadfn, "glVertex2fv");
+         storage::Vertex2hNV.load(&mut loadfn, "glVertex2hNV");
+         storage::Vertex2hvNV.load(&mut loadfn, "glVertex2hvNV");
+         storage::Vertex2i.load(&mut loadfn, "glVertex2i");
+         storage::Vertex2iv.load(&mut loadfn, "glVertex2iv");
+         storage::Vertex2s.load(&mut loadfn, "glVertex2s");
+         storage::Vertex2sv.load(&mut loadfn, "glVertex2sv");
+         storage::Vertex2xOES.load(&mut loadfn, "glVertex2xOES");
+         storage::Vertex2xvOES.load(&mut loadfn, "glVertex2xvOES");
+         storage::Vertex3bOES.load(&mut loadfn, "glVertex3bOES");
+         storage::Vertex3bvOES.load(&mut loadfn, "glVertex3bvOES");
+         storage::Vertex3d.load(&mut loadfn, "glVertex3d");
+         storage::Vertex3dv.load(&mut loadfn, "glVertex3dv");
+         storage::Vertex3f.load(&mut loadfn, "glVertex3f");
+         storage::Vertex3fv.load(&mut loadfn, "glVertex3fv");
+         storage::Vertex3hNV.load(&mut loadfn, "glVertex3hNV");
+         storage::Vertex3hvNV.load(&mut loadfn, "glVertex3hvNV");
+         storage::Vertex3i.load(&mut loadfn, "glVertex3i");
+         storage::Vertex3iv.load(&mut loadfn, "glVertex3iv");
+         storage::Vertex3s.load(&mut loadfn, "glVertex3s");
+         storage::Vertex3sv.load(&mut loadfn, "glVertex3sv");
+         storage::Vertex3xOES.load(&mut loadfn, "glVertex3xOES");
+         storage::Vertex3xvOES.load(&mut loadfn, "glVertex3xvOES");
+         storage::Vertex4bOES.load(&mut loadfn, "glVertex4bOES");
+         storage::Vertex4bvOES.load(&mut loadfn, "glVertex4bvOES");
+         storage::Vertex4d.load(&mut loadfn, "glVertex4d");
+         storage::Vertex4dv.load(&mut loadfn, "glVertex4dv");
+         storage::Vertex4f.load(&mut loadfn, "glVertex4f");
+         storage::Vertex4fv.load(&mut loadfn, "glVertex4fv");
+         storage::Vertex4hNV.load(&mut loadfn, "glVertex4hNV");
+         storage::Vertex4hvNV.load(&mut loadfn, "glVertex4hvNV");
+         storage::Vertex4i.load(&mut loadfn, "glVertex4i");
+         storage::Vertex4iv.load(&mut loadfn, "glVertex4iv");
+         storage::Vertex4s.load(&mut loadfn, "glVertex4s");
+         storage::Vertex4sv.load(&mut loadfn, "glVertex4sv");
+         storage::Vertex4xOES.load(&mut loadfn, "glVertex4xOES");
+         storage::Vertex4xvOES.load(&mut loadfn, "glVertex4xvOES");
+         storage::VertexArrayAttribBinding.load(&mut loadfn, "glVertexArrayAttribBinding");
+         storage::VertexArrayAttribFormat.load(&mut loadfn, "glVertexArrayAttribFormat");
+         storage::VertexArrayAttribIFormat.load(&mut loadfn, "glVertexArrayAttribIFormat");
+         storage::VertexArrayAttribLFormat.load(&mut loadfn, "glVertexArrayAttribLFormat");
+         storage::VertexArrayBindVertexBufferEXT.load(&mut loadfn, "glVertexArrayBindVertexBufferEXT");
+         storage::VertexArrayBindingDivisor.load(&mut loadfn, "glVertexArrayBindingDivisor");
+         storage::VertexArrayColorOffsetEXT.load(&mut loadfn, "glVertexArrayColorOffsetEXT");
+         storage::VertexArrayEdgeFlagOffsetEXT.load(&mut loadfn, "glVertexArrayEdgeFlagOffsetEXT");
+         storage::VertexArrayElementBuffer.load(&mut loadfn, "glVertexArrayElementBuffer");
+         storage::VertexArrayFogCoordOffsetEXT.load(&mut loadfn, "glVertexArrayFogCoordOffsetEXT");
+         storage::VertexArrayIndexOffsetEXT.load(&mut loadfn, "glVertexArrayIndexOffsetEXT");
+         storage::VertexArrayMultiTexCoordOffsetEXT.load(&mut loadfn, "glVertexArrayMultiTexCoordOffsetEXT");
+         storage::VertexArrayNormalOffsetEXT.load(&mut loadfn, "glVertexArrayNormalOffsetEXT");
+         storage::VertexArrayParameteriAPPLE.load(&mut loadfn, "glVertexArrayParameteriAPPLE");
+         storage::VertexArrayRangeAPPLE.load(&mut loadfn, "glVertexArrayRangeAPPLE");
+         storage::VertexArrayRangeNV.load(&mut loadfn, "glVertexArrayRangeNV");
+         storage::VertexArraySecondaryColorOffsetEXT.load(&mut loadfn, "glVertexArraySecondaryColorOffsetEXT");
+         storage::VertexArrayTexCoordOffsetEXT.load(&mut loadfn, "glVertexArrayTexCoordOffsetEXT");
+         storage::VertexArrayVertexAttribBindingEXT.load(&mut loadfn, "glVertexArrayVertexAttribBindingEXT");
+         storage::VertexArrayVertexAttribDivisorEXT.load(&mut loadfn, "glVertexArrayVertexAttribDivisorEXT");
+         storage::VertexArrayVertexAttribFormatEXT.load(&mut loadfn, "glVertexArrayVertexAttribFormatEXT");
+         storage::VertexArrayVertexAttribIFormatEXT.load(&mut loadfn, "glVertexArrayVertexAttribIFormatEXT");
+         storage::VertexArrayVertexAttribIOffsetEXT.load(&mut loadfn, "glVertexArrayVertexAttribIOffsetEXT");
+         storage::VertexArrayVertexAttribLFormatEXT.load(&mut loadfn, "glVertexArrayVertexAttribLFormatEXT");
+         storage::VertexArrayVertexAttribLOffsetEXT.load(&mut loadfn, "glVertexArrayVertexAttribLOffsetEXT");
+         storage::VertexArrayVertexAttribOffsetEXT.load(&mut loadfn, "glVertexArrayVertexAttribOffsetEXT");
+         storage::VertexArrayVertexBindingDivisorEXT.load(&mut loadfn, "glVertexArrayVertexBindingDivisorEXT");
+         storage::VertexArrayVertexBuffer.load(&mut loadfn, "glVertexArrayVertexBuffer");
+         storage::VertexArrayVertexBuffers.load(&mut loadfn, "glVertexArrayVertexBuffers");
+         storage::VertexArrayVertexOffsetEXT.load(&mut loadfn, "glVertexArrayVertexOffsetEXT");
+         storage::VertexAttrib1d.load(&mut loadfn, "glVertexAttrib1d");
+         storage::VertexAttrib1dARB.load(&mut loadfn, "glVertexAttrib1dARB");
+         storage::VertexAttrib1dNV.load(&mut loadfn, "glVertexAttrib1dNV");
+         storage::VertexAttrib1dv.load(&mut loadfn, "glVertexAttrib1dv");
+         storage::VertexAttrib1dvARB.load(&mut loadfn, "glVertexAttrib1dvARB");
+         storage::VertexAttrib1dvNV.load(&mut loadfn, "glVertexAttrib1dvNV");
+         storage::VertexAttrib1f.load(&mut loadfn, "glVertexAttrib1f");
+         storage::VertexAttrib1fARB.load(&mut loadfn, "glVertexAttrib1fARB");
+         storage::VertexAttrib1fNV.load(&mut loadfn, "glVertexAttrib1fNV");
+         storage::VertexAttrib1fv.load(&mut loadfn, "glVertexAttrib1fv");
+         storage::VertexAttrib1fvARB.load(&mut loadfn, "glVertexAttrib1fvARB");
+         storage::VertexAttrib1fvNV.load(&mut loadfn, "glVertexAttrib1fvNV");
+         storage::VertexAttrib1hNV.load(&mut loadfn, "glVertexAttrib1hNV");
+         storage::VertexAttrib1hvNV.load(&mut loadfn, "glVertexAttrib1hvNV");
+         storage::VertexAttrib1s.load(&mut loadfn, "glVertexAttrib1s");
+         storage::VertexAttrib1sARB.load(&mut loadfn, "glVertexAttrib1sARB");
+         storage::VertexAttrib1sNV.load(&mut loadfn, "glVertexAttrib1sNV");
+         storage::VertexAttrib1sv.load(&mut loadfn, "glVertexAttrib1sv");
+         storage::VertexAttrib1svARB.load(&mut loadfn, "glVertexAttrib1svARB");
+         storage::VertexAttrib1svNV.load(&mut loadfn, "glVertexAttrib1svNV");
+         storage::VertexAttrib2d.load(&mut loadfn, "glVertexAttrib2d");
+         storage::VertexAttrib2dARB.load(&mut loadfn, "glVertexAttrib2dARB");
+         storage::VertexAttrib2dNV.load(&mut loadfn, "glVertexAttrib2dNV");
+         storage::VertexAttrib2dv.load(&mut loadfn, "glVertexAttrib2dv");
+         storage::VertexAttrib2dvARB.load(&mut loadfn, "glVertexAttrib2dvARB");
+         storage::VertexAttrib2dvNV.load(&mut loadfn, "glVertexAttrib2dvNV");
+         storage::VertexAttrib2f.load(&mut loadfn, "glVertexAttrib2f");
+         storage::VertexAttrib2fARB.load(&mut loadfn, "glVertexAttrib2fARB");
+         storage::VertexAttrib2fNV.load(&mut loadfn, "glVertexAttrib2fNV");
+         storage::VertexAttrib2fv.load(&mut loadfn, "glVertexAttrib2fv");
+         storage::VertexAttrib2fvARB.load(&mut loadfn, "glVertexAttrib2fvARB");
+         storage::VertexAttrib2fvNV.load(&mut loadfn, "glVertexAttrib2fvNV");
+         storage::VertexAttrib2hNV.load(&mut loadfn, "glVertexAttrib2hNV");
+         storage::VertexAttrib2hvNV.load(&mut loadfn, "glVertexAttrib2hvNV");
+         storage::VertexAttrib2s.load(&mut loadfn, "glVertexAttrib2s");
+         storage::VertexAttrib2sARB.load(&mut loadfn, "glVertexAttrib2sARB");
+         storage::VertexAttrib2sNV.load(&mut loadfn, "glVertexAttrib2sNV");
+         storage::VertexAttrib2sv.load(&mut loadfn, "glVertexAttrib2sv");
+         storage::VertexAttrib2svARB.load(&mut loadfn, "glVertexAttrib2svARB");
+         storage::VertexAttrib2svNV.load(&mut loadfn, "glVertexAttrib2svNV");
+         storage::VertexAttrib3d.load(&mut loadfn, "glVertexAttrib3d");
+         storage::VertexAttrib3dARB.load(&mut loadfn, "glVertexAttrib3dARB");
+         storage::VertexAttrib3dNV.load(&mut loadfn, "glVertexAttrib3dNV");
+         storage::VertexAttrib3dv.load(&mut loadfn, "glVertexAttrib3dv");
+         storage::VertexAttrib3dvARB.load(&mut loadfn, "glVertexAttrib3dvARB");
+         storage::VertexAttrib3dvNV.load(&mut loadfn, "glVertexAttrib3dvNV");
+         storage::VertexAttrib3f.load(&mut loadfn, "glVertexAttrib3f");
+         storage::VertexAttrib3fARB.load(&mut loadfn, "glVertexAttrib3fARB");
+         storage::VertexAttrib3fNV.load(&mut loadfn, "glVertexAttrib3fNV");
+         storage::VertexAttrib3fv.load(&mut loadfn, "glVertexAttrib3fv");
+         storage::VertexAttrib3fvARB.load(&mut loadfn, "glVertexAttrib3fvARB");
+         storage::VertexAttrib3fvNV.load(&mut loadfn, "glVertexAttrib3fvNV");
+         storage::VertexAttrib3hNV.load(&mut loadfn, "glVertexAttrib3hNV");
+         storage::VertexAttrib3hvNV.load(&mut loadfn, "glVertexAttrib3hvNV");
+         storage::VertexAttrib3s.load(&mut loadfn, "glVertexAttrib3s");
+         storage::VertexAttrib3sARB.load(&mut loadfn, "glVertexAttrib3sARB");
+         storage::VertexAttrib3sNV.load(&mut loadfn, "glVertexAttrib3sNV");
+         storage::VertexAttrib3sv.load(&mut loadfn, "glVertexAttrib3sv");
+         storage::VertexAttrib3svARB.load(&mut loadfn, "glVertexAttrib3svARB");
+         storage::VertexAttrib3svNV.load(&mut loadfn, "glVertexAttrib3svNV");
+         storage::VertexAttrib4Nbv.load(&mut loadfn, "glVertexAttrib4Nbv");
+         storage::VertexAttrib4NbvARB.load(&mut loadfn, "glVertexAttrib4NbvARB");
+         storage::VertexAttrib4Niv.load(&mut loadfn, "glVertexAttrib4Niv");
+         storage::VertexAttrib4NivARB.load(&mut loadfn, "glVertexAttrib4NivARB");
+         storage::VertexAttrib4Nsv.load(&mut loadfn, "glVertexAttrib4Nsv");
+         storage::VertexAttrib4NsvARB.load(&mut loadfn, "glVertexAttrib4NsvARB");
+         storage::VertexAttrib4Nub.load(&mut loadfn, "glVertexAttrib4Nub");
+         storage::VertexAttrib4NubARB.load(&mut loadfn, "glVertexAttrib4NubARB");
+         storage::VertexAttrib4Nubv.load(&mut loadfn, "glVertexAttrib4Nubv");
+         storage::VertexAttrib4NubvARB.load(&mut loadfn, "glVertexAttrib4NubvARB");
+         storage::VertexAttrib4Nuiv.load(&mut loadfn, "glVertexAttrib4Nuiv");
+         storage::VertexAttrib4NuivARB.load(&mut loadfn, "glVertexAttrib4NuivARB");
+         storage::VertexAttrib4Nusv.load(&mut loadfn, "glVertexAttrib4Nusv");
+         storage::VertexAttrib4NusvARB.load(&mut loadfn, "glVertexAttrib4NusvARB");
+         storage::VertexAttrib4bv.load(&mut loadfn, "glVertexAttrib4bv");
+         storage::VertexAttrib4bvARB.load(&mut loadfn, "glVertexAttrib4bvARB");
+         storage::VertexAttrib4d.load(&mut loadfn, "glVertexAttrib4d");
+         storage::VertexAttrib4dARB.load(&mut loadfn, "glVertexAttrib4dARB");
+         storage::VertexAttrib4dNV.load(&mut loadfn, "glVertexAttrib4dNV");
+         storage::VertexAttrib4dv.load(&mut loadfn, "glVertexAttrib4dv");
+         storage::VertexAttrib4dvARB.load(&mut loadfn, "glVertexAttrib4dvARB");
+         storage::VertexAttrib4dvNV.load(&mut loadfn, "glVertexAttrib4dvNV");
+         storage::VertexAttrib4f.load(&mut loadfn, "glVertexAttrib4f");
+         storage::VertexAttrib4fARB.load(&mut loadfn, "glVertexAttrib4fARB");
+         storage::VertexAttrib4fNV.load(&mut loadfn, "glVertexAttrib4fNV");
+         storage::VertexAttrib4fv.load(&mut loadfn, "glVertexAttrib4fv");
+         storage::VertexAttrib4fvARB.load(&mut loadfn, "glVertexAttrib4fvARB");
+         storage::VertexAttrib4fvNV.load(&mut loadfn, "glVertexAttrib4fvNV");
+         storage::VertexAttrib4hNV.load(&mut loadfn, "glVertexAttrib4hNV");
+         storage::VertexAttrib4hvNV.load(&mut loadfn, "glVertexAttrib4hvNV");
+         storage::VertexAttrib4iv.load(&mut loadfn, "glVertexAttrib4iv");
+         storage::VertexAttrib4ivARB.load(&mut loadfn, "glVertexAttrib4ivARB");
+         storage::VertexAttrib4s.load(&mut loadfn, "glVertexAttrib4s");
+         storage::VertexAttrib4sARB.load(&mut loadfn, "glVertexAttrib4sARB");
+         storage::VertexAttrib4sNV.load(&mut loadfn, "glVertexAttrib4sNV");
+         storage::VertexAttrib4sv.load(&mut loadfn, "glVertexAttrib4sv");
+         storage::VertexAttrib4svARB.load(&mut loadfn, "glVertexAttrib4svARB");
+         storage::VertexAttrib4svNV.load(&mut loadfn, "glVertexAttrib4svNV");
+         storage::VertexAttrib4ubNV.load(&mut loadfn, "glVertexAttrib4ubNV");
+         storage::VertexAttrib4ubv.load(&mut loadfn, "glVertexAttrib4ubv");
+         storage::VertexAttrib4ubvARB.load(&mut loadfn, "glVertexAttrib4ubvARB");
+         storage::VertexAttrib4ubvNV.load(&mut loadfn, "glVertexAttrib4ubvNV");
+         storage::VertexAttrib4uiv.load(&mut loadfn, "glVertexAttrib4uiv");
+         storage::VertexAttrib4uivARB.load(&mut loadfn, "glVertexAttrib4uivARB");
+         storage::VertexAttrib4usv.load(&mut loadfn, "glVertexAttrib4usv");
+         storage::VertexAttrib4usvARB.load(&mut loadfn, "glVertexAttrib4usvARB");
+         storage::VertexAttribArrayObjectATI.load(&mut loadfn, "glVertexAttribArrayObjectATI");
+         storage::VertexAttribBinding.load(&mut loadfn, "glVertexAttribBinding");
+         storage::VertexAttribDivisor.load(&mut loadfn, "glVertexAttribDivisor");
+         storage::VertexAttribDivisorARB.load(&mut loadfn, "glVertexAttribDivisorARB");
+         storage::VertexAttribFormat.load(&mut loadfn, "glVertexAttribFormat");
+         storage::VertexAttribFormatNV.load(&mut loadfn, "glVertexAttribFormatNV");
+         storage::VertexAttribI1i.load(&mut loadfn, "glVertexAttribI1i");
+         storage::VertexAttribI1iEXT.load(&mut loadfn, "glVertexAttribI1iEXT");
+         storage::VertexAttribI1iv.load(&mut loadfn, "glVertexAttribI1iv");
+         storage::VertexAttribI1ivEXT.load(&mut loadfn, "glVertexAttribI1ivEXT");
+         storage::VertexAttribI1ui.load(&mut loadfn, "glVertexAttribI1ui");
+         storage::VertexAttribI1uiEXT.load(&mut loadfn, "glVertexAttribI1uiEXT");
+         storage::VertexAttribI1uiv.load(&mut loadfn, "glVertexAttribI1uiv");
+         storage::VertexAttribI1uivEXT.load(&mut loadfn, "glVertexAttribI1uivEXT");
+         storage::VertexAttribI2i.load(&mut loadfn, "glVertexAttribI2i");
+         storage::VertexAttribI2iEXT.load(&mut loadfn, "glVertexAttribI2iEXT");
+         storage::VertexAttribI2iv.load(&mut loadfn, "glVertexAttribI2iv");
+         storage::VertexAttribI2ivEXT.load(&mut loadfn, "glVertexAttribI2ivEXT");
+         storage::VertexAttribI2ui.load(&mut loadfn, "glVertexAttribI2ui");
+         storage::VertexAttribI2uiEXT.load(&mut loadfn, "glVertexAttribI2uiEXT");
+         storage::VertexAttribI2uiv.load(&mut loadfn, "glVertexAttribI2uiv");
+         storage::VertexAttribI2uivEXT.load(&mut loadfn, "glVertexAttribI2uivEXT");
+         storage::VertexAttribI3i.load(&mut loadfn, "glVertexAttribI3i");
+         storage::VertexAttribI3iEXT.load(&mut loadfn, "glVertexAttribI3iEXT");
+         storage::VertexAttribI3iv.load(&mut loadfn, "glVertexAttribI3iv");
+         storage::VertexAttribI3ivEXT.load(&mut loadfn, "glVertexAttribI3ivEXT");
+         storage::VertexAttribI3ui.load(&mut loadfn, "glVertexAttribI3ui");
+         storage::VertexAttribI3uiEXT.load(&mut loadfn, "glVertexAttribI3uiEXT");
+         storage::VertexAttribI3uiv.load(&mut loadfn, "glVertexAttribI3uiv");
+         storage::VertexAttribI3uivEXT.load(&mut loadfn, "glVertexAttribI3uivEXT");
+         storage::VertexAttribI4bv.load(&mut loadfn, "glVertexAttribI4bv");
+         storage::VertexAttribI4bvEXT.load(&mut loadfn, "glVertexAttribI4bvEXT");
+         storage::VertexAttribI4i.load(&mut loadfn, "glVertexAttribI4i");
+         storage::VertexAttribI4iEXT.load(&mut loadfn, "glVertexAttribI4iEXT");
+         storage::VertexAttribI4iv.load(&mut loadfn, "glVertexAttribI4iv");
+         storage::VertexAttribI4ivEXT.load(&mut loadfn, "glVertexAttribI4ivEXT");
+         storage::VertexAttribI4sv.load(&mut loadfn, "glVertexAttribI4sv");
+         storage::VertexAttribI4svEXT.load(&mut loadfn, "glVertexAttribI4svEXT");
+         storage::VertexAttribI4ubv.load(&mut loadfn, "glVertexAttribI4ubv");
+         storage::VertexAttribI4ubvEXT.load(&mut loadfn, "glVertexAttribI4ubvEXT");
+         storage::VertexAttribI4ui.load(&mut loadfn, "glVertexAttribI4ui");
+         storage::VertexAttribI4uiEXT.load(&mut loadfn, "glVertexAttribI4uiEXT");
+         storage::VertexAttribI4uiv.load(&mut loadfn, "glVertexAttribI4uiv");
+         storage::VertexAttribI4uivEXT.load(&mut loadfn, "glVertexAttribI4uivEXT");
+         storage::VertexAttribI4usv.load(&mut loadfn, "glVertexAttribI4usv");
+         storage::VertexAttribI4usvEXT.load(&mut loadfn, "glVertexAttribI4usvEXT");
+         storage::VertexAttribIFormat.load(&mut loadfn, "glVertexAttribIFormat");
+         storage::VertexAttribIFormatNV.load(&mut loadfn, "glVertexAttribIFormatNV");
+         storage::VertexAttribIPointer.load(&mut loadfn, "glVertexAttribIPointer");
+         storage::VertexAttribIPointerEXT.load(&mut loadfn, "glVertexAttribIPointerEXT");
+         storage::VertexAttribL1d.load(&mut loadfn, "glVertexAttribL1d");
+         storage::VertexAttribL1dEXT.load(&mut loadfn, "glVertexAttribL1dEXT");
+         storage::VertexAttribL1dv.load(&mut loadfn, "glVertexAttribL1dv");
+         storage::VertexAttribL1dvEXT.load(&mut loadfn, "glVertexAttribL1dvEXT");
+         storage::VertexAttribL1i64NV.load(&mut loadfn, "glVertexAttribL1i64NV");
+         storage::VertexAttribL1i64vNV.load(&mut loadfn, "glVertexAttribL1i64vNV");
+         storage::VertexAttribL1ui64ARB.load(&mut loadfn, "glVertexAttribL1ui64ARB");
+         storage::VertexAttribL1ui64NV.load(&mut loadfn, "glVertexAttribL1ui64NV");
+         storage::VertexAttribL1ui64vARB.load(&mut loadfn, "glVertexAttribL1ui64vARB");
+         storage::VertexAttribL1ui64vNV.load(&mut loadfn, "glVertexAttribL1ui64vNV");
+         storage::VertexAttribL2d.load(&mut loadfn, "glVertexAttribL2d");
+         storage::VertexAttribL2dEXT.load(&mut loadfn, "glVertexAttribL2dEXT");
+         storage::VertexAttribL2dv.load(&mut loadfn, "glVertexAttribL2dv");
+         storage::VertexAttribL2dvEXT.load(&mut loadfn, "glVertexAttribL2dvEXT");
+         storage::VertexAttribL2i64NV.load(&mut loadfn, "glVertexAttribL2i64NV");
+         storage::VertexAttribL2i64vNV.load(&mut loadfn, "glVertexAttribL2i64vNV");
+         storage::VertexAttribL2ui64NV.load(&mut loadfn, "glVertexAttribL2ui64NV");
+         storage::VertexAttribL2ui64vNV.load(&mut loadfn, "glVertexAttribL2ui64vNV");
+         storage::VertexAttribL3d.load(&mut loadfn, "glVertexAttribL3d");
+         storage::VertexAttribL3dEXT.load(&mut loadfn, "glVertexAttribL3dEXT");
+         storage::VertexAttribL3dv.load(&mut loadfn, "glVertexAttribL3dv");
+         storage::VertexAttribL3dvEXT.load(&mut loadfn, "glVertexAttribL3dvEXT");
+         storage::VertexAttribL3i64NV.load(&mut loadfn, "glVertexAttribL3i64NV");
+         storage::VertexAttribL3i64vNV.load(&mut loadfn, "glVertexAttribL3i64vNV");
+         storage::VertexAttribL3ui64NV.load(&mut loadfn, "glVertexAttribL3ui64NV");
+         storage::VertexAttribL3ui64vNV.load(&mut loadfn, "glVertexAttribL3ui64vNV");
+         storage::VertexAttribL4d.load(&mut loadfn, "glVertexAttribL4d");
+         storage::VertexAttribL4dEXT.load(&mut loadfn, "glVertexAttribL4dEXT");
+         storage::VertexAttribL4dv.load(&mut loadfn, "glVertexAttribL4dv");
+         storage::VertexAttribL4dvEXT.load(&mut loadfn, "glVertexAttribL4dvEXT");
+         storage::VertexAttribL4i64NV.load(&mut loadfn, "glVertexAttribL4i64NV");
+         storage::VertexAttribL4i64vNV.load(&mut loadfn, "glVertexAttribL4i64vNV");
+         storage::VertexAttribL4ui64NV.load(&mut loadfn, "glVertexAttribL4ui64NV");
+         storage::VertexAttribL4ui64vNV.load(&mut loadfn, "glVertexAttribL4ui64vNV");
+         storage::VertexAttribLFormat.load(&mut loadfn, "glVertexAttribLFormat");
+         storage::VertexAttribLFormatNV.load(&mut loadfn, "glVertexAttribLFormatNV");
+         storage::VertexAttribLPointer.load(&mut loadfn, "glVertexAttribLPointer");
+         storage::VertexAttribLPointerEXT.load(&mut loadfn, "glVertexAttribLPointerEXT");
+         storage::VertexAttribP1ui.load(&mut loadfn, "glVertexAttribP1ui");
+         storage::VertexAttribP1uiv.load(&mut loadfn, "glVertexAttribP1uiv");
+         storage::VertexAttribP2ui.load(&mut loadfn, "glVertexAttribP2ui");
+         storage::VertexAttribP2uiv.load(&mut loadfn, "glVertexAttribP2uiv");
+         storage::VertexAttribP3ui.load(&mut loadfn, "glVertexAttribP3ui");
+         storage::VertexAttribP3uiv.load(&mut loadfn, "glVertexAttribP3uiv");
+         storage::VertexAttribP4ui.load(&mut loadfn, "glVertexAttribP4ui");
+         storage::VertexAttribP4uiv.load(&mut loadfn, "glVertexAttribP4uiv");
+         storage::VertexAttribParameteriAMD.load(&mut loadfn, "glVertexAttribParameteriAMD");
+         storage::VertexAttribPointer.load(&mut loadfn, "glVertexAttribPointer");
+         storage::VertexAttribPointerARB.load(&mut loadfn, "glVertexAttribPointerARB");
+         storage::VertexAttribPointerNV.load(&mut loadfn, "glVertexAttribPointerNV");
+         storage::VertexAttribs1dvNV.load(&mut loadfn, "glVertexAttribs1dvNV");
+         storage::VertexAttribs1fvNV.load(&mut loadfn, "glVertexAttribs1fvNV");
+         storage::VertexAttribs1hvNV.load(&mut loadfn, "glVertexAttribs1hvNV");
+         storage::VertexAttribs1svNV.load(&mut loadfn, "glVertexAttribs1svNV");
+         storage::VertexAttribs2dvNV.load(&mut loadfn, "glVertexAttribs2dvNV");
+         storage::VertexAttribs2fvNV.load(&mut loadfn, "glVertexAttribs2fvNV");
+         storage::VertexAttribs2hvNV.load(&mut loadfn, "glVertexAttribs2hvNV");
+         storage::VertexAttribs2svNV.load(&mut loadfn, "glVertexAttribs2svNV");
+         storage::VertexAttribs3dvNV.load(&mut loadfn, "glVertexAttribs3dvNV");
+         storage::VertexAttribs3fvNV.load(&mut loadfn, "glVertexAttribs3fvNV");
+         storage::VertexAttribs3hvNV.load(&mut loadfn, "glVertexAttribs3hvNV");
+         storage::VertexAttribs3svNV.load(&mut loadfn, "glVertexAttribs3svNV");
+         storage::VertexAttribs4dvNV.load(&mut loadfn, "glVertexAttribs4dvNV");
+         storage::VertexAttribs4fvNV.load(&mut loadfn, "glVertexAttribs4fvNV");
+         storage::VertexAttribs4hvNV.load(&mut loadfn, "glVertexAttribs4hvNV");
+         storage::VertexAttribs4svNV.load(&mut loadfn, "glVertexAttribs4svNV");
+         storage::VertexAttribs4ubvNV.load(&mut loadfn, "glVertexAttribs4ubvNV");
+         storage::VertexBindingDivisor.load(&mut loadfn, "glVertexBindingDivisor");
+         storage::VertexBlendARB.load(&mut loadfn, "glVertexBlendARB");
+         storage::VertexBlendEnvfATI.load(&mut loadfn, "glVertexBlendEnvfATI");
+         storage::VertexBlendEnviATI.load(&mut loadfn, "glVertexBlendEnviATI");
+         storage::VertexFormatNV.load(&mut loadfn, "glVertexFormatNV");
+         storage::VertexP2ui.load(&mut loadfn, "glVertexP2ui");
+         storage::VertexP2uiv.load(&mut loadfn, "glVertexP2uiv");
+         storage::VertexP3ui.load(&mut loadfn, "glVertexP3ui");
+         storage::VertexP3uiv.load(&mut loadfn, "glVertexP3uiv");
+         storage::VertexP4ui.load(&mut loadfn, "glVertexP4ui");
+         storage::VertexP4uiv.load(&mut loadfn, "glVertexP4uiv");
+         storage::VertexPointer.load(&mut loadfn, "glVertexPointer");
+         storage::VertexPointerEXT.load(&mut loadfn, "glVertexPointerEXT");
+         storage::VertexPointerListIBM.load(&mut loadfn, "glVertexPointerListIBM");
+         storage::VertexPointervINTEL.load(&mut loadfn, "glVertexPointervINTEL");
+         storage::VertexStream1dATI.load(&mut loadfn, "glVertexStream1dATI");
+         storage::VertexStream1dvATI.load(&mut loadfn, "glVertexStream1dvATI");
+         storage::VertexStream1fATI.load(&mut loadfn, "glVertexStream1fATI");
+         storage::VertexStream1fvATI.load(&mut loadfn, "glVertexStream1fvATI");
+         storage::VertexStream1iATI.load(&mut loadfn, "glVertexStream1iATI");
+         storage::VertexStream1ivATI.load(&mut loadfn, "glVertexStream1ivATI");
+         storage::VertexStream1sATI.load(&mut loadfn, "glVertexStream1sATI");
+         storage::VertexStream1svATI.load(&mut loadfn, "glVertexStream1svATI");
+         storage::VertexStream2dATI.load(&mut loadfn, "glVertexStream2dATI");
+         storage::VertexStream2dvATI.load(&mut loadfn, "glVertexStream2dvATI");
+         storage::VertexStream2fATI.load(&mut loadfn, "glVertexStream2fATI");
+         storage::VertexStream2fvATI.load(&mut loadfn, "glVertexStream2fvATI");
+         storage::VertexStream2iATI.load(&mut loadfn, "glVertexStream2iATI");
+         storage::VertexStream2ivATI.load(&mut loadfn, "glVertexStream2ivATI");
+         storage::VertexStream2sATI.load(&mut loadfn, "glVertexStream2sATI");
+         storage::VertexStream2svATI.load(&mut loadfn, "glVertexStream2svATI");
+         storage::VertexStream3dATI.load(&mut loadfn, "glVertexStream3dATI");
+         storage::VertexStream3dvATI.load(&mut loadfn, "glVertexStream3dvATI");
+         storage::VertexStream3fATI.load(&mut loadfn, "glVertexStream3fATI");
+         storage::VertexStream3fvATI.load(&mut loadfn, "glVertexStream3fvATI");
+         storage::VertexStream3iATI.load(&mut loadfn, "glVertexStream3iATI");
+         storage::VertexStream3ivATI.load(&mut loadfn, "glVertexStream3ivATI");
+         storage::VertexStream3sATI.load(&mut loadfn, "glVertexStream3sATI");
+         storage::VertexStream3svATI.load(&mut loadfn, "glVertexStream3svATI");
+         storage::VertexStream4dATI.load(&mut loadfn, "glVertexStream4dATI");
+         storage::VertexStream4dvATI.load(&mut loadfn, "glVertexStream4dvATI");
+         storage::VertexStream4fATI.load(&mut loadfn, "glVertexStream4fATI");
+         storage::VertexStream4fvATI.load(&mut loadfn, "glVertexStream4fvATI");
+         storage::VertexStream4iATI.load(&mut loadfn, "glVertexStream4iATI");
+         storage::VertexStream4ivATI.load(&mut loadfn, "glVertexStream4ivATI");
+         storage::VertexStream4sATI.load(&mut loadfn, "glVertexStream4sATI");
+         storage::VertexStream4svATI.load(&mut loadfn, "glVertexStream4svATI");
+         storage::VertexWeightPointerEXT.load(&mut loadfn, "glVertexWeightPointerEXT");
+         storage::VertexWeightfEXT.load(&mut loadfn, "glVertexWeightfEXT");
+         storage::VertexWeightfvEXT.load(&mut loadfn, "glVertexWeightfvEXT");
+         storage::VertexWeighthNV.load(&mut loadfn, "glVertexWeighthNV");
+         storage::VertexWeighthvNV.load(&mut loadfn, "glVertexWeighthvNV");
+         storage::VideoCaptureNV.load(&mut loadfn, "glVideoCaptureNV");
+         storage::VideoCaptureStreamParameterdvNV.load(&mut loadfn, "glVideoCaptureStreamParameterdvNV");
+         storage::VideoCaptureStreamParameterfvNV.load(&mut loadfn, "glVideoCaptureStreamParameterfvNV");
+         storage::VideoCaptureStreamParameterivNV.load(&mut loadfn, "glVideoCaptureStreamParameterivNV");
+         storage::Viewport.load(&mut loadfn, "glViewport");
+         storage::ViewportArrayv.load(&mut loadfn, "glViewportArrayv");
+         storage::ViewportIndexedf.load(&mut loadfn, "glViewportIndexedf");
+         storage::ViewportIndexedfv.load(&mut loadfn, "glViewportIndexedfv");
+         storage::ViewportPositionWScaleNV.load(&mut loadfn, "glViewportPositionWScaleNV");
+         storage::ViewportSwizzleNV.load(&mut loadfn, "glViewportSwizzleNV");
+         storage::WaitSemaphoreEXT.load(&mut loadfn, "glWaitSemaphoreEXT");
+         storage::WaitSemaphoreui64NVX.load(&mut loadfn, "glWaitSemaphoreui64NVX");
+         storage::WaitSync.load(&mut loadfn, "glWaitSync");
+         storage::WaitVkSemaphoreNV.load(&mut loadfn, "glWaitVkSemaphoreNV");
+         storage::WeightPathsNV.load(&mut loadfn, "glWeightPathsNV");
+         storage::WeightPointerARB.load(&mut loadfn, "glWeightPointerARB");
+         storage::WeightbvARB.load(&mut loadfn, "glWeightbvARB");
+         storage::WeightdvARB.load(&mut loadfn, "glWeightdvARB");
+         storage::WeightfvARB.load(&mut loadfn, "glWeightfvARB");
+         storage::WeightivARB.load(&mut loadfn, "glWeightivARB");
+         storage::WeightsvARB.load(&mut loadfn, "glWeightsvARB");
+         storage::WeightubvARB.load(&mut loadfn, "glWeightubvARB");
+         storage::WeightuivARB.load(&mut loadfn, "glWeightuivARB");
+         storage::WeightusvARB.load(&mut loadfn, "glWeightusvARB");
+         storage::WindowPos2d.load(&mut loadfn, "glWindowPos2d");
+         storage::WindowPos2dARB.load(&mut loadfn, "glWindowPos2dARB");
+         storage::WindowPos2dMESA.load(&mut loadfn, "glWindowPos2dMESA");
+         storage::WindowPos2dv.load(&mut loadfn, "glWindowPos2dv");
+         storage::WindowPos2dvARB.load(&mut loadfn, "glWindowPos2dvARB");
+         storage::WindowPos2dvMESA.load(&mut loadfn, "glWindowPos2dvMESA");
+         storage::WindowPos2f.load(&mut loadfn, "glWindowPos2f");
+         storage::WindowPos2fARB.load(&mut loadfn, "glWindowPos2fARB");
+         storage::WindowPos2fMESA.load(&mut loadfn, "glWindowPos2fMESA");
+         storage::WindowPos2fv.load(&mut loadfn, "glWindowPos2fv");
+         storage::WindowPos2fvARB.load(&mut loadfn, "glWindowPos2fvARB");
+         storage::WindowPos2fvMESA.load(&mut loadfn, "glWindowPos2fvMESA");
+         storage::WindowPos2i.load(&mut loadfn, "glWindowPos2i");
+         storage::WindowPos2iARB.load(&mut loadfn, "glWindowPos2iARB");
+         storage::WindowPos2iMESA.load(&mut loadfn, "glWindowPos2iMESA");
+         storage::WindowPos2iv.load(&mut loadfn, "glWindowPos2iv");
+         storage::WindowPos2ivARB.load(&mut loadfn, "glWindowPos2ivARB");
+         storage::WindowPos2ivMESA.load(&mut loadfn, "glWindowPos2ivMESA");
+         storage::WindowPos2s.load(&mut loadfn, "glWindowPos2s");
+         storage::WindowPos2sARB.load(&mut loadfn, "glWindowPos2sARB");
+         storage::WindowPos2sMESA.load(&mut loadfn, "glWindowPos2sMESA");
+         storage::WindowPos2sv.load(&mut loadfn, "glWindowPos2sv");
+         storage::WindowPos2svARB.load(&mut loadfn, "glWindowPos2svARB");
+         storage::WindowPos2svMESA.load(&mut loadfn, "glWindowPos2svMESA");
+         storage::WindowPos3d.load(&mut loadfn, "glWindowPos3d");
+         storage::WindowPos3dARB.load(&mut loadfn, "glWindowPos3dARB");
+         storage::WindowPos3dMESA.load(&mut loadfn, "glWindowPos3dMESA");
+         storage::WindowPos3dv.load(&mut loadfn, "glWindowPos3dv");
+         storage::WindowPos3dvARB.load(&mut loadfn, "glWindowPos3dvARB");
+         storage::WindowPos3dvMESA.load(&mut loadfn, "glWindowPos3dvMESA");
+         storage::WindowPos3f.load(&mut loadfn, "glWindowPos3f");
+         storage::WindowPos3fARB.load(&mut loadfn, "glWindowPos3fARB");
+         storage::WindowPos3fMESA.load(&mut loadfn, "glWindowPos3fMESA");
+         storage::WindowPos3fv.load(&mut loadfn, "glWindowPos3fv");
+         storage::WindowPos3fvARB.load(&mut loadfn, "glWindowPos3fvARB");
+         storage::WindowPos3fvMESA.load(&mut loadfn, "glWindowPos3fvMESA");
+         storage::WindowPos3i.load(&mut loadfn, "glWindowPos3i");
+         storage::WindowPos3iARB.load(&mut loadfn, "glWindowPos3iARB");
+         storage::WindowPos3iMESA.load(&mut loadfn, "glWindowPos3iMESA");
+         storage::WindowPos3iv.load(&mut loadfn, "glWindowPos3iv");
+         storage::WindowPos3ivARB.load(&mut loadfn, "glWindowPos3ivARB");
+         storage::WindowPos3ivMESA.load(&mut loadfn, "glWindowPos3ivMESA");
+         storage::WindowPos3s.load(&mut loadfn, "glWindowPos3s");
+         storage::WindowPos3sARB.load(&mut loadfn, "glWindowPos3sARB");
+         storage::WindowPos3sMESA.load(&mut loadfn, "glWindowPos3sMESA");
+         storage::WindowPos3sv.load(&mut loadfn, "glWindowPos3sv");
+         storage::WindowPos3svARB.load(&mut loadfn, "glWindowPos3svARB");
+         storage::WindowPos3svMESA.load(&mut loadfn, "glWindowPos3svMESA");
+         storage::WindowPos4dMESA.load(&mut loadfn, "glWindowPos4dMESA");
+         storage::WindowPos4dvMESA.load(&mut loadfn, "glWindowPos4dvMESA");
+         storage::WindowPos4fMESA.load(&mut loadfn, "glWindowPos4fMESA");
+         storage::WindowPos4fvMESA.load(&mut loadfn, "glWindowPos4fvMESA");
+         storage::WindowPos4iMESA.load(&mut loadfn, "glWindowPos4iMESA");
+         storage::WindowPos4ivMESA.load(&mut loadfn, "glWindowPos4ivMESA");
+         storage::WindowPos4sMESA.load(&mut loadfn, "glWindowPos4sMESA");
+         storage::WindowPos4svMESA.load(&mut loadfn, "glWindowPos4svMESA");
+         storage::WindowRectanglesEXT.load(&mut loadfn, "glWindowRectanglesEXT");
+         storage::WriteMaskEXT.load(&mut loadfn, "glWriteMaskEXT");
+
+         storage::ActiveTexture.aliased(&storage::ActiveTextureARB);
+         storage::ActiveTextureARB.aliased(&storage::ActiveTexture);
+         storage::ArrayElement.aliased(&storage::ArrayElementEXT);
+         storage::ArrayElementEXT.aliased(&storage::ArrayElement);
+         storage::AttachObjectARB.aliased(&storage::AttachShader);
+         storage::AttachShader.aliased(&storage::AttachObjectARB);
+         storage::BeginConditionalRender.aliased(&storage::BeginConditionalRenderNV);
+         storage::BeginConditionalRenderNV.aliased(&storage::BeginConditionalRender);
+         storage::BeginQuery.aliased(&storage::BeginQueryARB);
+         storage::BeginQueryARB.aliased(&storage::BeginQuery);
+         storage::BeginTransformFeedback.aliased(&storage::BeginTransformFeedbackEXT);
+         storage::BeginTransformFeedback.aliased(&storage::BeginTransformFeedbackNV);
+         storage::BeginTransformFeedbackEXT.aliased(&storage::BeginTransformFeedback);
+         storage::BeginTransformFeedbackEXT.aliased(&storage::BeginTransformFeedbackNV);
+         storage::BeginTransformFeedbackNV.aliased(&storage::BeginTransformFeedback);
+         storage::BeginTransformFeedbackNV.aliased(&storage::BeginTransformFeedbackEXT);
+         storage::BindAttribLocation.aliased(&storage::BindAttribLocationARB);
+         storage::BindAttribLocationARB.aliased(&storage::BindAttribLocation);
+         storage::BindBuffer.aliased(&storage::BindBufferARB);
+         storage::BindBufferARB.aliased(&storage::BindBuffer);
+         storage::BindBufferBase.aliased(&storage::BindBufferBaseEXT);
+         storage::BindBufferBase.aliased(&storage::BindBufferBaseNV);
+         storage::BindBufferBaseEXT.aliased(&storage::BindBufferBase);
+         storage::BindBufferBaseEXT.aliased(&storage::BindBufferBaseNV);
+         storage::BindBufferBaseNV.aliased(&storage::BindBufferBase);
+         storage::BindBufferBaseNV.aliased(&storage::BindBufferBaseEXT);
+         storage::BindBufferOffsetEXT.aliased(&storage::BindBufferOffsetNV);
+         storage::BindBufferOffsetNV.aliased(&storage::BindBufferOffsetEXT);
+         storage::BindBufferRange.aliased(&storage::BindBufferRangeEXT);
+         storage::BindBufferRange.aliased(&storage::BindBufferRangeNV);
+         storage::BindBufferRangeEXT.aliased(&storage::BindBufferRange);
+         storage::BindBufferRangeEXT.aliased(&storage::BindBufferRangeNV);
+         storage::BindBufferRangeNV.aliased(&storage::BindBufferRange);
+         storage::BindBufferRangeNV.aliased(&storage::BindBufferRangeEXT);
+         storage::BindFragDataLocation.aliased(&storage::BindFragDataLocationEXT);
+         storage::BindFragDataLocationEXT.aliased(&storage::BindFragDataLocation);
+         storage::BindProgramARB.aliased(&storage::BindProgramNV);
+         storage::BindProgramNV.aliased(&storage::BindProgramARB);
+         storage::BindTexture.aliased(&storage::BindTextureEXT);
+         storage::BindTextureEXT.aliased(&storage::BindTexture);
+         storage::BlendColor.aliased(&storage::BlendColorEXT);
+         storage::BlendColorEXT.aliased(&storage::BlendColor);
+         storage::BlendEquation.aliased(&storage::BlendEquationEXT);
+         storage::BlendEquationEXT.aliased(&storage::BlendEquation);
+         storage::BlendEquationi.aliased(&storage::BlendEquationIndexedAMD);
+         storage::BlendEquationi.aliased(&storage::BlendEquationiARB);
+         storage::BlendEquationiARB.aliased(&storage::BlendEquationIndexedAMD);
+         storage::BlendEquationiARB.aliased(&storage::BlendEquationi);
+         storage::BlendEquationIndexedAMD.aliased(&storage::BlendEquationi);
+         storage::BlendEquationIndexedAMD.aliased(&storage::BlendEquationiARB);
+         storage::BlendEquationSeparate.aliased(&storage::BlendEquationSeparateEXT);
+         storage::BlendEquationSeparateEXT.aliased(&storage::BlendEquationSeparate);
+         storage::BlendEquationSeparatei.aliased(&storage::BlendEquationSeparateIndexedAMD);
+         storage::BlendEquationSeparatei.aliased(&storage::BlendEquationSeparateiARB);
+         storage::BlendEquationSeparateiARB.aliased(&storage::BlendEquationSeparateIndexedAMD);
+         storage::BlendEquationSeparateiARB.aliased(&storage::BlendEquationSeparatei);
+         storage::BlendEquationSeparateIndexedAMD.aliased(&storage::BlendEquationSeparatei);
+         storage::BlendEquationSeparateIndexedAMD.aliased(&storage::BlendEquationSeparateiARB);
+         storage::BlendFunci.aliased(&storage::BlendFuncIndexedAMD);
+         storage::BlendFunci.aliased(&storage::BlendFunciARB);
+         storage::BlendFunciARB.aliased(&storage::BlendFuncIndexedAMD);
+         storage::BlendFunciARB.aliased(&storage::BlendFunci);
+         storage::BlendFuncIndexedAMD.aliased(&storage::BlendFunci);
+         storage::BlendFuncIndexedAMD.aliased(&storage::BlendFunciARB);
+         storage::BlendFuncSeparate.aliased(&storage::BlendFuncSeparateEXT);
+         storage::BlendFuncSeparate.aliased(&storage::BlendFuncSeparateINGR);
+         storage::BlendFuncSeparateEXT.aliased(&storage::BlendFuncSeparate);
+         storage::BlendFuncSeparateEXT.aliased(&storage::BlendFuncSeparateINGR);
+         storage::BlendFuncSeparatei.aliased(&storage::BlendFuncSeparateIndexedAMD);
+         storage::BlendFuncSeparatei.aliased(&storage::BlendFuncSeparateiARB);
+         storage::BlendFuncSeparateiARB.aliased(&storage::BlendFuncSeparateIndexedAMD);
+         storage::BlendFuncSeparateiARB.aliased(&storage::BlendFuncSeparatei);
+         storage::BlendFuncSeparateIndexedAMD.aliased(&storage::BlendFuncSeparatei);
+         storage::BlendFuncSeparateIndexedAMD.aliased(&storage::BlendFuncSeparateiARB);
+         storage::BlendFuncSeparateINGR.aliased(&storage::BlendFuncSeparate);
+         storage::BlendFuncSeparateINGR.aliased(&storage::BlendFuncSeparateEXT);
+         storage::BlitFramebuffer.aliased(&storage::BlitFramebufferEXT);
+         storage::BlitFramebufferEXT.aliased(&storage::BlitFramebuffer);
+         storage::BufferData.aliased(&storage::BufferDataARB);
+         storage::BufferDataARB.aliased(&storage::BufferData);
+         storage::BufferSubData.aliased(&storage::BufferSubDataARB);
+         storage::BufferSubDataARB.aliased(&storage::BufferSubData);
+         storage::CheckFramebufferStatus.aliased(&storage::CheckFramebufferStatusEXT);
+         storage::CheckFramebufferStatusEXT.aliased(&storage::CheckFramebufferStatus);
+         storage::ClampColor.aliased(&storage::ClampColorARB);
+         storage::ClampColorARB.aliased(&storage::ClampColor);
+         storage::ClearDepthf.aliased(&storage::ClearDepthfOES);
+         storage::ClearDepthfOES.aliased(&storage::ClearDepthf);
+         storage::ClientActiveTexture.aliased(&storage::ClientActiveTextureARB);
+         storage::ClientActiveTextureARB.aliased(&storage::ClientActiveTexture);
+         storage::ColorMaski.aliased(&storage::ColorMaskIndexedEXT);
+         storage::ColorMaskIndexedEXT.aliased(&storage::ColorMaski);
+         storage::ColorSubTable.aliased(&storage::ColorSubTableEXT);
+         storage::ColorSubTableEXT.aliased(&storage::ColorSubTable);
+         storage::ColorTable.aliased(&storage::ColorTableEXT);
+         storage::ColorTable.aliased(&storage::ColorTableSGI);
+         storage::ColorTableEXT.aliased(&storage::ColorTable);
+         storage::ColorTableEXT.aliased(&storage::ColorTableSGI);
+         storage::ColorTableParameterfv.aliased(&storage::ColorTableParameterfvSGI);
+         storage::ColorTableParameterfvSGI.aliased(&storage::ColorTableParameterfv);
+         storage::ColorTableParameteriv.aliased(&storage::ColorTableParameterivSGI);
+         storage::ColorTableParameterivSGI.aliased(&storage::ColorTableParameteriv);
+         storage::ColorTableSGI.aliased(&storage::ColorTable);
+         storage::ColorTableSGI.aliased(&storage::ColorTableEXT);
+         storage::CompileShader.aliased(&storage::CompileShaderARB);
+         storage::CompileShaderARB.aliased(&storage::CompileShader);
+         storage::CompressedTexImage1D.aliased(&storage::CompressedTexImage1DARB);
+         storage::CompressedTexImage1DARB.aliased(&storage::CompressedTexImage1D);
+         storage::CompressedTexImage2D.aliased(&storage::CompressedTexImage2DARB);
+         storage::CompressedTexImage2DARB.aliased(&storage::CompressedTexImage2D);
+         storage::CompressedTexImage3D.aliased(&storage::CompressedTexImage3DARB);
+         storage::CompressedTexImage3DARB.aliased(&storage::CompressedTexImage3D);
+         storage::CompressedTexSubImage1D.aliased(&storage::CompressedTexSubImage1DARB);
+         storage::CompressedTexSubImage1DARB.aliased(&storage::CompressedTexSubImage1D);
+         storage::CompressedTexSubImage2D.aliased(&storage::CompressedTexSubImage2DARB);
+         storage::CompressedTexSubImage2DARB.aliased(&storage::CompressedTexSubImage2D);
+         storage::CompressedTexSubImage3D.aliased(&storage::CompressedTexSubImage3DARB);
+         storage::CompressedTexSubImage3DARB.aliased(&storage::CompressedTexSubImage3D);
+         storage::ConvolutionFilter1D.aliased(&storage::ConvolutionFilter1DEXT);
+         storage::ConvolutionFilter1DEXT.aliased(&storage::ConvolutionFilter1D);
+         storage::ConvolutionFilter2D.aliased(&storage::ConvolutionFilter2DEXT);
+         storage::ConvolutionFilter2DEXT.aliased(&storage::ConvolutionFilter2D);
+         storage::ConvolutionParameterf.aliased(&storage::ConvolutionParameterfEXT);
+         storage::ConvolutionParameterfEXT.aliased(&storage::ConvolutionParameterf);
+         storage::ConvolutionParameterfv.aliased(&storage::ConvolutionParameterfvEXT);
+         storage::ConvolutionParameterfvEXT.aliased(&storage::ConvolutionParameterfv);
+         storage::ConvolutionParameteri.aliased(&storage::ConvolutionParameteriEXT);
+         storage::ConvolutionParameteriEXT.aliased(&storage::ConvolutionParameteri);
+         storage::ConvolutionParameteriv.aliased(&storage::ConvolutionParameterivEXT);
+         storage::ConvolutionParameterivEXT.aliased(&storage::ConvolutionParameteriv);
+         storage::CopyColorSubTable.aliased(&storage::CopyColorSubTableEXT);
+         storage::CopyColorSubTableEXT.aliased(&storage::CopyColorSubTable);
+         storage::CopyColorTable.aliased(&storage::CopyColorTableSGI);
+         storage::CopyColorTableSGI.aliased(&storage::CopyColorTable);
+         storage::CopyConvolutionFilter1D.aliased(&storage::CopyConvolutionFilter1DEXT);
+         storage::CopyConvolutionFilter1DEXT.aliased(&storage::CopyConvolutionFilter1D);
+         storage::CopyConvolutionFilter2D.aliased(&storage::CopyConvolutionFilter2DEXT);
+         storage::CopyConvolutionFilter2DEXT.aliased(&storage::CopyConvolutionFilter2D);
+         storage::CopyTexImage1D.aliased(&storage::CopyTexImage1DEXT);
+         storage::CopyTexImage1DEXT.aliased(&storage::CopyTexImage1D);
+         storage::CopyTexImage2D.aliased(&storage::CopyTexImage2DEXT);
+         storage::CopyTexImage2DEXT.aliased(&storage::CopyTexImage2D);
+         storage::CopyTexSubImage1D.aliased(&storage::CopyTexSubImage1DEXT);
+         storage::CopyTexSubImage1DEXT.aliased(&storage::CopyTexSubImage1D);
+         storage::CopyTexSubImage2D.aliased(&storage::CopyTexSubImage2DEXT);
+         storage::CopyTexSubImage2DEXT.aliased(&storage::CopyTexSubImage2D);
+         storage::CopyTexSubImage3D.aliased(&storage::CopyTexSubImage3DEXT);
+         storage::CopyTexSubImage3DEXT.aliased(&storage::CopyTexSubImage3D);
+         storage::CreateProgram.aliased(&storage::CreateProgramObjectARB);
+         storage::CreateProgramObjectARB.aliased(&storage::CreateProgram);
+         storage::CreateShader.aliased(&storage::CreateShaderObjectARB);
+         storage::CreateShaderObjectARB.aliased(&storage::CreateShader);
+         storage::DebugMessageCallback.aliased(&storage::DebugMessageCallbackARB);
+         storage::DebugMessageCallbackARB.aliased(&storage::DebugMessageCallback);
+         storage::DebugMessageControl.aliased(&storage::DebugMessageControlARB);
+         storage::DebugMessageControlARB.aliased(&storage::DebugMessageControl);
+         storage::DebugMessageInsert.aliased(&storage::DebugMessageInsertARB);
+         storage::DebugMessageInsertARB.aliased(&storage::DebugMessageInsert);
+         storage::DeleteBuffers.aliased(&storage::DeleteBuffersARB);
+         storage::DeleteBuffersARB.aliased(&storage::DeleteBuffers);
+         storage::DeleteFramebuffers.aliased(&storage::DeleteFramebuffersEXT);
+         storage::DeleteFramebuffersEXT.aliased(&storage::DeleteFramebuffers);
+         storage::DeleteProgramsARB.aliased(&storage::DeleteProgramsNV);
+         storage::DeleteProgramsNV.aliased(&storage::DeleteProgramsARB);
+         storage::DeleteQueries.aliased(&storage::DeleteQueriesARB);
+         storage::DeleteQueriesARB.aliased(&storage::DeleteQueries);
+         storage::DeleteRenderbuffers.aliased(&storage::DeleteRenderbuffersEXT);
+         storage::DeleteRenderbuffersEXT.aliased(&storage::DeleteRenderbuffers);
+         storage::DeleteTransformFeedbacks.aliased(&storage::DeleteTransformFeedbacksNV);
+         storage::DeleteTransformFeedbacksNV.aliased(&storage::DeleteTransformFeedbacks);
+         storage::DeleteVertexArrays.aliased(&storage::DeleteVertexArraysAPPLE);
+         storage::DeleteVertexArraysAPPLE.aliased(&storage::DeleteVertexArrays);
+         storage::DepthRangef.aliased(&storage::DepthRangefOES);
+         storage::DepthRangefOES.aliased(&storage::DepthRangef);
+         storage::DetachObjectARB.aliased(&storage::DetachShader);
+         storage::DetachShader.aliased(&storage::DetachObjectARB);
+         storage::Disablei.aliased(&storage::DisableIndexedEXT);
+         storage::DisableIndexedEXT.aliased(&storage::Disablei);
+         storage::DisableVertexAttribArray.aliased(&storage::DisableVertexAttribArrayARB);
+         storage::DisableVertexAttribArrayARB.aliased(&storage::DisableVertexAttribArray);
+         storage::DrawArrays.aliased(&storage::DrawArraysEXT);
+         storage::DrawArraysEXT.aliased(&storage::DrawArrays);
+         storage::DrawArraysInstanced.aliased(&storage::DrawArraysInstancedARB);
+         storage::DrawArraysInstanced.aliased(&storage::DrawArraysInstancedEXT);
+         storage::DrawArraysInstancedARB.aliased(&storage::DrawArraysInstanced);
+         storage::DrawArraysInstancedARB.aliased(&storage::DrawArraysInstancedEXT);
+         storage::DrawArraysInstancedEXT.aliased(&storage::DrawArraysInstanced);
+         storage::DrawArraysInstancedEXT.aliased(&storage::DrawArraysInstancedARB);
+         storage::DrawBuffers.aliased(&storage::DrawBuffersARB);
+         storage::DrawBuffers.aliased(&storage::DrawBuffersATI);
+         storage::DrawBuffersARB.aliased(&storage::DrawBuffers);
+         storage::DrawBuffersARB.aliased(&storage::DrawBuffersATI);
+         storage::DrawBuffersATI.aliased(&storage::DrawBuffers);
+         storage::DrawBuffersATI.aliased(&storage::DrawBuffersARB);
+         storage::DrawElementsInstanced.aliased(&storage::DrawElementsInstancedARB);
+         storage::DrawElementsInstanced.aliased(&storage::DrawElementsInstancedEXT);
+         storage::DrawElementsInstancedARB.aliased(&storage::DrawElementsInstanced);
+         storage::DrawElementsInstancedARB.aliased(&storage::DrawElementsInstancedEXT);
+         storage::DrawElementsInstancedEXT.aliased(&storage::DrawElementsInstanced);
+         storage::DrawElementsInstancedEXT.aliased(&storage::DrawElementsInstancedARB);
+         storage::DrawRangeElements.aliased(&storage::DrawRangeElementsEXT);
+         storage::DrawRangeElementsEXT.aliased(&storage::DrawRangeElements);
+         storage::DrawTransformFeedback.aliased(&storage::DrawTransformFeedbackNV);
+         storage::DrawTransformFeedbackNV.aliased(&storage::DrawTransformFeedback);
+         storage::Enablei.aliased(&storage::EnableIndexedEXT);
+         storage::EnableIndexedEXT.aliased(&storage::Enablei);
+         storage::EnableVertexAttribArray.aliased(&storage::EnableVertexAttribArrayARB);
+         storage::EnableVertexAttribArrayARB.aliased(&storage::EnableVertexAttribArray);
+         storage::EndConditionalRender.aliased(&storage::EndConditionalRenderNV);
+         storage::EndConditionalRender.aliased(&storage::EndConditionalRenderNVX);
+         storage::EndConditionalRenderNV.aliased(&storage::EndConditionalRender);
+         storage::EndConditionalRenderNV.aliased(&storage::EndConditionalRenderNVX);
+         storage::EndConditionalRenderNVX.aliased(&storage::EndConditionalRender);
+         storage::EndConditionalRenderNVX.aliased(&storage::EndConditionalRenderNV);
+         storage::EndQuery.aliased(&storage::EndQueryARB);
+         storage::EndQueryARB.aliased(&storage::EndQuery);
+         storage::EndTransformFeedback.aliased(&storage::EndTransformFeedbackEXT);
+         storage::EndTransformFeedback.aliased(&storage::EndTransformFeedbackNV);
+         storage::EndTransformFeedbackEXT.aliased(&storage::EndTransformFeedback);
+         storage::EndTransformFeedbackEXT.aliased(&storage::EndTransformFeedbackNV);
+         storage::EndTransformFeedbackNV.aliased(&storage::EndTransformFeedback);
+         storage::EndTransformFeedbackNV.aliased(&storage::EndTransformFeedbackEXT);
+         storage::FlushMappedBufferRange.aliased(&storage::FlushMappedBufferRangeAPPLE);
+         storage::FlushMappedBufferRangeAPPLE.aliased(&storage::FlushMappedBufferRange);
+         storage::FogCoordd.aliased(&storage::FogCoorddEXT);
+         storage::FogCoorddEXT.aliased(&storage::FogCoordd);
+         storage::FogCoorddv.aliased(&storage::FogCoorddvEXT);
+         storage::FogCoorddvEXT.aliased(&storage::FogCoorddv);
+         storage::FogCoordf.aliased(&storage::FogCoordfEXT);
+         storage::FogCoordfEXT.aliased(&storage::FogCoordf);
+         storage::FogCoordfv.aliased(&storage::FogCoordfvEXT);
+         storage::FogCoordfvEXT.aliased(&storage::FogCoordfv);
+         storage::FogCoordPointer.aliased(&storage::FogCoordPointerEXT);
+         storage::FogCoordPointerEXT.aliased(&storage::FogCoordPointer);
+         storage::FramebufferRenderbuffer.aliased(&storage::FramebufferRenderbufferEXT);
+         storage::FramebufferRenderbufferEXT.aliased(&storage::FramebufferRenderbuffer);
+         storage::FramebufferTexture.aliased(&storage::FramebufferTextureARB);
+         storage::FramebufferTexture.aliased(&storage::FramebufferTextureEXT);
+         storage::FramebufferTexture1D.aliased(&storage::FramebufferTexture1DEXT);
+         storage::FramebufferTexture1DEXT.aliased(&storage::FramebufferTexture1D);
+         storage::FramebufferTexture2D.aliased(&storage::FramebufferTexture2DEXT);
+         storage::FramebufferTexture2DEXT.aliased(&storage::FramebufferTexture2D);
+         storage::FramebufferTexture3D.aliased(&storage::FramebufferTexture3DEXT);
+         storage::FramebufferTexture3DEXT.aliased(&storage::FramebufferTexture3D);
+         storage::FramebufferTextureARB.aliased(&storage::FramebufferTexture);
+         storage::FramebufferTextureARB.aliased(&storage::FramebufferTextureEXT);
+         storage::FramebufferTextureEXT.aliased(&storage::FramebufferTexture);
+         storage::FramebufferTextureEXT.aliased(&storage::FramebufferTextureARB);
+         storage::FramebufferTextureFaceARB.aliased(&storage::FramebufferTextureFaceEXT);
+         storage::FramebufferTextureFaceEXT.aliased(&storage::FramebufferTextureFaceARB);
+         storage::FramebufferTextureLayer.aliased(&storage::FramebufferTextureLayerARB);
+         storage::FramebufferTextureLayer.aliased(&storage::FramebufferTextureLayerEXT);
+         storage::FramebufferTextureLayerARB.aliased(&storage::FramebufferTextureLayer);
+         storage::FramebufferTextureLayerARB.aliased(&storage::FramebufferTextureLayerEXT);
+         storage::FramebufferTextureLayerEXT.aliased(&storage::FramebufferTextureLayer);
+         storage::FramebufferTextureLayerEXT.aliased(&storage::FramebufferTextureLayerARB);
+         storage::GenBuffers.aliased(&storage::GenBuffersARB);
+         storage::GenBuffersARB.aliased(&storage::GenBuffers);
+         storage::GenerateMipmap.aliased(&storage::GenerateMipmapEXT);
+         storage::GenerateMipmapEXT.aliased(&storage::GenerateMipmap);
+         storage::GenFramebuffers.aliased(&storage::GenFramebuffersEXT);
+         storage::GenFramebuffersEXT.aliased(&storage::GenFramebuffers);
+         storage::GenProgramsARB.aliased(&storage::GenProgramsNV);
+         storage::GenProgramsNV.aliased(&storage::GenProgramsARB);
+         storage::GenQueries.aliased(&storage::GenQueriesARB);
+         storage::GenQueriesARB.aliased(&storage::GenQueries);
+         storage::GenRenderbuffers.aliased(&storage::GenRenderbuffersEXT);
+         storage::GenRenderbuffersEXT.aliased(&storage::GenRenderbuffers);
+         storage::GenTransformFeedbacks.aliased(&storage::GenTransformFeedbacksNV);
+         storage::GenTransformFeedbacksNV.aliased(&storage::GenTransformFeedbacks);
+         storage::GenVertexArrays.aliased(&storage::GenVertexArraysAPPLE);
+         storage::GenVertexArraysAPPLE.aliased(&storage::GenVertexArrays);
+         storage::GetActiveAttrib.aliased(&storage::GetActiveAttribARB);
+         storage::GetActiveAttribARB.aliased(&storage::GetActiveAttrib);
+         storage::GetActiveUniform.aliased(&storage::GetActiveUniformARB);
+         storage::GetActiveUniformARB.aliased(&storage::GetActiveUniform);
+         storage::GetAttribLocation.aliased(&storage::GetAttribLocationARB);
+         storage::GetAttribLocationARB.aliased(&storage::GetAttribLocation);
+         storage::GetBooleani_v.aliased(&storage::GetBooleanIndexedvEXT);
+         storage::GetBooleanIndexedvEXT.aliased(&storage::GetBooleani_v);
+         storage::GetBufferParameteriv.aliased(&storage::GetBufferParameterivARB);
+         storage::GetBufferParameterivARB.aliased(&storage::GetBufferParameteriv);
+         storage::GetBufferPointerv.aliased(&storage::GetBufferPointervARB);
+         storage::GetBufferPointervARB.aliased(&storage::GetBufferPointerv);
+         storage::GetBufferSubData.aliased(&storage::GetBufferSubDataARB);
+         storage::GetBufferSubDataARB.aliased(&storage::GetBufferSubData);
+         storage::GetColorTable.aliased(&storage::GetColorTableEXT);
+         storage::GetColorTableEXT.aliased(&storage::GetColorTable);
+         storage::GetColorTableParameterfv.aliased(&storage::GetColorTableParameterfvEXT);
+         storage::GetColorTableParameterfvEXT.aliased(&storage::GetColorTableParameterfv);
+         storage::GetColorTableParameteriv.aliased(&storage::GetColorTableParameterivEXT);
+         storage::GetColorTableParameterivEXT.aliased(&storage::GetColorTableParameteriv);
+         storage::GetCompressedTexImage.aliased(&storage::GetCompressedTexImageARB);
+         storage::GetCompressedTexImageARB.aliased(&storage::GetCompressedTexImage);
+         storage::GetDebugMessageLog.aliased(&storage::GetDebugMessageLogARB);
+         storage::GetDebugMessageLogARB.aliased(&storage::GetDebugMessageLog);
+         storage::GetDoublei_v.aliased(&storage::GetDoubleIndexedvEXT);
+         storage::GetDoublei_v.aliased(&storage::GetDoublei_vEXT);
+         storage::GetDoublei_vEXT.aliased(&storage::GetDoubleIndexedvEXT);
+         storage::GetDoublei_vEXT.aliased(&storage::GetDoublei_v);
+         storage::GetDoubleIndexedvEXT.aliased(&storage::GetDoublei_v);
+         storage::GetDoubleIndexedvEXT.aliased(&storage::GetDoublei_vEXT);
+         storage::GetFloati_v.aliased(&storage::GetFloatIndexedvEXT);
+         storage::GetFloati_v.aliased(&storage::GetFloati_vEXT);
+         storage::GetFloati_vEXT.aliased(&storage::GetFloatIndexedvEXT);
+         storage::GetFloati_vEXT.aliased(&storage::GetFloati_v);
+         storage::GetFloatIndexedvEXT.aliased(&storage::GetFloati_v);
+         storage::GetFloatIndexedvEXT.aliased(&storage::GetFloati_vEXT);
+         storage::GetFragDataLocation.aliased(&storage::GetFragDataLocationEXT);
+         storage::GetFragDataLocationEXT.aliased(&storage::GetFragDataLocation);
+         storage::GetFramebufferAttachmentParameteriv.aliased(&storage::GetFramebufferAttachmentParameterivEXT);
+         storage::GetFramebufferAttachmentParameterivEXT.aliased(&storage::GetFramebufferAttachmentParameteriv);
+         storage::GetIntegeri_v.aliased(&storage::GetIntegerIndexedvEXT);
+         storage::GetIntegerIndexedvEXT.aliased(&storage::GetIntegeri_v);
+         storage::GetMultisamplefv.aliased(&storage::GetMultisamplefvNV);
+         storage::GetMultisamplefvNV.aliased(&storage::GetMultisamplefv);
+         storage::GetPointerv.aliased(&storage::GetPointervEXT);
+         storage::GetPointervEXT.aliased(&storage::GetPointerv);
+         storage::GetQueryiv.aliased(&storage::GetQueryivARB);
+         storage::GetQueryivARB.aliased(&storage::GetQueryiv);
+         storage::GetQueryObjecti64v.aliased(&storage::GetQueryObjecti64vEXT);
+         storage::GetQueryObjecti64vEXT.aliased(&storage::GetQueryObjecti64v);
+         storage::GetQueryObjectiv.aliased(&storage::GetQueryObjectivARB);
+         storage::GetQueryObjectivARB.aliased(&storage::GetQueryObjectiv);
+         storage::GetQueryObjectui64v.aliased(&storage::GetQueryObjectui64vEXT);
+         storage::GetQueryObjectui64vEXT.aliased(&storage::GetQueryObjectui64v);
+         storage::GetQueryObjectuiv.aliased(&storage::GetQueryObjectuivARB);
+         storage::GetQueryObjectuivARB.aliased(&storage::GetQueryObjectuiv);
+         storage::GetRenderbufferParameteriv.aliased(&storage::GetRenderbufferParameterivEXT);
+         storage::GetRenderbufferParameterivEXT.aliased(&storage::GetRenderbufferParameteriv);
+         storage::GetShaderSource.aliased(&storage::GetShaderSourceARB);
+         storage::GetShaderSourceARB.aliased(&storage::GetShaderSource);
+         storage::GetTexParameterIiv.aliased(&storage::GetTexParameterIivEXT);
+         storage::GetTexParameterIivEXT.aliased(&storage::GetTexParameterIiv);
+         storage::GetTexParameterIuiv.aliased(&storage::GetTexParameterIuivEXT);
+         storage::GetTexParameterIuivEXT.aliased(&storage::GetTexParameterIuiv);
+         storage::GetTransformFeedbackVarying.aliased(&storage::GetTransformFeedbackVaryingEXT);
+         storage::GetTransformFeedbackVaryingEXT.aliased(&storage::GetTransformFeedbackVarying);
+         storage::GetUniformfv.aliased(&storage::GetUniformfvARB);
+         storage::GetUniformfvARB.aliased(&storage::GetUniformfv);
+         storage::GetUniformiv.aliased(&storage::GetUniformivARB);
+         storage::GetUniformivARB.aliased(&storage::GetUniformiv);
+         storage::GetUniformLocation.aliased(&storage::GetUniformLocationARB);
+         storage::GetUniformLocationARB.aliased(&storage::GetUniformLocation);
+         storage::GetUniformuiv.aliased(&storage::GetUniformuivEXT);
+         storage::GetUniformuivEXT.aliased(&storage::GetUniformuiv);
+         storage::GetVertexAttribdv.aliased(&storage::GetVertexAttribdvARB);
+         storage::GetVertexAttribdv.aliased(&storage::GetVertexAttribdvNV);
+         storage::GetVertexAttribdvARB.aliased(&storage::GetVertexAttribdv);
+         storage::GetVertexAttribdvARB.aliased(&storage::GetVertexAttribdvNV);
+         storage::GetVertexAttribdvNV.aliased(&storage::GetVertexAttribdv);
+         storage::GetVertexAttribdvNV.aliased(&storage::GetVertexAttribdvARB);
+         storage::GetVertexAttribfv.aliased(&storage::GetVertexAttribfvARB);
+         storage::GetVertexAttribfv.aliased(&storage::GetVertexAttribfvNV);
+         storage::GetVertexAttribfvARB.aliased(&storage::GetVertexAttribfv);
+         storage::GetVertexAttribfvARB.aliased(&storage::GetVertexAttribfvNV);
+         storage::GetVertexAttribfvNV.aliased(&storage::GetVertexAttribfv);
+         storage::GetVertexAttribfvNV.aliased(&storage::GetVertexAttribfvARB);
+         storage::GetVertexAttribIiv.aliased(&storage::GetVertexAttribIivEXT);
+         storage::GetVertexAttribIivEXT.aliased(&storage::GetVertexAttribIiv);
+         storage::GetVertexAttribIuiv.aliased(&storage::GetVertexAttribIuivEXT);
+         storage::GetVertexAttribIuivEXT.aliased(&storage::GetVertexAttribIuiv);
+         storage::GetVertexAttribiv.aliased(&storage::GetVertexAttribivARB);
+         storage::GetVertexAttribiv.aliased(&storage::GetVertexAttribivNV);
+         storage::GetVertexAttribivARB.aliased(&storage::GetVertexAttribiv);
+         storage::GetVertexAttribivARB.aliased(&storage::GetVertexAttribivNV);
+         storage::GetVertexAttribivNV.aliased(&storage::GetVertexAttribiv);
+         storage::GetVertexAttribivNV.aliased(&storage::GetVertexAttribivARB);
+         storage::GetVertexAttribLdv.aliased(&storage::GetVertexAttribLdvEXT);
+         storage::GetVertexAttribLdvEXT.aliased(&storage::GetVertexAttribLdv);
+         storage::GetVertexAttribPointerv.aliased(&storage::GetVertexAttribPointervARB);
+         storage::GetVertexAttribPointerv.aliased(&storage::GetVertexAttribPointervNV);
+         storage::GetVertexAttribPointervARB.aliased(&storage::GetVertexAttribPointerv);
+         storage::GetVertexAttribPointervARB.aliased(&storage::GetVertexAttribPointervNV);
+         storage::GetVertexAttribPointervNV.aliased(&storage::GetVertexAttribPointerv);
+         storage::GetVertexAttribPointervNV.aliased(&storage::GetVertexAttribPointervARB);
+         storage::Histogram.aliased(&storage::HistogramEXT);
+         storage::HistogramEXT.aliased(&storage::Histogram);
+         storage::IsBuffer.aliased(&storage::IsBufferARB);
+         storage::IsBufferARB.aliased(&storage::IsBuffer);
+         storage::IsEnabledi.aliased(&storage::IsEnabledIndexedEXT);
+         storage::IsEnabledIndexedEXT.aliased(&storage::IsEnabledi);
+         storage::IsFramebuffer.aliased(&storage::IsFramebufferEXT);
+         storage::IsFramebufferEXT.aliased(&storage::IsFramebuffer);
+         storage::IsProgramARB.aliased(&storage::IsProgramNV);
+         storage::IsProgramNV.aliased(&storage::IsProgramARB);
+         storage::IsQuery.aliased(&storage::IsQueryARB);
+         storage::IsQueryARB.aliased(&storage::IsQuery);
+         storage::IsRenderbuffer.aliased(&storage::IsRenderbufferEXT);
+         storage::IsRenderbufferEXT.aliased(&storage::IsRenderbuffer);
+         storage::IsTransformFeedback.aliased(&storage::IsTransformFeedbackNV);
+         storage::IsTransformFeedbackNV.aliased(&storage::IsTransformFeedback);
+         storage::IsVertexArray.aliased(&storage::IsVertexArrayAPPLE);
+         storage::IsVertexArrayAPPLE.aliased(&storage::IsVertexArray);
+         storage::LinkProgram.aliased(&storage::LinkProgramARB);
+         storage::LinkProgramARB.aliased(&storage::LinkProgram);
+         storage::LoadTransposeMatrixd.aliased(&storage::LoadTransposeMatrixdARB);
+         storage::LoadTransposeMatrixdARB.aliased(&storage::LoadTransposeMatrixd);
+         storage::LoadTransposeMatrixf.aliased(&storage::LoadTransposeMatrixfARB);
+         storage::LoadTransposeMatrixfARB.aliased(&storage::LoadTransposeMatrixf);
+         storage::MapBuffer.aliased(&storage::MapBufferARB);
+         storage::MapBufferARB.aliased(&storage::MapBuffer);
+         storage::MaxShaderCompilerThreadsARB.aliased(&storage::MaxShaderCompilerThreadsKHR);
+         storage::MaxShaderCompilerThreadsKHR.aliased(&storage::MaxShaderCompilerThreadsARB);
+         storage::MemoryBarrier.aliased(&storage::MemoryBarrierEXT);
+         storage::MemoryBarrierEXT.aliased(&storage::MemoryBarrier);
+         storage::Minmax.aliased(&storage::MinmaxEXT);
+         storage::MinmaxEXT.aliased(&storage::Minmax);
+         storage::MinSampleShading.aliased(&storage::MinSampleShadingARB);
+         storage::MinSampleShadingARB.aliased(&storage::MinSampleShading);
+         storage::MultiDrawArrays.aliased(&storage::MultiDrawArraysEXT);
+         storage::MultiDrawArraysEXT.aliased(&storage::MultiDrawArrays);
+         storage::MultiDrawArraysIndirect.aliased(&storage::MultiDrawArraysIndirectAMD);
+         storage::MultiDrawArraysIndirectAMD.aliased(&storage::MultiDrawArraysIndirect);
+         storage::MultiDrawArraysIndirectCount.aliased(&storage::MultiDrawArraysIndirectCountARB);
+         storage::MultiDrawArraysIndirectCountARB.aliased(&storage::MultiDrawArraysIndirectCount);
+         storage::MultiDrawElements.aliased(&storage::MultiDrawElementsEXT);
+         storage::MultiDrawElementsEXT.aliased(&storage::MultiDrawElements);
+         storage::MultiDrawElementsIndirect.aliased(&storage::MultiDrawElementsIndirectAMD);
+         storage::MultiDrawElementsIndirectAMD.aliased(&storage::MultiDrawElementsIndirect);
+         storage::MultiDrawElementsIndirectCount.aliased(&storage::MultiDrawElementsIndirectCountARB);
+         storage::MultiDrawElementsIndirectCountARB.aliased(&storage::MultiDrawElementsIndirectCount);
+         storage::MultiTexCoord1d.aliased(&storage::MultiTexCoord1dARB);
+         storage::MultiTexCoord1dARB.aliased(&storage::MultiTexCoord1d);
+         storage::MultiTexCoord1dv.aliased(&storage::MultiTexCoord1dvARB);
+         storage::MultiTexCoord1dvARB.aliased(&storage::MultiTexCoord1dv);
+         storage::MultiTexCoord1f.aliased(&storage::MultiTexCoord1fARB);
+         storage::MultiTexCoord1fARB.aliased(&storage::MultiTexCoord1f);
+         storage::MultiTexCoord1fv.aliased(&storage::MultiTexCoord1fvARB);
+         storage::MultiTexCoord1fvARB.aliased(&storage::MultiTexCoord1fv);
+         storage::MultiTexCoord1i.aliased(&storage::MultiTexCoord1iARB);
+         storage::MultiTexCoord1iARB.aliased(&storage::MultiTexCoord1i);
+         storage::MultiTexCoord1iv.aliased(&storage::MultiTexCoord1ivARB);
+         storage::MultiTexCoord1ivARB.aliased(&storage::MultiTexCoord1iv);
+         storage::MultiTexCoord1s.aliased(&storage::MultiTexCoord1sARB);
+         storage::MultiTexCoord1sARB.aliased(&storage::MultiTexCoord1s);
+         storage::MultiTexCoord1sv.aliased(&storage::MultiTexCoord1svARB);
+         storage::MultiTexCoord1svARB.aliased(&storage::MultiTexCoord1sv);
+         storage::MultiTexCoord2d.aliased(&storage::MultiTexCoord2dARB);
+         storage::MultiTexCoord2dARB.aliased(&storage::MultiTexCoord2d);
+         storage::MultiTexCoord2dv.aliased(&storage::MultiTexCoord2dvARB);
+         storage::MultiTexCoord2dvARB.aliased(&storage::MultiTexCoord2dv);
+         storage::MultiTexCoord2f.aliased(&storage::MultiTexCoord2fARB);
+         storage::MultiTexCoord2fARB.aliased(&storage::MultiTexCoord2f);
+         storage::MultiTexCoord2fv.aliased(&storage::MultiTexCoord2fvARB);
+         storage::MultiTexCoord2fvARB.aliased(&storage::MultiTexCoord2fv);
+         storage::MultiTexCoord2i.aliased(&storage::MultiTexCoord2iARB);
+         storage::MultiTexCoord2iARB.aliased(&storage::MultiTexCoord2i);
+         storage::MultiTexCoord2iv.aliased(&storage::MultiTexCoord2ivARB);
+         storage::MultiTexCoord2ivARB.aliased(&storage::MultiTexCoord2iv);
+         storage::MultiTexCoord2s.aliased(&storage::MultiTexCoord2sARB);
+         storage::MultiTexCoord2sARB.aliased(&storage::MultiTexCoord2s);
+         storage::MultiTexCoord2sv.aliased(&storage::MultiTexCoord2svARB);
+         storage::MultiTexCoord2svARB.aliased(&storage::MultiTexCoord2sv);
+         storage::MultiTexCoord3d.aliased(&storage::MultiTexCoord3dARB);
+         storage::MultiTexCoord3dARB.aliased(&storage::MultiTexCoord3d);
+         storage::MultiTexCoord3dv.aliased(&storage::MultiTexCoord3dvARB);
+         storage::MultiTexCoord3dvARB.aliased(&storage::MultiTexCoord3dv);
+         storage::MultiTexCoord3f.aliased(&storage::MultiTexCoord3fARB);
+         storage::MultiTexCoord3fARB.aliased(&storage::MultiTexCoord3f);
+         storage::MultiTexCoord3fv.aliased(&storage::MultiTexCoord3fvARB);
+         storage::MultiTexCoord3fvARB.aliased(&storage::MultiTexCoord3fv);
+         storage::MultiTexCoord3i.aliased(&storage::MultiTexCoord3iARB);
+         storage::MultiTexCoord3iARB.aliased(&storage::MultiTexCoord3i);
+         storage::MultiTexCoord3iv.aliased(&storage::MultiTexCoord3ivARB);
+         storage::MultiTexCoord3ivARB.aliased(&storage::MultiTexCoord3iv);
+         storage::MultiTexCoord3s.aliased(&storage::MultiTexCoord3sARB);
+         storage::MultiTexCoord3sARB.aliased(&storage::MultiTexCoord3s);
+         storage::MultiTexCoord3sv.aliased(&storage::MultiTexCoord3svARB);
+         storage::MultiTexCoord3svARB.aliased(&storage::MultiTexCoord3sv);
+         storage::MultiTexCoord4d.aliased(&storage::MultiTexCoord4dARB);
+         storage::MultiTexCoord4dARB.aliased(&storage::MultiTexCoord4d);
+         storage::MultiTexCoord4dv.aliased(&storage::MultiTexCoord4dvARB);
+         storage::MultiTexCoord4dvARB.aliased(&storage::MultiTexCoord4dv);
+         storage::MultiTexCoord4f.aliased(&storage::MultiTexCoord4fARB);
+         storage::MultiTexCoord4fARB.aliased(&storage::MultiTexCoord4f);
+         storage::MultiTexCoord4fv.aliased(&storage::MultiTexCoord4fvARB);
+         storage::MultiTexCoord4fvARB.aliased(&storage::MultiTexCoord4fv);
+         storage::MultiTexCoord4i.aliased(&storage::MultiTexCoord4iARB);
+         storage::MultiTexCoord4iARB.aliased(&storage::MultiTexCoord4i);
+         storage::MultiTexCoord4iv.aliased(&storage::MultiTexCoord4ivARB);
+         storage::MultiTexCoord4ivARB.aliased(&storage::MultiTexCoord4iv);
+         storage::MultiTexCoord4s.aliased(&storage::MultiTexCoord4sARB);
+         storage::MultiTexCoord4sARB.aliased(&storage::MultiTexCoord4s);
+         storage::MultiTexCoord4sv.aliased(&storage::MultiTexCoord4svARB);
+         storage::MultiTexCoord4svARB.aliased(&storage::MultiTexCoord4sv);
+         storage::MultTransposeMatrixd.aliased(&storage::MultTransposeMatrixdARB);
+         storage::MultTransposeMatrixdARB.aliased(&storage::MultTransposeMatrixd);
+         storage::MultTransposeMatrixf.aliased(&storage::MultTransposeMatrixfARB);
+         storage::MultTransposeMatrixfARB.aliased(&storage::MultTransposeMatrixf);
+         storage::NamedBufferStorage.aliased(&storage::NamedBufferStorageEXT);
+         storage::NamedBufferStorageEXT.aliased(&storage::NamedBufferStorage);
+         storage::NamedBufferSubData.aliased(&storage::NamedBufferSubDataEXT);
+         storage::NamedBufferSubDataEXT.aliased(&storage::NamedBufferSubData);
+         storage::PauseTransformFeedback.aliased(&storage::PauseTransformFeedbackNV);
+         storage::PauseTransformFeedbackNV.aliased(&storage::PauseTransformFeedback);
+         storage::PointParameterf.aliased(&storage::PointParameterfARB);
+         storage::PointParameterf.aliased(&storage::PointParameterfEXT);
+         storage::PointParameterf.aliased(&storage::PointParameterfSGIS);
+         storage::PointParameterfARB.aliased(&storage::PointParameterf);
+         storage::PointParameterfARB.aliased(&storage::PointParameterfEXT);
+         storage::PointParameterfARB.aliased(&storage::PointParameterfSGIS);
+         storage::PointParameterfEXT.aliased(&storage::PointParameterf);
+         storage::PointParameterfEXT.aliased(&storage::PointParameterfARB);
+         storage::PointParameterfEXT.aliased(&storage::PointParameterfSGIS);
+         storage::PointParameterfSGIS.aliased(&storage::PointParameterf);
+         storage::PointParameterfSGIS.aliased(&storage::PointParameterfARB);
+         storage::PointParameterfSGIS.aliased(&storage::PointParameterfEXT);
+         storage::PointParameterfv.aliased(&storage::PointParameterfvARB);
+         storage::PointParameterfv.aliased(&storage::PointParameterfvEXT);
+         storage::PointParameterfv.aliased(&storage::PointParameterfvSGIS);
+         storage::PointParameterfvARB.aliased(&storage::PointParameterfv);
+         storage::PointParameterfvARB.aliased(&storage::PointParameterfvEXT);
+         storage::PointParameterfvARB.aliased(&storage::PointParameterfvSGIS);
+         storage::PointParameterfvEXT.aliased(&storage::PointParameterfv);
+         storage::PointParameterfvEXT.aliased(&storage::PointParameterfvARB);
+         storage::PointParameterfvEXT.aliased(&storage::PointParameterfvSGIS);
+         storage::PointParameterfvSGIS.aliased(&storage::PointParameterfv);
+         storage::PointParameterfvSGIS.aliased(&storage::PointParameterfvARB);
+         storage::PointParameterfvSGIS.aliased(&storage::PointParameterfvEXT);
+         storage::PointParameteri.aliased(&storage::PointParameteriNV);
+         storage::PointParameteriNV.aliased(&storage::PointParameteri);
+         storage::PointParameteriv.aliased(&storage::PointParameterivNV);
+         storage::PointParameterivNV.aliased(&storage::PointParameteriv);
+         storage::PolygonOffsetClamp.aliased(&storage::PolygonOffsetClampEXT);
+         storage::PolygonOffsetClampEXT.aliased(&storage::PolygonOffsetClamp);
+         storage::PrioritizeTextures.aliased(&storage::PrioritizeTexturesEXT);
+         storage::PrioritizeTexturesEXT.aliased(&storage::PrioritizeTextures);
+         storage::ProgramParameteri.aliased(&storage::ProgramParameteriARB);
+         storage::ProgramParameteri.aliased(&storage::ProgramParameteriEXT);
+         storage::ProgramParameteriARB.aliased(&storage::ProgramParameteri);
+         storage::ProgramParameteriARB.aliased(&storage::ProgramParameteriEXT);
+         storage::ProgramParameteriEXT.aliased(&storage::ProgramParameteri);
+         storage::ProgramParameteriEXT.aliased(&storage::ProgramParameteriARB);
+         storage::ProgramUniform1f.aliased(&storage::ProgramUniform1fEXT);
+         storage::ProgramUniform1fEXT.aliased(&storage::ProgramUniform1f);
+         storage::ProgramUniform1fv.aliased(&storage::ProgramUniform1fvEXT);
+         storage::ProgramUniform1fvEXT.aliased(&storage::ProgramUniform1fv);
+         storage::ProgramUniform1i.aliased(&storage::ProgramUniform1iEXT);
+         storage::ProgramUniform1iEXT.aliased(&storage::ProgramUniform1i);
+         storage::ProgramUniform1iv.aliased(&storage::ProgramUniform1ivEXT);
+         storage::ProgramUniform1ivEXT.aliased(&storage::ProgramUniform1iv);
+         storage::ProgramUniform1ui.aliased(&storage::ProgramUniform1uiEXT);
+         storage::ProgramUniform1uiEXT.aliased(&storage::ProgramUniform1ui);
+         storage::ProgramUniform1uiv.aliased(&storage::ProgramUniform1uivEXT);
+         storage::ProgramUniform1uivEXT.aliased(&storage::ProgramUniform1uiv);
+         storage::ProgramUniform2f.aliased(&storage::ProgramUniform2fEXT);
+         storage::ProgramUniform2fEXT.aliased(&storage::ProgramUniform2f);
+         storage::ProgramUniform2fv.aliased(&storage::ProgramUniform2fvEXT);
+         storage::ProgramUniform2fvEXT.aliased(&storage::ProgramUniform2fv);
+         storage::ProgramUniform2i.aliased(&storage::ProgramUniform2iEXT);
+         storage::ProgramUniform2iEXT.aliased(&storage::ProgramUniform2i);
+         storage::ProgramUniform2iv.aliased(&storage::ProgramUniform2ivEXT);
+         storage::ProgramUniform2ivEXT.aliased(&storage::ProgramUniform2iv);
+         storage::ProgramUniform2ui.aliased(&storage::ProgramUniform2uiEXT);
+         storage::ProgramUniform2uiEXT.aliased(&storage::ProgramUniform2ui);
+         storage::ProgramUniform2uiv.aliased(&storage::ProgramUniform2uivEXT);
+         storage::ProgramUniform2uivEXT.aliased(&storage::ProgramUniform2uiv);
+         storage::ProgramUniform3f.aliased(&storage::ProgramUniform3fEXT);
+         storage::ProgramUniform3fEXT.aliased(&storage::ProgramUniform3f);
+         storage::ProgramUniform3fv.aliased(&storage::ProgramUniform3fvEXT);
+         storage::ProgramUniform3fvEXT.aliased(&storage::ProgramUniform3fv);
+         storage::ProgramUniform3i.aliased(&storage::ProgramUniform3iEXT);
+         storage::ProgramUniform3iEXT.aliased(&storage::ProgramUniform3i);
+         storage::ProgramUniform3iv.aliased(&storage::ProgramUniform3ivEXT);
+         storage::ProgramUniform3ivEXT.aliased(&storage::ProgramUniform3iv);
+         storage::ProgramUniform3ui.aliased(&storage::ProgramUniform3uiEXT);
+         storage::ProgramUniform3uiEXT.aliased(&storage::ProgramUniform3ui);
+         storage::ProgramUniform3uiv.aliased(&storage::ProgramUniform3uivEXT);
+         storage::ProgramUniform3uivEXT.aliased(&storage::ProgramUniform3uiv);
+         storage::ProgramUniform4f.aliased(&storage::ProgramUniform4fEXT);
+         storage::ProgramUniform4fEXT.aliased(&storage::ProgramUniform4f);
+         storage::ProgramUniform4fv.aliased(&storage::ProgramUniform4fvEXT);
+         storage::ProgramUniform4fvEXT.aliased(&storage::ProgramUniform4fv);
+         storage::ProgramUniform4i.aliased(&storage::ProgramUniform4iEXT);
+         storage::ProgramUniform4iEXT.aliased(&storage::ProgramUniform4i);
+         storage::ProgramUniform4iv.aliased(&storage::ProgramUniform4ivEXT);
+         storage::ProgramUniform4ivEXT.aliased(&storage::ProgramUniform4iv);
+         storage::ProgramUniform4ui.aliased(&storage::ProgramUniform4uiEXT);
+         storage::ProgramUniform4uiEXT.aliased(&storage::ProgramUniform4ui);
+         storage::ProgramUniform4uiv.aliased(&storage::ProgramUniform4uivEXT);
+         storage::ProgramUniform4uivEXT.aliased(&storage::ProgramUniform4uiv);
+         storage::ProgramUniformMatrix2fv.aliased(&storage::ProgramUniformMatrix2fvEXT);
+         storage::ProgramUniformMatrix2fvEXT.aliased(&storage::ProgramUniformMatrix2fv);
+         storage::ProgramUniformMatrix2x3fv.aliased(&storage::ProgramUniformMatrix2x3fvEXT);
+         storage::ProgramUniformMatrix2x3fvEXT.aliased(&storage::ProgramUniformMatrix2x3fv);
+         storage::ProgramUniformMatrix2x4fv.aliased(&storage::ProgramUniformMatrix2x4fvEXT);
+         storage::ProgramUniformMatrix2x4fvEXT.aliased(&storage::ProgramUniformMatrix2x4fv);
+         storage::ProgramUniformMatrix3fv.aliased(&storage::ProgramUniformMatrix3fvEXT);
+         storage::ProgramUniformMatrix3fvEXT.aliased(&storage::ProgramUniformMatrix3fv);
+         storage::ProgramUniformMatrix3x2fv.aliased(&storage::ProgramUniformMatrix3x2fvEXT);
+         storage::ProgramUniformMatrix3x2fvEXT.aliased(&storage::ProgramUniformMatrix3x2fv);
+         storage::ProgramUniformMatrix3x4fv.aliased(&storage::ProgramUniformMatrix3x4fvEXT);
+         storage::ProgramUniformMatrix3x4fvEXT.aliased(&storage::ProgramUniformMatrix3x4fv);
+         storage::ProgramUniformMatrix4fv.aliased(&storage::ProgramUniformMatrix4fvEXT);
+         storage::ProgramUniformMatrix4fvEXT.aliased(&storage::ProgramUniformMatrix4fv);
+         storage::ProgramUniformMatrix4x2fv.aliased(&storage::ProgramUniformMatrix4x2fvEXT);
+         storage::ProgramUniformMatrix4x2fvEXT.aliased(&storage::ProgramUniformMatrix4x2fv);
+         storage::ProgramUniformMatrix4x3fv.aliased(&storage::ProgramUniformMatrix4x3fvEXT);
+         storage::ProgramUniformMatrix4x3fvEXT.aliased(&storage::ProgramUniformMatrix4x3fv);
+         storage::ProvokingVertex.aliased(&storage::ProvokingVertexEXT);
+         storage::ProvokingVertexEXT.aliased(&storage::ProvokingVertex);
+         storage::ReadnPixels.aliased(&storage::ReadnPixelsARB);
+         storage::ReadnPixelsARB.aliased(&storage::ReadnPixels);
+         storage::RenderbufferStorage.aliased(&storage::RenderbufferStorageEXT);
+         storage::RenderbufferStorageEXT.aliased(&storage::RenderbufferStorage);
+         storage::RenderbufferStorageMultisample.aliased(&storage::RenderbufferStorageMultisampleEXT);
+         storage::RenderbufferStorageMultisampleEXT.aliased(&storage::RenderbufferStorageMultisample);
+         storage::ResetHistogram.aliased(&storage::ResetHistogramEXT);
+         storage::ResetHistogramEXT.aliased(&storage::ResetHistogram);
+         storage::ResetMinmax.aliased(&storage::ResetMinmaxEXT);
+         storage::ResetMinmaxEXT.aliased(&storage::ResetMinmax);
+         storage::ResumeTransformFeedback.aliased(&storage::ResumeTransformFeedbackNV);
+         storage::ResumeTransformFeedbackNV.aliased(&storage::ResumeTransformFeedback);
+         storage::SampleCoverage.aliased(&storage::SampleCoverageARB);
+         storage::SampleCoverageARB.aliased(&storage::SampleCoverage);
+         storage::SampleMaskEXT.aliased(&storage::SampleMaskSGIS);
+         storage::SampleMaskSGIS.aliased(&storage::SampleMaskEXT);
+         storage::SamplePatternEXT.aliased(&storage::SamplePatternSGIS);
+         storage::SamplePatternSGIS.aliased(&storage::SamplePatternEXT);
+         storage::SecondaryColor3b.aliased(&storage::SecondaryColor3bEXT);
+         storage::SecondaryColor3bEXT.aliased(&storage::SecondaryColor3b);
+         storage::SecondaryColor3bv.aliased(&storage::SecondaryColor3bvEXT);
+         storage::SecondaryColor3bvEXT.aliased(&storage::SecondaryColor3bv);
+         storage::SecondaryColor3d.aliased(&storage::SecondaryColor3dEXT);
+         storage::SecondaryColor3dEXT.aliased(&storage::SecondaryColor3d);
+         storage::SecondaryColor3dv.aliased(&storage::SecondaryColor3dvEXT);
+         storage::SecondaryColor3dvEXT.aliased(&storage::SecondaryColor3dv);
+         storage::SecondaryColor3f.aliased(&storage::SecondaryColor3fEXT);
+         storage::SecondaryColor3fEXT.aliased(&storage::SecondaryColor3f);
+         storage::SecondaryColor3fv.aliased(&storage::SecondaryColor3fvEXT);
+         storage::SecondaryColor3fvEXT.aliased(&storage::SecondaryColor3fv);
+         storage::SecondaryColor3i.aliased(&storage::SecondaryColor3iEXT);
+         storage::SecondaryColor3iEXT.aliased(&storage::SecondaryColor3i);
+         storage::SecondaryColor3iv.aliased(&storage::SecondaryColor3ivEXT);
+         storage::SecondaryColor3ivEXT.aliased(&storage::SecondaryColor3iv);
+         storage::SecondaryColor3s.aliased(&storage::SecondaryColor3sEXT);
+         storage::SecondaryColor3sEXT.aliased(&storage::SecondaryColor3s);
+         storage::SecondaryColor3sv.aliased(&storage::SecondaryColor3svEXT);
+         storage::SecondaryColor3svEXT.aliased(&storage::SecondaryColor3sv);
+         storage::SecondaryColor3ub.aliased(&storage::SecondaryColor3ubEXT);
+         storage::SecondaryColor3ubEXT.aliased(&storage::SecondaryColor3ub);
+         storage::SecondaryColor3ubv.aliased(&storage::SecondaryColor3ubvEXT);
+         storage::SecondaryColor3ubvEXT.aliased(&storage::SecondaryColor3ubv);
+         storage::SecondaryColor3ui.aliased(&storage::SecondaryColor3uiEXT);
+         storage::SecondaryColor3uiEXT.aliased(&storage::SecondaryColor3ui);
+         storage::SecondaryColor3uiv.aliased(&storage::SecondaryColor3uivEXT);
+         storage::SecondaryColor3uivEXT.aliased(&storage::SecondaryColor3uiv);
+         storage::SecondaryColor3us.aliased(&storage::SecondaryColor3usEXT);
+         storage::SecondaryColor3usEXT.aliased(&storage::SecondaryColor3us);
+         storage::SecondaryColor3usv.aliased(&storage::SecondaryColor3usvEXT);
+         storage::SecondaryColor3usvEXT.aliased(&storage::SecondaryColor3usv);
+         storage::SecondaryColorPointer.aliased(&storage::SecondaryColorPointerEXT);
+         storage::SecondaryColorPointerEXT.aliased(&storage::SecondaryColorPointer);
+         storage::SeparableFilter2D.aliased(&storage::SeparableFilter2DEXT);
+         storage::SeparableFilter2DEXT.aliased(&storage::SeparableFilter2D);
+         storage::ShaderSource.aliased(&storage::ShaderSourceARB);
+         storage::ShaderSourceARB.aliased(&storage::ShaderSource);
+         storage::SpecializeShader.aliased(&storage::SpecializeShaderARB);
+         storage::SpecializeShaderARB.aliased(&storage::SpecializeShader);
+         storage::StencilOpSeparate.aliased(&storage::StencilOpSeparateATI);
+         storage::StencilOpSeparateATI.aliased(&storage::StencilOpSeparate);
+         storage::TexBuffer.aliased(&storage::TexBufferARB);
+         storage::TexBuffer.aliased(&storage::TexBufferEXT);
+         storage::TexBufferARB.aliased(&storage::TexBuffer);
+         storage::TexBufferARB.aliased(&storage::TexBufferEXT);
+         storage::TexBufferEXT.aliased(&storage::TexBuffer);
+         storage::TexBufferEXT.aliased(&storage::TexBufferARB);
+         storage::TexImage3D.aliased(&storage::TexImage3DEXT);
+         storage::TexImage3DEXT.aliased(&storage::TexImage3D);
+         storage::TexParameterIiv.aliased(&storage::TexParameterIivEXT);
+         storage::TexParameterIivEXT.aliased(&storage::TexParameterIiv);
+         storage::TexParameterIuiv.aliased(&storage::TexParameterIuivEXT);
+         storage::TexParameterIuivEXT.aliased(&storage::TexParameterIuiv);
+         storage::TexSubImage1D.aliased(&storage::TexSubImage1DEXT);
+         storage::TexSubImage1DEXT.aliased(&storage::TexSubImage1D);
+         storage::TexSubImage2D.aliased(&storage::TexSubImage2DEXT);
+         storage::TexSubImage2DEXT.aliased(&storage::TexSubImage2D);
+         storage::TexSubImage3D.aliased(&storage::TexSubImage3DEXT);
+         storage::TexSubImage3DEXT.aliased(&storage::TexSubImage3D);
+         storage::TransformFeedbackVaryings.aliased(&storage::TransformFeedbackVaryingsEXT);
+         storage::TransformFeedbackVaryingsEXT.aliased(&storage::TransformFeedbackVaryings);
+         storage::Uniform1f.aliased(&storage::Uniform1fARB);
+         storage::Uniform1fARB.aliased(&storage::Uniform1f);
+         storage::Uniform1fv.aliased(&storage::Uniform1fvARB);
+         storage::Uniform1fvARB.aliased(&storage::Uniform1fv);
+         storage::Uniform1i.aliased(&storage::Uniform1iARB);
+         storage::Uniform1iARB.aliased(&storage::Uniform1i);
+         storage::Uniform1iv.aliased(&storage::Uniform1ivARB);
+         storage::Uniform1ivARB.aliased(&storage::Uniform1iv);
+         storage::Uniform1ui.aliased(&storage::Uniform1uiEXT);
+         storage::Uniform1uiEXT.aliased(&storage::Uniform1ui);
+         storage::Uniform1uiv.aliased(&storage::Uniform1uivEXT);
+         storage::Uniform1uivEXT.aliased(&storage::Uniform1uiv);
+         storage::Uniform2f.aliased(&storage::Uniform2fARB);
+         storage::Uniform2fARB.aliased(&storage::Uniform2f);
+         storage::Uniform2fv.aliased(&storage::Uniform2fvARB);
+         storage::Uniform2fvARB.aliased(&storage::Uniform2fv);
+         storage::Uniform2i.aliased(&storage::Uniform2iARB);
+         storage::Uniform2iARB.aliased(&storage::Uniform2i);
+         storage::Uniform2iv.aliased(&storage::Uniform2ivARB);
+         storage::Uniform2ivARB.aliased(&storage::Uniform2iv);
+         storage::Uniform2ui.aliased(&storage::Uniform2uiEXT);
+         storage::Uniform2uiEXT.aliased(&storage::Uniform2ui);
+         storage::Uniform2uiv.aliased(&storage::Uniform2uivEXT);
+         storage::Uniform2uivEXT.aliased(&storage::Uniform2uiv);
+         storage::Uniform3f.aliased(&storage::Uniform3fARB);
+         storage::Uniform3fARB.aliased(&storage::Uniform3f);
+         storage::Uniform3fv.aliased(&storage::Uniform3fvARB);
+         storage::Uniform3fvARB.aliased(&storage::Uniform3fv);
+         storage::Uniform3i.aliased(&storage::Uniform3iARB);
+         storage::Uniform3iARB.aliased(&storage::Uniform3i);
+         storage::Uniform3iv.aliased(&storage::Uniform3ivARB);
+         storage::Uniform3ivARB.aliased(&storage::Uniform3iv);
+         storage::Uniform3ui.aliased(&storage::Uniform3uiEXT);
+         storage::Uniform3uiEXT.aliased(&storage::Uniform3ui);
+         storage::Uniform3uiv.aliased(&storage::Uniform3uivEXT);
+         storage::Uniform3uivEXT.aliased(&storage::Uniform3uiv);
+         storage::Uniform4f.aliased(&storage::Uniform4fARB);
+         storage::Uniform4fARB.aliased(&storage::Uniform4f);
+         storage::Uniform4fv.aliased(&storage::Uniform4fvARB);
+         storage::Uniform4fvARB.aliased(&storage::Uniform4fv);
+         storage::Uniform4i.aliased(&storage::Uniform4iARB);
+         storage::Uniform4iARB.aliased(&storage::Uniform4i);
+         storage::Uniform4iv.aliased(&storage::Uniform4ivARB);
+         storage::Uniform4ivARB.aliased(&storage::Uniform4iv);
+         storage::Uniform4ui.aliased(&storage::Uniform4uiEXT);
+         storage::Uniform4uiEXT.aliased(&storage::Uniform4ui);
+         storage::Uniform4uiv.aliased(&storage::Uniform4uivEXT);
+         storage::Uniform4uivEXT.aliased(&storage::Uniform4uiv);
+         storage::UniformMatrix2fv.aliased(&storage::UniformMatrix2fvARB);
+         storage::UniformMatrix2fvARB.aliased(&storage::UniformMatrix2fv);
+         storage::UniformMatrix3fv.aliased(&storage::UniformMatrix3fvARB);
+         storage::UniformMatrix3fvARB.aliased(&storage::UniformMatrix3fv);
+         storage::UniformMatrix4fv.aliased(&storage::UniformMatrix4fvARB);
+         storage::UniformMatrix4fvARB.aliased(&storage::UniformMatrix4fv);
+         storage::UnmapBuffer.aliased(&storage::UnmapBufferARB);
+         storage::UnmapBufferARB.aliased(&storage::UnmapBuffer);
+         storage::UseProgram.aliased(&storage::UseProgramObjectARB);
+         storage::UseProgramObjectARB.aliased(&storage::UseProgram);
+         storage::ValidateProgram.aliased(&storage::ValidateProgramARB);
+         storage::ValidateProgramARB.aliased(&storage::ValidateProgram);
+         storage::VertexAttrib1d.aliased(&storage::VertexAttrib1dARB);
+         storage::VertexAttrib1d.aliased(&storage::VertexAttrib1dNV);
+         storage::VertexAttrib1dARB.aliased(&storage::VertexAttrib1d);
+         storage::VertexAttrib1dARB.aliased(&storage::VertexAttrib1dNV);
+         storage::VertexAttrib1dNV.aliased(&storage::VertexAttrib1d);
+         storage::VertexAttrib1dNV.aliased(&storage::VertexAttrib1dARB);
+         storage::VertexAttrib1dv.aliased(&storage::VertexAttrib1dvARB);
+         storage::VertexAttrib1dv.aliased(&storage::VertexAttrib1dvNV);
+         storage::VertexAttrib1dvARB.aliased(&storage::VertexAttrib1dv);
+         storage::VertexAttrib1dvARB.aliased(&storage::VertexAttrib1dvNV);
+         storage::VertexAttrib1dvNV.aliased(&storage::VertexAttrib1dv);
+         storage::VertexAttrib1dvNV.aliased(&storage::VertexAttrib1dvARB);
+         storage::VertexAttrib1f.aliased(&storage::VertexAttrib1fARB);
+         storage::VertexAttrib1f.aliased(&storage::VertexAttrib1fNV);
+         storage::VertexAttrib1fARB.aliased(&storage::VertexAttrib1f);
+         storage::VertexAttrib1fARB.aliased(&storage::VertexAttrib1fNV);
+         storage::VertexAttrib1fNV.aliased(&storage::VertexAttrib1f);
+         storage::VertexAttrib1fNV.aliased(&storage::VertexAttrib1fARB);
+         storage::VertexAttrib1fv.aliased(&storage::VertexAttrib1fvARB);
+         storage::VertexAttrib1fv.aliased(&storage::VertexAttrib1fvNV);
+         storage::VertexAttrib1fvARB.aliased(&storage::VertexAttrib1fv);
+         storage::VertexAttrib1fvARB.aliased(&storage::VertexAttrib1fvNV);
+         storage::VertexAttrib1fvNV.aliased(&storage::VertexAttrib1fv);
+         storage::VertexAttrib1fvNV.aliased(&storage::VertexAttrib1fvARB);
+         storage::VertexAttrib1s.aliased(&storage::VertexAttrib1sARB);
+         storage::VertexAttrib1s.aliased(&storage::VertexAttrib1sNV);
+         storage::VertexAttrib1sARB.aliased(&storage::VertexAttrib1s);
+         storage::VertexAttrib1sARB.aliased(&storage::VertexAttrib1sNV);
+         storage::VertexAttrib1sNV.aliased(&storage::VertexAttrib1s);
+         storage::VertexAttrib1sNV.aliased(&storage::VertexAttrib1sARB);
+         storage::VertexAttrib1sv.aliased(&storage::VertexAttrib1svARB);
+         storage::VertexAttrib1sv.aliased(&storage::VertexAttrib1svNV);
+         storage::VertexAttrib1svARB.aliased(&storage::VertexAttrib1sv);
+         storage::VertexAttrib1svARB.aliased(&storage::VertexAttrib1svNV);
+         storage::VertexAttrib1svNV.aliased(&storage::VertexAttrib1sv);
+         storage::VertexAttrib1svNV.aliased(&storage::VertexAttrib1svARB);
+         storage::VertexAttrib2d.aliased(&storage::VertexAttrib2dARB);
+         storage::VertexAttrib2d.aliased(&storage::VertexAttrib2dNV);
+         storage::VertexAttrib2dARB.aliased(&storage::VertexAttrib2d);
+         storage::VertexAttrib2dARB.aliased(&storage::VertexAttrib2dNV);
+         storage::VertexAttrib2dNV.aliased(&storage::VertexAttrib2d);
+         storage::VertexAttrib2dNV.aliased(&storage::VertexAttrib2dARB);
+         storage::VertexAttrib2dv.aliased(&storage::VertexAttrib2dvARB);
+         storage::VertexAttrib2dv.aliased(&storage::VertexAttrib2dvNV);
+         storage::VertexAttrib2dvARB.aliased(&storage::VertexAttrib2dv);
+         storage::VertexAttrib2dvARB.aliased(&storage::VertexAttrib2dvNV);
+         storage::VertexAttrib2dvNV.aliased(&storage::VertexAttrib2dv);
+         storage::VertexAttrib2dvNV.aliased(&storage::VertexAttrib2dvARB);
+         storage::VertexAttrib2f.aliased(&storage::VertexAttrib2fARB);
+         storage::VertexAttrib2f.aliased(&storage::VertexAttrib2fNV);
+         storage::VertexAttrib2fARB.aliased(&storage::VertexAttrib2f);
+         storage::VertexAttrib2fARB.aliased(&storage::VertexAttrib2fNV);
+         storage::VertexAttrib2fNV.aliased(&storage::VertexAttrib2f);
+         storage::VertexAttrib2fNV.aliased(&storage::VertexAttrib2fARB);
+         storage::VertexAttrib2fv.aliased(&storage::VertexAttrib2fvARB);
+         storage::VertexAttrib2fv.aliased(&storage::VertexAttrib2fvNV);
+         storage::VertexAttrib2fvARB.aliased(&storage::VertexAttrib2fv);
+         storage::VertexAttrib2fvARB.aliased(&storage::VertexAttrib2fvNV);
+         storage::VertexAttrib2fvNV.aliased(&storage::VertexAttrib2fv);
+         storage::VertexAttrib2fvNV.aliased(&storage::VertexAttrib2fvARB);
+         storage::VertexAttrib2s.aliased(&storage::VertexAttrib2sARB);
+         storage::VertexAttrib2s.aliased(&storage::VertexAttrib2sNV);
+         storage::VertexAttrib2sARB.aliased(&storage::VertexAttrib2s);
+         storage::VertexAttrib2sARB.aliased(&storage::VertexAttrib2sNV);
+         storage::VertexAttrib2sNV.aliased(&storage::VertexAttrib2s);
+         storage::VertexAttrib2sNV.aliased(&storage::VertexAttrib2sARB);
+         storage::VertexAttrib2sv.aliased(&storage::VertexAttrib2svARB);
+         storage::VertexAttrib2sv.aliased(&storage::VertexAttrib2svNV);
+         storage::VertexAttrib2svARB.aliased(&storage::VertexAttrib2sv);
+         storage::VertexAttrib2svARB.aliased(&storage::VertexAttrib2svNV);
+         storage::VertexAttrib2svNV.aliased(&storage::VertexAttrib2sv);
+         storage::VertexAttrib2svNV.aliased(&storage::VertexAttrib2svARB);
+         storage::VertexAttrib3d.aliased(&storage::VertexAttrib3dARB);
+         storage::VertexAttrib3d.aliased(&storage::VertexAttrib3dNV);
+         storage::VertexAttrib3dARB.aliased(&storage::VertexAttrib3d);
+         storage::VertexAttrib3dARB.aliased(&storage::VertexAttrib3dNV);
+         storage::VertexAttrib3dNV.aliased(&storage::VertexAttrib3d);
+         storage::VertexAttrib3dNV.aliased(&storage::VertexAttrib3dARB);
+         storage::VertexAttrib3dv.aliased(&storage::VertexAttrib3dvARB);
+         storage::VertexAttrib3dv.aliased(&storage::VertexAttrib3dvNV);
+         storage::VertexAttrib3dvARB.aliased(&storage::VertexAttrib3dv);
+         storage::VertexAttrib3dvARB.aliased(&storage::VertexAttrib3dvNV);
+         storage::VertexAttrib3dvNV.aliased(&storage::VertexAttrib3dv);
+         storage::VertexAttrib3dvNV.aliased(&storage::VertexAttrib3dvARB);
+         storage::VertexAttrib3f.aliased(&storage::VertexAttrib3fARB);
+         storage::VertexAttrib3f.aliased(&storage::VertexAttrib3fNV);
+         storage::VertexAttrib3fARB.aliased(&storage::VertexAttrib3f);
+         storage::VertexAttrib3fARB.aliased(&storage::VertexAttrib3fNV);
+         storage::VertexAttrib3fNV.aliased(&storage::VertexAttrib3f);
+         storage::VertexAttrib3fNV.aliased(&storage::VertexAttrib3fARB);
+         storage::VertexAttrib3fv.aliased(&storage::VertexAttrib3fvARB);
+         storage::VertexAttrib3fv.aliased(&storage::VertexAttrib3fvNV);
+         storage::VertexAttrib3fvARB.aliased(&storage::VertexAttrib3fv);
+         storage::VertexAttrib3fvARB.aliased(&storage::VertexAttrib3fvNV);
+         storage::VertexAttrib3fvNV.aliased(&storage::VertexAttrib3fv);
+         storage::VertexAttrib3fvNV.aliased(&storage::VertexAttrib3fvARB);
+         storage::VertexAttrib3s.aliased(&storage::VertexAttrib3sARB);
+         storage::VertexAttrib3s.aliased(&storage::VertexAttrib3sNV);
+         storage::VertexAttrib3sARB.aliased(&storage::VertexAttrib3s);
+         storage::VertexAttrib3sARB.aliased(&storage::VertexAttrib3sNV);
+         storage::VertexAttrib3sNV.aliased(&storage::VertexAttrib3s);
+         storage::VertexAttrib3sNV.aliased(&storage::VertexAttrib3sARB);
+         storage::VertexAttrib3sv.aliased(&storage::VertexAttrib3svARB);
+         storage::VertexAttrib3sv.aliased(&storage::VertexAttrib3svNV);
+         storage::VertexAttrib3svARB.aliased(&storage::VertexAttrib3sv);
+         storage::VertexAttrib3svARB.aliased(&storage::VertexAttrib3svNV);
+         storage::VertexAttrib3svNV.aliased(&storage::VertexAttrib3sv);
+         storage::VertexAttrib3svNV.aliased(&storage::VertexAttrib3svARB);
+         storage::VertexAttrib4bv.aliased(&storage::VertexAttrib4bvARB);
+         storage::VertexAttrib4bvARB.aliased(&storage::VertexAttrib4bv);
+         storage::VertexAttrib4d.aliased(&storage::VertexAttrib4dARB);
+         storage::VertexAttrib4d.aliased(&storage::VertexAttrib4dNV);
+         storage::VertexAttrib4dARB.aliased(&storage::VertexAttrib4d);
+         storage::VertexAttrib4dARB.aliased(&storage::VertexAttrib4dNV);
+         storage::VertexAttrib4dNV.aliased(&storage::VertexAttrib4d);
+         storage::VertexAttrib4dNV.aliased(&storage::VertexAttrib4dARB);
+         storage::VertexAttrib4dv.aliased(&storage::VertexAttrib4dvARB);
+         storage::VertexAttrib4dv.aliased(&storage::VertexAttrib4dvNV);
+         storage::VertexAttrib4dvARB.aliased(&storage::VertexAttrib4dv);
+         storage::VertexAttrib4dvARB.aliased(&storage::VertexAttrib4dvNV);
+         storage::VertexAttrib4dvNV.aliased(&storage::VertexAttrib4dv);
+         storage::VertexAttrib4dvNV.aliased(&storage::VertexAttrib4dvARB);
+         storage::VertexAttrib4f.aliased(&storage::VertexAttrib4fARB);
+         storage::VertexAttrib4f.aliased(&storage::VertexAttrib4fNV);
+         storage::VertexAttrib4fARB.aliased(&storage::VertexAttrib4f);
+         storage::VertexAttrib4fARB.aliased(&storage::VertexAttrib4fNV);
+         storage::VertexAttrib4fNV.aliased(&storage::VertexAttrib4f);
+         storage::VertexAttrib4fNV.aliased(&storage::VertexAttrib4fARB);
+         storage::VertexAttrib4fv.aliased(&storage::VertexAttrib4fvARB);
+         storage::VertexAttrib4fv.aliased(&storage::VertexAttrib4fvNV);
+         storage::VertexAttrib4fvARB.aliased(&storage::VertexAttrib4fv);
+         storage::VertexAttrib4fvARB.aliased(&storage::VertexAttrib4fvNV);
+         storage::VertexAttrib4fvNV.aliased(&storage::VertexAttrib4fv);
+         storage::VertexAttrib4fvNV.aliased(&storage::VertexAttrib4fvARB);
+         storage::VertexAttrib4iv.aliased(&storage::VertexAttrib4ivARB);
+         storage::VertexAttrib4ivARB.aliased(&storage::VertexAttrib4iv);
+         storage::VertexAttrib4Nbv.aliased(&storage::VertexAttrib4NbvARB);
+         storage::VertexAttrib4NbvARB.aliased(&storage::VertexAttrib4Nbv);
+         storage::VertexAttrib4Niv.aliased(&storage::VertexAttrib4NivARB);
+         storage::VertexAttrib4NivARB.aliased(&storage::VertexAttrib4Niv);
+         storage::VertexAttrib4Nsv.aliased(&storage::VertexAttrib4NsvARB);
+         storage::VertexAttrib4NsvARB.aliased(&storage::VertexAttrib4Nsv);
+         storage::VertexAttrib4Nub.aliased(&storage::VertexAttrib4NubARB);
+         storage::VertexAttrib4Nub.aliased(&storage::VertexAttrib4ubNV);
+         storage::VertexAttrib4NubARB.aliased(&storage::VertexAttrib4Nub);
+         storage::VertexAttrib4NubARB.aliased(&storage::VertexAttrib4ubNV);
+         storage::VertexAttrib4Nubv.aliased(&storage::VertexAttrib4NubvARB);
+         storage::VertexAttrib4Nubv.aliased(&storage::VertexAttrib4ubvNV);
+         storage::VertexAttrib4NubvARB.aliased(&storage::VertexAttrib4Nubv);
+         storage::VertexAttrib4NubvARB.aliased(&storage::VertexAttrib4ubvNV);
+         storage::VertexAttrib4Nuiv.aliased(&storage::VertexAttrib4NuivARB);
+         storage::VertexAttrib4NuivARB.aliased(&storage::VertexAttrib4Nuiv);
+         storage::VertexAttrib4Nusv.aliased(&storage::VertexAttrib4NusvARB);
+         storage::VertexAttrib4NusvARB.aliased(&storage::VertexAttrib4Nusv);
+         storage::VertexAttrib4s.aliased(&storage::VertexAttrib4sARB);
+         storage::VertexAttrib4s.aliased(&storage::VertexAttrib4sNV);
+         storage::VertexAttrib4sARB.aliased(&storage::VertexAttrib4s);
+         storage::VertexAttrib4sARB.aliased(&storage::VertexAttrib4sNV);
+         storage::VertexAttrib4sNV.aliased(&storage::VertexAttrib4s);
+         storage::VertexAttrib4sNV.aliased(&storage::VertexAttrib4sARB);
+         storage::VertexAttrib4sv.aliased(&storage::VertexAttrib4svARB);
+         storage::VertexAttrib4sv.aliased(&storage::VertexAttrib4svNV);
+         storage::VertexAttrib4svARB.aliased(&storage::VertexAttrib4sv);
+         storage::VertexAttrib4svARB.aliased(&storage::VertexAttrib4svNV);
+         storage::VertexAttrib4svNV.aliased(&storage::VertexAttrib4sv);
+         storage::VertexAttrib4svNV.aliased(&storage::VertexAttrib4svARB);
+         storage::VertexAttrib4ubNV.aliased(&storage::VertexAttrib4Nub);
+         storage::VertexAttrib4ubNV.aliased(&storage::VertexAttrib4NubARB);
+         storage::VertexAttrib4ubv.aliased(&storage::VertexAttrib4ubvARB);
+         storage::VertexAttrib4ubvARB.aliased(&storage::VertexAttrib4ubv);
+         storage::VertexAttrib4ubvNV.aliased(&storage::VertexAttrib4Nubv);
+         storage::VertexAttrib4ubvNV.aliased(&storage::VertexAttrib4NubvARB);
+         storage::VertexAttrib4uiv.aliased(&storage::VertexAttrib4uivARB);
+         storage::VertexAttrib4uivARB.aliased(&storage::VertexAttrib4uiv);
+         storage::VertexAttrib4usv.aliased(&storage::VertexAttrib4usvARB);
+         storage::VertexAttrib4usvARB.aliased(&storage::VertexAttrib4usv);
+         storage::VertexAttribDivisor.aliased(&storage::VertexAttribDivisorARB);
+         storage::VertexAttribDivisorARB.aliased(&storage::VertexAttribDivisor);
+         storage::VertexAttribI1i.aliased(&storage::VertexAttribI1iEXT);
+         storage::VertexAttribI1iEXT.aliased(&storage::VertexAttribI1i);
+         storage::VertexAttribI1iv.aliased(&storage::VertexAttribI1ivEXT);
+         storage::VertexAttribI1ivEXT.aliased(&storage::VertexAttribI1iv);
+         storage::VertexAttribI1ui.aliased(&storage::VertexAttribI1uiEXT);
+         storage::VertexAttribI1uiEXT.aliased(&storage::VertexAttribI1ui);
+         storage::VertexAttribI1uiv.aliased(&storage::VertexAttribI1uivEXT);
+         storage::VertexAttribI1uivEXT.aliased(&storage::VertexAttribI1uiv);
+         storage::VertexAttribI2i.aliased(&storage::VertexAttribI2iEXT);
+         storage::VertexAttribI2iEXT.aliased(&storage::VertexAttribI2i);
+         storage::VertexAttribI2iv.aliased(&storage::VertexAttribI2ivEXT);
+         storage::VertexAttribI2ivEXT.aliased(&storage::VertexAttribI2iv);
+         storage::VertexAttribI2ui.aliased(&storage::VertexAttribI2uiEXT);
+         storage::VertexAttribI2uiEXT.aliased(&storage::VertexAttribI2ui);
+         storage::VertexAttribI2uiv.aliased(&storage::VertexAttribI2uivEXT);
+         storage::VertexAttribI2uivEXT.aliased(&storage::VertexAttribI2uiv);
+         storage::VertexAttribI3i.aliased(&storage::VertexAttribI3iEXT);
+         storage::VertexAttribI3iEXT.aliased(&storage::VertexAttribI3i);
+         storage::VertexAttribI3iv.aliased(&storage::VertexAttribI3ivEXT);
+         storage::VertexAttribI3ivEXT.aliased(&storage::VertexAttribI3iv);
+         storage::VertexAttribI3ui.aliased(&storage::VertexAttribI3uiEXT);
+         storage::VertexAttribI3uiEXT.aliased(&storage::VertexAttribI3ui);
+         storage::VertexAttribI3uiv.aliased(&storage::VertexAttribI3uivEXT);
+         storage::VertexAttribI3uivEXT.aliased(&storage::VertexAttribI3uiv);
+         storage::VertexAttribI4bv.aliased(&storage::VertexAttribI4bvEXT);
+         storage::VertexAttribI4bvEXT.aliased(&storage::VertexAttribI4bv);
+         storage::VertexAttribI4i.aliased(&storage::VertexAttribI4iEXT);
+         storage::VertexAttribI4iEXT.aliased(&storage::VertexAttribI4i);
+         storage::VertexAttribI4iv.aliased(&storage::VertexAttribI4ivEXT);
+         storage::VertexAttribI4ivEXT.aliased(&storage::VertexAttribI4iv);
+         storage::VertexAttribI4sv.aliased(&storage::VertexAttribI4svEXT);
+         storage::VertexAttribI4svEXT.aliased(&storage::VertexAttribI4sv);
+         storage::VertexAttribI4ubv.aliased(&storage::VertexAttribI4ubvEXT);
+         storage::VertexAttribI4ubvEXT.aliased(&storage::VertexAttribI4ubv);
+         storage::VertexAttribI4ui.aliased(&storage::VertexAttribI4uiEXT);
+         storage::VertexAttribI4uiEXT.aliased(&storage::VertexAttribI4ui);
+         storage::VertexAttribI4uiv.aliased(&storage::VertexAttribI4uivEXT);
+         storage::VertexAttribI4uivEXT.aliased(&storage::VertexAttribI4uiv);
+         storage::VertexAttribI4usv.aliased(&storage::VertexAttribI4usvEXT);
+         storage::VertexAttribI4usvEXT.aliased(&storage::VertexAttribI4usv);
+         storage::VertexAttribIPointer.aliased(&storage::VertexAttribIPointerEXT);
+         storage::VertexAttribIPointerEXT.aliased(&storage::VertexAttribIPointer);
+         storage::VertexAttribL1d.aliased(&storage::VertexAttribL1dEXT);
+         storage::VertexAttribL1dEXT.aliased(&storage::VertexAttribL1d);
+         storage::VertexAttribL1dv.aliased(&storage::VertexAttribL1dvEXT);
+         storage::VertexAttribL1dvEXT.aliased(&storage::VertexAttribL1dv);
+         storage::VertexAttribL2d.aliased(&storage::VertexAttribL2dEXT);
+         storage::VertexAttribL2dEXT.aliased(&storage::VertexAttribL2d);
+         storage::VertexAttribL2dv.aliased(&storage::VertexAttribL2dvEXT);
+         storage::VertexAttribL2dvEXT.aliased(&storage::VertexAttribL2dv);
+         storage::VertexAttribL3d.aliased(&storage::VertexAttribL3dEXT);
+         storage::VertexAttribL3dEXT.aliased(&storage::VertexAttribL3d);
+         storage::VertexAttribL3dv.aliased(&storage::VertexAttribL3dvEXT);
+         storage::VertexAttribL3dvEXT.aliased(&storage::VertexAttribL3dv);
+         storage::VertexAttribL4d.aliased(&storage::VertexAttribL4dEXT);
+         storage::VertexAttribL4dEXT.aliased(&storage::VertexAttribL4d);
+         storage::VertexAttribL4dv.aliased(&storage::VertexAttribL4dvEXT);
+         storage::VertexAttribL4dvEXT.aliased(&storage::VertexAttribL4dv);
+         storage::VertexAttribLPointer.aliased(&storage::VertexAttribLPointerEXT);
+         storage::VertexAttribLPointerEXT.aliased(&storage::VertexAttribLPointer);
+         storage::VertexAttribPointer.aliased(&storage::VertexAttribPointerARB);
+         storage::VertexAttribPointerARB.aliased(&storage::VertexAttribPointer);
+         storage::WindowPos2d.aliased(&storage::WindowPos2dARB);
+         storage::WindowPos2d.aliased(&storage::WindowPos2dMESA);
+         storage::WindowPos2dARB.aliased(&storage::WindowPos2d);
+         storage::WindowPos2dARB.aliased(&storage::WindowPos2dMESA);
+         storage::WindowPos2dMESA.aliased(&storage::WindowPos2d);
+         storage::WindowPos2dMESA.aliased(&storage::WindowPos2dARB);
+         storage::WindowPos2dv.aliased(&storage::WindowPos2dvARB);
+         storage::WindowPos2dv.aliased(&storage::WindowPos2dvMESA);
+         storage::WindowPos2dvARB.aliased(&storage::WindowPos2dv);
+         storage::WindowPos2dvARB.aliased(&storage::WindowPos2dvMESA);
+         storage::WindowPos2dvMESA.aliased(&storage::WindowPos2dv);
+         storage::WindowPos2dvMESA.aliased(&storage::WindowPos2dvARB);
+         storage::WindowPos2f.aliased(&storage::WindowPos2fARB);
+         storage::WindowPos2f.aliased(&storage::WindowPos2fMESA);
+         storage::WindowPos2fARB.aliased(&storage::WindowPos2f);
+         storage::WindowPos2fARB.aliased(&storage::WindowPos2fMESA);
+         storage::WindowPos2fMESA.aliased(&storage::WindowPos2f);
+         storage::WindowPos2fMESA.aliased(&storage::WindowPos2fARB);
+         storage::WindowPos2fv.aliased(&storage::WindowPos2fvARB);
+         storage::WindowPos2fv.aliased(&storage::WindowPos2fvMESA);
+         storage::WindowPos2fvARB.aliased(&storage::WindowPos2fv);
+         storage::WindowPos2fvARB.aliased(&storage::WindowPos2fvMESA);
+         storage::WindowPos2fvMESA.aliased(&storage::WindowPos2fv);
+         storage::WindowPos2fvMESA.aliased(&storage::WindowPos2fvARB);
+         storage::WindowPos2i.aliased(&storage::WindowPos2iARB);
+         storage::WindowPos2i.aliased(&storage::WindowPos2iMESA);
+         storage::WindowPos2iARB.aliased(&storage::WindowPos2i);
+         storage::WindowPos2iARB.aliased(&storage::WindowPos2iMESA);
+         storage::WindowPos2iMESA.aliased(&storage::WindowPos2i);
+         storage::WindowPos2iMESA.aliased(&storage::WindowPos2iARB);
+         storage::WindowPos2iv.aliased(&storage::WindowPos2ivARB);
+         storage::WindowPos2iv.aliased(&storage::WindowPos2ivMESA);
+         storage::WindowPos2ivARB.aliased(&storage::WindowPos2iv);
+         storage::WindowPos2ivARB.aliased(&storage::WindowPos2ivMESA);
+         storage::WindowPos2ivMESA.aliased(&storage::WindowPos2iv);
+         storage::WindowPos2ivMESA.aliased(&storage::WindowPos2ivARB);
+         storage::WindowPos2s.aliased(&storage::WindowPos2sARB);
+         storage::WindowPos2s.aliased(&storage::WindowPos2sMESA);
+         storage::WindowPos2sARB.aliased(&storage::WindowPos2s);
+         storage::WindowPos2sARB.aliased(&storage::WindowPos2sMESA);
+         storage::WindowPos2sMESA.aliased(&storage::WindowPos2s);
+         storage::WindowPos2sMESA.aliased(&storage::WindowPos2sARB);
+         storage::WindowPos2sv.aliased(&storage::WindowPos2svARB);
+         storage::WindowPos2sv.aliased(&storage::WindowPos2svMESA);
+         storage::WindowPos2svARB.aliased(&storage::WindowPos2sv);
+         storage::WindowPos2svARB.aliased(&storage::WindowPos2svMESA);
+         storage::WindowPos2svMESA.aliased(&storage::WindowPos2sv);
+         storage::WindowPos2svMESA.aliased(&storage::WindowPos2svARB);
+         storage::WindowPos3d.aliased(&storage::WindowPos3dARB);
+         storage::WindowPos3d.aliased(&storage::WindowPos3dMESA);
+         storage::WindowPos3dARB.aliased(&storage::WindowPos3d);
+         storage::WindowPos3dARB.aliased(&storage::WindowPos3dMESA);
+         storage::WindowPos3dMESA.aliased(&storage::WindowPos3d);
+         storage::WindowPos3dMESA.aliased(&storage::WindowPos3dARB);
+         storage::WindowPos3dv.aliased(&storage::WindowPos3dvARB);
+         storage::WindowPos3dv.aliased(&storage::WindowPos3dvMESA);
+         storage::WindowPos3dvARB.aliased(&storage::WindowPos3dv);
+         storage::WindowPos3dvARB.aliased(&storage::WindowPos3dvMESA);
+         storage::WindowPos3dvMESA.aliased(&storage::WindowPos3dv);
+         storage::WindowPos3dvMESA.aliased(&storage::WindowPos3dvARB);
+         storage::WindowPos3f.aliased(&storage::WindowPos3fARB);
+         storage::WindowPos3f.aliased(&storage::WindowPos3fMESA);
+         storage::WindowPos3fARB.aliased(&storage::WindowPos3f);
+         storage::WindowPos3fARB.aliased(&storage::WindowPos3fMESA);
+         storage::WindowPos3fMESA.aliased(&storage::WindowPos3f);
+         storage::WindowPos3fMESA.aliased(&storage::WindowPos3fARB);
+         storage::WindowPos3fv.aliased(&storage::WindowPos3fvARB);
+         storage::WindowPos3fv.aliased(&storage::WindowPos3fvMESA);
+         storage::WindowPos3fvARB.aliased(&storage::WindowPos3fv);
+         storage::WindowPos3fvARB.aliased(&storage::WindowPos3fvMESA);
+         storage::WindowPos3fvMESA.aliased(&storage::WindowPos3fv);
+         storage::WindowPos3fvMESA.aliased(&storage::WindowPos3fvARB);
+         storage::WindowPos3i.aliased(&storage::WindowPos3iARB);
+         storage::WindowPos3i.aliased(&storage::WindowPos3iMESA);
+         storage::WindowPos3iARB.aliased(&storage::WindowPos3i);
+         storage::WindowPos3iARB.aliased(&storage::WindowPos3iMESA);
+         storage::WindowPos3iMESA.aliased(&storage::WindowPos3i);
+         storage::WindowPos3iMESA.aliased(&storage::WindowPos3iARB);
+         storage::WindowPos3iv.aliased(&storage::WindowPos3ivARB);
+         storage::WindowPos3iv.aliased(&storage::WindowPos3ivMESA);
+         storage::WindowPos3ivARB.aliased(&storage::WindowPos3iv);
+         storage::WindowPos3ivARB.aliased(&storage::WindowPos3ivMESA);
+         storage::WindowPos3ivMESA.aliased(&storage::WindowPos3iv);
+         storage::WindowPos3ivMESA.aliased(&storage::WindowPos3ivARB);
+         storage::WindowPos3s.aliased(&storage::WindowPos3sARB);
+         storage::WindowPos3s.aliased(&storage::WindowPos3sMESA);
+         storage::WindowPos3sARB.aliased(&storage::WindowPos3s);
+         storage::WindowPos3sARB.aliased(&storage::WindowPos3sMESA);
+         storage::WindowPos3sMESA.aliased(&storage::WindowPos3s);
+         storage::WindowPos3sMESA.aliased(&storage::WindowPos3sARB);
+         storage::WindowPos3sv.aliased(&storage::WindowPos3svARB);
+         storage::WindowPos3sv.aliased(&storage::WindowPos3svMESA);
+         storage::WindowPos3svARB.aliased(&storage::WindowPos3sv);
+         storage::WindowPos3svARB.aliased(&storage::WindowPos3svMESA);
+         storage::WindowPos3svMESA.aliased(&storage::WindowPos3sv);
+         storage::WindowPos3svMESA.aliased(&storage::WindowPos3svARB);
+    }
 }
 

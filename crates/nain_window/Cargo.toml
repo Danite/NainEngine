@@ -5,6 +5,7 @@ name = "nain_window"
 version = "0.1.0"
 
 [dependencies]
-glad-gl = {path = "../../vendor/glad-gl"}
+glad_gl = {path = "../../vendor/glad_gl"}
 glfw = "0.43.0"
 nain_events = {path = "../nain_events"}
+nain_log = {path = "../nain_log"}

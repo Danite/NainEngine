@@ -1,19 +1,28 @@
-use nain_events::{Event, EventCategory, KeyPressedEvent};
-use nain_log as log;
+use crate::log;
+use crate::window::{Window, WindowProps, WindowTrait};
 
-pub trait Application {
-    fn run(&self) {
-        println!("Welcome to the Nain engine!");
+pub struct Application<'a> {
+    window: Window<'a>,
+    is_running: bool,
+}
 
-        let event = KeyPressedEvent::new(2, 5);
-
-        log::trace!("{}", event);
-        log::trace!("{}", event.get_name());
-
-        if event.is_in_category(EventCategory::Keyboard) {
-            log::trace!("Event category: {}", stringify!(EventCategory::Keyboard));
+impl<'a> Application<'a> {
+    pub fn new() -> Self {
+        Self {
+            window: Window::create(WindowProps {
+                title: "Nain Engine",
+                width: 1280,
+                height: 720,
+            }),
+            is_running: true,
         }
+    }
 
-        loop {}
+    pub fn run(&mut self) {
+        log::info!("Welcome to the Nain engine!");
+
+        while self.is_running {
+            self.window.on_update();
+        }
     }
 }

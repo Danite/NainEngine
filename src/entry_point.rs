@@ -1,13 +1,12 @@
 use crate::application::Application;
-use nain_log as log;
+use crate::log;
 use std::error::Error;
 
 pub struct CreateApplication;
 
 impl CreateApplication {
-    pub fn new(application: &dyn Application) -> Result<(), Box<dyn Error>> {
+    pub fn new(application: &mut Application) -> Result<(), Box<dyn Error>> {
         log::init()?;
-        log::trace!("Trace log!");
 
         application.run();
 

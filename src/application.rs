@@ -1,19 +1,15 @@
 use crate::log;
 use crate::window::{Window, WindowProps, WindowTrait};
 
-pub struct Application<'a> {
-    window: Window<'a>,
+pub struct Application {
+    window: Window<'static>,
     is_running: bool,
 }
 
-impl<'a> Application<'a> {
+impl Application {
     pub fn new() -> Self {
         Self {
-            window: Window::create(WindowProps {
-                title: "Nain Engine",
-                width: 1280,
-                height: 720,
-            }),
+            window: Window::create(WindowProps::default()),
             is_running: true,
         }
     }

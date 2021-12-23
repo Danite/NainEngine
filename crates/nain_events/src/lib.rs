@@ -1,6 +1,6 @@
 pub use self::{
-    application_event::WindowResizeEvent,
-    event::{Event, EventCategory, EventDispatcher, EventType},
+    application_event::{WindowResizeEvent, WindowCloseEvent},
+    event::{Event, EventCategory, EventType},
     key_event::{KeyPressedEvent, KeyReleasedEvent},
     mouse_event::{
         MouseButtonPressedEvent, MouseButtonReleasedEvent, MouseMovedEvent, MouseScrolledEvent,

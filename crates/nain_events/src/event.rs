@@ -42,19 +42,6 @@ pub trait Event: Display {
     }
 }
 
-pub struct EventDispatcher<'a> {
-    event: &'a dyn Event,
-}
-
-impl<'a> EventDispatcher<'a> {
-    pub fn dispatch<F>(&self, function: F)
-    where
-        F: FnOnce(&dyn Event) + 'static,
-    {
-        function(self.event);
-    }
-}
-
 #[macro_export]
 macro_rules! event_category_flags {
     ($category:expr) => {

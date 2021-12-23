@@ -1,7 +1,3 @@
-use nain_events::Event;
-
-pub type EventCallbackFn = Box<dyn FnOnce(&dyn Event)>;
-
 pub struct WindowProps {
     pub title: &'static str,
     pub width: u32,
@@ -32,7 +28,6 @@ pub trait Window {
     fn on_update(&mut self);
     fn get_width(&self) -> u32;
     fn get_height(&self) -> u32;
-    // fn set_event_callback(&self, callback: EventCallbackFn);
     fn set_vsync(&mut self, enabled: bool);
     fn is_vsync_enabled(&self) -> bool;
     fn create(props: WindowProps) -> Self;

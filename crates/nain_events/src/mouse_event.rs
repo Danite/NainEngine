@@ -4,8 +4,8 @@ use std::fmt;
 // Mouse moved event
 
 pub struct MouseMovedEvent {
-    mouse_x: f32,
-    mouse_y: f32,
+    x_pos: f64,
+    y_pos: f64,
 }
 
 impl Event for MouseMovedEvent {
@@ -18,30 +18,30 @@ impl fmt::Display for MouseMovedEvent {
         write!(
             formater,
             "MouseMovedEvent: x: {} - y: {}",
-            self.mouse_x, self.mouse_y
+            self.x_pos, self.y_pos
         )
     }
 }
 
 impl MouseMovedEvent {
-    pub fn new(mouse_x: f32, mouse_y: f32) -> Self {
-        Self { mouse_x, mouse_y }
+    pub fn new(x_pos: f64, y_pos: f64) -> Self {
+        Self { x_pos, y_pos }
     }
 
-    pub fn get_x(&self) -> f32 {
-        self.mouse_x
+    pub fn get_x(&self) -> f64 {
+        self.x_pos
     }
 
-    pub fn get_y(&self) -> f32 {
-        self.mouse_y
+    pub fn get_y(&self) -> f64 {
+        self.y_pos
     }
 }
 
 // Mouse scrolled event
 
 pub struct MouseScrolledEvent {
-    mouse_x_offset: f32,
-    mouse_y_offset: f32,
+    mouse_x_offset: f64,
+    mouse_y_offset: f64,
 }
 
 impl Event for MouseScrolledEvent {
@@ -61,18 +61,18 @@ impl fmt::Display for MouseScrolledEvent {
 }
 
 impl MouseScrolledEvent {
-    pub fn new(mouse_x_offset: f32, mouse_y_offset: f32) -> Self {
+    pub fn new(mouse_x_offset: f64, mouse_y_offset: f64) -> Self {
         Self {
             mouse_x_offset,
             mouse_y_offset,
         }
     }
 
-    pub fn get_x_offset(&self) -> f32 {
+    pub fn get_x_offset(&self) -> f64 {
         self.mouse_x_offset
     }
 
-    pub fn get_y_offset(&self) -> f32 {
+    pub fn get_y_offset(&self) -> f64 {
         self.mouse_y_offset
     }
 }

@@ -1,10 +1,5 @@
 use std::fmt::Display;
 
-// Current events are blocking, for the future
-// a better strategy might be to buffer the events in a
-// event bus and process them during the "event" part of
-// the update strategy
-
 pub enum EventType {
     None,
     WindowClose,
@@ -33,7 +28,7 @@ pub enum EventCategory {
     MouseButton,
 }
 
-pub trait Event: Display {
+pub trait Event: Display + 'static {
     fn get_type(&self) -> EventType;
     fn get_name(&self) -> String;
     fn get_category_flags(&self) -> EventCategory;

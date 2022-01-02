@@ -5,3 +5,5 @@ name = "nain_events"
 version = "0.1.0"
 
 [dependencies]
+lazy_static = "1.4"
+nain_log = {path = "../nain_log"}
